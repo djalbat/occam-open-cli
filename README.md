@@ -1,6 +1,6 @@
 # Open
 
-Occam's c**O**mmand line **P**ackag**E** manageme**N**t tool.
+Occam's c**o**mmand line **p**ackag**e** manageme**n**t tool.
 
 ## Contact
 
