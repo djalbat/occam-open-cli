@@ -1,6 +1,6 @@
 # Open
 
-Occam's command line Package maNagemEnt tool.
+**O**ccam's command line **P**ackage ma**N**agem**E**nt tool.
 
 ## Contact
 
