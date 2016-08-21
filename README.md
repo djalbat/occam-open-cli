@@ -1,6 +1,6 @@
 # Open
 
-**O**ccam's command line **P**ackage ma**N**agem**E**nt tool.
+**O**ccam's command line **P**ackag**E** manageme**N**t tool.
 
 ## Contact
 
