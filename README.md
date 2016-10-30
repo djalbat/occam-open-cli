@@ -19,25 +19,25 @@ Although a remote service would be needed in order to hold associations of packa
 
 The tool would be installed globally via npm:
 
-   npm install --global occam-open-cli
+    npm install --global occam-open-cli
 
 ## Usage
 
 The following commands are envisaged:
 
-   open install <package_name>[@version]
+    open install <package_name>[@version]
 
-   open update <package_name>[@version]
+    open update <package_name>[@version]
 
-   open publish <directory_name> [--version major|minor]
+    open publish <directory_name> [--version major|minor]
 
-   open register <user_name>
+    open register <user_name>
 
-   open login <user_name>
+    open login <user_name>
 
-   open logout
+    open logout
 
-   open verify
+    open verify
 
 The usage is slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project. In a `~/Mathematics/` directory, say, with all of the projects being contained in sub-directories of this parent directory. This is why the `publish` command takes a `directory_name` argument. Open will look in the `package.json` file within the directory, namely the sub-directory of the directory in which it is executed, to find the package name.
 
