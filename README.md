@@ -15,6 +15,8 @@ The `open` command line tool will leverage [Git](https://git-scm.com/) to provid
 
 Although a remote service would be needed in order to hold associations of package names with Git repositories, as well as manage ownership of these associations, there is no intention to hold source code remotely. This is what is meant by leveraging Git.
 
+Open could also be invoked indirectly via Occam. The welcome page could call Open, for example, rather than encapsulate much the same functionality itself.
+
 ## Installation
 
 The tool would be installed globally via npm:
@@ -33,7 +35,7 @@ The following commands are envisaged:
 
     open update <package_name>[@version]
 
-    open publish <directory_name> [--version major|minor]
+    open publish <directory_name>
 
     open register <user_name>
 
