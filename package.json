@@ -1,0 +1,14 @@
+{
+  "name": "occam-open-cli",
+  "author": "James Smith",
+  "version": "0.0.2",
+  "license": "MIT",
+  "homepage": "https://github.com/occam-proof-assistant/Open",
+  "description": "Occam's command line package management tool.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/occam-proof-assistant/Open"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
