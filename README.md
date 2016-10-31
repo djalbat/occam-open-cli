@@ -31,11 +31,11 @@ The following commands are envisaged:
 
     open help [<command>]
 
-    open install <package_name>[@version]
+    open [install] <package_name>[@version]
 
     open update <package_name>[@version]
 
-    open publish <directory_name>
+    open publish <package_name>
 
     open register <user_name>
 
@@ -47,7 +47,7 @@ The following commands are envisaged:
 
     open recover
 
-The usage is slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project. In a `~/Mathematics/` directory, say, with all of the projects being contained in sub-directories of this parent directory. This is why the `publish` command takes a `directory_name` argument. Open will look in the `package.json` file within the directory, namely the sub-directory of the directory in which it is executed, to find the package name.
+The usage is slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project. In a `~/Mathematics/` directory, say, with all of the projects being contained in sub-directories of this parent directory. For this reason the `package_name` must be identical to the Git repository name. Clashes are avoided by package names being unique.
 
 An access token would be stored in a `.openrc` file in much the same way as npm makes use of a `.npmrc` file, the difference being that whilst npm stores the `.npmrc` file in the user's home directory by default, Open will store it in the parent directory.
 
