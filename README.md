@@ -1,4 +1,4 @@
-# Open
+# Open-CLI
 
 Occam's c**o**mmand line **p**ackag**e** manageme**n**t tool.
 
