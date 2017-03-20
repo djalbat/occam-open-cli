@@ -27,9 +27,7 @@ The tool would be installed globally via npm:
 
 The following commands are envisaged:
 
-    open
-
-    open help [<command>]
+    open [help] [<command>]
 
     open [install] <package_name>[@version]
 
