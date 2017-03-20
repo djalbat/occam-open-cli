@@ -30,11 +30,11 @@ The following commands are envisaged:
 
     open [help] [<command>]
 
-    open [install] <package_name>[@version]
+    open [install] <package_name>[@<version>]
     
-    open publish <package_name> | [everything]
+    open publish <package_name>
 
-    open update <package_name>[@version] | [everything]
+    open update <package_name>[@<version>] | [everything]
     
     open check [dependencies]
     
