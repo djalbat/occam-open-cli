@@ -31,10 +31,16 @@ The following commands are envisaged:
     open [help] [<command>]
 
     open [install] <package_name>[@version]
+    
+    open publish <package_name> | [everything]
 
     open update <package_name>[@version] | [everything]
-
-    open publish <package_name> | [everything]
+    
+    open check [dependencies]
+    
+    open prune [dependencies]
+    
+    open remove <package_name>
 
     open register <user_name> [<email address>]
 
@@ -70,11 +76,9 @@ Intuitively, if the signature doesn't change the patch number is bumped, if the 
 
 ### Ordering
 
-Because of the above, patch numbers are irrelevant. Given V=(M,m,.) and V'=(M',m',.), we define the binary relation ⩽ by the following rule:
+Because of the above, patch numbers are irrelevant. Given V=(M,m,.) and V'=(M',m',.), a partial ordering ⩽ can be defined by the following rule:
 
-* if V⩽V' then M&lt;M' or M=M' and m⩽m'
-
-It is easy to check that this is a partial ordering.
+* if V⩽V' then either M&lt;M' or M=M' and m⩽m'
 
 ### Signatures
 
