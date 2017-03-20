@@ -44,15 +44,21 @@ The following commands are envisaged:
 
     open register <user_name> [<email address>]
 
-    open login <user_name>
+    open login <user_name> | <email_address>
 
     open logout
+    
+    open [show] user [details]
+    
+    open add email address
+    
+    open change email address
+    
+    open change password
 
-    open verify [password]
+    open recover password [<user_name> | <email_address>]
 
-    open recover [password]
-
-The usage is slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project. In a `~/Mathematics/` directory, say, with all of the projects being contained in sub-directories of this parent directory. For this reason the `package_name` must be identical to the Git repository name. Clashes are avoided by package names being unique.
+The usage is slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project. In a `~/Mathematics/` directory, say, with all of the projects being contained in sub-directories of this parent directory.
 
 An access token would be stored in a `.openrc` file in much the same way as npm makes use of a `.npmrc` file, the difference being that whilst npm stores the `.npmrc` file in the user's home directory by default, Open will store it in the parent directory.
 
