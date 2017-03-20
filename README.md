@@ -15,7 +15,7 @@ Occam's c**o**mmand line **p**ackag**e** manageme**n**t tool.
 
 The `open` command line tool will leverage [Git](https://git-scm.com/) to provide similar functionality to [npm](https://www.npmjs.com/), but for Occam projects.
 
-Although a remote service would be needed, there is no intention to hold source code remotely. This is what is meant by leveraging Git.
+Although a remote service would be needed, there is no intention to hold source code remotely. This is what is meant by leveraging Git. Package names would mirror repository names although the treatment of package names will be case insensitive.
 
 ## Installation
 
@@ -31,19 +31,19 @@ The following commands are envisaged:
 
     open [install] <package_name>[@version]
 
-    open update <package_name>[@version]
+    open update <package_name>[@version] | [everything]
 
-    open publish <package_name>
+    open publish <package_name> | [everything]
 
-    open register <user_name>
+    open register <user_name> [<email address>]
 
     open login <user_name>
 
     open logout
 
-    open verify
+    open verify [password]
 
-    open recover
+    open recover [password]
 
 The usage is slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project. In a `~/Mathematics/` directory, say, with all of the projects being contained in sub-directories of this parent directory. For this reason the `package_name` must be identical to the Git repository name. Clashes are avoided by package names being unique.
 
