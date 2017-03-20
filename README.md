@@ -69,7 +69,8 @@ Intuitively, if the signature doesn't change the patch number is bumped, if the 
 
 ### Signatures
 
-Roughly speaking the signature of a package would be the union of the signatures of all the rules, axioms, definitions, lemma, theorems, etc in the package. The signature of any of these elements would completely characterise it from outside. Inuitively two rules, say, if they shared identical premises and conclusion, regardless of the details of their proofs, would have the same signature. The definition is less than straightforward because grammars play a role in exactly how statements, which make up premises and conclusions, can be considered to be the same. Also the elements would be labelled and it is unclear whether these labels should have a bearing on sameness.
+Roughly speaking the signature of a package would be the union of the signatures of all the rules, axioms, definitions, lemma, theorems, etc that it contains. The signature of any of these elements would completely characterise it from outside. Inuitively two rules, say, if they shared identical premises and conclusion, regardless of the details of their proofs, would have the same signature. A precise definition is less than straightforward because grammars play a role in exactly how statements, which make up premises and conclusions, can be considered to be the same. Changing an element's label would also change its signature.
+
 ## Contact
 
 * jecs@imperial.ac.uk
