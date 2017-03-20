@@ -14,9 +14,9 @@ Occam's c**o**mmand line **p**ackag**e** manageme**n**t tool.
 
 ## Introduction
 
-The `open` command line tool will leverage [Git](https://git-scm.com/) to provide similar functionality to [npm](https://www.npmjs.com/), but for Occam projects.
+The `open` command line tool will provide similar functionality to [npm](https://www.npmjs.com/), but for Occam packages. 
 
-Although a remote service would be needed, there is no intention to hold source code remotely. This is what is meant by leveraging Git. Package names would mirror repository names although the treatment of package names will be case insensitive.
+A package would likely be defined P=(V,Z,H) where V is the version, Z is a the zip file containing the files and H≡H(Z) is the hash of Z.
 
 ## Installation
 
@@ -68,6 +68,14 @@ Versioning would be taken out of the user's hands to avoid problems. Version num
   
 Intuitively, if the signature doesn't change the patch number is bumped, if the new signature encloses the old the minor version nummber is bumped, otherwise the major version number is bumped. This is in line with other versioning systems such as [semver](http://semver.org/). It is worth stressing again, however, that the version is not defined by the user and stored in a project meta file. It is calcuated accorinding to the above formal rules whenever new packages are published, in order to avoid mistakes and deliberate oversights, the author in particular being often guilty of this.
 
+### Ordering
+
+Because of the above, patch numbers are irrelevant. Given V=(M,m,.) and V'=(M',m',.), we define the binary relation ⩽ by the following rule:
+
+* if V⩽V' then M&lt;M' or M=M' and m⩽m'
+
+It is easy to check that this is a partial ordering.
+
 ### Signatures
 
 Roughly speaking the signature of a package would be the union of the signatures of all the rules, axioms, definitions, lemma, theorems, etc that it contains. The signature of any of these elements would completely characterise it from outside. Inuitively two rules, say, if they shared identical premises and conclusion, regardless of the details of their proofs, would have the same signature. A precise definition is less than straightforward because grammars play a role in exactly how statements, which make up premises and conclusions, can be considered to be the same. Changing an element's label would also change its signature.
@@ -75,6 +83,7 @@ Roughly speaking the signature of a package would be the union of the signatures
 ## Resources
 
 * [Version SAT by Russ Cox](https://research.swtch.com/version-sat)
+* [md5-file](https://github.com/roryrjb/md5-file)
 
 ## Contact
 
