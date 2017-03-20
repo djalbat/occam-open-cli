@@ -74,7 +74,7 @@ Roughly speaking the signature of a package would be the union of the signatures
 
 ## Resources
 
-* [Version SAT](https://research.swtch.com/version-sat)
+* [Version SAT by Russ Cox](https://research.swtch.com/version-sat)
 
 ## Contact
 
