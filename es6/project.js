@@ -1,6 +1,7 @@
 'use strict';
 
 const util = require('./util'),
+      jsZip = require('./jsZip'),
       Entries = require('./entries');
 
 class Project {
@@ -20,7 +21,13 @@ class Project {
 
     return json;
   }
-  
+
+  static fromURL(url, callback) {
+    jsZip.fromURL(url, function(jsZip) {
+      Project.fromJSZip(jsZip, callback);
+    });
+  }
+
   static fromJSZip(jsZip, callback) {
     let project = null;
 
