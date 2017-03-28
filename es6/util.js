@@ -3,7 +3,7 @@
 const fs = require('fs');
 
 class util {
-  static subEntryNamesFromAbsoluteFilePath(absoluteDirectoryPath) {
+  static subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath) {
     try {
       const subEntryNames = fs.readdirSync(absoluteDirectoryPath);
 

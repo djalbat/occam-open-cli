@@ -91,7 +91,7 @@ function first(array) { return array[0]; }
 
 function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath) {
   const absoluteDirectoryPath = util.combinePaths(projectsDirectoryPath, relativeDirectoryPath),
-        subEntryNames = util.subEntryNamesFromAbsoluteFilePath(absoluteDirectoryPath);
+        subEntryNames = util.subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath);
 
   subEntryNames.forEach(function(subEntryName) {
     let entry;

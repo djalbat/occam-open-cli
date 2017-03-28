@@ -39,7 +39,7 @@ class Projects {
 module.exports = Projects;
 
 function rootDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath) {
-  const subEntryNames = util.subEntryNamesFromAbsoluteFilePath(projectsDirectoryPath),
+  const subEntryNames = util.subEntryNamesFromAbsoluteDirectoryPath(projectsDirectoryPath),
         rootDirectoryNames = subEntryNames.reduce(function(rootDirectoryNames, subEntryName) {
           const absoluteSubEntryPath = util.combinePaths(projectsDirectoryPath, subEntryName),
                 absoluteSubEntryPathDirectoryPath = util.isDirectoryPath(absoluteSubEntryPath),
