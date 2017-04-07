@@ -1,9 +1,10 @@
 'use strict';
 
-const chai = require('chai'),
-      assert = chai.assert;
+const chai = require('chai');
 
 const Projects = require('../../../es6/projects');
+
+const { assert } = chai;
 
 describe('es6/common/Projects', function() {
   describe('#fromProjectsDirectoryPath', function() {
