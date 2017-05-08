@@ -1,8 +1,8 @@
 'use strict';
 
-const util = require('./util'),
-      File = require('./file'),
+const File = require('./file'),
       async = require('./async'),
+      pathUtil = require('./util/path'),
       Directory = require('./directory');
 
 class Entries {
@@ -22,7 +22,7 @@ class Entries {
     if (firstEntry !== undefined) {
       const firstEntryPath = firstEntry.getPath();
 
-      rootDirectoryName = util.rootDirectoryNameFromPath(firstEntryPath);
+      rootDirectoryName = pathUtil.rootDirectoryNameFromPath(firstEntryPath);
     }
 
     return rootDirectoryName;
@@ -90,13 +90,13 @@ module.exports = Entries;
 function first(array) { return array[0]; }
 
 function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath) {
-  const absoluteDirectoryPath = util.combinePaths(projectsDirectoryPath, relativeDirectoryPath),
-        subEntryNames = util.subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath);
+  const absoluteDirectoryPath = pathUtil.combinePaths(projectsDirectoryPath, relativeDirectoryPath),
+        subEntryNames = pathUtil.subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath);
 
   subEntryNames.forEach(function(subEntryName) {
     let entry;
     
-    const path = util.combinePaths(relativeDirectoryPath, subEntryName),
+    const path = pathUtil.combinePaths(relativeDirectoryPath, subEntryName),
           directoryPath = path, ///
           directory = Directory.fromDirectoryPath(directoryPath, projectsDirectoryPath);
 

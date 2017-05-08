@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 
-class util {
+class pathUtil {
   static subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath) {
     try {
       const subEntryNames = fs.readdirSync(absoluteDirectoryPath);
@@ -49,7 +49,7 @@ class util {
   }
 
   static isHidden(path) {
-    const name = util.nameFromPath(path),
+    const name = pathUtil.nameFromPath(path),
           matches = name.match(/^\./),
           hidden = (matches !== null); ///
 
@@ -57,15 +57,15 @@ class util {
   }
 
   static isPathRecognisedFilePath(path) {
-    const name = util.nameFromPath(path),
-          recognisedFilName = util.isRecognisedFileName(name),
+    const name = pathUtil.nameFromPath(path),
+          recognisedFilName = pathUtil.isRecognisedFileName(name),
           pathRecognisedFilePath = recognisedFilName; ///
 
     return pathRecognisedFilePath;
   }
   
   static isRecognisedFileName(fileName) {
-    const florenceFileName = util.isFlorenceFileName(fileName),
+    const florenceFileName = pathUtil.isFlorenceFileName(fileName),
           recognisedFileName = florenceFileName;
     
     return recognisedFileName;
@@ -91,7 +91,7 @@ class util {
   }
 
   static combinePaths(firstPath, secondPath) {
-    firstPath = util.removeTrailingSlashFromPath(firstPath);
+    firstPath = pathUtil.removeTrailingSlashFromPath(firstPath);
 
     const combinedPath = `${firstPath}/${secondPath}`;
 
@@ -99,6 +99,6 @@ class util {
   }
 }
 
-module.exports = util;
+module.exports = pathUtil;
 
 function second(array) { return array[1]; }

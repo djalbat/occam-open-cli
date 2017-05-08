@@ -3,7 +3,7 @@
 const fs = require('fs'),
       mkdirp = require('mkdirp');
 
-const util = require('./util');
+const pathUtil = require('./util/path');
 
 class File {
   constructor(path, content) {
@@ -33,8 +33,8 @@ class File {
   }
 
   save(projectsDirectoryPath) {
-    const absolutePath = util.combinePaths(projectsDirectoryPath, this.path),
-          absoluteDirectoryPath = util.directoryPathFromPath(absolutePath);
+    const absolutePath = pathUtil.combinePaths(projectsDirectoryPath, this.path),
+          absoluteDirectoryPath = pathUtil.directoryPathFromPath(absolutePath);
 
     mkdirp.sync(absoluteDirectoryPath);
 
@@ -54,11 +54,11 @@ class File {
   static fromFilePath(filePath, projectsDirectoryPath) {
     let content = null;
     
-    const hidden = util.isHidden(filePath),
-          pathRecognisedFilePath = util.isPathRecognisedFilePath(filePath);
+    const hidden = pathUtil.isHidden(filePath),
+          pathRecognisedFilePath = pathUtil.isPathRecognisedFilePath(filePath);
 
     if (!hidden && pathRecognisedFilePath) {
-      const absolutePath = util.combinePaths(projectsDirectoryPath, filePath);
+      const absolutePath = pathUtil.combinePaths(projectsDirectoryPath, filePath);
 
       try {
         content = fs.readFileSync(absolutePath, {encoding: 'utf8'});
@@ -80,7 +80,7 @@ class File {
     
     const jsZipEntryName = jsZipEntry.name,
           jsZipEntryDirectory = jsZipEntry.dir, ///
-          jsZipEntryNameRecognisedFileName = util.isRecognisedFileName(jsZipEntryName),
+          jsZipEntryNameRecognisedFileName = pathUtil.isRecognisedFileName(jsZipEntryName),
           jsZipEntryFile = !jsZipEntryDirectory && jsZipEntryNameRecognisedFileName;
 
     if (!jsZipEntryFile) {
@@ -88,7 +88,7 @@ class File {
     } else {
       let path = jsZipEntryName; ///
 
-      path = util.removeMasterFromPath(path);
+      path = pathUtil.removeMasterFromPath(path);
 
       jsZipEntry.async('string').then(function(content) {
         file = new File(path, content);

@@ -3,7 +3,7 @@
 const fs = require('fs'),
       mkdirp = require('mkdirp');
 
-const util = require('./util');
+const pathUtil = require('./util/path');
 
 class Directory {
   constructor(path) {
@@ -36,11 +36,11 @@ class Directory {
   static fromDirectoryPath(directoryPath, projectsDirectoryPath) {
     let directory = null;
 
-    const absolutePath = util.combinePaths(projectsDirectoryPath, directoryPath),
-          absolutePathDirectoryPath = util.isDirectoryPath(absolutePath);
+    const absolutePath = pathUtil.combinePaths(projectsDirectoryPath, directoryPath),
+          absolutePathDirectoryPath = pathUtil.isDirectoryPath(absolutePath);
 
     if (absolutePathDirectoryPath) {
-      const hidden = util.isHidden(directoryPath);
+      const hidden = pathUtil.isHidden(directoryPath);
 
       if (!hidden) {
         const path = directoryPath; ///
@@ -64,8 +64,8 @@ class Directory {
       
       let jsZipDirectoryPath = jsZipDirectory.name;  ///
 
-      jsZipDirectoryPath = util.removeTrailingSlashFromPath(jsZipDirectoryPath);
-      jsZipDirectoryPath = util.removeMasterFromPath(jsZipDirectoryPath);
+      jsZipDirectoryPath = pathUtil.removeTrailingSlashFromPath(jsZipDirectoryPath);
+      jsZipDirectoryPath = pathUtil.removeMasterFromPath(jsZipDirectoryPath);
 
       const path = jsZipDirectoryPath;  ///
 

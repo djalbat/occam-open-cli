@@ -2,21 +2,17 @@
 
 const fsExtra = require('fs-extra');
 
-const util = require('./util'),
-      async = require('./async');
+const async = require('./async'),
+      pathUtil = require('./util/path'),
+      pathMapsUtil = require('./util/pathMaps');
 
 class helpers {
   static moveEntries(pathMaps, projectsDirectoryPath, callback) {
     const movedPaths = [];
 
-    async.forEach(
+    pathMapsUtil.asyncForEachWithSourcePathAndTargetPath(
       pathMaps, 
-      function(pathMap, next) {
-        const keys = Object.keys(pathMap),
-              firstKey = first(keys),
-              sourcePath = firstKey, ///
-              targetPath = pathMap[sourcePath];
-        
+      function(sourcePath, targetPath, next) {
         moveEntry(sourcePath, targetPath, projectsDirectoryPath, function(movedPath) {
           movedPaths.push(movedPath);
           
@@ -32,15 +28,10 @@ class helpers {
   static removeEntries(pathMaps, projectsDirectoryPath, callback) {
     const removedPaths = [];
 
-    async.forEach(
+    pathMapsUtil.asyncForEachWithSourcePath(
       pathMaps,
-      function(pathMap, next) {
-        const keys = Object.keys(pathMap),
-              firstKey = first(keys),
-              sourcePath = firstKey, ///
-              targetPath = pathMap[sourcePath];
-
-        removeEntry(sourcePath, targetPath, projectsDirectoryPath, function(removedPath) {
+      function(sourcePath, next) {
+        removeEntry(sourcePath, projectsDirectoryPath, function(removedPath) {
           removedPaths.push(removedPath);
 
           next();
@@ -63,7 +54,7 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
   } else {
     let movedPath;
     
-    const absoluteSourcePath = util.combinePaths(projectsDirectoryPath, sourcePath),
+    const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
           exists = fsExtra.existsSync(absoluteSourcePath);
 
     if (!exists) {
@@ -71,7 +62,7 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
 
       callback(movedPath);
     } else {
-      const absoluteTargetPath = util.combinePaths(projectsDirectoryPath, targetPath);
+      const absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath);
 
       fsExtra.move(absoluteSourcePath, absoluteTargetPath, function(err) {
         let movedPath;
@@ -98,30 +89,22 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
   }
 }
 
-function removeEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
-  if (targetPath !== null) {
+function removeEntry(sourcePath, projectsDirectoryPath, callback) {
+  const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
+        exists = fsExtra.existsSync(absoluteSourcePath);
+
+  if (!exists) {
     const removedPath = sourcePath;
 
     callback(removedPath);
   } else {
-    const absoluteSourcePath = util.combinePaths(projectsDirectoryPath, sourcePath),
-          exists = fsExtra.existsSync(absoluteSourcePath);
-
-    if (!exists) {
-      const removedPath = sourcePath;
+    fsExtra.remove(absoluteSourcePath, function(err) {
+      const success = (err === null),
+            removedPath = success ?
+                            null :
+                              sourcePath;
 
       callback(removedPath);
-    } else {
-      fsExtra.remove(absoluteSourcePath, function(err) {
-        const success = (err === null),
-              removedPath = success ?
-                              null :
-                                sourcePath;
-
-        callback(removedPath);
-      });
-    }
+    });
   }
 }
-
-function first(array) { return array[0]; }

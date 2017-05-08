@@ -1,7 +1,7 @@
 'use strict';
 
-const util = require('./util'),
-      Project = require('./project');
+const Project = require('./project'),
+      pathUtil = require('./util/path');
 
 class Projects {
   constructor() {
@@ -39,12 +39,12 @@ class Projects {
 module.exports = Projects;
 
 function rootDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath) {
-  const subEntryNames = util.subEntryNamesFromAbsoluteDirectoryPath(projectsDirectoryPath),
+  const subEntryNames = pathUtil.subEntryNamesFromAbsoluteDirectoryPath(projectsDirectoryPath),
         rootDirectoryNames = subEntryNames.reduce(function(rootDirectoryNames, subEntryName) {
-          const absoluteSubEntryPath = util.combinePaths(projectsDirectoryPath, subEntryName),
-                absoluteSubEntryPathDirectoryPath = util.isDirectoryPath(absoluteSubEntryPath),
+          const absoluteSubEntryPath = pathUtil.combinePaths(projectsDirectoryPath, subEntryName),
+                absoluteSubEntryPathDirectoryPath = pathUtil.isDirectoryPath(absoluteSubEntryPath),
                 subEntryDirectory = absoluteSubEntryPathDirectoryPath,  ///
-                subEntryHidden = util.isHidden(absoluteSubEntryPath);
+                subEntryHidden = pathUtil.isHidden(absoluteSubEntryPath);
   
           if (subEntryDirectory && !subEntryHidden) {
             const rootDirectoryName = subEntryName;  ///
