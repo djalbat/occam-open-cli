@@ -79,7 +79,7 @@ function removeEntry(sourcePath, projectsDirectoryPath, callback) {
         exists = fsExtra.existsSync(absoluteSourcePath);
 
   if (!exists) {
-    const removedPath = sourcePath;
+    const removedPath = null;
 
     callback(removedPath);
   } else {
