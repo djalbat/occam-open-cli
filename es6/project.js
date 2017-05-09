@@ -1,7 +1,6 @@
 'use strict';
 
-const util = require('./util'),
-      jsZip = require('./jsZip'),
+const jsZip = require('./jsZip'),
       Entries = require('./entries');
 
 class Project {
