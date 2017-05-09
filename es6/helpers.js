@@ -52,38 +52,23 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
 
     callback(movedPath);
   } else {
-    let movedPath;
-    
     const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
           exists = fsExtra.existsSync(absoluteSourcePath);
 
     if (!exists) {
-      movedPath = null;
+      const movedPath = null;
 
       callback(movedPath);
     } else {
       const absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath);
 
       fsExtra.move(absoluteSourcePath, absoluteTargetPath, function(err) {
-        let movedPath;
+        const success = (err === null),
+              movedPath = success ?
+                            targetPath :
+                              sourcePath;
 
-        if (err && (err.code === 'EEXIST')) { ///
-          movedPath = targetPath;
-
-          targetPath = null;  ///
-
-          remove(sourcePath, targetPath, projectsDirectoryPath, function() {
-            callback(movedPath);
-          });
-        } else {
-          const success = (err === null);
-
-          movedPath = success ?
-                        targetPath :
-                          sourcePath;
-
-          callback(movedPath);
-        }
+        callback(movedPath);
       });
     }
   }
