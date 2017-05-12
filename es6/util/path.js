@@ -49,7 +49,7 @@ class pathUtil {
   }
 
   static isDirectoryEmpty(absoluteDirectoryPath) {
-    const subEntryNames = subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath),
+    const subEntryNames = pathUtil.subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath),
           subEntryNamesLength = subEntryNames.length,
           directoryEmpty = (subEntryNamesLength === 0);
     
