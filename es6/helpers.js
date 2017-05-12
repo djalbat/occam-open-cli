@@ -63,21 +63,30 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
       const absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath);
 
       fsExtra.move(absoluteSourcePath, absoluteTargetPath, function(err) {
-        let success = true;
+        const success = (err === null);
 
-        if (err !== null) {
+        if (success) {
+          const movedPath = targetPath;
+
+          callback(movedPath);
+        } else {
           const errCode = err.code;
 
           if (errCode !== 'EEXIST') {
-            success = false;
+            const movedPath = sourcePath;
+
+            callback(movedPath);
+          } else {
+            removeEntry(sourcePath, projectsDirectoryPath, function(removedPath) {
+              const success = (removedPath === null),
+                    movedPath = success ?
+                                  targetPath :
+                                    sourcePath;
+
+              callback(movedPath);
+            });
           }
         }
-
-        const movedPath = success ?
-                            targetPath :
-                              sourcePath;
-
-        callback(movedPath);
       });
     }
   }
