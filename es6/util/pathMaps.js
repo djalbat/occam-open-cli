@@ -17,20 +17,6 @@ class pathMapsUtil {
       done
     );
   }
-
-  static asyncForEachWithSourcePath(pathMaps, callback, done) {
-    async.forEach(
-      pathMaps,
-      function(pathMap, next) {
-        const keys = Object.keys(pathMap),
-              firstKey = first(keys),
-              sourcePath = firstKey; ///
-  
-        callback(sourcePath, next);
-      },
-      done
-    );
-  }
 }
 
 module.exports = pathMapsUtil;

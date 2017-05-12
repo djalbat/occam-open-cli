@@ -8,37 +8,37 @@ const async = require('./async'),
 
 class helpers {
   static moveEntries(pathMaps, projectsDirectoryPath, callback) {
-    const movedPaths = [];
+    const targetPaths = [];
 
     pathMapsUtil.asyncForEachWithSourcePathAndTargetPath(
       pathMaps, 
       function(sourcePath, targetPath, next) {
-        moveEntry(sourcePath, targetPath, projectsDirectoryPath, function(movedPath) {
-          movedPaths.push(movedPath);
+        moveEntry(sourcePath, targetPath, projectsDirectoryPath, function(targetPath) {
+          targetPaths.push(targetPath);
           
           next();
         });
       },
       function() {
-        callback(movedPaths);
+        callback(targetPaths);
       }
     );
   }
 
   static removeEntries(pathMaps, projectsDirectoryPath, callback) {
-    const removedPaths = [];
+    const targetPaths = [];
 
-    pathMapsUtil.asyncForEachWithSourcePath(
+    pathMapsUtil.asyncForEachWithSourcePathAndTargetPath(
       pathMaps,
-      function(sourcePath, next) {
-        removeEntry(sourcePath, projectsDirectoryPath, function(removedPath) {
-          removedPaths.push(removedPath);
+      function(sourcePath, targetPath, next) {
+        removeEntry(sourcePath, targetPath, projectsDirectoryPath, function(targetPath) {
+          targetPaths.push(targetPath);
 
           next();
         });
       },
       function() {
-        callback(removedPaths);
+        callback(targetPaths);
       }
     );
   }
@@ -48,17 +48,15 @@ module.exports = helpers;
 
 function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
   if (sourcePath === targetPath) {
-    const movedPath = sourcePath;
-
-    callback(movedPath);
+    callback(targetPath);
   } else {
     const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
           exists = fsExtra.existsSync(absoluteSourcePath);
 
     if (!exists) {
-      const movedPath = null;
-
-      callback(movedPath);
+      targetPath = null;
+      
+      callback(targetPath);
     } else {
       const absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath);
 
@@ -66,24 +64,23 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
         const success = (err === null);
 
         if (success) {
-          const movedPath = targetPath;
-
-          callback(movedPath);
+          callback(targetPath);
         } else {
           const errCode = err.code;
 
           if (errCode !== 'EEXIST') {
-            const movedPath = sourcePath;
+            const targetPath = sourcePath;
 
-            callback(movedPath);
+            callback(targetPath);
           } else {
-            removeEntry(sourcePath, projectsDirectoryPath, function(removedPath) {
-              const success = (removedPath === null),
-                    movedPath = success ?
-                                  targetPath :
-                                    sourcePath;
+            removeEntry(sourcePath, projectsDirectoryPath, function(targetPath) {
+              const success = (targetPath === null);
 
-              callback(movedPath);
+              targetPath = success ?
+                            targetPath :
+                              sourcePath;
+
+              callback(targetPath);
             });
           }
         }
@@ -92,19 +89,17 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
   }
 }
 
-function removeEntry(sourcePath, projectsDirectoryPath, callback) {
-  if (sourcePath !== null) {
-    const removedPath = sourcePath;
-
-    callback(removedPath);
+function removeEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
+  if (sourcePath === targetPath) {
+    callback(targetPath);
   } else {
     const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
           exists = fsExtra.existsSync(absoluteSourcePath);
 
     if (!exists) {
-      const removedPath = null;
+      targetPath = null;
 
-      callback(removedPath);
+      callback(targetPath);
     } else {
       const absoluteSourcePathDirectoryPath = pathUtil.isDirectoryPath(absoluteSourcePath),
             entryDirectory = absoluteSourcePathDirectoryPath;
@@ -121,17 +116,17 @@ function removeDirectory(sourcePath, projectsDirectoryPath, callback) {
         empty = pathUtil.isDirectoryEmpty(absoluteSourcePath);
 
   if (!empty) {
-    const removedPath = sourcePath;
+    const targetPath = sourcePath;
 
-    callback(removedPath);
+    callback(targetPath);
   } else {
     fsExtra.remove(absoluteSourcePath, function(err) {
       const success = (err === null),
-            removedPath = success ?
+            targetPath = success ?
                             null :
                               sourcePath;
 
-      callback(removedPath);
+      callback(targetPath);
     });
   }
 }
@@ -141,10 +136,10 @@ function removeFile(sourcePath, projectsDirectoryPath, callback) {
 
   fsExtra.remove(absoluteSourcePath, function(err) {
     const success = (err === null),
-          removedPath = success ?
+          targetPath = success ?
                           null :
                             sourcePath;
 
-    callback(removedPath);
+    callback(targetPath);
   });
 }
