@@ -60,15 +60,20 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
 
       callback(movedPath);
     } else {
-      const absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath),
-            overwrite = true,
-            options = {
-              overwrite: overwrite
-            };
+      const absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath);
 
       fsExtra.move(absoluteSourcePath, absoluteTargetPath, options, function(err) {
-        const success = (err === null),
-              movedPath = success ?
+        let success = true;
+
+        if (err !== null) {
+          const errCode = err.code;
+
+          if (errCode !== 'EEXIST') {
+            success = false;
+          }
+        }
+
+        const movedPath = success ?
                             targetPath :
                               sourcePath;
 
