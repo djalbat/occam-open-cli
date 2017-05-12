@@ -60,9 +60,13 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
 
       callback(movedPath);
     } else {
-      const absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath);
+      const absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath),
+            overwrite = true,
+            options = {
+              overwrite: overwrite
+            };
 
-      fsExtra.move(absoluteSourcePath, absoluteTargetPath, function(err) {
+      fsExtra.move(absoluteSourcePath, absoluteTargetPath, options, function(err) {
         const success = (err === null),
               movedPath = success ?
                             targetPath :
