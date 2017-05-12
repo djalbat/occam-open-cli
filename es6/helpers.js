@@ -62,7 +62,7 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
     } else {
       const absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath);
 
-      fsExtra.move(absoluteSourcePath, absoluteTargetPath, options, function(err) {
+      fsExtra.move(absoluteSourcePath, absoluteTargetPath, function(err) {
         let success = true;
 
         if (err !== null) {
