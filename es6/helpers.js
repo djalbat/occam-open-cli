@@ -93,20 +93,26 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
 }
 
 function removeEntry(sourcePath, projectsDirectoryPath, callback) {
-  const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
-        exists = fsExtra.existsSync(absoluteSourcePath);
-
-  if (!exists) {
-    const removedPath = null;
+  if (sourcePath !== null) {
+    const removedPath = sourcePath;
 
     callback(removedPath);
   } else {
-    const absoluteSourcePathDirectoryPath = pathUtil.isDirectoryPath(absoluteSourcePath),
-          entryDirectory = absoluteSourcePathDirectoryPath;
+    const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
+          exists = fsExtra.existsSync(absoluteSourcePath);
 
-    entryDirectory ?
-      removeDirectory(sourcePath, projectsDirectoryPath, callback) :
-        removeFile(sourcePath, projectsDirectoryPath, callback);
+    if (!exists) {
+      const removedPath = null;
+
+      callback(removedPath);
+    } else {
+      const absoluteSourcePathDirectoryPath = pathUtil.isDirectoryPath(absoluteSourcePath),
+            entryDirectory = absoluteSourcePathDirectoryPath;
+
+      entryDirectory ?
+        removeDirectory(sourcePath, projectsDirectoryPath, callback) :
+          removeFile(sourcePath, projectsDirectoryPath, callback);
+    }
   }
 }
 
