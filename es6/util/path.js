@@ -48,6 +48,14 @@ class pathUtil {
     return name;
   }
 
+  static isDirectoryEmpty(absoluteDirectoryPath) {
+    const subEntryNames = subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath),
+          subEntryNamesLength = subEntryNames.length,
+          directoryEmpty = (subEntryNamesLength === 0);
+    
+    return directoryEmpty;    
+  }
+
   static isHidden(path) {
     const name = pathUtil.nameFromPath(path),
           matches = name.match(/^\./),

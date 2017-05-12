@@ -101,6 +101,24 @@ function removeEntry(sourcePath, projectsDirectoryPath, callback) {
 
     callback(removedPath);
   } else {
+    const absoluteSourcePathDirectoryPath = pathUtil.isDirectoryPath(absoluteSourcePath),
+          entryDirectory = absoluteSourcePathDirectoryPath;
+
+    entryDirectory ?
+      removeDirectory(sourcePath, projectsDirectoryPath, callback) :
+        removeFile(sourcePath, projectsDirectoryPath, callback);
+  }
+}
+
+function removeDirectory(sourcePath, projectsDirectoryPath, callback) {
+  const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
+        empty = pathUtil.isDirectoryEmpty(absoluteSourcePath);
+
+  if (!empty) {
+    const removedPath = sourcePath;
+
+    callback(removedPath);
+  } else {
     fsExtra.remove(absoluteSourcePath, function(err) {
       const success = (err === null),
             removedPath = success ?
@@ -110,4 +128,17 @@ function removeEntry(sourcePath, projectsDirectoryPath, callback) {
       callback(removedPath);
     });
   }
+}
+
+function removeFile(sourcePath, projectsDirectoryPath, callback) {
+  const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath);
+
+  fsExtra.remove(absoluteSourcePath, function(err) {
+    const success = (err === null),
+          removedPath = success ?
+                          null :
+                            sourcePath;
+
+    callback(removedPath);
+  });
 }
