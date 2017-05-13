@@ -73,7 +73,7 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
 
             callback(targetPath);
           } else {
-            removeEntry(sourcePath, projectsDirectoryPath, function(targetPath) {
+            removeEntry(sourcePath, targetPath, projectsDirectoryPath, function(targetPath) {
               const success = (targetPath === null);
 
               targetPath = success ?
