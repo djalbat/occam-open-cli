@@ -107,10 +107,9 @@ function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projec
       entriesFromRelativeDirectoryPath(entries, directoryPath, projectsDirectoryPath); ///
     } else {
       const filePath = directoryPath, //
-            file = File.fromFilePath(filePath, projectsDirectoryPath),
-            content = file.getContent();
-
-      if (content !== null) {
+            file = File.fromFilePath(filePath, projectsDirectoryPath);
+      
+      if (file !== null) {
         entry = file;
 
         entries.addEntry(entry);

@@ -52,11 +52,13 @@ class File {
   }
 
   static fromFilePath(filePath, projectsDirectoryPath) {
-    let content = null;
+    let file = null;
     
-    const hidden = pathUtil.isHidden(filePath);
+    const filePathHiddenPath = pathUtil.isHiddenPath(filePath);
 
-    if (!hidden) {
+    if (!filePathHiddenPath) {
+      let content = null;
+      
       const absolutePath = pathUtil.combinePaths(projectsDirectoryPath, filePath);
 
       try {
@@ -65,12 +67,12 @@ class File {
       catch (error) {
         ///
       }
+      
+      const path = filePath;  ///
 
+      file = new File(path, content);
     }
 
-    const path = filePath,  ///
-          file = new File(path, content);
-    
     return file;
   }
 
