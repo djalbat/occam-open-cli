@@ -54,10 +54,9 @@ class File {
   static fromFilePath(filePath, projectsDirectoryPath) {
     let content = null;
     
-    const hidden = pathUtil.isHidden(filePath),
-          pathRecognisedFilePath = pathUtil.isPathRecognisedFilePath(filePath);
+    const hidden = pathUtil.isHidden(filePath);
 
-    if (!hidden && pathRecognisedFilePath) {
+    if (!hidden) {
       const absolutePath = pathUtil.combinePaths(projectsDirectoryPath, filePath);
 
       try {
@@ -80,8 +79,7 @@ class File {
     
     const jsZipEntryName = jsZipEntry.name,
           jsZipEntryDirectory = jsZipEntry.dir, ///
-          jsZipEntryNameRecognisedFileName = pathUtil.isRecognisedFileName(jsZipEntryName),
-          jsZipEntryFile = !jsZipEntryDirectory && jsZipEntryNameRecognisedFileName;
+          jsZipEntryFile = !jsZipEntryDirectory;  ///
 
     if (!jsZipEntryFile) {
       callback(file);

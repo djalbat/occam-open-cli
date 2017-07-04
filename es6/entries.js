@@ -3,6 +3,7 @@
 const File = require('./file'),
       async = require('./async'),
       pathUtil = require('./util/path'),
+      arrayUtil = require('./util/array'),
       Directory = require('./directory');
 
 class Entries {
@@ -17,7 +18,7 @@ class Entries {
   getRootDirectoryName() {
     let rootDirectoryName = null;
     
-    const firstEntry = first(this.array); ///
+    const firstEntry = arrayUtil.first(this.array); ///
 
     if (firstEntry !== undefined) {
       const firstEntryPath = firstEntry.getPath();
@@ -86,8 +87,6 @@ class Entries {
 }
 
 module.exports = Entries;
-
-function first(array) { return array[0]; }
 
 function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath) {
   const absoluteDirectoryPath = pathUtil.combinePaths(projectsDirectoryPath, relativeDirectoryPath),

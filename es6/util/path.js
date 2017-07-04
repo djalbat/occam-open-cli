@@ -2,6 +2,8 @@
 
 const fs = require('fs');
 
+const arrayUtil = require('../util/array');
+
 class pathUtil {
   static subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath) {
     try {
@@ -26,7 +28,7 @@ class pathUtil {
 
   static directoryPathFromPath(path) {
     const matches = path.match(/^(.*)\/[^\/]*$/),
-          firstMatch = second(matches),
+          firstMatch = arrayUtil.second(matches),
           directoryPath = firstMatch; ///
 
     return directoryPath;
@@ -34,7 +36,7 @@ class pathUtil {
 
   static rootDirectoryNameFromPath(path) {
     const matches = path.match(/^([^\/]*)/),
-          firstMatch = second(matches),
+          firstMatch = arrayUtil.second(matches),
           rootDirectoryName = firstMatch; ///
 
     return rootDirectoryName;
@@ -42,7 +44,7 @@ class pathUtil {
 
   static nameFromPath(path) {
     const matches = path.match(/^.*\/([^\/]*)$/),
-          secondMatch = second(matches),
+          secondMatch = arrayUtil.second(matches),
           name = secondMatch;
 
     return name;
@@ -62,28 +64,6 @@ class pathUtil {
           hidden = (matches !== null); ///
 
     return hidden;
-  }
-
-  static isPathRecognisedFilePath(path) {
-    const name = pathUtil.nameFromPath(path),
-          recognisedFilName = pathUtil.isRecognisedFileName(name),
-          pathRecognisedFilePath = recognisedFilName; ///
-
-    return pathRecognisedFilePath;
-  }
-  
-  static isRecognisedFileName(fileName) {
-    const florenceFileName = pathUtil.isFlorenceFileName(fileName),
-          recognisedFileName = florenceFileName;
-    
-    return recognisedFileName;
-  }
-
-  static isFlorenceFileName(fileName) {
-    const matches = fileName.match(/\.fls$/),
-          florenceFileName = (matches !== null); ///
-    
-    return florenceFileName;
   }
 
   static removeMasterFromPath(path) {
@@ -108,5 +88,3 @@ class pathUtil {
 }
 
 module.exports = pathUtil;
-
-function second(array) { return array[1]; }
