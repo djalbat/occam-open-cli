@@ -7,10 +7,8 @@ class pathMapsUtil {
     async.forEach(
       pathMaps,
       function(pathMap, next) {
-        const keys = Object.keys(pathMap),
-              firstKey = first(keys),
-              sourcePath = firstKey, ///
-              targetPath = pathMap[sourcePath];
+        const sourcePath = pathMap['sourcePath'],
+              targetPath = pathMap['targetPath'];
   
         callback(sourcePath, targetPath, next);
       },
@@ -20,5 +18,3 @@ class pathMapsUtil {
 }
 
 module.exports = pathMapsUtil;
-
-function first(array) { return array[0]; }
