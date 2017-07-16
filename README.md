@@ -78,7 +78,7 @@ Versioning would be taken out of the user's hands to avoid problems. Version num
   - if ∑<sub>k+1</sub>⊃∑<sub>k</sub> then V<sub>k+1</sub>=(M,n+1,0)
   - if ∑<sub>k+1</sub>⊉∑<sub>k</sub> then V<sub>k+1</sub>=(M+1,0,0)
   
-Intuitively, if the signature doesn't change the patch number is bumped, if the new signature encloses the old the minor version nummber is bumped, otherwise the major version number is bumped. This is in line with other versioning systems such as [semver](http://semver.org/). It is worth stressing again, however, that the version is not defined by the user and stored in a project meta file. It is calcuated accorinding to the above formal rules whenever new packages are published, in order to avoid mistakes and deliberate oversights, the author in particular being often guilty of this.
+Intuitively, if the signature doesn't change the patch number is bumped, if the new signature encloses the old the minor version nummber is bumped, otherwise the major version number is bumped. This is in line with other versioning systems such as [semver](http://semver.org/). It is worth stressing again, however, that the version is not defined by the user and stored in a project meta file. It is calcuated according to the above formal rules whenever new packages are published, in order to avoid mistakes and deliberate oversights (the author in particular being often guilty of this).
 
 ### Ordering
 
