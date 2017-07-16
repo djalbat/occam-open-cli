@@ -22,7 +22,7 @@ A package would likely be defined P=(V,Z,H) where V is the version, Z is a the z
 
 The tool would be installed globally via npm:
 
-    npm install --global occam-open-cli
+    npm install -g occam-open-cli
 
 ## Usage
 
