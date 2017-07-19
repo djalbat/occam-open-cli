@@ -22,7 +22,7 @@ A package would likely be defined P=(V,Z,H) where V is the version, Z is a the z
 
 The tool would be installed globally via npm:
 
-    npm install --global occam-open-cli
+    npm install -g occam-open-cli
 
 ## Usage
 
@@ -58,7 +58,7 @@ The following commands are envisaged:
 
     open recover password [<user_name> | <email_address>]
 
-The usage is slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project. In a `~/Mathematics/` directory, say, with all of the projects being contained in sub-directories of this parent directory.
+The usage is slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project. In a `~/Mathematics/` directory, say, with all of the projects being contained in sub-directories of this parent directory. More like cloning with [Git](https://git-scm.com/), which is in fact what would be done by default if Git was installed.
 
 An access token would be stored in a `.openrc` file in much the same way as npm makes use of a `.npmrc` file, the difference being that whilst npm stores the `.npmrc` file in the user's home directory by default, Open will store it in the parent directory.
 
@@ -78,7 +78,7 @@ Versioning would be taken out of the user's hands to avoid problems. Version num
   - if ∑<sub>k+1</sub>⊃∑<sub>k</sub> then V<sub>k+1</sub>=(M,n+1,0)
   - if ∑<sub>k+1</sub>⊉∑<sub>k</sub> then V<sub>k+1</sub>=(M+1,0,0)
   
-Intuitively, if the signature doesn't change the patch number is bumped, if the new signature encloses the old the minor version nummber is bumped, otherwise the major version number is bumped. This is in line with other versioning systems such as [semver](http://semver.org/). It is worth stressing again, however, that the version is not defined by the user and stored in a project meta file. It is calcuated accorinding to the above formal rules whenever new packages are published, in order to avoid mistakes and deliberate oversights, the author in particular being often guilty of this.
+Intuitively, if the signature doesn't change the patch number is bumped, if the new signature encloses the old the minor version nummber is bumped, otherwise the major version number is bumped. This is in line with other versioning systems such as [semver](http://semver.org/). It is worth stressing again, however, that the version is not defined by the user and stored in a project meta file. It is calcuated according to the above formal rules whenever new packages are published, in order to avoid mistakes and deliberate oversights (the author in particular being often guilty of this).
 
 ### Ordering
 
