@@ -40,13 +40,9 @@ class Directory {
           absolutePathDirectoryPath = pathUtil.isDirectoryPath(absolutePath);
 
     if (absolutePathDirectoryPath) {
-      const directoryPathHiddenPath = pathUtil.isHiddenPath(directoryPath);
+      const path = directoryPath; ///
 
-      if (!directoryPathHiddenPath) {
-        const path = directoryPath; ///
-
-        directory = new Directory(path);
-      }
+      directory = new Directory(path);
     }
 
     return directory;

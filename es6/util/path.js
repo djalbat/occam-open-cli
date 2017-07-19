@@ -58,14 +58,6 @@ class pathUtil {
     return directoryEmpty;    
   }
 
-  static isHiddenPath(path) {
-    const name = pathUtil.nameFromPath(path),
-          matches = name.match(/^\./),
-          hiddenPath = (matches !== null); ///
-
-    return hiddenPath;
-  }
-
   static removeMasterFromPath(path) {
     path = path.replace(/\-master/, '');
   

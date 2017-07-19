@@ -52,26 +52,19 @@ class File {
   }
 
   static fromFilePath(filePath, projectsDirectoryPath) {
-    let file = null;
-    
-    const filePathHiddenPath = pathUtil.isHiddenPath(filePath);
+    const absolutePath = pathUtil.combinePaths(projectsDirectoryPath, filePath);
 
-    if (!filePathHiddenPath) {
-      let content = null;
-      
-      const absolutePath = pathUtil.combinePaths(projectsDirectoryPath, filePath);
+    let content;
 
-      try {
-        content = fs.readFileSync(absolutePath, {encoding: 'utf8'});
-      }
-      catch (error) {
-        ///
-      }
-      
-      const path = filePath;  ///
-
-      file = new File(path, content);
+    try {
+      content = fs.readFileSync(absolutePath, {encoding: 'utf8'});
     }
+    catch (error) {
+      content = null;
+    }
+
+    const path = filePath,  ///
+          file = new File(path, content);
 
     return file;
   }
