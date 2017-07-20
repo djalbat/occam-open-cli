@@ -55,36 +55,15 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
 
     if (!exists) {
       targetPath = null;
-      
+
       callback(targetPath);
     } else {
-      const absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath);
+      const sourcePathDirectoryPath = pathUtil.isDirectoryPath(sourcePath),
+            entryDirectory = sourcePathDirectoryPath;
 
-      fsExtra.move(absoluteSourcePath, absoluteTargetPath, function(err) {
-        const success = (err === null);
-
-        if (success) {
-          callback(targetPath);
-        } else {
-          const errCode = err.code;
-
-          if (errCode !== 'EEXIST') {
-            const targetPath = sourcePath;
-
-            callback(targetPath);
-          } else {
-            removeEntry(sourcePath, targetPath, projectsDirectoryPath, function(targetPath) {
-              const success = (targetPath === null);
-
-              targetPath = success ?
-                            targetPath :
-                              sourcePath;
-
-              callback(targetPath);
-            });
-          }
-        }
-      });
+      entryDirectory ?
+        moveDirectory(sourcePath, targetPath, projectsDirectoryPath, callback) :
+          moveFile(sourcePath, targetPath, projectsDirectoryPath, callback);
     }
   }
 }
@@ -101,13 +80,71 @@ function removeEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
 
       callback(targetPath);
     } else {
-      const absoluteSourcePathDirectoryPath = pathUtil.isDirectoryPath(absoluteSourcePath),
-            entryDirectory = absoluteSourcePathDirectoryPath;
+      const sourcePathDirectoryPath = pathUtil.isDirectoryPath(sourcePath),
+            entryDirectory = sourcePathDirectoryPath;
 
       entryDirectory ?
         removeDirectory(sourcePath, projectsDirectoryPath, callback) :
           removeFile(sourcePath, projectsDirectoryPath, callback);
     }
+  }
+}
+
+function moveFile(sourcePath, targetPath, projectsDirectoryPath, callback) {
+  const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
+        absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath);
+
+  fsExtra.move(absoluteSourcePath, absoluteTargetPath, function (err) {
+    const success = (err === null),
+          targetPath = success ?
+                         targetPath :
+                           sourcePath;
+
+    callback(targetPath);
+  });
+}
+
+function removeFile(sourcePath, projectsDirectoryPath, callback) {
+  const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath);
+
+  fsExtra.remove(absoluteSourcePath, function(err) {
+    const success = (err === null),
+          targetPath = success ?
+                         null :
+                           sourcePath;
+
+    callback(targetPath);
+  });
+}
+
+function moveDirectory(sourcePath, targetPath, projectsDirectoryPath, callback) {
+  const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
+        absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath),
+        empty = pathUtil.isDirectoryEmpty(absoluteSourcePath);
+
+  if (!empty) {
+    const targetPath = sourcePath;
+
+    callback(targetPath);
+  } else {
+    fsExtra.move(absoluteSourcePath, absoluteTargetPath, function (err) {
+      const success = (err === null);
+
+      if (success) {
+        callback(targetPath);
+      } else {
+        const errCode = err.code; ///
+
+        if (errCode !== 'EEXIST') {
+          const targetPath = sourcePath;
+
+          callback(targetPath);
+        } else {
+          removeDirectory(sourcePath, projectsDirectoryPath, callback);
+        }
+      }
+    });
+
   }
 }
 
@@ -129,17 +166,4 @@ function removeDirectory(sourcePath, projectsDirectoryPath, callback) {
       callback(targetPath);
     });
   }
-}
-
-function removeFile(sourcePath, projectsDirectoryPath, callback) {
-  const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath);
-
-  fsExtra.remove(absoluteSourcePath, function(err) {
-    const success = (err === null),
-          targetPath = success ?
-                          null :
-                            sourcePath;
-
-    callback(targetPath);
-  });
 }
