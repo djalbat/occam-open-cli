@@ -58,8 +58,8 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
 
       callback(targetPath);
     } else {
-      const sourcePathDirectoryPath = pathUtil.isDirectoryPath(sourcePath),
-            entryDirectory = sourcePathDirectoryPath;
+      const absoluteSourcePathDirectoryPath = pathUtil.isDirectoryPath(absoluteSourcePath),
+            entryDirectory = absoluteSourcePathDirectoryPath;
 
       entryDirectory ?
         moveDirectory(sourcePath, targetPath, projectsDirectoryPath, callback) :
@@ -80,8 +80,8 @@ function removeEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
 
       callback(targetPath);
     } else {
-      const sourcePathDirectoryPath = pathUtil.isDirectoryPath(sourcePath),
-            entryDirectory = sourcePathDirectoryPath;
+      const absoluteSourcePathDirectoryPath = pathUtil.isDirectoryPath(absoluteSourcePath),
+            entryDirectory = absoluteSourcePathDirectoryPath;
 
       entryDirectory ?
         removeDirectory(sourcePath, projectsDirectoryPath, callback) :
@@ -95,10 +95,11 @@ function moveFile(sourcePath, targetPath, projectsDirectoryPath, callback) {
         absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath);
 
   fsExtra.move(absoluteSourcePath, absoluteTargetPath, function (err) {
-    const success = (err === null),
-          targetPath = success ?
-                         targetPath :
-                           sourcePath;
+    const success = (err === null);
+    
+    targetPath = success ?
+                   targetPath :
+                     sourcePath;
 
     callback(targetPath);
   });
@@ -144,7 +145,6 @@ function moveDirectory(sourcePath, targetPath, projectsDirectoryPath, callback) 
         }
       }
     });
-
   }
 }
 
