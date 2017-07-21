@@ -42,7 +42,7 @@ function rootDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath) {
   const subEntryNames = pathUtil.subEntryNamesFromAbsoluteDirectoryPath(projectsDirectoryPath),
         rootDirectoryNames = subEntryNames.reduce(function(rootDirectoryNames, subEntryName) {
           const absoluteSubEntryPath = pathUtil.combinePaths(projectsDirectoryPath, subEntryName),
-                absoluteSubEntryPathDirectoryPath = pathUtil.isDirectoryPath(absoluteSubEntryPath),
+                absoluteSubEntryPathDirectoryPath = pathUtil.isAbsolutePathDirectoryPath(absoluteSubEntryPath),
                 subEntryDirectory = absoluteSubEntryPathDirectoryPath;  ///
   
           if (subEntryDirectory) {

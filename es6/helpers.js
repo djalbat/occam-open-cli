@@ -58,7 +58,7 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
 
       callback(targetPath);
     } else {
-      const absoluteSourcePathDirectoryPath = pathUtil.isDirectoryPath(absoluteSourcePath),
+      const absoluteSourcePathDirectoryPath = pathUtil.isAbsolutePathDirectoryPath(absoluteSourcePath),
             entryDirectory = absoluteSourcePathDirectoryPath;
 
       entryDirectory ?
@@ -80,7 +80,7 @@ function removeEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
 
       callback(targetPath);
     } else {
-      const absoluteSourcePathDirectoryPath = pathUtil.isDirectoryPath(absoluteSourcePath),
+      const absoluteSourcePathDirectoryPath = pathUtil.isAbsolutePathDirectoryPath(absoluteSourcePath),
             entryDirectory = absoluteSourcePathDirectoryPath;
 
       entryDirectory ?
@@ -121,7 +121,7 @@ function removeFile(sourcePath, projectsDirectoryPath, callback) {
 function moveDirectory(sourcePath, targetPath, projectsDirectoryPath, callback) {
   const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
         absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath),
-        empty = pathUtil.isDirectoryEmpty(absoluteSourcePath);
+        empty = pathUtil.isAbsoluteDirectoryPathEmpty(absoluteSourcePath);
 
   if (!empty) {
     const targetPath = sourcePath;
@@ -150,7 +150,7 @@ function moveDirectory(sourcePath, targetPath, projectsDirectoryPath, callback) 
 
 function removeDirectory(sourcePath, projectsDirectoryPath, callback) {
   const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
-        empty = pathUtil.isDirectoryEmpty(absoluteSourcePath);
+        empty = pathUtil.isAbsoluteDirectoryPathEmpty(absoluteSourcePath);
 
   if (!empty) {
     const targetPath = sourcePath;

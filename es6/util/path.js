@@ -5,17 +5,7 @@ const fs = require('fs');
 const arrayUtil = require('../util/array');
 
 class pathUtil {
-  static subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath) {
-    try {
-      const subEntryNames = fs.readdirSync(absoluteDirectoryPath);
-
-      return subEntryNames;
-    } catch (error) {
-      return [];  ///
-    }
-  }
-
-  static isDirectoryPath(absolutePath) {
+  static isAbsolutePathDirectoryPath(absolutePath) {
     try {
       const stat = fs.statSync(absolutePath),
             directory = stat.isDirectory();
@@ -23,6 +13,24 @@ class pathUtil {
       return directory;
     } catch (error) {
       return false; ///
+    }
+  }
+
+  static isAbsoluteDirectoryPathEmpty(absoluteDirectoryPath) {
+    const subEntryNames = pathUtil.subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath),
+        subEntryNamesLength = subEntryNames.length,
+        directoryEmpty = (subEntryNamesLength === 0);
+
+    return directoryEmpty;
+  }
+
+  static subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath) {
+    try {
+      const subEntryNames = fs.readdirSync(absoluteDirectoryPath);
+
+      return subEntryNames;
+    } catch (error) {
+      return [];  ///
     }
   }
 
@@ -48,14 +56,6 @@ class pathUtil {
           name = secondMatch;
 
     return name;
-  }
-
-  static isDirectoryEmpty(absoluteDirectoryPath) {
-    const subEntryNames = pathUtil.subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath),
-          subEntryNamesLength = subEntryNames.length,
-          directoryEmpty = (subEntryNamesLength === 0);
-    
-    return directoryEmpty;    
   }
 
   static removeMasterFromPath(path) {

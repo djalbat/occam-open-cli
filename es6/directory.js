@@ -37,7 +37,7 @@ class Directory {
     let directory = null;
 
     const absolutePath = pathUtil.combinePaths(projectsDirectoryPath, directoryPath),
-          absolutePathDirectoryPath = pathUtil.isDirectoryPath(absolutePath);
+          absolutePathDirectoryPath = pathUtil.isAbsolutePathDirectoryPath(absolutePath);
 
     if (absolutePathDirectoryPath) {
       const path = directoryPath; ///
