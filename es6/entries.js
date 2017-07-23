@@ -88,14 +88,14 @@ class Entries {
 
 module.exports = Entries;
 
-function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath) {
+function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
   const absoluteDirectoryPath = pathUtil.combinePaths(projectsDirectoryPath, relativeDirectoryPath),
         subEntryNames = pathUtil.subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath);
 
   subEntryNames.forEach(function(subEntryName) {
     const subEntryNameHiddenName = pathUtil.isNameHiddenName(subEntryName);
     
-    if (true) {
+    if (!subEntryNameHiddenName) {
       let entry;
 
       const path = pathUtil.combinePaths(relativeDirectoryPath, subEntryName),
@@ -107,7 +107,7 @@ function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projec
 
         entries.addEntry(entry);
 
-        entriesFromRelativeDirectoryPath(entries, directoryPath, projectsDirectoryPath); ///
+        entriesFromRelativeDirectoryPath(entries, directoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories); ///
       } else {
         const filePath = directoryPath, //
               file = File.fromFilePath(filePath, projectsDirectoryPath);
