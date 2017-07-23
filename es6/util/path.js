@@ -5,6 +5,14 @@ const fs = require('fs');
 const arrayUtil = require('../util/array');
 
 class pathUtil {
+  static isAbsolutePathHiddenPath(absolutePath) {
+    const name = pathUtil.nameFromPath(absolutePath),
+          nameHiddenName = pathUtil.isNameHiddenName(name),
+          absolutePathHiddenPath = nameHiddenName;  ///
+
+    return absolutePathHiddenPath;
+  }
+
   static isAbsolutePathDirectoryPath(absolutePath) {
     try {
       const stat = fs.statSync(absolutePath),
@@ -22,6 +30,13 @@ class pathUtil {
         directoryEmpty = (subEntryNamesLength === 0);
 
     return directoryEmpty;
+  }
+
+  static isNameHiddenName(name) {
+    const position = name.search(/^\..+/),
+          nameHiddenName = (position !== -1);
+
+    return nameHiddenName;
   }
 
   static subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath) {

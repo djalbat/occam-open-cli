@@ -41,8 +41,8 @@ class Project {
     });
   }
 
-  static fromRootDirectoryName(rootDirectoryName, projectsDirectoryPath) {
-    const entries = Entries.fromRootDirectoryName(rootDirectoryName, projectsDirectoryPath),
+  static fromRootDirectoryName(rootDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
+    const entries = Entries.fromRootDirectoryName(rootDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories),
           project = new Project(rootDirectoryName, entries);
 
     return project;

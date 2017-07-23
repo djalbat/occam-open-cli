@@ -76,11 +76,11 @@ class Entries {
     }, done);
   }
 
-  static fromRootDirectoryName(rootDirectoryName, projectsDirectoryPath) {
+  static fromRootDirectoryName(rootDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
     const entries = new Entries(),
           relativeDirectoryPath = rootDirectoryName;  ///
 
-    entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath);
+    entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
 
     return entries;
   }
@@ -88,31 +88,35 @@ class Entries {
 
 module.exports = Entries;
 
-function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath) {
+function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
   const absoluteDirectoryPath = pathUtil.combinePaths(projectsDirectoryPath, relativeDirectoryPath),
         subEntryNames = pathUtil.subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath);
 
   subEntryNames.forEach(function(subEntryName) {
-    let entry;
+    const subEntryNameHiddenName = pathUtil.isNameHiddenName(subEntryName);
     
-    const path = pathUtil.combinePaths(relativeDirectoryPath, subEntryName),
-          directoryPath = path, ///
-          directory = Directory.fromDirectoryPath(directoryPath, projectsDirectoryPath);
+    if (!doNotLoadHiddenFilesAndDirectories || !subEntryNameHiddenName) {
+      let entry;
 
-    if (directory !== null) {
-      entry = directory;  ///
+      const path = pathUtil.combinePaths(relativeDirectoryPath, subEntryName),
+            directoryPath = path, ///
+            directory = Directory.fromDirectoryPath(directoryPath, projectsDirectoryPath);
 
-      entries.addEntry(entry);
-
-      entriesFromRelativeDirectoryPath(entries, directoryPath, projectsDirectoryPath); ///
-    } else {
-      const filePath = directoryPath, //
-            file = File.fromFilePath(filePath, projectsDirectoryPath);
-      
-      if (file !== null) {
-        entry = file;
+      if (directory !== null) {
+        entry = directory;  ///
 
         entries.addEntry(entry);
+
+        entriesFromRelativeDirectoryPath(entries, directoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories); ///
+      } else {
+        const filePath = directoryPath, //
+              file = File.fromFilePath(filePath, projectsDirectoryPath);
+
+        if (file !== null) {
+          entry = file;
+
+          entries.addEntry(entry);
+        }
       }
     }
   });

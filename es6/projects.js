@@ -22,12 +22,12 @@ class Projects {
     return json;
   }
 
-  static fromProjectsDirectoryPath(projectsDirectoryPath) {
+  static fromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
     const projects = new Projects(),
-          rootDirectoryNames = rootDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath);
+          rootDirectoryNames = rootDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
 
     rootDirectoryNames.forEach(function(rootDirectoryName) {
-      const project = Project.fromRootDirectoryName(rootDirectoryName, projectsDirectoryPath);
+      const project = Project.fromRootDirectoryName(rootDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
 
       projects.addProject(project);
     });
@@ -38,19 +38,23 @@ class Projects {
 
 module.exports = Projects;
 
-function rootDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath) {
+function rootDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
   const subEntryNames = pathUtil.subEntryNamesFromAbsoluteDirectoryPath(projectsDirectoryPath),
         rootDirectoryNames = subEntryNames.reduce(function(rootDirectoryNames, subEntryName) {
           const absoluteSubEntryPath = pathUtil.combinePaths(projectsDirectoryPath, subEntryName),
-                absoluteSubEntryPathDirectoryPath = pathUtil.isAbsolutePathDirectoryPath(absoluteSubEntryPath),
-                subEntryDirectory = absoluteSubEntryPathDirectoryPath;  ///
-  
-          if (subEntryDirectory) {
-            const rootDirectoryName = subEntryName;  ///
-  
-            rootDirectoryNames.push(rootDirectoryName)
+                absoluteSubEntryPathHiddenPath = pathUtil.isAbsolutePathHiddenPath(absoluteSubEntryPath);
+
+          if (!doNotLoadHiddenFilesAndDirectories || !absoluteSubEntryPathHiddenPath) {
+            const absoluteSubEntryPathDirectoryPath = pathUtil.isAbsolutePathDirectoryPath(absoluteSubEntryPath),
+                  subEntryDirectory = absoluteSubEntryPathDirectoryPath;  ///
+
+            if (subEntryDirectory) {
+              const rootDirectoryName = subEntryName;  ///
+
+              rootDirectoryNames.push(rootDirectoryName)
+            }
           }
-  
+
           return rootDirectoryNames;
         }, []);
 
