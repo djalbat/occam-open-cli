@@ -94,8 +94,8 @@ function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projec
 
   subEntryNames.forEach(function(subEntryName) {
     const subEntryNameHiddenName = pathUtil.isNameHiddenName(subEntryName);
-    
-    if (!subEntryNameHiddenName) {
+
+    if (!subEntryNameHiddenName || !doNotLoadHiddenFilesAndDirectories) {
       let entry;
 
       const path = pathUtil.combinePaths(relativeDirectoryPath, subEntryName),
