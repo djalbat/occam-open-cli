@@ -141,7 +141,15 @@ function moveDirectory(sourcePath, targetPath, projectsDirectoryPath, callback) 
 
           callback(targetPath);
         } else {
-          removeDirectory(sourcePath, projectsDirectoryPath, callback);
+          fsExtra.remove(absoluteSourcePath, function(err) {
+            const success = (err === null);
+
+            if (!success) {
+              targetPath = sourcePath;
+            }
+
+            callback(targetPath);
+          });
         }
       }
     });
