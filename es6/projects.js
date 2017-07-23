@@ -44,7 +44,7 @@ function rootDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNo
           const absoluteSubEntryPath = pathUtil.combinePaths(projectsDirectoryPath, subEntryName),
                 absoluteSubEntryPathHiddenPath = pathUtil.isAbsolutePathHiddenPath(absoluteSubEntryPath);
 
-          if (!doNotLoadHiddenFilesAndDirectories || !absoluteSubEntryPathHiddenPath) {
+          if (!absoluteSubEntryPathHiddenPath || !doNotLoadHiddenFilesAndDirectories) {
             const absoluteSubEntryPathDirectoryPath = pathUtil.isAbsolutePathDirectoryPath(absoluteSubEntryPath),
                   subEntryDirectory = absoluteSubEntryPathDirectoryPath;  ///
 
