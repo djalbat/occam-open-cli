@@ -1,9 +1,9 @@
 'use strict';
 
 const File = require('./file'),
-      async = require('./async'),
       pathUtil = require('./util/path'),
       arrayUtil = require('./util/array'),
+      asyncUtil = require('./util/async'),
       Directory = require('./directory');
 
 class Entries {
@@ -49,7 +49,7 @@ class Entries {
       callback(entries);
     }
 
-    async.forEach(jsZipEntryNames, function (jsZipEntryName, next) {
+    asyncUtil.forEach(jsZipEntryNames, function (jsZipEntryName, next) {
       const jsZipEntry = jsZipEntries[jsZipEntryName];
 
       let entry;

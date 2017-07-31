@@ -2,8 +2,7 @@
 
 const fsExtra = require('fs-extra');
 
-const async = require('./async'),
-      pathUtil = require('./util/path'),
+const pathUtil = require('./util/path'),
       pathMapsUtil = require('./util/pathMaps');
 
 class helpers {

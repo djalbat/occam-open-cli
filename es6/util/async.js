@@ -1,6 +1,6 @@
 'use strict';
 
-class async {
+class asyncUtil {
   static forEach(array, callback, done) {
     const arrayLength = array.length;
     
@@ -22,4 +22,4 @@ class async {
   }
 }
 
-module.exports = async;
+module.exports = asyncUtil;

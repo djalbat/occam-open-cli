@@ -1,10 +1,10 @@
 'use strict';
 
-const async = require('../async');
+const asyncUtil = require('../util/async');
 
 class pathMapsUtil {
   static asyncForEachWithSourcePathAndTargetPath(pathMaps, callback, done) {
-    async.forEach(
+    asyncUtil.forEach(
       pathMaps,
       function(pathMap, next) {
         const sourcePath = pathMap['sourcePath'],
