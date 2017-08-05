@@ -1,15 +1,19 @@
 'use strict';
 
-const fsExtra = require('fs-extra');
+const fsExtra = require('fs-extra'),
+      necessary = require('necessary');
 
-const pathUtil = require('./util/path'),
-      pathMapsUtil = require('./util/pathMaps');
+const pathMapsUtilities = require('./utilities/pathMaps');
+
+const { path, fileSystem } = necessary,
+      { combinePaths } = path,
+      { entryExists, isDirectoryEmpty } = fileSystem;
 
 class helpers {
   static moveEntries(pathMaps, projectsDirectoryPath, callback) {
     const targetPaths = [];
 
-    pathMapsUtil.asyncForEachWithSourcePathAndTargetPath(
+    pathMapsUtilities.asyncForEachWithSourcePathAndTargetPath(
       pathMaps, 
       function(sourcePath, targetPath, next) {
         moveEntry(sourcePath, targetPath, projectsDirectoryPath, function(targetPath) {
@@ -27,7 +31,7 @@ class helpers {
   static removeEntries(pathMaps, projectsDirectoryPath, callback) {
     const targetPaths = [];
 
-    pathMapsUtil.asyncForEachWithSourcePathAndTargetPath(
+    pathMapsUtilities.asyncForEachWithSourcePathAndTargetPath(
       pathMaps,
       function(sourcePath, targetPath, next) {
         removeEntry(sourcePath, targetPath, projectsDirectoryPath, function(targetPath) {
@@ -49,16 +53,15 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
   if (sourcePath === targetPath) {
     callback(targetPath);
   } else {
-    const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
-          exists = fsExtra.existsSync(absoluteSourcePath);
+    const absoluteSourcePath = combinePaths(projectsDirectoryPath, sourcePath),
+          exists = entryExists(absoluteSourcePath);
 
     if (!exists) {
       targetPath = null;
 
       callback(targetPath);
     } else {
-      const absoluteSourcePathDirectoryPath = pathUtil.isAbsolutePathDirectoryPath(absoluteSourcePath),
-            entryDirectory = absoluteSourcePathDirectoryPath;
+      const entryDirectory = isEntryDirectory(absoluteSourcePath);
 
       entryDirectory ?
         moveDirectory(sourcePath, targetPath, projectsDirectoryPath, callback) :
@@ -71,16 +74,15 @@ function removeEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
   if (sourcePath === targetPath) {
     callback(targetPath);
   } else {
-    const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
-          exists = fsExtra.existsSync(absoluteSourcePath);
+    const absoluteSourcePath = combinePaths(projectsDirectoryPath, sourcePath),
+          exists = entryExists(absoluteSourcePath);
 
     if (!exists) {
       targetPath = null;
 
       callback(targetPath);
     } else {
-      const absoluteSourcePathDirectoryPath = pathUtil.isAbsolutePathDirectoryPath(absoluteSourcePath),
-            entryDirectory = absoluteSourcePathDirectoryPath;
+      const entryDirectory = isEntryDirectory(absoluteSourcePath);
 
       entryDirectory ?
         removeDirectory(sourcePath, projectsDirectoryPath, callback) :
@@ -90,8 +92,8 @@ function removeEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
 }
 
 function moveFile(sourcePath, targetPath, projectsDirectoryPath, callback) {
-  const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
-        absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath);
+  const absoluteSourcePath = combinePaths(projectsDirectoryPath, sourcePath),
+        absoluteTargetPath = combinePaths(projectsDirectoryPath, targetPath);
 
   fsExtra.move(absoluteSourcePath, absoluteTargetPath, function (err) {
     const success = (err === null);
@@ -105,7 +107,7 @@ function moveFile(sourcePath, targetPath, projectsDirectoryPath, callback) {
 }
 
 function removeFile(sourcePath, projectsDirectoryPath, callback) {
-  const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath);
+  const absoluteSourcePath = combinePaths(projectsDirectoryPath, sourcePath);
 
   fsExtra.remove(absoluteSourcePath, function(err) {
     const success = (err === null),
@@ -118,9 +120,9 @@ function removeFile(sourcePath, projectsDirectoryPath, callback) {
 }
 
 function moveDirectory(sourcePath, targetPath, projectsDirectoryPath, callback) {
-  const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
-        absoluteTargetPath = pathUtil.combinePaths(projectsDirectoryPath, targetPath),
-        empty = pathUtil.isAbsoluteDirectoryPathEmpty(absoluteSourcePath);
+  const absoluteSourcePath = combinePaths(projectsDirectoryPath, sourcePath),
+        absoluteTargetPath = combinePaths(projectsDirectoryPath, targetPath),
+        empty = isDirectoryEmpty(absoluteSourcePath);
 
   if (!empty) {
     const targetPath = sourcePath;
@@ -156,8 +158,8 @@ function moveDirectory(sourcePath, targetPath, projectsDirectoryPath, callback) 
 }
 
 function removeDirectory(sourcePath, projectsDirectoryPath, callback) {
-  const absoluteSourcePath = pathUtil.combinePaths(projectsDirectoryPath, sourcePath),
-        empty = pathUtil.isAbsoluteDirectoryPathEmpty(absoluteSourcePath);
+  const absoluteSourcePath = combinePaths(projectsDirectoryPath, sourcePath),
+        empty = isDirectoryEmpty(absoluteSourcePath);
 
   if (!empty) {
     const targetPath = sourcePath;

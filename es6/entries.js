@@ -1,10 +1,15 @@
 'use strict';
 
+const necessary = require('necessary');
+
 const File = require('./file'),
-      pathUtil = require('./util/path'),
-      arrayUtil = require('./util/array'),
-      asyncUtil = require('./util/async'),
-      Directory = require('./directory');
+      Directory = require('./directory'),
+      pathUtilities = require('./utilities/path');
+
+const { array, async, fileSystem } = necessary,
+      { first } = array,
+      { readDirectory } = fileSystem,
+      { combinePaths, topmostDirectoryNameFromPath } = path;
 
 class Entries {
   constructor() {
@@ -18,12 +23,12 @@ class Entries {
   getRootDirectoryName() {
     let rootDirectoryName = null;
     
-    const firstEntry = arrayUtil.first(this.array); ///
+    const firstEntry = first(this.array); ///
 
     if (firstEntry !== undefined) {
       const firstEntryPath = firstEntry.getPath();
 
-      rootDirectoryName = pathUtil.rootDirectoryNameFromPath(firstEntryPath);
+      rootDirectoryName = topmostDirectoryNameFromPath(firstEntryPath);
     }
 
     return rootDirectoryName;
@@ -49,7 +54,7 @@ class Entries {
       callback(entries);
     }
 
-    asyncUtil.forEach(jsZipEntryNames, function (jsZipEntryName, next) {
+    async.forEach(jsZipEntryNames, function (jsZipEntryName, index, next) {
       const jsZipEntry = jsZipEntries[jsZipEntryName];
 
       let entry;
@@ -89,16 +94,16 @@ class Entries {
 module.exports = Entries;
 
 function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
-  const absoluteDirectoryPath = pathUtil.combinePaths(projectsDirectoryPath, relativeDirectoryPath),
-        subEntryNames = pathUtil.subEntryNamesFromAbsoluteDirectoryPath(absoluteDirectoryPath);
+  const absoluteDirectoryPath = combinePaths(projectsDirectoryPath, relativeDirectoryPath),
+        subEntryNames = readDirectory(absoluteDirectoryPath);
 
   subEntryNames.forEach(function(subEntryName) {
-    const subEntryNameHiddenName = pathUtil.isNameHiddenName(subEntryName);
+    const subEntryNameHiddenName = pathUtilities.isNameHiddenName(subEntryName);
 
     if (!subEntryNameHiddenName || !doNotLoadHiddenFilesAndDirectories) {
       let entry;
 
-      const path = pathUtil.combinePaths(relativeDirectoryPath, subEntryName),
+      const path = combinePaths(relativeDirectoryPath, subEntryName),
             directoryPath = path, ///
             directory = Directory.fromDirectoryPath(directoryPath, projectsDirectoryPath);
 

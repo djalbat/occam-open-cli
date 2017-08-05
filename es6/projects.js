@@ -1,7 +1,13 @@
 'use strict';
 
+const necessary = require('necessary');
+
 const Project = require('./project'),
-      pathUtil = require('./util/path');
+      pathUtilities = require('./utilites/path');
+
+const { path, fileSystem } = necessary,
+      { combinePaths } = path,
+      { isEntryDirectory, readDirectory } = fileSystem;
 
 class Projects {
   constructor() {
@@ -39,14 +45,13 @@ class Projects {
 module.exports = Projects;
 
 function rootDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
-  const subEntryNames = pathUtil.subEntryNamesFromAbsoluteDirectoryPath(projectsDirectoryPath),
+  const subEntryNames = readDirectory(projectsDirectoryPath),
         rootDirectoryNames = subEntryNames.reduce(function(rootDirectoryNames, subEntryName) {
-          const absoluteSubEntryPath = pathUtil.combinePaths(projectsDirectoryPath, subEntryName),
-                absoluteSubEntryPathHiddenPath = pathUtil.isAbsolutePathHiddenPath(absoluteSubEntryPath);
+          const absoluteSubEntryPath = combinePaths(projectsDirectoryPath, subEntryName),
+                subEntryNameHiddenName = pathUtilities.isNameHiddenName(subEntryName);
 
-          if (!absoluteSubEntryPathHiddenPath || !doNotLoadHiddenFilesAndDirectories) {
-            const absoluteSubEntryPathDirectoryPath = pathUtil.isAbsolutePathDirectoryPath(absoluteSubEntryPath),
-                  subEntryDirectory = absoluteSubEntryPathDirectoryPath;  ///
+          if (!subEntryNameHiddenName || !doNotLoadHiddenFilesAndDirectories) {
+            const subEntryDirectory = isEntryDirectory(absoluteSubEntryPath);
 
             if (subEntryDirectory) {
               const rootDirectoryName = subEntryName;  ///

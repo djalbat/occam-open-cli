@@ -1,9 +1,13 @@
 'use strict';
 
-const fs = require('fs'),
-      mkdirp = require('mkdirp');
+const mkdirp = require('mkdirp'),
+      necessary = require('necessary');
 
-const pathUtil = require('./util/path');
+const pathUtilities = require('./utilities/path');
+
+const { path, fileSystem } = necessary,
+      { readFile, writeFile } = fileSystem,
+      { combinePaths, directoryPathFromPath } = path;
 
 class File {
   constructor(path, content) {
@@ -33,12 +37,12 @@ class File {
   }
 
   save(projectsDirectoryPath) {
-    const absolutePath = pathUtil.combinePaths(projectsDirectoryPath, this.path),
-          absoluteDirectoryPath = pathUtil.directoryPathFromPath(absolutePath);
+    const absolutePath = combinePaths(projectsDirectoryPath, this.path),
+          absoluteDirectoryPath = directoryPathFromPath(absolutePath);
 
     mkdirp.sync(absoluteDirectoryPath);
 
-    fs.writeFileSync(absolutePath, this.content);
+    writeFile(absolutePath, this.content);
   }
 
   static fromJSON(json) {
@@ -52,12 +56,12 @@ class File {
   }
 
   static fromFilePath(filePath, projectsDirectoryPath) {
-    const absolutePath = pathUtil.combinePaths(projectsDirectoryPath, filePath);
+    const absolutePath = combinePaths(projectsDirectoryPath, filePath);
 
     let content;
 
     try {
-      content = fs.readFileSync(absolutePath, {encoding: 'utf8'});
+      content = readFile(absolutePath);
     }
     catch (error) {
       content = null;
@@ -81,7 +85,7 @@ class File {
     } else {
       let path = jsZipEntryName; ///
 
-      path = pathUtil.removeMasterFromPath(path);
+      path = pathUtilities.removeMasterDirectoryNameFromPath(path);
 
       jsZipEntry.async('string').then(function(content) {
         file = new File(path, content);

@@ -1,9 +1,12 @@
 'use strict';
 
-const fs = require('fs'),
-      mkdirp = require('mkdirp');
+const necessary = require('necessary');
 
-const pathUtil = require('./util/path');
+const pathUtilities = require('./utilities/path');
+
+const { path, fileSystem } = necessary,
+      { isEntryDirectory } = fileSystem,
+      { combinePaths, pathWithoutTrailingSlashFromPath } = path;
 
 class Directory {
   constructor(path) {
@@ -36,8 +39,8 @@ class Directory {
   static fromDirectoryPath(directoryPath, projectsDirectoryPath) {
     let directory = null;
 
-    const absolutePath = pathUtil.combinePaths(projectsDirectoryPath, directoryPath),
-          absolutePathDirectoryPath = pathUtil.isAbsolutePathDirectoryPath(absolutePath);
+    const absolutePath = combinePaths(projectsDirectoryPath, directoryPath),
+          absolutePathDirectoryPath = isEntryDirectory(absolutePath);
 
     if (absolutePathDirectoryPath) {
       const path = directoryPath; ///
@@ -60,8 +63,8 @@ class Directory {
       
       let jsZipDirectoryPath = jsZipDirectory.name;  ///
 
-      jsZipDirectoryPath = pathUtil.removeTrailingSlashFromPath(jsZipDirectoryPath);
-      jsZipDirectoryPath = pathUtil.removeMasterFromPath(jsZipDirectoryPath);
+      jsZipDirectoryPath = pathWithoutTrailingSlashFromPath(jsZipDirectoryPath);  ///
+      jsZipDirectoryPath = pathUtilities.removeMasterDirectoryNameFromPath(jsZipDirectoryPath);
 
       const path = jsZipDirectoryPath;  ///
 

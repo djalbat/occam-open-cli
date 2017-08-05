@@ -1,12 +1,14 @@
 'use strict';
 
-const asyncUtil = require('../util/async');
+const necessary = require('necessary');
 
-class pathMapsUtil {
+const { async } = necessary;
+
+class pathMapsUtilities {
   static asyncForEachWithSourcePathAndTargetPath(pathMaps, callback, done) {
-    asyncUtil.forEach(
+    async.forEach(
       pathMaps,
-      function(pathMap, next) {
+      function(pathMap, index, next) {
         const sourcePath = pathMap['sourcePath'],
               targetPath = pathMap['targetPath'];
   
@@ -17,4 +19,4 @@ class pathMapsUtil {
   }
 }
 
-module.exports = pathMapsUtil;
+module.exports = pathMapsUtilities;
