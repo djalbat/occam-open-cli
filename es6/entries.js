@@ -6,7 +6,7 @@ const File = require('./file'),
       Directory = require('./directory'),
       pathUtilities = require('./utilities/path');
 
-const { array, async, fileSystem } = necessary,
+const { path, array, async, fileSystem } = necessary,
       { first } = array,
       { readDirectory } = fileSystem,
       { concatenatePaths, topmostDirectoryNameFromPath } = path;
