@@ -40,9 +40,9 @@ class Directory {
     let directory = null;
 
     const absolutePath = concatenatePaths(projectsDirectoryPath, directoryPath),
-          absolutePathDirectoryPath = isEntryDirectory(absolutePath);
+          entryDirectory = isEntryDirectory(absolutePath);
 
-    if (absolutePathDirectoryPath) {
+    if (entryDirectory) {
       const path = directoryPath; ///
 
       directory = new Directory(path);
@@ -59,15 +59,14 @@ class Directory {
     if (!jsZipEntryDirectory) {
       callback(directory);
     } else {
-      const jsZipDirectory = jsZipEntry;
-      
-      let jsZipDirectoryPath = jsZipDirectory.name;  ///
+      const jsZipDirectory = jsZipEntry,
+            jsZipDirectoryPath = jsZipDirectory.name;  ///
 
-      jsZipDirectoryPath = pathUtilities.pathWithoutTrailingSlashFromPath(jsZipDirectoryPath);  ///
+      let path = jsZipDirectoryPath;  ///
 
-      jsZipDirectoryPath = pathUtilities.removeMasterDirectoryNameFromPath(jsZipDirectoryPath); ///
+      path = pathUtilities.pathWithoutTrailingSlashFromPath(path);  ///
 
-      const path = jsZipDirectoryPath;  ///
+      path = pathUtilities.removeMasterDirectoryNameFromPath(path); ///
 
       directory = new Directory(path);
 
