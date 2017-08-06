@@ -3,7 +3,7 @@
 const necessary = require('necessary');
 
 const Project = require('./project'),
-      pathUtilities = require('./utilites/path');
+      pathUtilities = require('./utilities/path');
 
 const { path, fileSystem } = necessary,
       { concatenatePaths } = path,
