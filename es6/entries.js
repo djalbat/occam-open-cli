@@ -20,18 +20,18 @@ class Entries {
     this.array.push(entry);
   }
 
-  getRootDirectoryName() {
-    let rootDirectoryName = null;
+  getTopmostDirectoryName() {
+    let topmostDirectoryName = null;
     
     const firstEntry = first(this.array); ///
 
     if (firstEntry !== undefined) {
       const firstEntryPath = firstEntry.getPath();
 
-      rootDirectoryName = topmostDirectoryNameFromPath(firstEntryPath);
+      topmostDirectoryName = topmostDirectoryNameFromPath(firstEntryPath);
     }
 
-    return rootDirectoryName;
+    return topmostDirectoryName;
   }
 
   toJSON() {
@@ -81,9 +81,9 @@ class Entries {
     }, done);
   }
 
-  static fromRootDirectoryName(rootDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
+  static fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
     const entries = new Entries(),
-          relativeDirectoryPath = rootDirectoryName;  ///
+          relativeDirectoryPath = topmostDirectoryName;  ///
 
     entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
 

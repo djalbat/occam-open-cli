@@ -30,10 +30,10 @@ class Projects {
 
   static fromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
     const projects = new Projects(),
-          rootDirectoryNames = rootDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
+          topmostDirectoryNames = topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
 
-    rootDirectoryNames.forEach(function(rootDirectoryName) {
-      const project = Project.fromRootDirectoryName(rootDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
+    topmostDirectoryNames.forEach(function(topmostDirectoryName) {
+      const project = Project.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
 
       projects.addProject(project);
     });
@@ -44,9 +44,9 @@ class Projects {
 
 module.exports = Projects;
 
-function rootDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
+function topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
   const subEntryNames = readDirectory(projectsDirectoryPath),
-        rootDirectoryNames = subEntryNames.reduce(function(rootDirectoryNames, subEntryName) {
+        topmostDirectoryNames = subEntryNames.reduce(function(topmostDirectoryNames, subEntryName) {
           const absoluteSubEntryPath = concatenatePaths(projectsDirectoryPath, subEntryName),
                 subEntryNameHiddenName = pathUtilities.isNameHiddenName(subEntryName);
 
@@ -54,14 +54,14 @@ function rootDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNo
             const subEntryDirectory = isEntryDirectory(absoluteSubEntryPath);
 
             if (subEntryDirectory) {
-              const rootDirectoryName = subEntryName;  ///
+              const topmostDirectoryName = subEntryName;  ///
 
-              rootDirectoryNames.push(rootDirectoryName)
+              topmostDirectoryNames.push(topmostDirectoryName)
             }
           }
 
-          return rootDirectoryNames;
+          return topmostDirectoryNames;
         }, []);
 
-  return rootDirectoryNames;
+  return topmostDirectoryNames;
 }

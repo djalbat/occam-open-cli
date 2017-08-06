@@ -4,17 +4,17 @@ const jsZip = require('./jsZip'),
       Entries = require('./entries');
 
 class Project {
-  constructor(rootDirectoryName, entries) {
-    this.rootDirectoryName = rootDirectoryName;
+  constructor(name, entries) {
+    this.name = name;
     this.entries = entries;
   }
 
   toJSON() {
-    const rootDirectoryName = this.rootDirectoryName,
+    const name = this.name,
           entriesJSON = this.entries.toJSON(),
           entries = entriesJSON,  ///
           json = {
-            "rootDirectoryName": rootDirectoryName,
+            "name": name,
             "entries": entries
           };
 
@@ -31,19 +31,21 @@ class Project {
     let project = null;
 
     Entries.fromJSZip(jsZip, function(entries) {
-      const rootDirectoryName = entries.getRootDirectoryName();
+      const topmostDirectoryName = entries.getTopmostDirectoryName();
 
-      if (rootDirectoryName !== null) {
-        project = new Project(rootDirectoryName, entries);
+      if (topmostDirectoryName !== null) {
+        const name = topmostDirectoryName;  ///
+        
+        project = new Project(name, entries);
       }
 
       callback(project);
     });
   }
 
-  static fromRootDirectoryName(rootDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
-    const entries = Entries.fromRootDirectoryName(rootDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories),
-          project = new Project(rootDirectoryName, entries);
+  static fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
+    const entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories),
+          project = new Project(topmostDirectoryName, entries);
 
     return project;
   }
