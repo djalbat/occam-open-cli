@@ -6,7 +6,7 @@ const pathUtilities = require('./utilities/path');
 
 const { path, fileSystem } = necessary,
       { isEntryDirectory } = fileSystem,
-      { combinePaths, pathWithoutTrailingSlashFromPath } = path;
+      { concatenatePaths, pathWithoutTrailingSlashFromPath } = path;
 
 class Directory {
   constructor(path) {
@@ -39,7 +39,7 @@ class Directory {
   static fromDirectoryPath(directoryPath, projectsDirectoryPath) {
     let directory = null;
 
-    const absolutePath = combinePaths(projectsDirectoryPath, directoryPath),
+    const absolutePath = concatenatePaths(projectsDirectoryPath, directoryPath),
           absolutePathDirectoryPath = isEntryDirectory(absolutePath);
 
     if (absolutePathDirectoryPath) {

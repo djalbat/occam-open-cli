@@ -6,7 +6,7 @@ const Project = require('./project'),
       pathUtilities = require('./utilites/path');
 
 const { path, fileSystem } = necessary,
-      { combinePaths } = path,
+      { concatenatePaths } = path,
       { isEntryDirectory, readDirectory } = fileSystem;
 
 class Projects {
@@ -47,7 +47,7 @@ module.exports = Projects;
 function rootDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
   const subEntryNames = readDirectory(projectsDirectoryPath),
         rootDirectoryNames = subEntryNames.reduce(function(rootDirectoryNames, subEntryName) {
-          const absoluteSubEntryPath = combinePaths(projectsDirectoryPath, subEntryName),
+          const absoluteSubEntryPath = concatenatePaths(projectsDirectoryPath, subEntryName),
                 subEntryNameHiddenName = pathUtilities.isNameHiddenName(subEntryName);
 
           if (!subEntryNameHiddenName || !doNotLoadHiddenFilesAndDirectories) {

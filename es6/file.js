@@ -7,7 +7,7 @@ const pathUtilities = require('./utilities/path');
 
 const { path, fileSystem } = necessary,
       { readFile, writeFile } = fileSystem,
-      { combinePaths, directoryPathFromPath } = path;
+      { concatenatePaths, directoryPathFromPath } = path;
 
 class File {
   constructor(path, content) {
@@ -37,7 +37,7 @@ class File {
   }
 
   save(projectsDirectoryPath) {
-    const absolutePath = combinePaths(projectsDirectoryPath, this.path),
+    const absolutePath = concatenatePaths(projectsDirectoryPath, this.path),
           absoluteDirectoryPath = directoryPathFromPath(absolutePath);
 
     mkdirp.sync(absoluteDirectoryPath);
@@ -56,7 +56,7 @@ class File {
   }
 
   static fromFilePath(filePath, projectsDirectoryPath) {
-    const absolutePath = combinePaths(projectsDirectoryPath, filePath);
+    const absolutePath = concatenatePaths(projectsDirectoryPath, filePath);
 
     let content;
 

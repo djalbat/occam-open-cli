@@ -6,7 +6,7 @@ const fsExtra = require('fs-extra'),
 const pathMapsUtilities = require('./utilities/pathMaps');
 
 const { path, fileSystem } = necessary,
-      { combinePaths } = path,
+      { concatenatePaths } = path,
       { entryExists, isDirectoryEmpty } = fileSystem;
 
 class helpers {
@@ -53,7 +53,7 @@ function moveEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
   if (sourcePath === targetPath) {
     callback(targetPath);
   } else {
-    const absoluteSourcePath = combinePaths(projectsDirectoryPath, sourcePath),
+    const absoluteSourcePath = concatenatePaths(projectsDirectoryPath, sourcePath),
           exists = entryExists(absoluteSourcePath);
 
     if (!exists) {
@@ -74,7 +74,7 @@ function removeEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
   if (sourcePath === targetPath) {
     callback(targetPath);
   } else {
-    const absoluteSourcePath = combinePaths(projectsDirectoryPath, sourcePath),
+    const absoluteSourcePath = concatenatePaths(projectsDirectoryPath, sourcePath),
           exists = entryExists(absoluteSourcePath);
 
     if (!exists) {
@@ -92,8 +92,8 @@ function removeEntry(sourcePath, targetPath, projectsDirectoryPath, callback) {
 }
 
 function moveFile(sourcePath, targetPath, projectsDirectoryPath, callback) {
-  const absoluteSourcePath = combinePaths(projectsDirectoryPath, sourcePath),
-        absoluteTargetPath = combinePaths(projectsDirectoryPath, targetPath);
+  const absoluteSourcePath = concatenatePaths(projectsDirectoryPath, sourcePath),
+        absoluteTargetPath = concatenatePaths(projectsDirectoryPath, targetPath);
 
   fsExtra.move(absoluteSourcePath, absoluteTargetPath, function (err) {
     const success = (err === null);
@@ -107,7 +107,7 @@ function moveFile(sourcePath, targetPath, projectsDirectoryPath, callback) {
 }
 
 function removeFile(sourcePath, projectsDirectoryPath, callback) {
-  const absoluteSourcePath = combinePaths(projectsDirectoryPath, sourcePath);
+  const absoluteSourcePath = concatenatePaths(projectsDirectoryPath, sourcePath);
 
   fsExtra.remove(absoluteSourcePath, function(err) {
     const success = (err === null),
@@ -120,8 +120,8 @@ function removeFile(sourcePath, projectsDirectoryPath, callback) {
 }
 
 function moveDirectory(sourcePath, targetPath, projectsDirectoryPath, callback) {
-  const absoluteSourcePath = combinePaths(projectsDirectoryPath, sourcePath),
-        absoluteTargetPath = combinePaths(projectsDirectoryPath, targetPath),
+  const absoluteSourcePath = concatenatePaths(projectsDirectoryPath, sourcePath),
+        absoluteTargetPath = concatenatePaths(projectsDirectoryPath, targetPath),
         empty = isDirectoryEmpty(absoluteSourcePath);
 
   if (!empty) {
@@ -158,7 +158,7 @@ function moveDirectory(sourcePath, targetPath, projectsDirectoryPath, callback) 
 }
 
 function removeDirectory(sourcePath, projectsDirectoryPath, callback) {
-  const absoluteSourcePath = combinePaths(projectsDirectoryPath, sourcePath),
+  const absoluteSourcePath = concatenatePaths(projectsDirectoryPath, sourcePath),
         empty = isDirectoryEmpty(absoluteSourcePath);
 
   if (!empty) {

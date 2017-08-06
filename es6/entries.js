@@ -9,7 +9,7 @@ const File = require('./file'),
 const { array, async, fileSystem } = necessary,
       { first } = array,
       { readDirectory } = fileSystem,
-      { combinePaths, topmostDirectoryNameFromPath } = path;
+      { concatenatePaths, topmostDirectoryNameFromPath } = path;
 
 class Entries {
   constructor() {
@@ -94,7 +94,7 @@ class Entries {
 module.exports = Entries;
 
 function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
-  const absoluteDirectoryPath = combinePaths(projectsDirectoryPath, relativeDirectoryPath),
+  const absoluteDirectoryPath = concatenatePaths(projectsDirectoryPath, relativeDirectoryPath),
         subEntryNames = readDirectory(absoluteDirectoryPath);
 
   subEntryNames.forEach(function(subEntryName) {
@@ -103,7 +103,7 @@ function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projec
     if (!subEntryNameHiddenName || !doNotLoadHiddenFilesAndDirectories) {
       let entry;
 
-      const path = combinePaths(relativeDirectoryPath, subEntryName),
+      const path = concatenatePaths(relativeDirectoryPath, subEntryName),
             directoryPath = path, ///
             directory = Directory.fromDirectoryPath(directoryPath, projectsDirectoryPath);
 
