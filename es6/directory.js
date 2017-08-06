@@ -5,8 +5,8 @@ const necessary = require('necessary');
 const pathUtilities = require('./utilities/path');
 
 const { path, fileSystem } = necessary,
-      { isEntryDirectory } = fileSystem,
-      { concatenatePaths, pathWithoutTrailingSlashFromPath } = path;
+      { concatenatePaths } = path,
+      { isEntryDirectory } = fileSystem;
 
 class Directory {
   constructor(path) {
@@ -63,8 +63,9 @@ class Directory {
       
       let jsZipDirectoryPath = jsZipDirectory.name;  ///
 
-      jsZipDirectoryPath = pathWithoutTrailingSlashFromPath(jsZipDirectoryPath);  ///
-      jsZipDirectoryPath = pathUtilities.removeMasterDirectoryNameFromPath(jsZipDirectoryPath);
+      jsZipDirectoryPath = pathUtilities.pathWithoutTrailingSlashFromPath(jsZipDirectoryPath);  ///
+
+      jsZipDirectoryPath = pathUtilities.removeMasterDirectoryNameFromPath(jsZipDirectoryPath); ///
 
       const path = jsZipDirectoryPath;  ///
 

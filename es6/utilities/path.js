@@ -13,6 +13,12 @@ class pathUtilities {
   
     return path;
   }
+
+  static pathWithoutTrailingSlashFromPath(path) {
+    const pathWithoutTrailingSlash = path.replace(/\/$/, '');
+
+    return pathWithoutTrailingSlash;
+  }
 }
 
 module.exports = pathUtilities;
