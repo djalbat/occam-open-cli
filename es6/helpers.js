@@ -5,9 +5,10 @@ const fsExtra = require('fs-extra'),
 
 const pathMapsUtilities = require('./utilities/pathMaps');
 
-const { path, fileSystem } = necessary,
+const { move, remove } = fsExtra,
+      { path, fileSystem } = necessary,
       { concatenatePaths } = path,
-      { entryExists, isDirectoryEmpty } = fileSystem;
+      { entryExists, isEntryDirectory, isDirectoryEmpty } = fileSystem;
 
 class helpers {
   static moveEntries(pathMaps, projectsDirectoryPath, callback) {
@@ -95,7 +96,7 @@ function moveFile(sourcePath, targetPath, projectsDirectoryPath, callback) {
   const absoluteSourcePath = concatenatePaths(projectsDirectoryPath, sourcePath),
         absoluteTargetPath = concatenatePaths(projectsDirectoryPath, targetPath);
 
-  fsExtra.move(absoluteSourcePath, absoluteTargetPath, function (err) {
+  move(absoluteSourcePath, absoluteTargetPath, function (err) {
     const success = (err === null);
     
     targetPath = success ?
@@ -109,7 +110,7 @@ function moveFile(sourcePath, targetPath, projectsDirectoryPath, callback) {
 function removeFile(sourcePath, projectsDirectoryPath, callback) {
   const absoluteSourcePath = concatenatePaths(projectsDirectoryPath, sourcePath);
 
-  fsExtra.remove(absoluteSourcePath, function(err) {
+  remove(absoluteSourcePath, function(err) {
     const success = (err === null),
           targetPath = success ?
                          null :
@@ -129,7 +130,7 @@ function moveDirectory(sourcePath, targetPath, projectsDirectoryPath, callback) 
 
     callback(targetPath);
   } else {
-    fsExtra.move(absoluteSourcePath, absoluteTargetPath, function (err) {
+    move(absoluteSourcePath, absoluteTargetPath, function (err) {
       const success = (err === null);
 
       if (success) {
@@ -142,7 +143,7 @@ function moveDirectory(sourcePath, targetPath, projectsDirectoryPath, callback) 
 
           callback(targetPath);
         } else {
-          fsExtra.remove(absoluteSourcePath, function(err) {
+          remove(absoluteSourcePath, function(err) {
             const success = (err === null);
 
             if (!success) {
@@ -166,7 +167,7 @@ function removeDirectory(sourcePath, projectsDirectoryPath, callback) {
 
     callback(targetPath);
   } else {
-    fsExtra.remove(absoluteSourcePath, function(err) {
+    remove(absoluteSourcePath, function(err) {
       const success = (err === null),
             targetPath = success ?
                             null :
