@@ -4,6 +4,5 @@ module.exports = {
   File: require('./lib/file'),
   Files: require('./lib/files'),
   Project: require('./lib/project'),
-  Projects: require('./lib/projects'),
-  helpers: require('./lib/helpers')
+  Projects: require('./lib/projects')
 };
