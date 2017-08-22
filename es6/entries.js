@@ -29,6 +29,10 @@ class Entries {
       const firstEntryPath = firstEntry.getPath();
 
       topmostDirectoryName = topmostDirectoryNameFromPath(firstEntryPath);
+
+      if (topmostDirectoryName === null) {
+        topmostDirectoryName = firstEntryPath;
+      }
     }
 
     return topmostDirectoryName;
