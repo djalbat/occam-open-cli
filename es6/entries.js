@@ -58,7 +58,7 @@ class Entries {
       callback(entries);
     }
 
-    async.forEach(jsZipEntryNames, function (jsZipEntryName, index, next) {
+    async.forEach(jsZipEntryNames, function (jsZipEntryName, next) {
       const jsZipEntry = jsZipEntries[jsZipEntryName];
 
       let entry;
