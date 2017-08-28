@@ -1,6 +1,7 @@
 'use strict';
 
-const needle = require('needle');
+const needle = require('needle'),
+      JSZip = require('jszip');
 
 const Entries = require('./entries');
 
