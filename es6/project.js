@@ -1,7 +1,8 @@
 'use strict';
 
-const jsZip = require('./jsZip'),
-      Entries = require('./entries');
+const needle = require('needle');
+
+const Entries = require('./entries');
 
 class Project {
   constructor(name, entries) {
@@ -22,8 +23,21 @@ class Project {
   }
 
   static fromURL(url, callback) {
-    jsZip.fromURL(url, function(jsZip) {
-      Project.fromJSZip(jsZip, callback);
+    const follow_max = 1,
+          options = {
+            follow_max: follow_max
+          };
+
+    needle.get(url, options, function(error, response) {
+      if (!error && (response.statusCode == 200)) {
+        const body = response.body;
+
+        JSZip.loadAsync(body).then(function(jsZip) {
+          Project.fromJSZip(jsZip, callback);
+        });
+      } else {
+        callback(null);
+      }
     });
   }
 
