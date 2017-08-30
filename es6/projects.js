@@ -29,12 +29,12 @@ class Projects {
     return json;
   }
 
-  static fromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
+  static fromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories, loadValidFilesOnly) {
     const projects = new Projects(),
           topmostDirectoryNames = topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
 
     topmostDirectoryNames.forEach(function(topmostDirectoryName) {
-      const project = Project.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
+      const project = Project.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories, loadValidFilesOnly);
 
       projects.addProject(project);
     });
