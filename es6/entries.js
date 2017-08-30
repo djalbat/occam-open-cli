@@ -88,11 +88,11 @@ class Entries {
     }, done);
   }
 
-  static fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories, loadValidFilesOnly) {
+  static fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
     const entries = new Entries(),
           relativeDirectoryPath = topmostDirectoryName;  ///
 
-    entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories, loadValidFilesOnly);
+    entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
 
     return entries;
   }
@@ -100,7 +100,7 @@ class Entries {
 
 module.exports = Entries;
 
-function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories, loadValidFilesOnly) {
+function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
   const absoluteDirectoryPath = concatenatePaths(projectsDirectoryPath, relativeDirectoryPath),
         subEntryNames = readDirectory(absoluteDirectoryPath);
 
@@ -121,20 +121,15 @@ function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projec
 
         entries.addEntry(entry);
 
-        entriesFromRelativeDirectoryPath(entries, directoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories, loadValidFilesOnly); ///
+        entriesFromRelativeDirectoryPath(entries, directoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories); ///
       } else {
         const filePath = directoryPath, //
-              loadInvalidFiles = !loadValidFilesOnly,
-              filePathValidFilePath = isFilePathValidFilePath(filePath);
+              file = File.fromFilePath(filePath, projectsDirectoryPath);
 
-        if (filePathValidFilePath || loadInvalidFiles) {
-          const file = File.fromFilePath(filePath, projectsDirectoryPath);
+        if (file !== null) {
+          entry = file; ///
 
-          if (file !== null) {
-            entry = file;
-
-            entries.addEntry(entry);
-          }
+          entries.addEntry(entry);
         }
       }
     }
