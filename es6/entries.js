@@ -4,14 +4,12 @@ const necessary = require('necessary');
 
 const File = require('./file'),
       Directory = require('./directory'),
-      pathUtilities = require('./utilities/path'),
-      filePathUtilities = require('./utilities/filePath');
+      pathUtilities = require('./utilities/path');
 
 const { path, array, async, fileSystem } = necessary,
       { first } = array,
       { readDirectory } = fileSystem,
       { isNameHiddenName } = pathUtilities,
-      { isFilePathValidFilePath } = filePathUtilities,
       { concatenatePaths, topmostDirectoryNameFromPath } = path;
 
 class Entries {
