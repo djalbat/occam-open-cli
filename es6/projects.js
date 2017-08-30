@@ -7,6 +7,7 @@ const Project = require('./project'),
 
 const { path, fileSystem } = necessary,
       { concatenatePaths } = path,
+      { isNameHiddenName } = pathUtilities,
       { isEntryDirectory, readDirectory } = fileSystem;
 
 class Projects {
@@ -52,7 +53,7 @@ function topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, d
 
     topmostDirectoryNames = subEntryNames.reduce(function (topmostDirectoryNames, subEntryName) {
       const absoluteSubEntryPath = concatenatePaths(projectsDirectoryPath, subEntryName),
-            subEntryNameHiddenName = pathUtilities.isNameHiddenName(subEntryName);
+            subEntryNameHiddenName = isNameHiddenName(subEntryName);
 
       if (!subEntryNameHiddenName || !doNotLoadHiddenFilesAndDirectories) {
         const subEntryDirectory = isEntryDirectory(absoluteSubEntryPath);

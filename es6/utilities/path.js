@@ -1,24 +1,26 @@
 'use strict';
 
-class pathUtilities {
-  static isNameHiddenName(name) {
-    const position = name.search(/^\..+/),
-          bottommostNameHiddenName = (position !== -1);
+function isNameHiddenName(name) {
+  const position = name.search(/^\..+/),
+        bottommostNameHiddenName = (position !== -1);
 
-    return bottommostNameHiddenName;
-  }
-
-  static removeMasterDirectoryNameFromPath(path) {
-    path = path.replace(/\-master/, '');
-  
-    return path;
-  }
-
-  static pathWithoutTrailingSlashFromPath(path) {
-    const pathWithoutTrailingSlash = path.replace(/\/$/, '');
-
-    return pathWithoutTrailingSlash;
-  }
+  return bottommostNameHiddenName;
 }
 
-module.exports = pathUtilities;
+function pathWithoutTrailingSlashFromPath(path) {
+  const pathWithoutTrailingSlash = path.replace(/\/$/, '');
+
+  return pathWithoutTrailingSlash;
+}
+
+function removeMasterDirectoryNameFromPath(path) {
+  path = path.replace(/\-master/, '');
+
+  return path;
+}
+
+module.exports = {
+  isNameHiddenName: isNameHiddenName,
+  pathWithoutTrailingSlashFromPath: pathWithoutTrailingSlashFromPath,
+  removeMasterDirectoryNameFromPath: removeMasterDirectoryNameFromPath
+};

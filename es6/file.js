@@ -7,6 +7,7 @@ const pathUtilities = require('./utilities/path');
 
 const { path, fileSystem } = necessary,
       { readFile, writeFile } = fileSystem,
+      { removeMasterDirectoryNameFromPath } = pathUtilities,
       { concatenatePaths, topmostDirectoryPathFromPath } = path;
 
 class File {
@@ -85,7 +86,7 @@ class File {
     } else {
       let path = jsZipEntryName; ///
 
-      path = pathUtilities.removeMasterDirectoryNameFromPath(path);
+      path = removeMasterDirectoryNameFromPath(path);
 
       jsZipEntry.async('string').then(function(content) {
         file = new File(path, content);

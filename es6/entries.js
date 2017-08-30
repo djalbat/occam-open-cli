@@ -4,11 +4,14 @@ const necessary = require('necessary');
 
 const File = require('./file'),
       Directory = require('./directory'),
-      pathUtilities = require('./utilities/path');
+      pathUtilities = require('./utilities/path'),
+      filePathUtilities = require('./utilities/filePath');
 
 const { path, array, async, fileSystem } = necessary,
       { first } = array,
       { readDirectory } = fileSystem,
+      { isNameHiddenName } = pathUtilities,
+      { isFilePathValidFilePath } = filePathUtilities,
       { concatenatePaths, topmostDirectoryNameFromPath } = path;
 
 class Entries {
@@ -85,11 +88,11 @@ class Entries {
     }, done);
   }
 
-  static fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
+  static fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories, loadValidFilesOnly) {
     const entries = new Entries(),
           relativeDirectoryPath = topmostDirectoryName;  ///
 
-    entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
+    entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories, loadValidFilesOnly);
 
     return entries;
   }
@@ -97,14 +100,16 @@ class Entries {
 
 module.exports = Entries;
 
-function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
+function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories, loadValidFilesOnly) {
   const absoluteDirectoryPath = concatenatePaths(projectsDirectoryPath, relativeDirectoryPath),
         subEntryNames = readDirectory(absoluteDirectoryPath);
 
   subEntryNames.forEach(function(subEntryName) {
-    const subEntryNameHiddenName = pathUtilities.isNameHiddenName(subEntryName);
+    const subEntryNameHiddenName = isNameHiddenName(subEntryName),
+          subEntryNameNotHiddenName = !subEntryNameHiddenName,
+          loadHiddenFilesAndDirectories = !doNotLoadHiddenFilesAndDirectories;
 
-    if (!subEntryNameHiddenName || !doNotLoadHiddenFilesAndDirectories) {
+    if (subEntryNameNotHiddenName || loadHiddenFilesAndDirectories) {
       let entry;
 
       const path = concatenatePaths(relativeDirectoryPath, subEntryName),
@@ -116,15 +121,20 @@ function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projec
 
         entries.addEntry(entry);
 
-        entriesFromRelativeDirectoryPath(entries, directoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories); ///
+        entriesFromRelativeDirectoryPath(entries, directoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories, loadValidFilesOnly); ///
       } else {
         const filePath = directoryPath, //
-              file = File.fromFilePath(filePath, projectsDirectoryPath);
+              loadInvalidFiles = !loadValidFilesOnly,
+              filePathValidFilePath = isFilePathValidFilePath(filePath);
 
-        if (file !== null) {
-          entry = file;
+        if (filePathValidFilePath || loadInvalidFiles) {
+          const file = File.fromFilePath(filePath, projectsDirectoryPath);
 
-          entries.addEntry(entry);
+          if (file !== null) {
+            entry = file;
+
+            entries.addEntry(entry);
+          }
         }
       }
     }

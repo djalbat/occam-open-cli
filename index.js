@@ -4,5 +4,6 @@ module.exports = {
   File: require('./lib/file'),
   Files: require('./lib/files'),
   Project: require('./lib/project'),
-  Projects: require('./lib/projects')
+  Projects: require('./lib/projects'),
+  filePathUtilities: require('./lib/utilities/filePath')
 };
