@@ -24,12 +24,13 @@ class Project {
   }
 
   static fromURL(url, callback) {
-    const follow_max = 1,
-          options = {
-            follow_max: follow_max
+    const params = {
+            method : "GET",
+            url : url,
+            encoding: null
           };
 
-    needle.get(url, options, function(error, response) {
+    request(params, function(error, response) {
       if (!error && (response.statusCode == 200)) {
         const body = response.body;
 
