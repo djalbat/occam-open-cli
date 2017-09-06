@@ -4,13 +4,14 @@ const necessary = require('necessary');
 
 const File = require('./file'),
       Directory = require('./directory'),
-      pathUtilities = require('./utilities/path');
+      nameUtilities = require('./utilities/name');
 
-const { path, array, async, fileSystem } = necessary,
-      { first } = array,
-      { readDirectory } = fileSystem,
-      { isNameHiddenName } = pathUtilities,
-      { concatenatePaths, topmostDirectoryNameFromPath } = path;
+const { pathUtilities, arrayUtilities, asynchronousUtilities, fileSystemUtilities } = necessary,
+      { first } = arrayUtilities,
+      { forEach } = asynchronousUtilities,
+      { readDirectory } = fileSystemUtilities,
+      { isNameHiddenName } = nameUtilities,
+      { concatenatePaths, topmostDirectoryNameFromPath } = pathUtilities;
 
 class Entries {
   constructor() {
@@ -59,7 +60,7 @@ class Entries {
       callback(entries);
     }
 
-    async.forEach(jsZipEntryNames, function (jsZipEntryName, next) {
+    forEach(jsZipEntryNames, function (jsZipEntryName, next) {
       const jsZipEntry = jsZipEntries[jsZipEntryName];
 
       let entry;

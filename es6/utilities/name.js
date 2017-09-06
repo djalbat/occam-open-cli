@@ -7,12 +7,6 @@ function isNameHiddenName(name) {
   return bottommostNameHiddenName;
 }
 
-function pathWithoutTrailingSlashFromPath(path) {
-  const pathWithoutTrailingSlash = path.replace(/\/$/, '');
-
-  return pathWithoutTrailingSlash;
-}
-
 function removeMasterDirectoryNameFromPath(path) {
   path = path.replace(/\-master/, '');
 
@@ -21,6 +15,5 @@ function removeMasterDirectoryNameFromPath(path) {
 
 module.exports = {
   isNameHiddenName: isNameHiddenName,
-  pathWithoutTrailingSlashFromPath: pathWithoutTrailingSlashFromPath,
   removeMasterDirectoryNameFromPath: removeMasterDirectoryNameFromPath
 };

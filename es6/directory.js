@@ -2,12 +2,12 @@
 
 const necessary = require('necessary');
 
-const pathUtilities = require('./utilities/path');
+const nameUtilities = require('./utilities/name');
 
-const { path, fileSystem } = necessary,
-      { concatenatePaths } = path,
-      { isEntryDirectory } = fileSystem,
-      { pathWithoutTrailingSlashFromPath, removeMasterDirectoryNameFromPath } = pathUtilities;
+const { pathUtilities, fileSystemUtilities } = necessary,
+      { concatenatePaths } = pathUtilities,
+      { isEntryDirectory } = fileSystemUtilities,
+      { removeMasterDirectoryNameFromPath } = nameUtilities;
 
 class Directory {
   constructor(path) {
@@ -79,3 +79,10 @@ class Directory {
 Directory.type = 'Directory';
 
 module.exports = Directory;
+
+function pathWithoutTrailingSlashFromPath(path) {
+  const pathWithoutTrailingSlash = path.replace(/\/$/, '');
+
+  return pathWithoutTrailingSlash;
+}
+

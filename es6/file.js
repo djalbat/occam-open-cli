@@ -3,12 +3,12 @@
 const mkdirp = require('mkdirp'),
       necessary = require('necessary');
 
-const pathUtilities = require('./utilities/path');
+const nameUtilities = require('./utilities/name');
 
-const { path, fileSystem } = necessary,
-      { readFile, writeFile } = fileSystem,
-      { removeMasterDirectoryNameFromPath } = pathUtilities,
-      { concatenatePaths, topmostDirectoryPathFromPath } = path;
+const { pathUtilities, fileSystemUtilities } = necessary,
+      { readFile, writeFile } = fileSystemUtilities,
+      { removeMasterDirectoryNameFromPath } = nameUtilities,
+      { concatenatePaths, topmostDirectoryPathFromPath } = pathUtilities;
 
 class File {
   constructor(path, content) {
