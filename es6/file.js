@@ -6,7 +6,7 @@ const mkdirp = require('mkdirp'),
 const nameUtilities = require('./utilities/name');
 
 const { pathUtilities, fileSystemUtilities } = necessary,
-      { readFile, writeFile } = fileSystemUtilities,
+      { readFile, writeFile, isEntryFile } = fileSystemUtilities,
       { removeMasterDirectoryNameFromPath } = nameUtilities,
       { concatenatePaths, topmostDirectoryPathFromPath } = pathUtilities;
 
@@ -57,16 +57,17 @@ class File {
   }
 
   static fromFilePath(filePath, projectsDirectoryPath) {
-    const absolutePath = concatenatePaths(projectsDirectoryPath, filePath);
+    const absolutePath = concatenatePaths(projectsDirectoryPath, filePath),
+          entryFile = isEntryFile(absolutePath);
 
-    let content;
+    let content = null;
 
     try {
-      content = readFile(absolutePath);
+      if (entryFile) {
+        content = readFile(absolutePath);
+      }
     }
-    catch (error) {
-      content = null;
-    }
+    catch (error) {}
 
     const path = filePath,  ///
           file = new File(path, content);
