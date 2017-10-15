@@ -16,7 +16,7 @@ Occam's c**o**mmand line **p**ackag**e** manageme**n**t tool.
 
 The `open` command line tool will provide similar functionality to [npm](https://www.npmjs.com/), but for Occam packages. 
 
-A package would likely be defined P=(V,Z,H) where V is the version, Z is a the zip file containing the files and H≡H(Z) is the hash of Z.
+A package would likely be defined P=(V,Z,H) where V is the version, Z is a zip file or some such containing the files and H≡H(Z) is the hash of Z.
 
 ## Installation
 
@@ -60,13 +60,13 @@ The following commands are envisaged:
 
 The usage is slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project. In a `~/Mathematics/` directory, say, with all of the projects being contained in sub-directories of this parent directory. More like cloning with [Git](https://git-scm.com/), which is in fact what would be done by default if Git was installed.
 
-An access token would be stored in a `.openrc` file in much the same way as npm makes use of a `.npmrc` file, the difference being that whilst npm stores the `.npmrc` file in the user's home directory by default, Open will store it in the parent directory.
+An access token would be stored in a `.openrc` file in much the same way as npm makes use of a `.npmrc` file, the difference being that whilst npm stores the `.npmrc` file in the user's home directory by default, the `.openrc` file will be stored in the parent directory.
 
 ## Versioning
 
-Versioning would be taken out of the user's hands to avoid problems. Version numbers would be bumped whenever packages are published according to the rules that follow.
+Versioning would be taken out of the user's hands to avoid problems. Version numbers would be bumped whenever packages are published according to the following rules:
 
-* Let P be a package, namely a project that is published or about to be published. Packages are published incrememtally, thus P<sub>0</sub>,P<sub>1</sub>,...P<sub>n</sub>. 
+* Let P be a package, namely a project that is published or about to be published. Packages are published incrementally, thus P<sub>0</sub>,P<sub>1</sub>,...P<sub>n</sub>.
 
 * Let V(P) be the version of a package P and let V<sub>n</sub> be equivalent to V(P<sub>n</sub>). Versions are sequences (M,m,p) where M is the major version number, m the minor version number and p the patch number. 
 
@@ -88,7 +88,7 @@ Because of the above, patch numbers are irrelevant. Given V=(M,m,.) and V'=(M',m
 
 ### Signatures
 
-Roughly speaking the signature of a package would be the union of the signatures of all the rules, axioms, definitions, lemma, theorems, etc that it contains. The signature of any of these elements would completely characterise it from outside. Inuitively two rules, say, if they shared identical premises and conclusion, regardless of the details of their proofs, would have the same signature. A precise definition is less than straightforward because grammars play a role in exactly how statements, which make up premises and conclusions, can be considered to be the same. Changing an element's label would also change its signature.
+Roughly speaking the signature of a package would be the union of the signatures of all the rules, axioms, definitions, theorems, etc that it contains. The signature of any of these elements would completely characterise it from outside. Inuitively two rules, say, if they shared identical premises and conclusion, regardless of the details of their proofs, would have the same signature. A precise definition is less than straightforward because grammars play a role in exactly how statements, which make up premises and conclusions, can be considered to be the same. Changing an element's label would also change its signature.
 
 ## Resources
 
