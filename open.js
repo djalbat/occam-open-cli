@@ -8,17 +8,18 @@ const main = require('./es6/bin/main');
 const { arrayUtilities } = necessary,
       { third } = arrayUtilities;
 
-const args = minimist(process.argv),
-      { _ } = args,
+const argv = minimist(process.argv),
+      { _ } = argv,
       parameters = _,   ///
       thirdParameter = third(parameters),
+      options = optionsFromargv(argv),
       command = thirdParameter, ///
-      options = optionsFromArgs(args);
+      args = parameters.slice(3); ///
 
-main(command, options);
+main(options, command, args);
 
-function optionsFromArgs(args) {
-  const keys = Object.keys(args),
+function optionsFromargv(argv) {
+  const keys = Object.keys(argv),
         options = keys.reduce(function(options, key) {
           if (key !== '_') {
             const option = key; ///

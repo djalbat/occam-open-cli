@@ -10,6 +10,8 @@ usage: open --help|-h        Show this help
        
        open --version|-v     Show the version
 
+       open <package_name>   Install the given package
+
        open <command> [<args>]
 
 Commmands

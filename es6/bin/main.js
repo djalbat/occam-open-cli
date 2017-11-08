@@ -1,10 +1,15 @@
 'use strict';
 
+const necessary = require('necessary');
+
 const help = require('./action/help'),
       version = require('./action/version'),
       install = require('./action/install');
 
-function main(command, options) {
+ const { arrayUtilities } = necessary,
+       { first } = arrayUtilities;
+
+function main(options, command, args) {
   const optionsIncludesHelp = options.includes('h') || options.includes('help'),
         optionsIncludesVersion = options.includes('v') || options.includes('version');
 
@@ -25,8 +30,19 @@ function main(command, options) {
       version();
       break;
 
-    case 'install': 
-      install();
+    case 'install': {
+        const firstArg = first(args),
+              packageName = firstArg; ///
+
+        install(packageName);
+      }
+      break;
+
+    default: {
+        const packageName = command;  ///
+      
+        install(packageName)
+      }
       break;
   }
 }
