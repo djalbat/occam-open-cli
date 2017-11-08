@@ -28,13 +28,13 @@ The tool would be installed globally via npm:
 
 The following commands are envisaged:
 
-    open [help] [<command>]
+    open [-h|--help|help]
 
     open [install] <package_name>[@<version>]
     
     open publish <package_name>
 
-    open update <package_name>[@<version>] | [everything]
+    open update <package_name>[@<version>]
     
     open check [dependencies]
     
@@ -42,21 +42,19 @@ The following commands are envisaged:
     
     open remove <package_name>
 
-    open register <user_name> [<email address>]
+    open register <username> [<email address>]
 
-    open login <user_name> | <email_address>
+    open login <username> | <email_address>
 
     open logout
     
-    open [show] user [details]
+    open add-email
     
-    open add email address
+    open change-email
     
-    open change email address
-    
-    open change password
+    open change-password
 
-    open recover password [<user_name> | <email_address>]
+    open recover-password [<user_name> | <email_address>]
 
 The usage is slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project. In a `~/Mathematics/` directory, say, with all of the projects being contained in sub-directories of this parent directory. More like cloning with [Git](https://git-scm.com/), which is in fact what would be done by default if Git was installed.
 
