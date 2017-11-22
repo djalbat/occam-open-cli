@@ -4,18 +4,20 @@ const necessary = require('necessary');
 
 const help = require('./action/help'),
       version = require('./action/version'),
-      install = require('./action/install');
+      install = require('./action/install'),
+      register = require('./action/register');
 
  const { arrayUtilities } = necessary,
        { first } = arrayUtilities;
 
 function main(options, command, args) {
-  const optionsIncludesHelp = options.includes('h') || options.includes('help'),
+  const commandMissing = (command === null),
+        optionsIncludesHelp = options.includes('h') || options.includes('help'),
         optionsIncludesVersion = options.includes('v') || options.includes('version');
 
   if (false) {
 
-  } else if (optionsIncludesHelp) {
+  } else if (commandMissing || optionsIncludesHelp) {
     command = 'help';
   } else if (optionsIncludesVersion) {
     command = 'version';
@@ -35,6 +37,14 @@ function main(options, command, args) {
               packageName = firstArg; ///
 
         install(packageName);
+      }
+      break;
+
+      case 'register': {
+        const firstArg = first(args),
+              username = firstArg || null; ///
+
+        register(username);
       }
       break;
 

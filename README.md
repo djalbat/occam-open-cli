@@ -42,7 +42,7 @@ The following commands are envisaged:
     
     open remove <package_name>
 
-    open register <username> [<email address>]
+    open register [<username>]
 
     open login <username> | <email_address>
 

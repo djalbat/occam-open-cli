@@ -1,25 +1,27 @@
 'use strict';
 
 function help() {
-    console.log(`
-Open-CLI
+    console.log(`usage: 
+  
+  open [--help|-h]            Show this help
+  
+  open --version|-v           Show the version
 
-Occam's command line package management tool.
+  open <package_name>         Install the given package
 
-usage: open --help|-h        Show this help
-       
-       open --version|-v     Show the version
+  open <command> [<args>]
 
-       open <package_name>   Install the given package
+commmands:
 
-       open <command> [<args>]
+  help                        Show this help
 
-Commmands
+  version                     Show the version
 
-   help      Show this help
+  install <package_name>      Install the given package
 
-   version   Show the version
-`);
+  register [<username>]       Register so that you can publish packages
+
+Please note for the moment that installing effectively means just cloning with Git.`);
 };
 
 module.exports = help;

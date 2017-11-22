@@ -13,7 +13,7 @@ const argv = minimist(process.argv),
       parameters = _,   ///
       thirdParameter = third(parameters),
       options = optionsFromargv(argv),
-      command = thirdParameter, ///
+      command = thirdParameter || null, ///
       args = parameters.slice(3); ///
 
 main(options, command, args);
