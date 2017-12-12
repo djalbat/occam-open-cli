@@ -3,8 +3,7 @@
 const minimist = require('minimist'),
       necessary = require('necessary');
 
-const main = require('./es6/main'),
-      escape = require('./es6/escape');
+const main = require('./es6/main');
 
 const { arrayUtilities } = necessary,
       { third } = arrayUtilities;
@@ -16,8 +15,6 @@ const argv = minimist(process.argv),
       options = optionsFromArgv(argv),
       command = thirdParameter || null, ///
       args = parameters.slice(3); ///
-
-escape();
 
 main(options, command, args);
 
