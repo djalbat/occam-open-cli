@@ -18,7 +18,7 @@ function register(username) {
   const callbacks = [
           usernameCallback,
           passwordCallback,
-          confirmPasswordCallback,
+          confirmCallback,
           emailAddressCallback
         ];
 
@@ -45,11 +45,11 @@ function register(username) {
             description: 'Username',
             type: 'string',
             pattern: /^[a-z0-9]{2,16}(?:-[a-z0-9]{2,16}){0,9}$/,
-            message: `Usernames must consist of sequences of at least two and no more than sixteen numbers or lowercase letters, separated by dashes. For example 'jecs-imperial'.`,
+            message: `Usernames must consist of groups of at least two and no more than sixteen numbers or lowercase letters, separated by dashes.`,
             required: true
           }
         }
-      }
+      };
 
       prompt.start();
 
@@ -70,12 +70,12 @@ function register(username) {
           description: 'Password',
           type: 'string',
           pattern: /^[a-zA-Z0-9!@#$%^&*_.,\-]{8,24}$/,
-          message: `Passwords must consist of sequences of at least eight letters, numbers or common punctation symbols.`,
+          message: `Passwords must consist of at least eight letters, numbers or common punctuation symbols.`,
           required: true,
           hidden: true
         }
       }
-    }
+    };
 
     prompt.start();
 
@@ -86,7 +86,7 @@ function register(username) {
     });
   }
 
-  function confirmPasswordCallback(next, done) {
+  function confirmCallback(next, done) {
     const schema = {
       properties: {
         password: {
@@ -98,7 +98,7 @@ function register(username) {
           hidden: true
         }
       }
-    }
+    };
 
     prompt.start();
 
@@ -118,7 +118,7 @@ function register(username) {
           required: true
         }
       }
-    }
+    };
 
     prompt.start();
 
@@ -128,6 +128,6 @@ function register(username) {
       next();
     });
   }
-};
+}
 
 module.exports = register;

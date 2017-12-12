@@ -23,6 +23,18 @@ A package would likely be defined P=(V,Z,H) where V is the version, Z is a zip f
 The tool would be installed globally via npm:
 
     npm install -g occam-open-cli
+    
+### Known issues
+
+The installation of the `nodegit` package can cause a problem with `libssl`, the part of [OpenSSL](https://www.openssl.org/) that supports TLS. To fix it, on Ubuntu try...
+ 
+    sudo apt install libssl-dev
+    
+...to install the latest version of `libssl`. On OSX, try...
+
+    sudo xcode-select --install 
+    
+...yo update the Xcode CLT.
 
 ## Usage
 

@@ -7,7 +7,7 @@ const help = require('./action/help'),
       install = require('./action/install'),
       register = require('./action/register');
 
- const { arrayUtilities } = necessary,
+const { arrayUtilities } = necessary,
        { first } = arrayUtilities;
 
 function main(options, command, args) {

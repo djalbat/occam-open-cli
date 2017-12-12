@@ -3,7 +3,8 @@
 const minimist = require('minimist'),
       necessary = require('necessary');
 
-const main = require('./es6/bin/main');
+const main = require('./es6/main'),
+      escape = require('./es6/escape');
 
 const { arrayUtilities } = necessary,
       { third } = arrayUtilities;
@@ -12,13 +13,15 @@ const argv = minimist(process.argv),
       { _ } = argv,
       parameters = _,   ///
       thirdParameter = third(parameters),
-      options = optionsFromargv(argv),
+      options = optionsFromArgv(argv),
       command = thirdParameter || null, ///
       args = parameters.slice(3); ///
 
+escape();
+
 main(options, command, args);
 
-function optionsFromargv(argv) {
+function optionsFromArgv(argv) {
   const keys = Object.keys(argv),
         options = keys.reduce(function(options, key) {
           if (key !== '_') {
@@ -31,4 +34,4 @@ function optionsFromargv(argv) {
         }, []);
 
   return options;
-};
+}

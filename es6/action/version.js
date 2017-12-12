@@ -12,6 +12,6 @@ function version() {
           { version } = packageJSON;
 
     console.log(`Open-CLI version ${version}`);
-};
+}
 
 module.exports = version;
