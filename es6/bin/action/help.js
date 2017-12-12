@@ -19,7 +19,7 @@ commmands:
 
   install <package_name>      Install the given package
 
-  register [<username>]       Register so that you can publish packages
+  register [<username>]       Register so that you can publish packages. 
 
 Please note for the moment that installing effectively means just cloning with Git.`);
 };

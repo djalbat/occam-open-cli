@@ -19,6 +19,7 @@
     "mkdirp": "^0.5.1",
     "necessary": "^1.9.6",
     "nodegit": "^0.20.3",
+    "prompt": "^1.0.0",
     "request": "^2.81.0"
   },
   "devDependencies": {
