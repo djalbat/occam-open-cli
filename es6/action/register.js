@@ -140,7 +140,7 @@ function confirmPasswordCallback(next, done, context) {
 }
 
 function emailAddressCallback(next, done, context) {
-  const description = 'Email address (this will be public): ',
+  const description = 'Email address (this will be public and must be genuine): ',
         validationPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,16}$/,
         errorMessage = 'The email address does not appear to be a valid one.',
         attempts = 3,

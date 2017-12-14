@@ -1,7 +1,7 @@
 'use strict';
 
 function help() {
-    console.log(`usage: 
+    console.log(`Usage: 
   
   open [--help|-h]                 Show this help
   
@@ -11,7 +11,7 @@ function help() {
 
   open <command> [<args>]
 
-commmands:
+Commmands:
 
   help                             Show this help
 
@@ -32,8 +32,7 @@ commmands:
   change-password [<username>]     Change your password 
 
   recover-password [<username>]    Recover your password 
-
-Please note for the moment that installing effectively means just cloning with Git.`);
+`);
 }
 
 module.exports = help;
