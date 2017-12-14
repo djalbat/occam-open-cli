@@ -17,10 +17,10 @@ function main(options, command, args) {
 
   if (false) {
 
-  } else if (commandMissing || optionsIncludesHelp) {
-    command = 'help';
   } else if (optionsIncludesVersion) {
     command = 'version';
+  } else if (commandMissing || optionsIncludesHelp) {
+    command = 'help';
   }
   
   switch (command) {

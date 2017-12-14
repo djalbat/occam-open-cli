@@ -9,16 +9,11 @@ const { stdin, stdout } = process,
       { whilst } = asynchronousUtilities,
       { CTRL_C, LINE_FEED, CARRIAGE_RETURN, BACKSPACE } = constants;
 
-function prompt(description, validationPattern, errorMessage, attempts, hidden, callback) {
+function prompt(options, callback) {
   const value = null,
-        context = {
-          description: description,
-          validationPattern: validationPattern,
-          errorMessage: errorMessage,
-          attempts: attempts,
-          hidden: hidden,
+        context = Object.assign(options, {
           value: value
-        };
+        });
 
   whilst(attempt, function() {
     const { value } = context;
@@ -40,14 +35,16 @@ function attempt(next, done, context) {
     return;
   }
 
-  const { description, validationPattern, errorMessage, hidden } = context;
+  const { description, validationPattern, validationFunction, errorMessage, hidden } = context;
 
   hidden ? 
     hiddenInput(description, callback) :
       visibleInput(description, callback);
 
   function callback(value) {
-    const valid = validationPattern.test(value);
+    const valid = validationFunction ?  ///
+                    validationFunction(value) :
+                      validationPattern.test(value);
 
     if (valid) {
       Object.assign(context, {

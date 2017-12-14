@@ -36,7 +36,7 @@ function register(username) {
           };
 
     request(params, function(error, response) {
-      console.log('!')
+      console.log(context)
     });      
   }, context);
 }
@@ -54,9 +54,16 @@ function usernameCallback(next, done, context) {
     const description = 'Username: ',
           errorMessage = 'Usernames must consist of groups of at least two and no more than sixteen numbers or lowercase letters, separated by dashes.',
           attempts = 3,
-          hidden = false;
+          hidden = false,
+          options = {
+            description: description,
+            validationPattern: validationPattern,
+            errorMessage: errorMessage,
+            attempts: attempts,
+            hidden: hidden
+          };
 
-    prompt(description, validationPattern, errorMessage, attempts, hidden, function(username) {
+    prompt(options, function(username) {
       const valid = (username !== null);
 
       if (valid) {
@@ -77,9 +84,16 @@ function passwordCallback(next, done, context) {
         validationPattern = /^[a-zA-Z0-9!@#$%^&*_.,\-]{8,24}$/,
         errorMessage = 'Passwords must consist of at least eight letters, numbers or common punctuation symbols.',
         attempts = 3,
-        hidden = true;
+        hidden = true,
+        options = {
+          description: description,
+          validationPattern: validationPattern,
+          errorMessage: errorMessage,
+          attempts: attempts,
+          hidden: hidden
+        };
 
-  prompt(description, validationPattern, errorMessage, attempts, hidden, function(password) {
+  prompt(options, function(password) {
     const valid = (password !== null);
 
     if (valid) {
@@ -95,29 +109,61 @@ function passwordCallback(next, done, context) {
 }
 
 function confirmPasswordCallback(next, done, context) {
-  const { username, password } = context;
+  const { password } = context,
+        description = 'Confirm password: ',
+        errorMessage = 'The passwords do not match.',
+        attempts = 3,
+        hidden = true,
+        options = {
+          description: description,
+          validationFunction: validationFunction,
+          errorMessage: errorMessage,
+          attempts: attempts,
+          hidden: hidden
+        };
 
-  console.log(username, password)
+  prompt(options, function(password) {
+    const valid = (password !== null);
+
+    if (valid) {
+      next();
+    } else {
+      done();
+    }
+  });
+
+  function validationFunction(value) {
+    const valid = (value === password); ///
+
+    return valid;
+  }
 }
 
 function emailAddressCallback(next, done, context) {
-  // const schema = {
-  //   properties: {
-  //     emailAddress: {
-  //       description: 'Email address',
-  //       type: 'string',
-  //       pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,16}$/,
-  //       message: 'This does not appear to be a valid email address.',
-  //       required: true
-  //     }
-  //   }
-  // };
-  //
-  // prompt.start();
-  //
-  // prompt.get(schema, function(error, result) {
-  //   emailAddress = result.emailAddress;
-  //
-  //   next();
-  // });
+  const description = 'Email address (this will be public): ',
+        validationPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,16}$/,
+        errorMessage = 'The email address does not appear to be a valid one.',
+        attempts = 3,
+        hidden = false,
+        options = {
+          description: description,
+          validationPattern: validationPattern,
+          errorMessage: errorMessage,
+          attempts: attempts,
+          hidden: hidden
+        };
+
+  prompt(options, function(emailAddress) {
+    const valid = (emailAddress !== null);
+
+    if (valid) {
+      Object.assign(context, {
+        emailAddress: emailAddress
+      });
+
+      next();
+    } else {
+      done();
+    }
+  });
 }
