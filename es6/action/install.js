@@ -1,7 +1,7 @@
 'use strict';
 
 function install(packageName) {
-    console.log(`installing '${packageName}'...`);
+  console.log(`Installing '${packageName}'...`);
 }
 
 module.exports = install;

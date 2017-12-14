@@ -38,37 +38,7 @@ The installation of the `nodegit` package can cause a problem with `libssl`, the
 
 ## Usage
 
-The following commands are envisaged:
-
-    open [help|-h|--help]
-
-    open [install] <package_name>[@<version>]
-    
-    open publish <package_name>
-
-    open update <package_name>[@<version>]
-    
-    open check [dependencies]
-    
-    open prune [dependencies]
-    
-    open remove <package_name>
-
-    open register [<username>]
-
-    open login <username> | <email_address>
-
-    open logout
-    
-    open add-email
-    
-    open change-email
-    
-    open change-password
-
-    open recover-password [<user_name> | <email_address>]
-
-The usage is slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project. In a `~/Mathematics/` directory, say, with all of the projects being contained in sub-directories of this parent directory. More like cloning with [Git](https://git-scm.com/), which is in fact what would be done by default if Git was installed.
+This would be slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project. In a `~/Mathematics/` directory, say, with all of the projects being contained in sub-directories of this parent directory. More like cloning with [Git](https://git-scm.com/), which is in fact what would be done by default if Git was installed.
 
 An access token would be stored in a `.openrc` file in much the same way as npm makes use of a `.npmrc` file, the difference being that whilst npm stores the `.npmrc` file in the user's home directory by default, the `.openrc` file will be stored in the parent directory.
 

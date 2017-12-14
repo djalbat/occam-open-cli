@@ -3,9 +3,15 @@
 const necessary = require('necessary');
 
 const help = require('./action/help'),
+      logIn = require('./action/logIn'),
+      logOut = require('./action/logOut'),
+      remove = require('./action/remove'),
       version = require('./action/version'),
       install = require('./action/install'),
-      register = require('./action/register');
+      register = require('./action/register'),
+      changePassword = require('./action/changePassword'),
+      recoverPassword = require('./action/recoverPassword'),
+      confirmEmailAddress = require('./action/confirmEmailAddress');
 
 const { arrayUtilities } = necessary,
        { first } = arrayUtilities;
@@ -22,6 +28,12 @@ function main(options, command, args) {
   } else if (commandMissing || optionsIncludesHelp) {
     command = 'help';
   }
+
+  const firstArg = first(args) || null;
+
+  let packageName,
+      username,
+      emailAddress;
   
   switch (command) {
     case 'help': 
@@ -32,27 +44,56 @@ function main(options, command, args) {
       version();
       break;
 
-    case 'install': {
-        const firstArg = first(args),
-              packageName = firstArg; ///
+    case 'install':
+      packageName = firstArg; ///
 
-        install(packageName);
-      }
+      install(packageName);
       break;
 
-      case 'register': {
-        const firstArg = first(args),
-              username = firstArg || null; ///
+    case 'remove':
+      packageName = firstArg; ///
 
-        register(username);
-      }
+      remove(packageName);
       break;
 
-    default: {
-        const packageName = command;  ///
-      
-        install(packageName)
-      }
+    case 'register':
+      username = firstArg; ///
+
+      register(username);
+      break;
+
+    case 'confirm': ///
+      emailAddress = firstArg; ///
+
+      confirmEmailAddress(emailAddress);
+      break;
+
+    case 'login': ///
+      username = firstArg; ///
+
+      logIn(username);
+      break;
+
+    case 'logout':  ///
+      logOut();
+      break;
+
+    case 'change-password':
+      username = firstArg; ///
+
+      changePassword(username);
+      break;
+
+    case 'recover-password':
+      username = firstArg; ///
+
+      recoverPassword(username);
+      break;
+
+    default:
+      packageName = command;  ///
+
+      install(packageName);
       break;
   }
 }
