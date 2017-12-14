@@ -34,7 +34,7 @@ The installation of the `nodegit` package can cause a problem with `libssl`, the
 
     sudo xcode-select --install 
     
-...yo update the Xcode CLT.
+...to update the Xcode CLT.
 
 ## Usage
 
