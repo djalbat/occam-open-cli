@@ -2,19 +2,15 @@
 
 const action = require('../action'),
       prompt = require('../prompt'),
-      validate = require('../validate');
+      validate = require('../validate'),
+      messages = require('../messages');
 
-const { validateUsername, validatePassword, validateEmailAddress } = validate;
+const { validateUsername, validatePassword, validateEmailAddress } = validate,
+      { invalidUsernameMessage, invalidPasswordMessage, invalidEmailAddressMessage, passwordsDoNoMatchMessage } = messages;
 
 function register(username) {
   const password = null,
         emailAddress = null,
-        callbacks = [
-          usernameCallback,
-          passwordCallback,
-          confirmPasswordCallback,
-          emailAddressCallback
-        ],
         context = {
           username: username,
           password: password,
@@ -22,7 +18,12 @@ function register(username) {
         },
         uri = 'register';
 
-  action(callbacks, context, uri);
+  action([
+    usernameCallback,
+    passwordCallback,
+    confirmPasswordCallback,
+    emailAddressCallback
+  ], context, uri);
 }
 
 module.exports = register;
@@ -40,7 +41,7 @@ function usernameCallback(next, done, context) {
 
   const description = 'Username: ',
         validationFunction = validateUsername,
-        errorMessage = 'Usernames must consist of groups of at least two and no more than sixteen numbers or lowercase letters, separated by dashes.',
+        errorMessage = invalidUsernameMessage,
         attempts = 3,
         hidden = false,
         options = {
@@ -69,7 +70,7 @@ function usernameCallback(next, done, context) {
 function passwordCallback(next, done, context) {
   const description = 'Password: ',
         validationFunction = validatePassword,        
-        errorMessage = 'Passwords must consist of at least eight letters, numbers or common punctuation symbols.',
+        errorMessage = invalidPasswordMessage,
         attempts = 3,
         hidden = true,
         options = {
@@ -98,7 +99,7 @@ function passwordCallback(next, done, context) {
 function confirmPasswordCallback(next, done, context) {
   const { password } = context,
         description = 'Confirm password: ',
-        errorMessage = 'The passwords do not match.',
+        errorMessage = passwordsDoNoMatchMessage,
         attempts = 3,
         hidden = true,
         options = {
@@ -129,7 +130,7 @@ function confirmPasswordCallback(next, done, context) {
 function emailAddressCallback(next, done, context) {
   const description = 'Email address (this will be public and must be genuine): ',
         validationFunction = validateEmailAddress,
-        errorMessage = 'The email address does not appear to be a valid one.',
+        errorMessage = invalidEmailAddressMessage,
         attempts = 3,
         hidden = false,
         options = {

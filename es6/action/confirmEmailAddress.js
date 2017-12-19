@@ -8,17 +8,16 @@ const { validateEmailAddress, validateConfirmationCode } = validate;
 
 function confirmEmailAddress(emailAddress) {
   const confirmationCode = null,
-        callbacks = [
-          emailAddressCallback,
-          confirmationCodeCallback,
-        ],
         context = {
           emailAddress: emailAddress,
           confirmationCode: confirmationCode
         },
         uri = 'confirm';
 
-  action(callbacks, context, uri);
+  action([
+    emailAddressCallback,
+    confirmationCodeCallback,
+  ], context, uri);
 }
 
 module.exports = confirmEmailAddress;
