@@ -1,43 +1,24 @@
 'use strict';
 
-const request = require('request'),
-      necessary = require('necessary');
+const action = require('../action'),
+      prompt = require('../prompt'),
+      validate = require('../validate');
 
-const prompt = require('../prompt'),
-      validate = require('../validate'),
-      constants = require('../constants');
-
-const { asynchronousUtilities } = necessary,
-      { sequence } = asynchronousUtilities,
-      { OPEN_MATHEMATICS_API_URL } = constants,
-      URL = `${OPEN_MATHEMATICS_API_URL}confirm`,
-      { validateEmailAddress, validateConfirmationCode } = validate;
+const { validateEmailAddress, validateConfirmationCode } = validate;
 
 function confirmEmailAddress(emailAddress) {
   const confirmationCode = null,
+        callbacks = [
+          emailAddressCallback,
+          confirmationCodeCallback,
+        ],
         context = {
           emailAddress: emailAddress,
           confirmationCode: confirmationCode
         },
-        callbacks = [
-          emailAddressCallback,
-          confirmationCodeCallback,
-        ];
+        uri = 'confirm';
 
-  sequence(callbacks, function() {
-    const url = URL,
-          method = 'POST',
-          encoding = null,
-          params = {
-            url : url,
-            method : method,
-            encoding: encoding
-          };
-
-    request(params, function(error, response) {
-      console.log(context)
-    });      
-  }, context);
+  action(callbacks, context, uri);
 }
 
 module.exports = confirmEmailAddress;
@@ -86,7 +67,7 @@ function confirmationCodeCallback(next, done, context) {
         validationFunction = validateConfirmationCode,        
         errorMessage = 'Confirmation codes consist of eight alphabetical characters.',
         attempts = 3,
-        hidden = true,
+        hidden = false,
         options = {
           description: description,
           validationFunction: validationFunction,

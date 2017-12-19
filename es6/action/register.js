@@ -1,47 +1,28 @@
 'use strict';
 
-const request = require('request'),
-      necessary = require('necessary');
+const action = require('../action'),
+      prompt = require('../prompt'),
+      validate = require('../validate');
 
-const prompt = require('../prompt'),
-      validate = require('../validate'),
-      constants = require('../constants');
-
-const { asynchronousUtilities } = necessary,
-      { sequence } = asynchronousUtilities,
-      { OPEN_MATHEMATICS_API_URL } = constants,
-      URL = `${OPEN_MATHEMATICS_API_URL}register`,
-      { validateUsername, validatePassword, validateEmailAddress } = validate;
+const { validateUsername, validatePassword, validateEmailAddress } = validate;
 
 function register(username) {
   const password = null,
         emailAddress = null,
-        context = {
-          username: username,
-          password: password,
-          emailAddress: emailAddress
-        },
         callbacks = [
           usernameCallback,
           passwordCallback,
           confirmPasswordCallback,
           emailAddressCallback
-        ];
+        ],
+        context = {
+          username: username,
+          password: password,
+          emailAddress: emailAddress
+        },
+        uri = 'register';
 
-  sequence(callbacks, function() {
-    const url = URL,
-          method = 'POST',
-          encoding = null,
-          params = {
-            url : url,
-            method : method,
-            encoding: encoding
-          };
-
-    request(params, function(error, response) {
-      console.log(context)
-    });      
-  }, context);
+  action(callbacks, context, uri);
 }
 
 module.exports = register;
