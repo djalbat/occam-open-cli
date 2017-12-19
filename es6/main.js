@@ -3,8 +3,8 @@
 const necessary = require('necessary');
 
 const help = require('./action/help'),
-      logIn = require('./action/logIn'),
-      logOut = require('./action/logOut'),
+      login = require('./action/login'),
+      logout = require('./action/logout'),
       remove = require('./action/remove'),
       version = require('./action/version'),
       install = require('./action/install'),
@@ -14,7 +14,7 @@ const help = require('./action/help'),
       confirmEmailAddress = require('./action/confirmEmailAddress');
 
 const { arrayUtilities } = necessary,
-       { first } = arrayUtilities;
+      { first } = arrayUtilities;
 
 function main(options, command, args) {
   const commandMissing = (command === null),
@@ -68,14 +68,14 @@ function main(options, command, args) {
       confirmEmailAddress(emailAddress);
       break;
 
-    case 'login': ///
+    case 'login':
       username = firstArg; ///
 
-      logIn(username);
+      login(username);
       break;
 
-    case 'logout':  ///
-      logOut();
+    case 'logout':
+      logout();
       break;
 
     case 'change-password':

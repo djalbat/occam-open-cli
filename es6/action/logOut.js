@@ -1,7 +1,7 @@
 'use strict';
 
-function logOut() {
+function logout() {
 
 }
 
-module.exports = logOut;
+module.exports = logout;
