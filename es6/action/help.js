@@ -25,9 +25,9 @@ Commmands:
    
   confirm [<email_address>]        Confirm your email address
  
-  login [<username>]               Log in 
+  login [<username>]               Login 
 
-  logout                           Log out 
+  logout                           Logout 
 
   change-password [<username>]     Change your password 
 
