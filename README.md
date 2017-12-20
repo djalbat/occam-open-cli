@@ -44,7 +44,7 @@ An access token would be stored in a `.openrc` file in much the same way as npm 
 
 ## Versioning
 
-Versioning would be taken out of the user's hands to avoid problems. Version numbers would be bumped whenever packages are published according to the following rules:
+Versioning would be taken out of the user's hands in order to avoid problems. Version numbers would be bumped whenever packages are published, according to the following rules:
 
 * Let P be a package, namely a project that is published or about to be published. Packages are published incrementally, thus P<sub>0</sub>,P<sub>1</sub>,...P<sub>n</sub>.
 
@@ -58,7 +58,7 @@ Versioning would be taken out of the user's hands to avoid problems. Version num
   - if ∑<sub>k+1</sub>⊃∑<sub>k</sub> then V<sub>k+1</sub>=(M,n+1,0)
   - if ∑<sub>k+1</sub>⊉∑<sub>k</sub> then V<sub>k+1</sub>=(M+1,0,0)
   
-Intuitively, if the signature doesn't change the patch number is bumped, if the new signature encloses the old the minor version nummber is bumped, otherwise the major version number is bumped. This is in line with other versioning systems such as [semver](http://semver.org/). It is worth stressing again, however, that the version is not defined by the user and stored in a project meta file. It is calcuated according to the above formal rules whenever new packages are published, in order to avoid mistakes and deliberate oversights (the author in particular being often guilty of this).
+Intuitively if the signature doesn't change, the patch number is bumped; if the new signature encloses the old, the minor version nummber is bumped; otherwise the major version number is bumped. This is in line with other versioning systems such as [semver](http://semver.org/). It is worth stressing that the version is not defined by the user and stored in a project meta file. It is calcuated according to the above rules whenever new packages are published, in order to avoid mistakes and deliberate oversights (the author in particular being often guilty of this).
 
 ### Ordering
 
@@ -68,7 +68,7 @@ Because of the above, patch numbers are irrelevant. Given V=(M,m,.) and V'=(M',m
 
 ### Signatures
 
-Roughly speaking the signature of a package would be the union of the signatures of all the rules, axioms, definitions, theorems, etc that it contains. The signature of any of these elements would completely characterise it from outside. Inuitively two rules, say, if they shared identical premises and conclusion, regardless of the details of their proofs, would have the same signature. A precise definition is less than straightforward because grammars play a role in exactly how statements, which make up premises and conclusions, can be considered to be the same. Changing an element's label would also change its signature.
+Roughly speaking the signature of a package would be the union of the signatures of all the rules, axioms, definitions, theorems, etc that it contains. The signature of any of these elements would completely characterise it from the outside. Inuitively two rules, say, if they shared identical premises and conclusion, regardless of the details of their proofs, would have the same signature. A precise definition is less than straightforward because grammars play a role in exactly how statements, which make up premises and conclusions, can be considered to be the same. Changing an element's label would also change its signature.
 
 ## Resources
 
