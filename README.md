@@ -40,7 +40,7 @@ The installation of the `nodegit` package can cause a problem with `libssl`, the
 
 This would be slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project. In a `~/Mathematics/` directory, say, with all of the projects being contained in sub-directories of this parent directory.
 
-An access token would be stored in a `.openrc` file in much the same way as npm makes use of a `.npmrc` file, the difference being that whilst npm stores the `.npmrc` file in the user's home directory by default, the `.openrc` file will be stored in the parent directory.
+An access token would be stored in a `.openrc` file in much the same way as npm makes use of a `.npmrc` file, the difference being that whilst npm stores the `.npmrc` file in the user's home directory by default, the `.openrc` file will be stored in the aforementioned parent directory.
 
 ## Versioning
 
