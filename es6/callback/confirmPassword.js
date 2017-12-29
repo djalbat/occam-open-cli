@@ -24,9 +24,11 @@ function confirmPasswordCallback(next, done, context) {
 
     if (valid) {
       next();
-    } else {
-      done();
-    }
+      
+      return;
+    } 
+    
+    done();
   });
 
   function validationFunction(value) {

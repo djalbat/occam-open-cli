@@ -15,6 +15,8 @@ function usernameCallback(next, done, context) {
 
     if (valid) {
       next();
+      
+      return;
     }
   }
 
@@ -40,9 +42,11 @@ function usernameCallback(next, done, context) {
       });
 
       next();
-    } else {
-      done();
-    }
+      
+      return;
+    } 
+    
+    done();
   });
 }
 

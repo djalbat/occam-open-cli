@@ -36,11 +36,11 @@ function main(options, command, args) {
       emailAddress;
   
   switch (command) {
-    case 'help': 
+    case 'help':
       help();
       break;
 
-    case 'version': 
+    case 'version':
       version();
       break;
 

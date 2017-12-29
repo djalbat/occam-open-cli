@@ -30,9 +30,11 @@ function confirmationCodeCallback(next, done, context) {
       });
 
       next();
-    } else {
-      done();
+
+      return;
     }
+
+    done();
   });
 }
 

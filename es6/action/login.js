@@ -6,16 +6,17 @@ const action = require('../action'),
 
 function login(username) {
   const password = null,
+        callbacks = [
+          usernameCallback,
+          passwordCallback
+        ],
         context = {
           username: username,
           password: password
         },
         uri = 'login';
-
-  action([
-    usernameCallback,
-    passwordCallback
-  ], context, uri);
+  
+  action(callbacks, context, uri);
 }
 
 module.exports = login;

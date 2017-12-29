@@ -9,6 +9,12 @@ const action = require('../action'),
 function register(username) {
   const password = null,
         emailAddress = null,
+        callbacks = [
+          usernameCallback,
+          passwordCallback,
+          confirmPasswordCallback,
+          emailAddressCallback
+        ],
         context = {
           username: username,
           password: password,
@@ -16,12 +22,7 @@ function register(username) {
         },
         uri = 'register';
 
-  action([
-    usernameCallback,
-    passwordCallback,
-    confirmPasswordCallback,
-    emailAddressCallback
-  ], context, uri);
+  action(callbacks, context, uri);
 }
 
 module.exports = register;

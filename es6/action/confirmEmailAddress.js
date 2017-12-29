@@ -6,16 +6,17 @@ const action = require('../action'),
 
 function confirmEmailAddress(emailAddress) {
   const confirmationCode = null,
+        callbacks = [
+          emailAddressCallback,
+          confirmationCodeCallback
+        ],
         context = {
           emailAddress: emailAddress,
           confirmationCode: confirmationCode
         },
         uri = 'confirm';
 
-  action([
-    emailAddressCallback,
-    confirmationCodeCallback,
-  ], context, uri);
+  action(callbacks, context, uri);
 }
 
 module.exports = confirmEmailAddress;

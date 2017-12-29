@@ -15,12 +15,14 @@ function emailAddressCallback(next, done, context) {
 
     if (valid) {
       next();
+      
+      return;
     }
   }
 
   const description = 'Email address: ',
         validationFunction = validateEmailAddress,
-        errorMessage = 'The email address does not appear to be a valid one.',
+        errorMessage = invalidEmailAddressMessage,
         attempts = 3,
         hidden = false,
         options = {
@@ -40,9 +42,11 @@ function emailAddressCallback(next, done, context) {
       });
 
       next();
-    } else {
-      done();
-    }
+      
+      return;
+    } 
+    
+    done();
   });
 }
 

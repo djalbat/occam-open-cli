@@ -2,7 +2,7 @@
 
 const action = require('../action');
 
-function logout(username) {
+function logout() {
   const context = {},
         uri = 'logout';
 

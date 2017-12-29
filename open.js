@@ -8,8 +8,8 @@ const main = require('./es6/main');
 const { arrayUtilities } = necessary,
       { third } = arrayUtilities;
 
-const argv = minimist(process.argv),
-      { _ } = argv,
+const argv = minimist(process.argv),  ///
+      { _ } = argv, ///
       parameters = _,   ///
       thirdParameter = third(parameters),
       options = optionsFromArgv(argv),
