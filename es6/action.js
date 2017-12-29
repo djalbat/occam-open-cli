@@ -14,17 +14,17 @@ function action(callbacks, context, uri) {
     const url = `${OPEN_MATHEMATICS_API_URL}${uri}`,
           method = 'POST',
           encoding = null,
+          timeout = 1000,
           options = {
             url : url,
             method : method,
-            encoding: encoding
+            encoding: encoding,
+            timeout: timeout
           };
 
-    const connection = request(options, function(error, response) {
-      process.exit();
+    request(options, function(error, response) {
+      ///
     });
-
-    connection.abort();
   }, context);
 }
 
