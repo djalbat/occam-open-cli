@@ -3,7 +3,8 @@
 const request = require('request'),
       necessary = require('necessary');
 
-const constants = require('./constants');
+const escape = require('./escape'),
+      constants = require('./constants');
 
 const { asynchronousUtilities } = necessary,
       { sequence } = asynchronousUtilities,
@@ -14,13 +15,15 @@ function action(callbacks, context, uri) {
     const url = `${OPEN_MATHEMATICS_API_URL}${uri}`,
           method = 'POST',
           encoding = null,
-          timeout = 1000,
+          timeout = 10000,
           options = {
             url : url,
             method : method,
             encoding: encoding,
             timeout: timeout
           };
+
+    escape();
 
     request(options, function(error, response) {
       ///
