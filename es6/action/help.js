@@ -9,7 +9,7 @@ function help() {
 
   open <package_name>              Install the given package
 
-  open <command> [<args>]
+  open <command> [<argument>]
 
 Commmands:
 

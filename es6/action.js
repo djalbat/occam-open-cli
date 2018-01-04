@@ -14,13 +14,15 @@ function action(callbacks, context, uri) {
   sequence(callbacks, function() {
     const url = `${OPEN_MATHEMATICS_API_URL}${uri}`,
           method = 'POST',
-          encoding = null,
+          encoding = 'utf8',
           timeout = 10000,
+          form = context, ///
           options = {
             url : url,
             method : method,
             encoding: encoding,
-            timeout: timeout
+            timeout: timeout,
+            form: form
           };
 
     escape();

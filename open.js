@@ -6,24 +6,38 @@ const minimist = require('minimist'),
 const main = require('./es6/main');
 
 const { arrayUtilities } = necessary,
-      { third } = arrayUtilities;
+      { third, fourth } = arrayUtilities;
 
-const argv = minimist(process.argv),  ///
-      { _ } = argv, ///
-      parameters = _,   ///
-      thirdParameter = third(parameters),
+const { argv } = process,
       options = optionsFromArgv(argv),
-      command = thirdParameter || null, ///
-      args = parameters.slice(3); ///
+      parameters = parametersFromArgv(argv),
+      thirdParameter = third(parameters),
+      fourthParameter = fourth(parameters),
+      command = thirdParameter || null,
+      argument = fourthParameter || null;
 
-main(options, command, args);
+main(command, argument, options);
 
 function optionsFromArgv(argv) {
+  argv = minimist(argv);  ///
+
   const keys = Object.keys(argv),
         options = keys.reduce(function(options, key) {
-          if (key !== '_') {
-            const option = key; ///
+          let option = null;
 
+          switch (key) {
+            case 'h' :
+            case 'help' :
+              option = 'help';
+              break;
+
+            case 'v' :
+            case 'version' :
+              option = 'version';
+              break;
+          }
+
+          if (option !== null) {
             options.push(option);
           }
 
@@ -31,4 +45,13 @@ function optionsFromArgv(argv) {
         }, []);
 
   return options;
+}
+
+function parametersFromArgv(argv) {
+  argv = minimist(argv);  ///
+
+  const { _ } = argv, ///
+        parameters = _;   ///
+
+  return parameters;
 }

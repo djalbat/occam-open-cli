@@ -1,7 +1,5 @@
 'use strict';
 
-const necessary = require('necessary');
-
 const help = require('./action/help'),
       login = require('./action/login'),
       logout = require('./action/logout'),
@@ -13,13 +11,10 @@ const help = require('./action/help'),
       recoverPassword = require('./action/recoverPassword'),
       confirmEmailAddress = require('./action/confirmEmailAddress');
 
-const { arrayUtilities } = necessary,
-      { first } = arrayUtilities;
-
-function main(options, command, args) {
+function main(command, argument, options) {
   const commandMissing = (command === null),
-        optionsIncludesHelp = options.includes('h') || options.includes('help'),
-        optionsIncludesVersion = options.includes('v') || options.includes('version');
+        optionsIncludesHelp = options.includes('help'),
+        optionsIncludesVersion = options.includes('version');
 
   if (false) {
 
@@ -28,8 +23,6 @@ function main(options, command, args) {
   } else if (commandMissing || optionsIncludesHelp) {
     command = 'help';
   }
-
-  const firstArg = first(args) || null;
 
   let packageName,
       username,
@@ -45,31 +38,31 @@ function main(options, command, args) {
       break;
 
     case 'install':
-      packageName = firstArg; ///
+      packageName = argument; ///
 
       install(packageName);
       break;
 
     case 'remove':
-      packageName = firstArg; ///
+      packageName = argument; ///
 
       remove(packageName);
       break;
 
     case 'register':
-      username = firstArg; ///
+      username = argument; ///
 
       register(username);
       break;
 
     case 'confirm': ///
-      emailAddress = firstArg; ///
+      emailAddress = argument; ///
 
       confirmEmailAddress(emailAddress);
       break;
 
     case 'login':
-      username = firstArg; ///
+      username = argument; ///
 
       login(username);
       break;
@@ -79,13 +72,13 @@ function main(options, command, args) {
       break;
 
     case 'change-password':
-      username = firstArg; ///
+      username = argument; ///
 
       changePassword(username);
       break;
 
     case 'recover-password':
-      username = firstArg; ///
+      username = argument; ///
 
       recoverPassword(username);
       break;
