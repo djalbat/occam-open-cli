@@ -1,11 +1,15 @@
 'use strict';
 
 const action = require('../action'),
+      messages = require('../messages'),
       usernameCallback = require('../callback/username'),
       passwordCallback = require('../callback/password');
 
-function login(username) {
-  const password = null,
+const { failedToLoginMessage } = messages;
+
+function login(argument) {
+  const username = argument,
+        password = null,
         callbacks = [
           usernameCallback,
           passwordCallback
@@ -16,7 +20,16 @@ function login(username) {
         },
         uri = 'login';
   
-  action(callbacks, context, uri);
+  action(callbacks, context, uri, function(json) {
+    const { success, message } = json,
+          serverMessage = message;  ///
+
+    if (!success) {
+      console.log(failedToLoginMessage);
+
+      console.log(serverMessage);
+    }
+  });
 }
 
 module.exports = login;

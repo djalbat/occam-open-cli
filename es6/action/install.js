@@ -1,6 +1,8 @@
 'use strict';
 
-function install(packageName) {
+function install(argument) {
+  const packageName = argument; ///
+  
   console.log(`Installing '${packageName}'...`);
 }
 

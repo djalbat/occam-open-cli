@@ -5,8 +5,9 @@ const action = require('../action'),
       usernameCallback = require('../callback/username'),
       passwordCallback = require('../callback/password');
 
-function changePassword(username) {
-  const oldPassword = null,
+function changePassword(argument) {
+  const username = argument,  ///
+        oldPassword = null,
         newPassword = null,
         callbacks = [
           usernameCallback,

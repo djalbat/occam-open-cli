@@ -1,13 +1,17 @@
 'use strict';
 
 const action = require('../action'),
+      messages = require('../messages'),
       usernameCallback = require('../callback/username'),
       passwordCallback = require('../callback/password'),
       emailAddressCallback = require('../callback/emailAddress'),
       confirmPasswordCallback = require('../callback/confirmPassword');
 
-function register(username) {
-  const password = null,
+const { failedToRegisterMessage } = messages;
+
+function register(argument) {
+  const username = argument,  ///
+        password = null,
         emailAddress = null,
         callbacks = [
           usernameCallback,
@@ -22,7 +26,16 @@ function register(username) {
         },
         uri = 'register';
 
-  action(callbacks, context, uri);
+  action(callbacks, context, uri, function(json) {
+    const { success, message } = json,
+          serverMessage = message;  ///
+
+    if (!success) {
+      console.log(failedToRegisterMessage);
+
+      console.log(serverMessage);
+    }
+  });
 }
 
 module.exports = register;

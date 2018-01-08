@@ -1,6 +1,8 @@
 'use strict';
 
-function remove(packageName) {
+function remove(argument) {
+  const packageName = argument; ///
+  
   console.log(`Removing '${packageName}'...`);
 }
 

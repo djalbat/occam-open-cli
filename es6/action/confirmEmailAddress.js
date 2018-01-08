@@ -4,8 +4,9 @@ const action = require('../action'),
       emailAddressCallback = require('../callback/emailAddress'),
       confirmationCodeCallback = require('../callback/confirmationCode');
 
-function confirmEmailAddress(emailAddress) {
-  const confirmationCode = null,
+function confirmEmailAddress(argument) {
+  const emailAddress = argument,  ///
+        confirmationCode = null,
         callbacks = [
           emailAddressCallback,
           confirmationCodeCallback

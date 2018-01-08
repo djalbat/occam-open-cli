@@ -10,7 +10,7 @@ const { asynchronousUtilities } = necessary,
       { sequence } = asynchronousUtilities,
       { OPEN_MATHEMATICS_API_URL } = constants;
 
-function action(callbacks, context, uri) {
+function action(callbacks, context, uri, callback) {
   sequence(callbacks, function() {
     const url = `${OPEN_MATHEMATICS_API_URL}${uri}`,
           method = 'POST',
@@ -28,7 +28,12 @@ function action(callbacks, context, uri) {
     escape();
 
     request(options, function(error, response) {
-      ///
+      const { body } = response,
+            json = JSON.parse(body);
+
+      callback(json);
+
+      process.exit(); ///
     });
   }, context);
 }

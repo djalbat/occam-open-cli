@@ -24,67 +24,20 @@ function main(command, argument, options) {
     command = 'help';
   }
 
-  let packageName,
-      username,
-      emailAddress;
-  
   switch (command) {
-    case 'help':
-      help();
-      break;
-
-    case 'version':
-      version();
-      break;
-
-    case 'install':
-      packageName = argument; ///
-
-      install(packageName);
-      break;
-
-    case 'remove':
-      packageName = argument; ///
-
-      remove(packageName);
-      break;
-
-    case 'register':
-      username = argument; ///
-
-      register(username);
-      break;
-
-    case 'confirm': ///
-      emailAddress = argument; ///
-
-      confirmEmailAddress(emailAddress);
-      break;
-
-    case 'login':
-      username = argument; ///
-
-      login(username);
-      break;
-
-    case 'logout':
-      logout();
-      break;
-
-    case 'change-password':
-      username = argument; ///
-
-      changePassword(username);
-      break;
-
-    case 'recover-password':
-      username = argument; ///
-
-      recoverPassword(username);
-      break;
+    case 'help': help(); break;
+    case 'version': version(); break;
+    case 'install': install(argument); break;
+    case 'remove': remove(argument); break;
+    case 'register': register(argument); break;
+    case 'login': login(argument); break;
+    case 'logout': logout(); break;
+    case 'change-password': changePassword(argument); break;
+    case 'recover-password': recoverPassword(argument); break;
+    case 'confirm': confirmEmailAddress(argument); break; ///
 
     default:
-      packageName = command;  ///
+      const packageName = command;  ///
 
       install(packageName);
       break;
