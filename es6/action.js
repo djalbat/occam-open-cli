@@ -4,11 +4,13 @@ const request = require('request'),
       necessary = require('necessary');
 
 const escape = require('./escape'),
+      messages = require('./messages'),
       constants = require('./constants');
 
 const { asynchronousUtilities } = necessary,
       { sequence } = asynchronousUtilities,
-      { OPEN_MATHEMATICS_API_URL } = constants;
+      { OPEN_MATHEMATICS_API_URL } = constants,
+      { serverFailedToRespondMessage } = messages;
 
 function action(callbacks, context, uri, callback) {
   sequence(callbacks, function() {
@@ -28,10 +30,14 @@ function action(callbacks, context, uri, callback) {
     escape();
 
     request(options, function(error, response) {
-      const { body } = response,
-            json = JSON.parse(body);
+      if (!response) {  ///
+        console.log(serverFailedToRespondMessage);
+      } else {
+        const { body } = response,
+              json = JSON.parse(body);
 
-      callback(json);
+        callback(json);
+      }
 
       process.exit(); ///
     });
