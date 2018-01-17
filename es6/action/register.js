@@ -30,7 +30,9 @@ function register(argument) {
     const { success, message } = json,
           serverMessage = message;  ///
 
-    if (!success) {
+    if (success) {
+
+    } else {
       console.log(failedToRegisterMessage);
 
       console.log(serverMessage);

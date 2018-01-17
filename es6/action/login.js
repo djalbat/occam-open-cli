@@ -24,7 +24,9 @@ function login(argument) {
     const { success, message } = json,
           serverMessage = message;  ///
 
-    if (!success) {
+    if (success) {
+      ///
+    } else {
       console.log(failedToLoginMessage);
 
       console.log(serverMessage);
