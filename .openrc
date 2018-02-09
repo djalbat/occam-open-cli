@@ -1,0 +1,7 @@
+{
+  "environments": [
+    {
+      "apiURL": "http://localhost:8002/api/"
+    }
+  ]
+}

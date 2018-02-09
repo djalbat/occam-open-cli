@@ -7,14 +7,15 @@ const escape = require('./escape'),
       messages = require('./messages'),
       constants = require('./constants');
 
-const { asynchronousUtilities } = necessary,
+const { asynchronousUtilities, miscellaneousUtilities } = necessary,
       { sequence } = asynchronousUtilities,
-      { OPEN_MATHEMATICS_API_URL } = constants,
-      { serverFailedToRespondMessage } = messages;
+      { rc } = miscellaneousUtilities,
+      { serverFailedToRespondMessage } = messages,
+      { apiURL } = rc;
 
 function action(callbacks, context, uri, callback) {
   sequence(callbacks, function() {
-    const url = `${OPEN_MATHEMATICS_API_URL}${uri}`,
+    const url = `${apiURL}${uri}`,
           method = 'POST',
           encoding = 'utf8',
           timeout = 10000,

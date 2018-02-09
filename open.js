@@ -3,7 +3,7 @@
 const minimist = require('minimist'),
       necessary = require('necessary');
 
-const main = require('./es6/main');
+const main = require('./bin/main');
 
 const { arrayUtilities } = necessary,
       { third, fourth } = arrayUtilities;
