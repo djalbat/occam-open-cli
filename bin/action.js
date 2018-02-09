@@ -3,13 +3,12 @@
 const request = require('request'),
       necessary = require('necessary');
 
-const escape = require('./escape'),
-      messages = require('./messages'),
+const messages = require('./messages'),
       constants = require('./constants');
 
 const { asynchronousUtilities, miscellaneousUtilities } = necessary,
       { sequence } = asynchronousUtilities,
-      { rc } = miscellaneousUtilities,
+      { rc, onETX } = miscellaneousUtilities,
       { serverFailedToRespondMessage } = messages,
       { apiURL } = rc;
 
@@ -28,7 +27,7 @@ function action(callbacks, context, uri, callback) {
             form: form
           };
 
-    escape();
+    onETX(process.exit);
 
     request(options, function(error, response) {
       if (!response) {  ///
