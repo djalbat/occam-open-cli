@@ -9,12 +9,12 @@ const messages = require('./messages'),
 const { asynchronousUtilities, miscellaneousUtilities } = necessary,
       { sequence } = asynchronousUtilities,
       { rc, onETX } = miscellaneousUtilities,
-      { serverFailedToRespondMessage } = messages,
-      { apiURL } = rc;
+      { serverFailedToRespondMessage } = messages;
 
 function action(callbacks, context, uri, callback) {
   sequence(callbacks, function() {
-    const url = `${apiURL}${uri}`,
+    const { apiURL } = rc,
+          url = `${apiURL}${uri}`,
           method = 'POST',
           encoding = 'utf8',
           timeout = 10000,

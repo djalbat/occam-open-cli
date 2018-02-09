@@ -5,8 +5,10 @@ const minimist = require('minimist'),
 
 const main = require('./bin/main');
 
-const { arrayUtilities } = necessary,
-      { third, fourth } = arrayUtilities;
+const { arrayUtilities, miscellaneousUtilities } = necessary,
+      { third, fourth } = arrayUtilities,
+      { rc } = miscellaneousUtilities,
+      { setRCBaseExtension } = rc;
 
 const { argv } = process,
       options = optionsFromArgv(argv),
@@ -15,6 +17,10 @@ const { argv } = process,
       fourthParameter = fourth(parameters),
       command = thirdParameter || null,
       argument = fourthParameter || null;
+
+setRCBaseExtension('open');
+
+rc();
 
 main(command, argument, options);
 

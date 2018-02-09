@@ -1,11 +1,16 @@
 'use strict';
 
+const necessary = require('necessary')
+
 const action = require('../action'),
       messages = require('../messages'),
       usernameCallback = require('../callback/username'),
       passwordCallback = require('../callback/password');
 
-const { failedToLoginMessage } = messages;
+const { miscellaneousUtilities } = necessary,
+      { rc } = miscellaneousUtilities,
+      { updateRCFile } = rc,
+      { failedToLoginMessage } = messages;
 
 function login(argument) {
   const username = argument,
@@ -25,7 +30,11 @@ function login(argument) {
           serverMessage = message;  ///
 
     if (success) {
-      ///
+      updateRCFile({
+        "blah": "blah"
+      });
+      
+      console.log('success!')
     } else {
       console.log(failedToLoginMessage);
 
