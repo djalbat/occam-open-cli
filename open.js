@@ -1,63 +1,98 @@
 #!/usr/bin/env node
 
-const minimist = require('minimist'),
-      necessary = require('necessary');
+const necessary = require('necessary');
 
 const main = require('./bin/main');
 
 const { arrayUtilities, miscellaneousUtilities } = necessary,
-      { third, fourth } = arrayUtilities,
+      { first, second, filter } = arrayUtilities,
       { rc } = miscellaneousUtilities,
-      { setRCBaseExtension } = rc;
-
-const { argv } = process,
-      options = optionsFromArgv(argv),
-      parameters = parametersFromArgv(argv),
-      thirdParameter = third(parameters),
-      fourthParameter = fourth(parameters),
-      command = thirdParameter || null,
-      argument = fourthParameter || null;
+      { setRCBaseExtension } = rc,
+      { argv } = process;
 
 setRCBaseExtension('open');
 
 rc();
 
+const options = optionsFromArgv(argv, [
+        'help',
+        'version'
+      ]),
+      command = argv.shift() || null,
+      argument = argv.shift() || null;
+
 main(command, argument, options);
 
-function optionsFromArgv(argv) {
-  argv = minimist(argv);  ///
+function optionsFromArgv(argv, availableOptions) {
+  argv.shift();
+  argv.shift();
 
-  const keys = Object.keys(argv),
-        options = keys.reduce(function(options, key) {
-          let option = null;
+  const optionsMap = {};
 
-          switch (key) {
-            case 'h' :
-            case 'help' :
-              option = 'help';
-              break;
+  filter(argv, function(argument) { ///
+    const discardArgument = longhandOptionFromArgument(argument, availableOptions, optionsMap) ||
+                            shorthandOptionsFromArgument(argument, availableOptions, optionsMap);
 
-            case 'v' :
-            case 'version' :
-              option = 'version';
-              break;
-          }
+    const keepArgument = !discardArgument;
 
-          if (option !== null) {
-            options.push(option);
-          }
+    return keepArgument;
+  });
 
-          return options;
-        }, []);
+  const options = Object.keys(optionsMap);
 
   return options;
 }
 
-function parametersFromArgv(argv) {
-  argv = minimist(argv);  ///
+function longhandOptionFromArgument(argument, availableOptions, optionsMap) {
+  let discardArgument = false;
 
-  const { _ } = argv, ///
-        parameters = _;   ///
+  const matches = argument.match(/^\-\-([^-].+)$/);
 
-  return parameters;
+  if (matches !== null) {
+    const secondMatch = second(matches),
+          availableOptionsIncludesSecondMatch = availableOptions.includes(secondMatch);
+
+    if (availableOptionsIncludesSecondMatch) {
+      const longhandOption = secondMatch, ///
+            option = longhandOption;  ///
+
+      optionsMap[option] = option;
+    }
+
+    discardArgument = true;
+  }
+
+  return discardArgument;
+}
+
+function shorthandOptionsFromArgument(argument, availableOptions, optionsMap) {
+  let discardArgument = false;
+
+  const matches = argument.match(/^\-([^-].*)$/);
+
+  if (matches !== null) {
+    const secondMatch = second(matches),
+          availableShortHandOptions = availableOptions.map(function(availableOption) {
+            const availableOptionCharacters = availableOption.split(''),
+                  firstAvailableOptionCharacter = first(availableOptionCharacters),
+                  availableShorthandOption = firstAvailableOptionCharacter; ///
+
+            return availableShorthandOption;
+          }),
+          availableShortHandOptionsIncludesSecondMatch = availableShortHandOptions.includes(secondMatch);
+
+    if (availableShortHandOptionsIncludesSecondMatch) {
+      const availableShorthandOption = secondMatch, ///
+            availableShorthandOptionIndex = availableShortHandOptions.indexOf(availableShorthandOption),
+            availableOptionIndex = availableShorthandOptionIndex, ///
+            availableOption = availableOptions[availableOptionIndex],
+            option = availableOption; ///
+
+      optionsMap[option] = option;
+    }
+
+    discardArgument = true;
+  }
+
+  return discardArgument;
 }

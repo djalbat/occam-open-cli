@@ -12,7 +12,6 @@ const help = require('./action/help'),
       confirmEmailAddress = require('./action/confirmEmailAddress');
 
 function main(command, argument, options) {
-  
   const commandMissing = (command === null),
         optionsIncludesHelp = options.includes('help'),
         optionsIncludesVersion = options.includes('version');
