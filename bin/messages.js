@@ -6,8 +6,8 @@ const SERVER_FAILED_TO_RESPOND_MESSSAGE = 'The server failed to respond in a tim
       INVALID_EMAIL_ADDRESS_MESSAGE = 'The email address does not appear to be a valid one.',
       INVALID_CONFIRMATION_CODE_MESSAGE = 'Confirmation codes consist of eight alphabetical characters.',
       PASSWORDS_DO_NOT_MATCH_MESSAGE = 'The passwords do not match.',
-      FAILED_TO_LOGIN_MESSAGE = 'Failed to login. The message from the server was...',
-      FAILED_TO_REGISTER_MESSAGE = 'Failed to register. The message from the server was...'
+      FAILED_TO_LOGIN_MESSAGE = 'Failed to login.',
+      FAILED_TO_REGISTER_MESSAGE = 'Failed to register.'
 
 const messages = {
   SERVER_FAILED_TO_RESPOND_MESSSAGE: SERVER_FAILED_TO_RESPOND_MESSSAGE, 
