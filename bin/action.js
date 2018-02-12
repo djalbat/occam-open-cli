@@ -9,7 +9,7 @@ const messages = require('./messages'),
 const { asynchronousUtilities, miscellaneousUtilities } = necessary,
       { sequence } = asynchronousUtilities,
       { rc, onETX } = miscellaneousUtilities,
-      { serverFailedToRespondMessage } = messages;
+      { SERVER_FAILED_TO_RESPOND_MESSSAGE } = messages;
 
 function action(callbacks, context, uri, callback) {
   sequence(callbacks, function() {
@@ -31,7 +31,7 @@ function action(callbacks, context, uri, callback) {
 
     request(options, function(error, response) {
       if (!response) {  ///
-        console.log(serverFailedToRespondMessage);
+        console.log(SERVER_FAILED_TO_RESPOND_MESSSAGE);
       } else {
         const { body } = response,
               json = JSON.parse(body);

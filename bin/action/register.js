@@ -7,7 +7,7 @@ const action = require('../action'),
       emailAddressCallback = require('../callback/emailAddress'),
       confirmPasswordCallback = require('../callback/confirmPassword');
 
-const { failedToRegisterMessage } = messages;
+const { FAILED_TO_REGISTER_MESSAGE } = messages;
 
 function register(argument) {
   const username = argument,  ///
@@ -33,7 +33,7 @@ function register(argument) {
     if (success) {
 
     } else {
-      console.log(failedToRegisterMessage);
+      console.log(FAILED_TO_REGISTER_MESSAGE);
 
       console.log(serverMessage);
     }

@@ -10,7 +10,7 @@ const action = require('../action'),
 const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
       { updateRCFile } = rc,
-      { failedToLoginMessage } = messages;
+      { FAILED_TO_LOGIN_MESSAGE } = messages;
 
 function login(argument) {
   const username = argument,
@@ -36,7 +36,7 @@ function login(argument) {
       
       console.log('success!')
     } else {
-      console.log(failedToLoginMessage);
+      console.log(FAILED_TO_LOGIN_MESSAGE);
 
       console.log(serverMessage);
     }
