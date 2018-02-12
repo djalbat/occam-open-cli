@@ -26,16 +26,13 @@ function register(argument) {
         },
         uri = 'register';
 
-  action(callbacks, context, uri, function(json) {
-    const { success, message } = json,
-          serverMessage = message;  ///
-
+  action(callbacks, context, uri, function(success, message) {
     if (success) {
 
     } else {
       console.log(FAILED_TO_REGISTER_MESSAGE);
 
-      console.log(serverMessage);
+      console.log(message);
     }
   });
 }

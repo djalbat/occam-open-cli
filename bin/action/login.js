@@ -25,10 +25,7 @@ function login(argument) {
         },
         uri = 'login';
   
-  action(callbacks, context, uri, function(json) {
-    const { success, message } = json,
-          serverMessage = message;  ///
-
+  action(callbacks, context, uri, function(success, message) {
     if (success) {
       updateRCFile({
         "blah": "blah"
@@ -38,7 +35,7 @@ function login(argument) {
     } else {
       console.log(FAILED_TO_LOGIN_MESSAGE);
 
-      console.log(serverMessage);
+      console.log(message);
     }
   });
 }
