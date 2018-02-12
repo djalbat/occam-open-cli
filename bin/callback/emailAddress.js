@@ -5,7 +5,7 @@ const prompt = require('../prompt'),
       messages = require('../messages');
 
 const { validateEmailAddress } = validate,
-      { invalidEmailAddressMessage } = messages;
+      { INVALID_EMAIL_ADDRESS_MESSAGE } = messages;
 
 function emailAddressCallback(next, done, context) {
   const { emailAddress } = context;
@@ -22,7 +22,7 @@ function emailAddressCallback(next, done, context) {
 
   const description = 'Email address: ',
         validationFunction = validateEmailAddress,
-        errorMessage = invalidEmailAddressMessage,
+        errorMessage = INVALID_EMAIL_ADDRESS_MESSAGE,
         attempts = 3,
         hidden = false,
         options = {

@@ -5,7 +5,7 @@ const prompt = require('../prompt'),
       messages = require('../messages');
 
 const { validateUsername } = validate,
-      { invalidUsernameMessage } = messages;
+      { INVALID_USERNAME_MESSAGE } = messages;
 
 function usernameCallback(next, done, context) {
   const { username } = context;
@@ -22,7 +22,7 @@ function usernameCallback(next, done, context) {
 
   const description = 'Username: ',
         validationFunction = validateUsername,
-        errorMessage = invalidUsernameMessage,
+        errorMessage = INVALID_USERNAME_MESSAGE,
         attempts = 3,
         hidden = false,
         options = {

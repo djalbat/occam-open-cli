@@ -3,12 +3,12 @@
 const prompt = require('../prompt'),
       messages = require('../messages');
 
-const { passwordsDoNoMatchMessage } = messages;
+const { PASSWORDS_DO_NOT_MATCH_MESSAGE } = messages;
 
 function confirmPasswordCallback(next, done, context) {
   const { password } = context,
         description = 'Confirm password: ',
-        errorMessage = passwordsDoNoMatchMessage,
+        errorMessage = PASSWORDS_DO_NOT_MATCH_MESSAGE,
         attempts = 3,
         hidden = true,
         options = {

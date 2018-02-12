@@ -9,7 +9,7 @@ const messages = require('./messages'),
 const { asynchronousUtilities, miscellaneousUtilities } = necessary,
       { sequence } = asynchronousUtilities,
       { rc, onETX } = miscellaneousUtilities,
-      { serverFailedToRespondMessage } = messages;
+      { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages;
 
 function action(callbacks, context, uri, callback) {
   sequence(callbacks, function() {
@@ -33,21 +33,24 @@ function action(callbacks, context, uri, callback) {
       offETX();
 
       if (!response) {  ///
-        console.log(serverFailedToRespondMessage);
+        console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
       } else {
         const { body } = response,
               json = JSON.parse(body),
               { error } = json;
 
         if (error) {
-          const { message } = error;
+          const { message } = json;
 
-          ///
+          console.log(SERVER_ERROR_MESSAGE);
 
+          console.log(message);
         } else {
           callback(json);
         }
       }
+
+      exit(); ///
     });
   }, context);
 }

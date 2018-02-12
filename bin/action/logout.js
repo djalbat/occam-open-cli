@@ -7,9 +7,7 @@ function logout() {
         context = {},
         uri = 'logout';
 
-  action(callbacks, context, uri, function(json) {
-
-  });
+  action(callbacks, context, uri);
 }
 
 module.exports = logout;

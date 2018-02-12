@@ -5,12 +5,12 @@ const prompt = require('../prompt'),
       messages = require('../messages');
 
 const { validatePassword } = validate,
-      { invalidPasswordMessage } = messages;
+      { INVALID_PASSWORD_MESSAGE } = messages;
 
 function passwordCallback(next, done, context) {
   const description = 'Password: ',
         validationFunction = validatePassword,        
-        errorMessage = invalidPasswordMessage,
+        errorMessage = INVALID_PASSWORD_MESSAGE,
         attempts = 3,
         hidden = true,
         options = {

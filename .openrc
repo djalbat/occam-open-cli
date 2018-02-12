@@ -1,7 +1,8 @@
 {
-  "environments": [
-    {
-      "apiURL": "http://localhost:8002/api/"
-    }
-  ]
+	"environments": [
+		{
+			"apiURL": "http://localhost:8002/api/"
+		}
+	],
+	"accessToken": "blah"
 }

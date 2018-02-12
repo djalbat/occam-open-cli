@@ -4,16 +4,18 @@ const necessary = require('necessary')
 
 const action = require('../action'),
       messages = require('../messages'),
+      constants = require('../constants'),
       usernameCallback = require('../callback/username'),
       passwordCallback = require('../callback/password');
 
 const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
       { updateRCFile } = rc,
-      { failedToLoginMessage } = messages;
+      { LOGIN_URI } = constants,
+      { FAILED_LOGIN_MESSAGE, SUCCESSFUL_LOGIN_MESSAGE } = messages;
 
 function login(argument) {
-  const username = argument,
+  const username = argument,  ///
         password = null,
         callbacks = [
           usernameCallback,
@@ -23,19 +25,23 @@ function login(argument) {
           username: username,
           password: password
         },
-        uri = 'login';
+        uri = LOGIN_URI;
   
   action(callbacks, context, uri, function(json) {
-    const { success } = json;
+    const { success, message } = json;
 
     if (success) {
+      const { accessToken } = json;
+
       updateRCFile({
-        "blah": "blah"
+        accessToken: accessToken
       });
       
-      console.log('success!')
+      console.log(SUCCESSFUL_LOGIN_MESSAGE)
     } else {
-      console.log(failedToLoginMessage);
+      console.log(FAILED_LOGIN_MESSAGE);
+
+      console.log(message);
     }
   });
 }
