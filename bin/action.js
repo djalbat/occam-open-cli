@@ -36,14 +36,16 @@ function action(callbacks, context, uri, callback) {
       } else {
         const { body } = response,
               json = JSON.parse(body),
-              { error, success, message } = json;
+              { error } = json;
 
         if (error) {
+          const { message } = json;
+
           console.log(SERVER_ERROR_MESSAGE);
 
           console.log(message);
         } else {
-          callback(success, message);
+          callback(json);
         }
       }
 

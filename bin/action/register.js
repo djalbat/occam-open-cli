@@ -1,5 +1,7 @@
 'use strict';
 
+const necessary = require('necessary')
+
 const action = require('../action'),
       messages = require('../messages'),
       usernameCallback = require('../callback/username'),
@@ -7,7 +9,10 @@ const action = require('../action'),
       emailAddressCallback = require('../callback/emailAddress'),
       confirmPasswordCallback = require('../callback/confirmPassword');
 
-const { FAILED_TO_REGISTER_MESSAGE } = messages;
+const { miscellaneousUtilities } = necessary,
+      { rc } = miscellaneousUtilities,
+      { updateRCFile } = rc,
+      { FAILED_REGISTER_MESSAGE, SUCCESSFUL_REGISTER_MESSAGE } = messages;
 
 function register(argument) {
   const username = argument,  ///
@@ -26,11 +31,19 @@ function register(argument) {
         },
         uri = 'register';
 
-  action(callbacks, context, uri, function(success, message) {
-    if (success) {
+  action(callbacks, context, uri, function(json) {
+    const { success, message } = json;
 
+    if (success) {
+      const { accessToken } = json;
+
+      updateRCFile({
+        accessToken: accessToken
+      });
+      
+      console.log(SUCCESSFUL_REGISTER_MESSAGE);
     } else {
-      console.log(FAILED_TO_REGISTER_MESSAGE);
+      console.log(FAILED_REGISTER_MESSAGE);
 
       console.log(message);
     }

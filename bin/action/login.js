@@ -10,10 +10,10 @@ const action = require('../action'),
 const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
       { updateRCFile } = rc,
-      { FAILED_TO_LOGIN_MESSAGE } = messages;
+      { FAILED_LOGIN_MESSAGE, SUCCESSFUL_LOGIN_MESSAGE } = messages;
 
 function login(argument) {
-  const username = argument,
+  const username = argument,  ///
         password = null,
         callbacks = [
           usernameCallback,
@@ -25,15 +25,19 @@ function login(argument) {
         },
         uri = 'login';
   
-  action(callbacks, context, uri, function(success, message) {
+  action(callbacks, context, uri, function(json) {
+    const { success, message } = json;
+
     if (success) {
+      const { accessToken } = json;
+
       updateRCFile({
-        "blah": "blah"
+        accessToken: accessToken
       });
       
-      console.log('success!')
+      console.log(SUCCESSFUL_LOGIN_MESSAGE)
     } else {
-      console.log(FAILED_TO_LOGIN_MESSAGE);
+      console.log(FAILED_LOGIN_MESSAGE);
 
       console.log(message);
     }
