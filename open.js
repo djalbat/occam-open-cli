@@ -14,20 +14,21 @@ setRCBaseExtension('open');
 
 rc();
 
-const options = optionsFromArgv(argv, [
-        'help',
-        'version'
-      ]),
-      command = argv.shift() || null,
-      argument = argv.shift() || null;
+const options = optionsFromArgv(argv),
+      command = commandFromArgv(argv),
+      argument = argumentFromArgv(argv);
 
 main(command, argument, options);
 
-function optionsFromArgv(argv, availableOptions) {
+function optionsFromArgv(argv) {
   argv.shift();
   argv.shift();
 
-  const optionsMap = {};
+  const optionsMap = {},
+        availableOptions = [
+        'help',
+            'version'
+        ];
 
   filter(argv, function(argument) { ///
     const discardArgument = longhandOptionFromArgument(argument, availableOptions, optionsMap) ||
@@ -41,6 +42,18 @@ function optionsFromArgv(argv, availableOptions) {
   const options = Object.keys(optionsMap);
 
   return options;
+}
+
+function commandFromArgv(argv) {
+  const command = argv.shift() || null;
+
+  return command;
+}
+
+function argumentFromArgv(argv) {
+  const argument = argv.shift() || null;
+
+  return argument;
 }
 
 function longhandOptionFromArgument(argument, availableOptions, optionsMap) {

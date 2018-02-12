@@ -25,21 +25,29 @@ function action(callbacks, context, uri, callback) {
             encoding: encoding,
             timeout: timeout,
             form: form
-          };
-
-    onETX(process.exit);
+          },
+          { exit } = process,
+          offETX = onETX(exit);
 
     request(options, function(error, response) {
+      offETX();
+
       if (!response) {  ///
         console.log(serverFailedToRespondMessage);
       } else {
         const { body } = response,
-              json = JSON.parse(body);
+              json = JSON.parse(body),
+              { error } = json;
 
-        callback(json);
+        if (error) {
+          const { message } = error;
+
+          ///
+
+        } else {
+          callback(json);
+        }
       }
-
-      process.exit(); ///
     });
   }, context);
 }

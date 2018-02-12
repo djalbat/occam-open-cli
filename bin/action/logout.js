@@ -3,10 +3,13 @@
 const action = require('../action');
 
 function logout() {
-  const context = {},
+  const callbacks = [],
+        context = {},
         uri = 'logout';
 
-  action([], context, uri);
+  action(callbacks, context, uri, function(json) {
+
+  });
 }
 
 module.exports = logout;

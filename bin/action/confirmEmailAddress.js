@@ -17,7 +17,9 @@ function confirmEmailAddress(argument) {
         },
         uri = 'confirm';
 
-  action(callbacks, context, uri);
+  action(callbacks, context, uri, function(json) {
+
+  });
 }
 
 module.exports = confirmEmailAddress;

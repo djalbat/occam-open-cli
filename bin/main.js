@@ -37,9 +37,9 @@ function main(command, argument, options) {
     case 'confirm': confirmEmailAddress(argument); break; ///
 
     default:
-      const packageName = command;  ///
+      argument = command;  ///
 
-      install(packageName);
+      install(argument);
       break;
   }
 }

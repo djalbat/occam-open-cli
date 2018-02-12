@@ -20,7 +20,9 @@ function changePassword(argument) {
         },
         uri = 'changePassword';
 
-  action(callbacks, context, uri);
+  action(callbacks, context, uri, function(json) {
+
+  });
 }
 
 module.exports = changePassword;
