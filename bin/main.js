@@ -9,7 +9,8 @@ const help = require('./action/help'),
       register = require('./action/register'),
       changePassword = require('./action/changePassword'),
       recoverPassword = require('./action/recoverPassword'),
-      confirmEmailAddress = require('./action/confirmEmailAddress');
+      confirmEmailAddress = require('./action/confirmEmailAddress'),
+      resendConfirmationCode = require('./action/resendConfirmationCode');
 
 function main(command, argument, options) {
   const commandMissing = (command === null),
@@ -35,6 +36,7 @@ function main(command, argument, options) {
     case 'change-password': changePassword(argument); break;
     case 'recover-password': recoverPassword(argument); break;
     case 'confirm': confirmEmailAddress(argument); break; ///
+    case 'resend': resendConfirmationCode(argument); break; ///
 
     default:
       argument = command;  ///

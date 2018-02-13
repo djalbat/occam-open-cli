@@ -10,7 +10,7 @@ const SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE = 'The server failed to respond in 
       FAILED_LOGIN_MESSAGE = 'Failed to login.',
       FAILED_REGISTER_MESSAGE = 'Failed to register.',
       SUCCESSFUL_LOGIN_MESSAGE = 'You have logged in successfully.',
-      SUCCESSFUL_REGISTER_MESSAGE = 'You have been registered successfully.'
+      SUCCESSFUL_REGISTER_MESSAGE = 'You have been registered successfully. You can now log in.'
 
 const messages = {
   SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE: SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE,

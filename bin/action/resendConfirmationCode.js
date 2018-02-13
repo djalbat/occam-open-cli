@@ -3,12 +3,14 @@
 const action = require('../action'),
       constants = require('../constants');
 
-function logout() {
+const { RESEND_CONFIRMATION_CODE_URI } = constants;
+
+function resendConfirmationCode() {
   const callbacks = [],
         context = {},
-        uri = 'logout';
+        uri = RESEND_CONFIRMATION_CODE_URI;
 
   action(callbacks, context, uri);
 }
 
-module.exports = logout;
+module.exports = resendConfirmationCode;

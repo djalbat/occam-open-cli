@@ -29,6 +29,8 @@ Commmands:
 
   logout                           Logout 
 
+  resend                           Resend a confirmation code
+
   change-password [<username>]     Change your password 
 
   recover-password [<username>]    Recover your password 

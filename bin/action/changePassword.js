@@ -2,8 +2,11 @@
 
 const action = require('../action'),
       prompt = require('../prompt'),
+      constants = require('../constants'),
       usernameCallback = require('../callback/username'),
       passwordCallback = require('../callback/password');
+
+const { CHANGE_PASSWORD_URI } = constants;
 
 function changePassword(argument) {
   const username = argument,  ///
@@ -18,7 +21,7 @@ function changePassword(argument) {
           oldPassword: oldPassword,
           newPassword: newPassword
         },
-        uri = 'changePassword';
+        uri = CHANGE_PASSWORD_URI;
 
   action(callbacks, context, uri, function(json) {
 

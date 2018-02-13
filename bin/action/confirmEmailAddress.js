@@ -1,8 +1,11 @@
 'use strict';
 
 const action = require('../action'),
+      constants = require('../constants'),
       emailAddressCallback = require('../callback/emailAddress'),
       confirmationCodeCallback = require('../callback/confirmationCode');
+
+const { CONFIRM_EMAIL_ADDRESS_URI } = constants;
 
 function confirmEmailAddress(argument) {
   const emailAddress = argument,  ///
@@ -15,7 +18,7 @@ function confirmEmailAddress(argument) {
           emailAddress: emailAddress,
           confirmationCode: confirmationCode
         },
-        uri = 'confirm';
+        uri = CONFIRM_EMAIL_ADDRESS_URI;
 
   action(callbacks, context, uri, function(json) {
 
