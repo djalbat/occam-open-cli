@@ -2,6 +2,7 @@
 
 const action = require('../action'),
       constants = require('../constants'),
+      checkLoggedIn = require('../callback/checkLoggedIn'),
       emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
       confirmationCodePromptCallback = require('../callback/prompt/confirmationCode');
 
@@ -11,6 +12,7 @@ function confirmEmailAddress(argument) {
   const emailAddress = argument,  ///
         confirmationCode = null,
         callbacks = [
+          checkLoggedIn,
           emailAddressPromptCallback,
           confirmationCodePromptCallback
         ],
