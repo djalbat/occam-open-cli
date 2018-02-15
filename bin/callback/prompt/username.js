@@ -1,13 +1,13 @@
 'use strict';
 
-const prompt = require('../prompt'),
-      validate = require('../validate'),
-      messages = require('../messages');
+const prompt = require('../../prompt'),
+      validate = require('../../validate'),
+      messages = require('../../messages');
 
 const { validateUsername } = validate,
       { INVALID_USERNAME_MESSAGE } = messages;
 
-function usernameCallback(next, done, context) {
+function usernamePromptCallback(next, done, context) {
   const { username } = context;
 
   if (username !== null) {
@@ -50,4 +50,4 @@ function usernameCallback(next, done, context) {
   });
 }
 
-module.exports = usernameCallback;
+module.exports = usernamePromptCallback;

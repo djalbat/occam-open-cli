@@ -2,8 +2,8 @@
 
 const action = require('../action'),
       constants = require('../constants'),
-      emailAddressCallback = require('../callback/emailAddress'),
-      confirmationCodeCallback = require('../callback/confirmationCode');
+      emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
+      confirmationCodePromptCallback = require('../callback/prompt/confirmationCode');
 
 const { CONFIRM_EMAIL_ADDRESS_URI } = constants;
 
@@ -11,8 +11,8 @@ function confirmEmailAddress(argument) {
   const emailAddress = argument,  ///
         confirmationCode = null,
         callbacks = [
-          emailAddressCallback,
-          confirmationCodeCallback
+          emailAddressPromptCallback,
+          confirmationCodePromptCallback
         ],
         context = {
           emailAddress: emailAddress,

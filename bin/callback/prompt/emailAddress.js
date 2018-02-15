@@ -1,13 +1,13 @@
 'use strict';
 
-const prompt = require('../prompt'),
-      validate = require('../validate'),
-      messages = require('../messages');
+const prompt = require('../../prompt'),
+      validate = require('../../validate'),
+      messages = require('../../messages');
 
 const { validateEmailAddress } = validate,
       { INVALID_EMAIL_ADDRESS_MESSAGE } = messages;
 
-function emailAddressCallback(next, done, context) {
+function emailAddressPromptCallback(next, done, context) {
   const { emailAddress } = context;
   
   if (emailAddress !== null) {
@@ -50,5 +50,5 @@ function emailAddressCallback(next, done, context) {
   });
 }
 
-module.exports = emailAddressCallback;
+module.exports = emailAddressPromptCallback;
 

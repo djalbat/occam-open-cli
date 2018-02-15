@@ -1,11 +1,11 @@
 'use strict';
 
-const prompt = require('../prompt'),
-      messages = require('../messages');
+const prompt = require('../../prompt'),
+      messages = require('../../messages');
 
 const { PASSWORDS_DO_NOT_MATCH_MESSAGE } = messages;
 
-function confirmPasswordCallback(next, done, context) {
+function confirmPasswordPromptCallback(next, done, context) {
   const { password } = context,
         description = 'Confirm password: ',
         errorMessage = PASSWORDS_DO_NOT_MATCH_MESSAGE,
@@ -38,4 +38,4 @@ function confirmPasswordCallback(next, done, context) {
   }
 }
 
-module.exports = confirmPasswordCallback;
+module.exports = confirmPasswordPromptCallback;

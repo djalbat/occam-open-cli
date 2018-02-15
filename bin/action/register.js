@@ -5,10 +5,10 @@ const necessary = require('necessary')
 const action = require('../action'),
       messages = require('../messages'),
       constants = require('../constants'),
-      usernameCallback = require('../callback/username'),
-      passwordCallback = require('../callback/password'),
-      emailAddressCallback = require('../callback/emailAddress'),
-      confirmPasswordCallback = require('../callback/confirmPassword');
+      usernamePromptCallback = require('../callback/prompt/username'),
+      passwordPromptCallback = require('../callback/prompt/password'),
+      emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
+      confirmPasswordPromptCallback = require('../callback/prompt/confirmPassword');
 
 const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
@@ -21,10 +21,10 @@ function register(argument) {
         password = null,
         emailAddress = null,
         callbacks = [
-          usernameCallback,
-          passwordCallback,
-          confirmPasswordCallback,
-          emailAddressCallback
+          usernamePromptCallback,
+          passwordPromptCallback,
+          confirmPasswordPromptCallback,
+          emailAddressPromptCallback
         ],
         context = {
           username: username,

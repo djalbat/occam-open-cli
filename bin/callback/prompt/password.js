@@ -1,13 +1,13 @@
 'use strict';
 
-const prompt = require('../prompt'),
-      validate = require('../validate'),
-      messages = require('../messages');
+const prompt = require('../../prompt'),
+      validate = require('../../validate'),
+      messages = require('../../messages');
 
 const { validatePassword } = validate,
       { INVALID_PASSWORD_MESSAGE } = messages;
 
-function passwordCallback(next, done, context) {
+function passwordPromptCallback(next, done, context) {
   const description = 'Password: ',
         validationFunction = validatePassword,        
         errorMessage = INVALID_PASSWORD_MESSAGE,
@@ -36,4 +36,4 @@ function passwordCallback(next, done, context) {
   });
 }
 
-module.exports = passwordCallback;
+module.exports = passwordPromptCallback;

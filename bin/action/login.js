@@ -5,8 +5,8 @@ const necessary = require('necessary')
 const action = require('../action'),
       messages = require('../messages'),
       constants = require('../constants'),
-      usernameCallback = require('../callback/username'),
-      passwordCallback = require('../callback/password');
+      usernamePromptCallback = require('../callback/prompt/username'),
+      passwordPromptCallback = require('../callback/prompt/password');
 
 const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
@@ -18,8 +18,8 @@ function login(argument) {
   const username = argument,  ///
         password = null,
         callbacks = [
-          usernameCallback,
-          passwordCallback
+          usernamePromptCallback,
+          passwordPromptCallback
         ],
         context = {
           username: username,

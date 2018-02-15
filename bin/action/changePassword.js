@@ -3,8 +3,8 @@
 const action = require('../action'),
       prompt = require('../prompt'),
       constants = require('../constants'),
-      usernameCallback = require('../callback/username'),
-      passwordCallback = require('../callback/password');
+      usernamePromptCallback = require('../callback/prompt/username'),
+      passwordPromptCallback = require('../callback/prompt/password');
 
 const { CHANGE_PASSWORD_URI } = constants;
 
@@ -13,8 +13,8 @@ function changePassword(argument) {
         oldPassword = null,
         newPassword = null,
         callbacks = [
-          usernameCallback,
-          passwordCallback
+          usernamePromptCallback,
+          passwordPromptCallback
         ],
         context = {
           username: username,

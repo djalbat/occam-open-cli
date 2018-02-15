@@ -1,13 +1,13 @@
 'use strict';
 
-const prompt = require('../prompt'),
-      validate = require('../validate'),
-      messages = require('../messages');
+const prompt = require('../../prompt'),
+      validate = require('../../validate'),
+      messages = require('../../messages');
 
 const { validateConfirmationCode } = validate,
       { INVALID_CONFIRMATION_CODE_MESSAGE } = messages;
 
-function confirmationCodeCallback(next, done, context) {
+function confirmationCodePromptCallback(next, done, context) {
   const description = 'Confirmation code: ',
         validationFunction = validateConfirmationCode,        
         errorMessage = INVALID_CONFIRMATION_CODE_MESSAGE,
@@ -38,4 +38,4 @@ function confirmationCodeCallback(next, done, context) {
   });
 }
 
-module.exports = confirmationCodeCallback;
+module.exports = confirmationCodePromptCallback;
