@@ -1,7 +1,7 @@
 {
   "name": "occam-open-cli",
   "author": "James Smith",
-  "version": "0.1.79",
+  "version": "0.1.80",
   "license": "MIT",
   "homepage": "https://github.com/occam-proof-assistant/Open-CLI",
   "description": "Occam's command line package management tool.",
@@ -10,7 +10,7 @@
     "url": "https://github.com/occam-proof-assistant/Open-CLI"
   },
   "bin": {
-    "open": "./main.js"
+    "open": "./open.js"
   },
   "dependencies": {
     "fs-extra": "^1.0.0",
