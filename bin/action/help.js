@@ -33,7 +33,7 @@ Commmands:
 
   change-password [<username>]     Change your password 
 
-  recover-password [<username>]    Recover your password 
+  reset-password [<username>]      Reset your password 
 `);
 }
 

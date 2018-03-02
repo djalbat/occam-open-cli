@@ -5,7 +5,7 @@ const action = require('../action'),
 
 const { RECOVER_PASSWORD_URI } = constants;
 
-function recoverPassword() {
+function resetPassword() {
   const callbacks = [],
         context = {},
         uri = RECOVER_PASSWORD_URI;
@@ -13,4 +13,4 @@ function recoverPassword() {
   action(callbacks, context, uri);
 }
 
-module.exports = recoverPassword;
+module.exports = resetPassword;

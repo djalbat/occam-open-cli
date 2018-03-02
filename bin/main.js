@@ -7,8 +7,8 @@ const help = require('./action/help'),
       version = require('./action/version'),
       install = require('./action/install'),
       register = require('./action/register'),
+    resetPassword = require('./action/resetPassword'),
       changePassword = require('./action/changePassword'),
-      recoverPassword = require('./action/recoverPassword'),
       confirmEmailAddress = require('./action/confirmEmailAddress'),
       resendConfirmationCode = require('./action/resendConfirmationCode');
 
@@ -34,7 +34,7 @@ function main(command, argument, options) {
     case 'login': login(argument); break;
     case 'logout': logout(); break;
     case 'change-password': changePassword(argument); break;
-    case 'recover-password': recoverPassword(argument); break;
+    case 'reset-password': resetPassword(argument); break;
     case 'confirm': confirmEmailAddress(argument); break; ///
     case 'resend': resendConfirmationCode(argument); break; ///
 
