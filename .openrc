@@ -3,5 +3,6 @@
 		{
 			"apiURL": "http://localhost:8002/api/"
 		}
-	]
+	],
+	"accessToken": "d592b9847bbd41d6bd8d406d91e74f82"
 }
