@@ -7,7 +7,7 @@ const prompt = require('../../prompt'),
 const { validatePassword } = validate,
       { INVALID_PASSWORD_MESSAGE } = messages;
 
-function passwordPromptCallback(next, done, context) {
+function passwordPromptCallback(proceed, abort, context) {
   const description = 'Password: ',
         validationFunction = validatePassword,        
         errorMessage = INVALID_PASSWORD_MESSAGE,
@@ -29,10 +29,10 @@ function passwordPromptCallback(next, done, context) {
         password: password
       });
 
-      next();
-    } else {
-      done();
+      proceed();
     }
+
+    abort();
   });
 }
 

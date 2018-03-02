@@ -3,22 +3,27 @@
 const request = require('request'),
       necessary = require('necessary');
 
-const messages = require('./messages'),
-      constants = require('./constants');
+const messages = require('./messages');
 
 const { asynchronousUtilities, miscellaneousUtilities } = necessary,
-      { sequence } = asynchronousUtilities,
       { rc, onETX } = miscellaneousUtilities,
-      { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages,
-      { exit } = process;
+      { whilst } = asynchronousUtilities,
+      { exit } = process,
+      { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages;
 
 function action(callbacks, context, uri, callback) {
-  sequence(callbacks, function() {
+  Object.assign(context, {
+    callbacks: callbacks
+  });
+
+  whilst(executeCallback, function() {
     const { abort } = context;
 
     if (abort) {
       exit();
     } else {
+      delete context.callbacks;
+
       requestAction(context, uri, callback);
     }
 
@@ -66,4 +71,29 @@ function requestAction(context, uri, callback) {
 
     exit(); ///
   });
+}
+
+function executeCallback(next, done, context, index) {
+  const { callbacks } = context,
+        callbacksLength = callbacks.length,
+        lastOperationIndex = callbacksLength - 1;
+
+  if (index > lastOperationIndex) {
+    done();
+
+    return;
+  }
+
+  const callback = callbacks[index],
+        proceed = next; ///
+
+  callback(proceed, function() {
+    const abort = true;
+
+    Object.assign(context, {
+      abort: abort
+    });
+
+    done();
+  }, context);
 }

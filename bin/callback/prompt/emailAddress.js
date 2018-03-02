@@ -7,14 +7,14 @@ const prompt = require('../../prompt'),
 const { validateEmailAddress } = validate,
       { INVALID_EMAIL_ADDRESS_MESSAGE } = messages;
 
-function emailAddressPromptCallback(next, done, context) {
+function emailAddressPromptCallback(proceed, abort, context) {
   const { emailAddress } = context;
   
   if (emailAddress !== null) {
     const valid = validateEmailAddress(emailAddress);
 
     if (valid) {
-      next();
+      proceed();
       
       return;
     }
@@ -41,14 +41,13 @@ function emailAddressPromptCallback(next, done, context) {
         emailAddress: emailAddress
       });
 
-      next();
+      proceed();
       
       return;
-    } 
-    
-    done();
+    }
+
+    abort();
   });
 }
 
 module.exports = emailAddressPromptCallback;
-

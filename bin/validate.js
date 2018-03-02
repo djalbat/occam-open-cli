@@ -6,7 +6,7 @@ function validatePassword(password) { return /^[a-zA-Z0-9!@#$%^&*_.,\-]{8,24}$/.
 
 function validateEmailAddress(emailAddress) { return /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,16}$/.test(emailAddress); }
 
-function validateConfirmationCode(confirmationCode) { return /^[a-zA-Z]{6,10}$/.test(confirmationCode); }
+function validateConfirmationCode(confirmationCode) { return /^[a-zA-Z0-9]{6,10}$/.test(confirmationCode); }
 
 module.exports = {
   validateUsername: validateUsername,

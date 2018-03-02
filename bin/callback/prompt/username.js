@@ -7,14 +7,14 @@ const prompt = require('../../prompt'),
 const { validateUsername } = validate,
       { INVALID_USERNAME_MESSAGE } = messages;
 
-function usernamePromptCallback(next, done, context) {
+function usernamePromptCallback(proceed, abort, context) {
   const { username } = context;
 
   if (username !== null) {
     const valid = validateUsername(username);
 
     if (valid) {
-      next();
+      proceed();
       
       return;
     }
@@ -41,12 +41,12 @@ function usernamePromptCallback(next, done, context) {
         username: username
       });
 
-      next();
+      proceed();
       
       return;
-    } 
-    
-    done();
+    }
+
+    abort();
   });
 }
 

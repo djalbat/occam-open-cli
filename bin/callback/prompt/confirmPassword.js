@@ -5,7 +5,7 @@ const prompt = require('../../prompt'),
 
 const { PASSWORDS_DO_NOT_MATCH_MESSAGE } = messages;
 
-function confirmPasswordPromptCallback(next, done, context) {
+function confirmPasswordPromptCallback(proceed, abort, context) {
   const { password } = context,
         description = 'Confirm password: ',
         errorMessage = PASSWORDS_DO_NOT_MATCH_MESSAGE,
@@ -23,12 +23,12 @@ function confirmPasswordPromptCallback(next, done, context) {
     const valid = (password !== null);
 
     if (valid) {
-      next();
+      proceed();
       
       return;
-    } 
-    
-    done();
+    }
+
+    abort();
   });
 
   function validationFunction(value) {

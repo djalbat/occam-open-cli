@@ -1,12 +1,14 @@
 'use strict';
 
 const action = require('../action'),
+      messages = require('../messages'),
       constants = require('../constants'),
       checkLoggedIn = require('../callback/checkLoggedIn'),
       emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
       confirmationCodePromptCallback = require('../callback/prompt/confirmationCode');
 
-const { CONFIRM_EMAIL_ADDRESS_URI } = constants;
+const { CONFIRM_EMAIL_ADDRESS_URI } = constants,
+      { FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE, SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE } = messages;
 
 function confirmEmailAddress(argument) {
   const emailAddress = argument,  ///
@@ -23,7 +25,15 @@ function confirmEmailAddress(argument) {
         uri = CONFIRM_EMAIL_ADDRESS_URI;
 
   action(callbacks, context, uri, function(json) {
+    const { success, message } = json;
 
+    if (success) {
+      console.log(SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE)
+    } else {
+      console.log(FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE);
+
+      console.log(message);
+    }
   });
 }
 

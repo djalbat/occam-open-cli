@@ -7,12 +7,12 @@ const prompt = require('../../prompt'),
 const { validateConfirmationCode } = validate,
       { INVALID_CONFIRMATION_CODE_MESSAGE } = messages;
 
-function confirmationCodePromptCallback(next, done, context) {
+function confirmationCodePromptCallback(proceed, abort, context) {
   const description = 'Confirmation code: ',
         validationFunction = validateConfirmationCode,        
         errorMessage = INVALID_CONFIRMATION_CODE_MESSAGE,
         attempts = 3,
-        hidden = false,
+        hidden = true,
         options = {
           description: description,
           validationFunction: validationFunction,
@@ -29,12 +29,12 @@ function confirmationCodePromptCallback(next, done, context) {
         confirmationCode: confirmationCode
       });
 
-      next();
+      proceed();
 
       return;
     }
 
-    done();
+    abort();
   });
 }
 

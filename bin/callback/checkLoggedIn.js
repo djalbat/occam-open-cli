@@ -9,25 +9,19 @@ const { miscellaneousUtilities } = necessary,
       { readRCFile } = rc,
       { NOT_LOGGED_IN_MESSAGE } = messages;
 
-function checkLoggedIn(next, done, context) {
+function checkLoggedIn(proceed, abort, context) {
   const json = readRCFile(),
         { accessToken } = json;
 
   if (accessToken) {
-    next();
+    proceed();
 
     return;
   }
 
-  const abort = true;
-
-  Object.assign(context, {
-    abort: abort
-  });
-  
   console.log(NOT_LOGGED_IN_MESSAGE);
 
-  done();
+  abort();
 }
 
 module.exports = checkLoggedIn;
