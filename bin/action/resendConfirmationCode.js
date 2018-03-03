@@ -18,15 +18,11 @@ function resendConfirmationCode() {
         uri = RESEND_CONFIRMATION_CODE_URI;
 
   action(callbacks, context, uri, function(json) {
-    const { success, message } = json;
+    const { success } = json;
 
-    if (success) {
-      console.log(SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE)
-    } else {
-      console.log(FAILED_RESEND_CONFIRMATION_CODE_MESSAGE);
-
-      console.log(message);
-    }
+    success ?
+      console.log(SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE) :
+        console.log(FAILED_RESEND_CONFIRMATION_CODE_MESSAGE);
   });
 }
 

@@ -25,15 +25,11 @@ function confirmEmailAddress(argument) {
         uri = CONFIRM_EMAIL_ADDRESS_URI;
 
   action(callbacks, context, uri, function(json) {
-    const { success, message } = json;
+    const { success } = json;
 
-    if (success) {
-      console.log(SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE)
-    } else {
-      console.log(FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE);
-
-      console.log(message);
-    }
+    success ?
+      console.log(SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE) :
+        console.log(FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE);
   });
 }
 

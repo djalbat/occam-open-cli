@@ -11,9 +11,10 @@ const { miscellaneousUtilities } = necessary,
 
 function checkLoggedIn(proceed, abort, context) {
   const json = readRCFile(),
-        { accessToken } = json;
+        { accessToken } = json,
+        loggedIn = !!accessToken;
 
-  if (accessToken) {
+  if (loggedIn) {
     proceed();
 
     return;

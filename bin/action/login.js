@@ -28,7 +28,7 @@ function login(argument) {
         uri = LOGIN_URI;
   
   action(callbacks, context, uri, function(json) {
-    const { success, message } = json;
+    const { success } = json;
 
     if (success) {
       const { accessToken } = json;
@@ -40,8 +40,6 @@ function login(argument) {
       console.log(SUCCESSFUL_LOGIN_MESSAGE)
     } else {
       console.log(FAILED_LOGIN_MESSAGE);
-
-      console.log(message);
     }
   });
 }

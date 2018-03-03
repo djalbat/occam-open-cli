@@ -34,7 +34,7 @@ function register(argument) {
         uri = REGISTER_URI;
 
   action(callbacks, context, uri, function(json) {
-    const { success, message } = json;
+    const { success } = json;
 
     if (success) {
       const { accessToken } = json;
@@ -46,8 +46,6 @@ function register(argument) {
       console.log(SUCCESSFUL_REGISTER_MESSAGE);
     } else {
       console.log(FAILED_REGISTER_MESSAGE);
-
-      console.log(message);
     }
   });
 }

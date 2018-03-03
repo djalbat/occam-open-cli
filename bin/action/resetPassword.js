@@ -1,16 +1,30 @@
 'use strict';
 
 const action = require('../action'),
-      constants = require('../constants');
+      messages = require('../messages'),
+      constants = require('../constants'),
+      usernamePromptCallback = require('../callback/prompt/username');
 
-const { RECOVER_PASSWORD_URI } = constants;
+const { RESET_PASSWORD_URI } = constants,
+      { FAILED_RESET_PASSWORD_MESSAGE, SUCCESSFUL_RESET_PASSWORD_MESSAGE } = messages;
 
-function resetPassword() {
-  const callbacks = [],
-        context = {},
-        uri = RECOVER_PASSWORD_URI;
+function resetPassword(argument) {
+  const username = argument,  ///
+        callbacks = [
+          usernamePromptCallback
+        ],
+        context = {
+          username: username
+        },
+        uri = RESET_PASSWORD_URI;
 
-  action(callbacks, context, uri);
+  action(callbacks, context, uri, function(json) {
+    const { success } = json;
+
+    success ?
+      console.log(SUCCESSFUL_RESET_PASSWORD_MESSAGE) :
+        console.log(FAILED_RESET_PASSWORD_MESSAGE);
+  });
 }
 
 module.exports = resetPassword;
