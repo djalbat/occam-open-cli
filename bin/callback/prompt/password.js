@@ -30,6 +30,8 @@ function passwordPromptCallback(proceed, abort, context) {
       });
 
       proceed();
+
+      return;
     }
 
     abort();

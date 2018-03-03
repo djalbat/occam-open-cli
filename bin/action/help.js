@@ -17,9 +17,9 @@ Commmands:
 
   version                          Show the version
 
-  install <package_name>           Install the given package
+  install <package_name>           Install a package
 
-  remove <package_name>            Remove the given package
+  remove <package_name>            Remove a package
 
   register [<username>]            Register
    

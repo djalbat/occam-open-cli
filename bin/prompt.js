@@ -7,7 +7,8 @@ const constants = require('./constants');
 const { stdin, stdout } = process,
       { asynchronousUtilities } = necessary,
       { whilst } = asynchronousUtilities,
-      { CTRL_C, LINE_FEED, CARRIAGE_RETURN, BACKSPACE } = constants;
+      { CTRL_C, LINE_FEED, CARRIAGE_RETURN, BACKSPACE } = constants,
+      { exit } = process;
 
 function prompt(options, callback) {
   const value = null,
@@ -119,7 +120,7 @@ function hiddenInput(description, callback) {
       case CTRL_C :
         console.log();
 
-        process.exit();
+        exit();
         break;
 
       case BACKSPACE :
