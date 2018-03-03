@@ -24,54 +24,47 @@ function action(callbacks, context, uri, callback) {
     } else {
       delete context.callbacks;
 
-      requestAction(context, uri, callback);
+      const offETX = onETX(exit),
+            { apiURL, method, encoding, timeout } = rc,
+            url = `${apiURL}${uri}`,
+            form = context, ///
+            options = {
+              url : url,
+              form: form,
+              method : method,
+              encoding: encoding,
+              timeout: timeout
+            };
+
+      request(options, function(error, response) {
+        offETX();
+
+        if (!response) {  ///
+          console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
+        } else {
+          const { body } = response,
+                json = JSON.parse(body),
+                { error } = json;
+
+          if (error) {
+            const { message } = json;
+
+            console.log(SERVER_ERROR_MESSAGE);
+
+            console.log(message);
+          } else {
+            callback(json);
+          }
+        }
+
+        exit(); ///
+      });
     }
 
   }, context);
 }
 
 module.exports = action;
-
-function requestAction(context, uri, callback) {
-  const { apiURL } = rc,
-        url = `${apiURL}${uri}`,
-        method = 'POST',
-        encoding = 'utf8',
-        timeout = 10000,
-        form = context, ///
-        options = {
-          url : url,
-          method : method,
-          encoding: encoding,
-          timeout: timeout,
-          form: form
-        },
-        offETX = onETX(exit);
-
-  request(options, function(error, response) {
-    offETX();
-
-    if (!response) {  ///
-      console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
-    } else {
-      const { body } = response,
-            json = JSON.parse(body),
-            { error } = json;
-
-      if (error) {
-        const { message } = json;
-
-        console.log(SERVER_ERROR_MESSAGE);
-
-        console.log(message);
-      } else {
-        callback(json);
-      }
-    }
-
-    exit(); ///
-  });
-}
 
 function executeCallback(next, done, context, index) {
   const { callbacks } = context,
