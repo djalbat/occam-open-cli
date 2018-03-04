@@ -8,10 +8,10 @@ const ESCAPE_KEY = '\u001B',
       LOGIN_URI = 'login',
       LOGOUT_URI = 'logout',
       REGISTER_URI = 'register',
-      RESET_PASSWORD_URI = 'reset', ///
-      CHANGE_PASSWORD_URI = 'change', ///
-      CONFIRM_EMAIL_ADDRESS_URI = 'confirm',  ///
-      RESEND_CONFIRMATION_CODE_URI = 'resend';  ///
+      RESET_PASSWORD_URI = 'resetPassword',
+      CHANGE_PASSWORD_URI = 'changePassword',
+      CONFIRM_EMAIL_ADDRESS_URI = 'confirmEmailAddress',
+      RESEND_CONFIRMATION_CODE_URI = 'resendConfirmationCode';
 
 const constants = {
   ESCAPE_KEY: ESCAPE_KEY,

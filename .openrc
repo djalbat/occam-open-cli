@@ -2,10 +2,8 @@
 	"environments": [
 		{
 			"apiURL": "http://localhost:8002/api/",
-			"method": "POST",
-			"encoding": "utf8",
 			"timeout": 10000
 		}
 	],
-	"accessToken": "09e3f4082f654331b6e0aa247214b38e"
+	"accessToken": "6e31b15e127d4d199e5aeab3b6208172"
 }

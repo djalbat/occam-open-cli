@@ -5,7 +5,7 @@ const necessary = require('necessary');
 const action = require('../action'),
       messages = require('../messages'),
       constants = require('../constants'),
-      checkLoggedIn = require('../callback/checkLoggedIn');
+      checkLoggedInCallback = require('../callback/checkLoggedIn');
 
 const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
@@ -15,7 +15,7 @@ const { miscellaneousUtilities } = necessary,
 
 function logout() {
   const callbacks = [
-          checkLoggedIn
+          checkLoggedInCallback
         ],
         context = {},
         uri = LOGOUT_URI;

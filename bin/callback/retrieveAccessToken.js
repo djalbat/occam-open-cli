@@ -6,7 +6,7 @@ const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
       { readRCFile } = rc;
 
-function retrieveAccessToken(proceed, abort, context) {
+function retrieveAccessTokenCallback(proceed, abort, context) {
   const json = readRCFile(),
         { accessToken } = json;
 
@@ -23,4 +23,4 @@ function retrieveAccessToken(proceed, abort, context) {
   abort();
 }
 
-module.exports = retrieveAccessToken;
+module.exports = retrieveAccessTokenCallback;

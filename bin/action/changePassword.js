@@ -1,20 +1,27 @@
 'use strict';
 
 const action = require('../action'),
-      prompt = require('../prompt'),
+      messages = require('../messages'),
       constants = require('../constants'),
+      checkLoggedInCallback = require('../callback/checkLoggedIn'),
       usernamePromptCallback = require('../callback/prompt/username'),
-      passwordPromptCallback = require('../callback/prompt/password');
+      passwordPromptCallback = require('../callback/prompt/password'),
+      newPasswordPromptCallback = require('../callback/prompt/newPassword'),
+      confirmNewPasswordPromptCallback = require('../callback/prompt/confirmNewPassword');
 
-const { CHANGE_PASSWORD_URI } = constants;
+const { CHANGE_PASSWORD_URI } = constants,
+      { FAILED_CHANGE_PASSWORD_MESSAGE, SUCCESSFUL_CHANGE_PASSWORD_MESSAGE } = messages;
 
 function changePassword(argument) {
   const username = argument,  ///
         oldPassword = null,
         newPassword = null,
         callbacks = [
+          checkLoggedInCallback,
           usernamePromptCallback,
-          passwordPromptCallback
+          passwordPromptCallback,
+          newPasswordPromptCallback,
+          confirmNewPasswordPromptCallback
         ],
         context = {
           username: username,
@@ -24,7 +31,11 @@ function changePassword(argument) {
         uri = CHANGE_PASSWORD_URI;
 
   action(callbacks, context, uri, function(json) {
+    const { success } = json;
 
+    success ?
+      console.log(SUCCESSFUL_CHANGE_PASSWORD_MESSAGE) :
+        console.log(FAILED_CHANGE_PASSWORD_MESSAGE);
   });
 }
 

@@ -1,6 +1,6 @@
 'use strict';
 
-const necessary = require('necessary')
+const necessary = require('necessary');
 
 const action = require('../action'),
       messages = require('../messages'),

@@ -25,9 +25,11 @@ function action(callbacks, context, uri, callback) {
       delete context.callbacks;
 
       const offETX = onETX(exit),
-            { apiURL, method, encoding, timeout } = rc,
+            { apiURL, timeout } = rc,
             url = `${apiURL}${uri}`,
             form = context, ///
+            method = 'POST',  ///
+            encoding = 'utf8',  ///
             options = {
               url : url,
               form: form,

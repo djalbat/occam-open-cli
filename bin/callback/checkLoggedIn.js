@@ -9,7 +9,7 @@ const { miscellaneousUtilities } = necessary,
       { readRCFile } = rc,
       { NOT_LOGGED_IN_MESSAGE } = messages;
 
-function checkLoggedIn(proceed, abort, context) {
+function checkLoggedInCallback(proceed, abort, context) {
   const json = readRCFile(),
         { accessToken } = json,
         loggedIn = !!accessToken;
@@ -25,4 +25,4 @@ function checkLoggedIn(proceed, abort, context) {
   abort();
 }
 
-module.exports = checkLoggedIn;
+module.exports = checkLoggedInCallback;
