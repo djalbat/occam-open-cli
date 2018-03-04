@@ -4,17 +4,20 @@ const action = require('../action'),
       messages = require('../messages'),
       constants = require('../constants'),
       checkLoggedInCallback = require('../callback/checkLoggedIn'),
-      retrieveAccessTokenCallback = require('../callback/retrieveAccessToken');
+      emailAddressPromptCallback = require('../callback/prompt/emailAddress');
 
 const { RESEND_CONFIRMATION_CODE_URI } = constants,
       { SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE, FAILED_RESEND_CONFIRMATION_CODE_MESSAGE } = messages;
 
-function resendConfirmationCode() {
-  const callbacks = [
+function resendConfirmationCode(argument) {
+  const emailAddress = argument,  ///
+        callbacks = [
           checkLoggedInCallback,
-          retrieveAccessTokenCallback
+          emailAddressPromptCallback
         ],
-        context = {},
+        context = {
+          emailAddress: emailAddress
+        },
         uri = RESEND_CONFIRMATION_CODE_URI;
 
   action(callbacks, context, uri, function(json) {

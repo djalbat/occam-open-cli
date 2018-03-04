@@ -23,17 +23,17 @@ Commmands:
 
   register [<username>]            Register
    
-  confirm [<email_address>]        Confirm your email address
- 
   login [<username>]               Login 
 
   logout                           Logout 
+ 
+  resend [<email_address>]         Resend a confirmation code
 
-  resend                           Resend a confirmation code
-
-  change-password [<username>]     Change your password 
+  confirm [<email_address>]        Confirm your email address
 
   reset-password [<username>]      Reset your password 
+
+  change-password [<username>]     Change your password 
 `);
 }
 

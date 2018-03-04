@@ -77,7 +77,7 @@ function visibleInput(description, callback) {
 
   stdin.resume();
 
-  stdin.on('data', function (chunk) {
+  stdin.on('data', function(chunk) {
     const value = chunk.trim();
 
     stdin.removeAllListeners('data');
@@ -102,7 +102,7 @@ function hiddenInput(description, callback) {
 
   let value = '';
 
-  stdin.on('data', function (chunk) {
+  stdin.on('data', function(chunk) {
     const char = chunk.toString(encoding);
 
     switch (char) {

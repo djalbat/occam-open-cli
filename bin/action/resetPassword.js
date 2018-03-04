@@ -3,6 +3,7 @@
 const action = require('../action'),
       messages = require('../messages'),
       constants = require('../constants'),
+      checkLoggedInCallback = require('../callback/checkLoggedIn'),
       usernamePromptCallback = require('../callback/prompt/username');
 
 const { RESET_PASSWORD_URI } = constants,
@@ -11,6 +12,7 @@ const { RESET_PASSWORD_URI } = constants,
 function resetPassword(argument) {
   const username = argument,  ///
         callbacks = [
+          checkLoggedInCallback,
           usernamePromptCallback
         ],
         context = {

@@ -14,15 +14,19 @@ function checkLoggedInCallback(proceed, abort, context) {
         { accessToken } = json,
         loggedIn = !!accessToken;
 
-  if (loggedIn) {
-    proceed();
+  if (!loggedIn) {
+    console.log(NOT_LOGGED_IN_MESSAGE);
+
+    abort();
 
     return;
   }
 
-  console.log(NOT_LOGGED_IN_MESSAGE);
+  Object.assign(context, {
+    accessToken: accessToken
+  });
 
-  abort();
+  proceed();
 }
 
 module.exports = checkLoggedInCallback;
