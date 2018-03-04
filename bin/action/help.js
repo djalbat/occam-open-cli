@@ -7,7 +7,7 @@ function help() {
   
   open --version|-v                Show the version
 
-  open <package_name>              Install the given package
+  open <package_name>              Install a package
 
   open <command> [<argument>]
 
@@ -19,7 +19,11 @@ Commmands:
 
   install <package_name>           Install a package
 
+  clone <package_name>             Clone a package with Git
+
   remove <package_name>            Remove a package
+
+  publish <package_name>           Publish a package
 
   register [<username>]            Register
    

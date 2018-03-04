@@ -1,11 +1,13 @@
 'use strict';
 
 const help = require('./action/help'),
+      clone = require('./action/clone'),
       login = require('./action/login'),
       logout = require('./action/logout'),
       remove = require('./action/remove'),
       version = require('./action/version'),
       install = require('./action/install'),
+      publish = require('./action/publish'),
       register = require('./action/register'),
       resetPassword = require('./action/resetPassword'),
       changePassword = require('./action/changePassword'),
@@ -30,6 +32,8 @@ function main(command, argument, options) {
     case 'version': version(); break;
     case 'install': install(argument); break;
     case 'remove': remove(argument); break;
+    case 'clone': clone(argument); break;
+    case 'publish': publish(argument); break;
     case 'register': register(argument); break;
     case 'login': login(argument); break;
     case 'logout': logout(); break;
