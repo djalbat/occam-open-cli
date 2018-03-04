@@ -1,11 +1,6 @@
 'use strict';
 
-const ESCAPE_KEY = '\u001B',
-      CTRL_C = '\u0003',
-      LINE_FEED = '\n',
-      CARRIAGE_RETURN = '\r',
-      BACKSPACE = String.fromCharCode(127),
-      LOGIN_URI = 'login',
+const LOGIN_URI = 'login',
       LOGOUT_URI = 'logout',
       REGISTER_URI = 'register',
       RESET_PASSWORD_URI = 'resetPassword',
@@ -14,11 +9,6 @@ const ESCAPE_KEY = '\u001B',
       RESEND_CONFIRMATION_CODE_URI = 'resendConfirmationCode';
 
 const constants = {
-  ESCAPE_KEY: ESCAPE_KEY,
-  CTRL_C: CTRL_C,
-  LINE_FEED: LINE_FEED,
-  CARRIAGE_RETURN: CARRIAGE_RETURN,
-  BACKSPACE: BACKSPACE,
   LOGIN_URI: LOGIN_URI,
   LOGOUT_URI: LOGOUT_URI,
   REGISTER_URI: REGISTER_URI,

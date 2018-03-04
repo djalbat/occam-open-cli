@@ -33,10 +33,10 @@ function main(command, argument, options) {
     case 'register': register(argument); break;
     case 'login': login(argument); break;
     case 'logout': logout(); break;
-    case 'change-password': changePassword(argument); break;
-    case 'reset-password': resetPassword(argument); break;
-    case 'confirm': confirmEmailAddress(argument); break; ///
     case 'resend': resendConfirmationCode(argument); break; ///
+    case 'confirm': confirmEmailAddress(argument); break; ///
+    case 'reset-password': resetPassword(argument); break;
+    case 'change-password': changePassword(argument); break;
 
     default:
       argument = command;  ///

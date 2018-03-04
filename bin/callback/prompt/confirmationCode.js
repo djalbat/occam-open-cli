@@ -1,24 +1,25 @@
 'use strict';
 
-const prompt = require('../../prompt'),
-      validate = require('../../validate'),
+const necessary = require('necessary');
+
+const validate = require('../../validate'),
       messages = require('../../messages');
 
-const { validateConfirmationCode } = validate,
+const { miscellaneousUtilities } = necessary,
+      { validateConfirmationCode } = validate,
+      { prompt } = miscellaneousUtilities,
       { INVALID_CONFIRMATION_CODE_MESSAGE } = messages;
 
 function confirmationCodePromptCallback(proceed, abort, context) {
-  const description = 'Confirmation code: ',
-        validationFunction = validateConfirmationCode,        
+  const hidden = true,
+        description = 'Confirmation code: ',
         errorMessage = INVALID_CONFIRMATION_CODE_MESSAGE,
-        attempts = 3,
-        hidden = true,
+        validationFunction = validateConfirmationCode,
         options = {
+          hidden: hidden,
           description: description,
-          validationFunction: validationFunction,
           errorMessage: errorMessage,
-          attempts: attempts,
-          hidden: hidden
+          validationFunction: validationFunction
         };
 
   prompt(options, function(confirmationCode) {

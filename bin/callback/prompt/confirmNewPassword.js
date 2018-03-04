@@ -1,22 +1,23 @@
 'use strict';
 
-const prompt = require('../../prompt'),
-      messages = require('../../messages');
+const necessary = require('necessary');
 
-const { PASSWORDS_DO_NOT_MATCH_MESSAGE } = messages;
+const messages = require('../../messages');
+
+const { miscellaneousUtilities } = necessary,
+      { prompt } = miscellaneousUtilities,
+      { PASSWORDS_DO_NOT_MATCH_MESSAGE } = messages;
 
 function confirmNewPasswordPromptCallback(proceed, abort, context) {
   const { newPassword } = context,
+        hidden = true,
         description = 'Confirm new password: ',
         errorMessage = PASSWORDS_DO_NOT_MATCH_MESSAGE,
-        attempts = 3,
-        hidden = true,
         options = {
+          hidden: hidden,
           description: description,
-          validationFunction: validationFunction,
           errorMessage: errorMessage,
-          attempts: attempts,
-          hidden: hidden
+          validationFunction: validationFunction
         };
 
   prompt(options, function(newPassword) {

@@ -1,10 +1,13 @@
 'use strict';
 
-const prompt = require('../../prompt'),
-      validate = require('../../validate'),
+const necessary = require('necessary');
+
+const validate = require('../../validate'),
       messages = require('../../messages');
 
-const { validateUsername } = validate,
+const { miscellaneousUtilities } = necessary,
+      { validateUsername } = validate,
+      { prompt } = miscellaneousUtilities,
       { INVALID_USERNAME_MESSAGE } = messages;
 
 function usernamePromptCallback(proceed, abort, context) {
@@ -21,16 +24,12 @@ function usernamePromptCallback(proceed, abort, context) {
   }
 
   const description = 'Username: ',
-        validationFunction = validateUsername,
         errorMessage = INVALID_USERNAME_MESSAGE,
-        attempts = 3,
-        hidden = false,
+        validationFunction = validateUsername,
         options = {
           description: description,
-          validationFunction: validationFunction,
           errorMessage: errorMessage,
-          attempts: attempts,
-          hidden: hidden
+          validationFunction: validationFunction
         };
 
   prompt(options, function(username) {

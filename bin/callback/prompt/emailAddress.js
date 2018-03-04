@@ -1,10 +1,13 @@
 'use strict';
 
-const prompt = require('../../prompt'),
-      validate = require('../../validate'),
+const necessary = require('necessary');
+
+const validate = require('../../validate'),
       messages = require('../../messages');
 
-const { validateEmailAddress } = validate,
+const { miscellaneousUtilities } = necessary,
+      { validateEmailAddress } = validate,
+      { prompt } = miscellaneousUtilities,
       { INVALID_EMAIL_ADDRESS_MESSAGE } = messages;
 
 function emailAddressPromptCallback(proceed, abort, context) {
@@ -21,16 +24,12 @@ function emailAddressPromptCallback(proceed, abort, context) {
   }
 
   const description = 'Email address: ',
-        validationFunction = validateEmailAddress,
         errorMessage = INVALID_EMAIL_ADDRESS_MESSAGE,
-        attempts = 3,
-        hidden = false,
+        validationFunction = validateEmailAddress,
         options = {
           description: description,
-          validationFunction: validationFunction,
           errorMessage: errorMessage,
-          attempts: attempts,
-          hidden: hidden
+          validationFunction: validationFunction
         };
 
   prompt(options, function(emailAddress) {
