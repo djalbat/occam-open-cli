@@ -14,9 +14,9 @@ Occam's c**o**mmand line **p**ackag**e** manageme**n**t tool.
 
 ## Introduction
 
-The `open` command line tool will provide similar functionality to [npm](https://www.npmjs.com/), but for Occam packages. 
+The `open` command line tool will provide similar functionality to [npm](https://www.npmjs.com/), but for [Occam](http://djalbat.com/occam) packages.
 
-A package would likely be defined P=(V,Z,H) where V is the version, Z is a zip file or some such containing the files and H≡H(Z) is the hash of Z.
+A package would likely be defined P=(V,Z,H) where V is the version, Z is a zip or some such file containing the files and H≡H(Z) is the hash of Z.
 
 ## Installation
 
@@ -24,23 +24,9 @@ The tool would be installed globally via npm:
 
     npm install -g occam-open-cli
     
-### Known issues
-
-The installation of the `nodegit` package can cause a problem with `libssl`, the part of [OpenSSL](https://www.openssl.org/) that supports TLS. To fix it, on Ubuntu try...
- 
-    sudo apt install libssl-dev
-    
-...to install the latest version of `libssl`. On OSX, try...
-
-    sudo xcode-select --install 
-    
-...to update the Xcode CLT.
-
 ## Usage
 
-This would be slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project. In a `~/Mathematics/` directory, say, with all of the projects being contained in sub-directories of this parent directory.
-
-An access token would be stored in a `.openrc` file in much the same way as npm makes use of a `.npmrc` file, the difference being that whilst npm stores the `.npmrc` file in the user's home directory by default, the `.openrc` file will be stored in the aforementioned parent directory.
+This would be slightly different from npm in that the `open` command line tool would be executed from the parent directory of any project rather than from within the project directory itself. In could reside in a `~/Mathematics/` directory, for example, with all of the projects being contained in sub-directories. It would likely create its own hidden `.packages` and `.cache` directories. It would otherwise leave the contents of the directory in which it resides alone, aside from creating and updating its `.openrc` file. This would include configuration as well as an access token when the user is logged in.
 
 ## Versioning
 
