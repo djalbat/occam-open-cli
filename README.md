@@ -59,7 +59,6 @@ Roughly speaking the signature of a package would be the union of the signatures
 ## Resources
 
 * [Version SAT by Russ Cox](https://research.swtch.com/version-sat)
-* [md5-file](https://github.com/roryrjb/md5-file)
 
 ## Contact
 
