@@ -1,7 +1,5 @@
 'use strict';
 
-const constants = require('../constants');
-
 function clone(argument) {
   if (argument === null) {
     console.log('You need to specify a package name.')
