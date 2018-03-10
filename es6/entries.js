@@ -14,8 +14,8 @@ const { pathUtilities, arrayUtilities, asynchronousUtilities, fileSystemUtilitie
       { concatenatePaths, topmostDirectoryNameFromPath } = pathUtilities;
 
 class Entries {
-  constructor() {
-    this.array = [];
+  constructor(array) {
+    this.array = array;
   }
 
   addEntry(entry) {
@@ -67,11 +67,14 @@ class Entries {
   }
 
   static fromJSZip(jsZip, callback) {
-    const jsZipEntries = jsZip.files, ///
-          jsZipEntryNames = Object.keys(jsZipEntries),
-          entries = new Entries();
+    const array = [],
+          { files } =jsZip,
+          jsZipEntries = files, ///
+          jsZipEntryNames = Object.keys(jsZipEntries);
 
     function done() {
+      const entries = new Entries(array);
+
       callback(entries);
     }
 
@@ -84,7 +87,7 @@ class Entries {
         if (directory !== null) {
           entry = directory;  ///
 
-          entries.addEntry(entry);
+          array.push(entry);  ///
 
           next();
         } else {
@@ -92,7 +95,7 @@ class Entries {
             if (file !== null) {
               entry = file;
 
-              entries.addEntry(entry);
+              array.push(entry);  ///
             }
 
             next();
@@ -103,10 +106,12 @@ class Entries {
   }
 
   static fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
-    const entries = new Entries(),
+    const array = [],
           relativeDirectoryPath = topmostDirectoryName;  ///
 
-    entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
+    entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
+
+    const entries = new Entries(array);
 
     return entries;
   }
@@ -114,7 +119,7 @@ class Entries {
 
 module.exports = Entries;
 
-function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
+function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
   const absoluteDirectoryPath = concatenatePaths(projectsDirectoryPath, relativeDirectoryPath),
         subEntryNames = readDirectory(absoluteDirectoryPath);
 
@@ -133,9 +138,9 @@ function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projec
       if (directory !== null) {
         entry = directory;  ///
 
-        entries.addEntry(entry);
+        array.push(entry);  ///
 
-        entriesFromRelativeDirectoryPath(entries, directoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories); ///
+        entriesFromRelativeDirectoryPath(array, directoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories); ///
       } else {
         const filePath = directoryPath, //
               file = File.fromFilePath(filePath, projectsDirectoryPath);
@@ -143,7 +148,7 @@ function entriesFromRelativeDirectoryPath(entries, relativeDirectoryPath, projec
         if (file !== null) {
           entry = file; ///
 
-          entries.addEntry(entry);
+          array.push(entry);  ///
         }
       }
     }
