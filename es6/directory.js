@@ -19,7 +19,7 @@ class Directory {
   }
 
   toJSON() {
-    const type = Directory.type,
+    const { type } = Directory,
           path = this.path,
           json = {
             "type": type,
@@ -30,9 +30,17 @@ class Directory {
   }
 
   static fromJSON(json) {
-    const pathJSON = json["path"],
-          path = pathJSON,  ///
-          directory = new Directory(path);
+    let directory = null;
+
+    const { type } = Directory,
+          typeJSON = json["type"];
+
+    if (typeJSON === type) {  ///
+      const pathJSON = json["path"],
+            path = pathJSON;  ///
+
+      directory = new Directory(path);
+    }
 
     return directory;
   }
@@ -76,7 +84,11 @@ class Directory {
   }
 }
 
-Directory.type = 'Directory';
+const type = 'Directory';
+
+Object.assign(Directory, {
+  type: type
+});
 
 module.exports = Directory;
 

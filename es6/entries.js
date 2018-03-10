@@ -51,6 +51,21 @@ class Entries {
     return json;
   }
 
+  static fromJSON(json) {
+    const entriesJSON = json, ///
+          array = entriesJSON.map(function(entryJSON) {
+            const json = entryJSON, ///
+                  file = File.fromJSON(json),
+                  directory = Directory.fromJSON(json),
+                  entry = file || directory;  ///
+
+            return entry;
+          }),
+          entries = new Entries(array);
+
+    return entries;
+  }
+
   static fromJSZip(jsZip, callback) {
     const jsZipEntries = jsZip.files, ///
           jsZipEntryNames = Object.keys(jsZipEntries),

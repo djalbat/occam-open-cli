@@ -10,21 +10,21 @@ const { RESET_PASSWORD_URI } = constants,
 
 function resetPassword(argument) {
   const username = argument,  ///
+        uri = RESET_PASSWORD_URI,
         callbacks = [
           usernamePromptCallback
         ],
         context = {
           username: username
-        },
-        uri = RESET_PASSWORD_URI;
+        };
 
-  action(callbacks, context, uri, function(json) {
+  action(callbacks, uri, function(json) {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_RESET_PASSWORD_MESSAGE) :
         console.log(FAILED_RESET_PASSWORD_MESSAGE);
-  });
+  }, context);
 }
 
 module.exports = resetPassword;

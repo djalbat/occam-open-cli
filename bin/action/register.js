@@ -20,6 +20,7 @@ function register(argument) {
   const username = argument,  ///
         password = null,
         emailAddress = null,
+        uri = REGISTER_URI,
         callbacks = [
           usernamePromptCallback,
           passwordPromptCallback,
@@ -30,10 +31,9 @@ function register(argument) {
           username: username,
           password: password,
           emailAddress: emailAddress
-        },
-        uri = REGISTER_URI;
+        };
 
-  action(callbacks, context, uri, function(json) {
+  action(callbacks, uri, function(json) {
     const { success } = json;
 
     if (success) {
@@ -47,7 +47,7 @@ function register(argument) {
     } else {
       console.log(FAILED_REGISTER_MESSAGE);
     }
-  });
+  }, context);
 }
 
 module.exports = register;

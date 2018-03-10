@@ -11,22 +11,22 @@ const { RESEND_CONFIRMATION_CODE_URI } = constants,
 
 function resendConfirmationCode(argument) {
   const emailAddress = argument,  ///
+        uri = RESEND_CONFIRMATION_CODE_URI,
         callbacks = [
           checkLoggedInCallback,
           emailAddressPromptCallback
         ],
         context = {
           emailAddress: emailAddress
-        },
-        uri = RESEND_CONFIRMATION_CODE_URI;
+        };
 
-  action(callbacks, context, uri, function(json) {
+  action(callbacks, uri, function(json) {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE) :
         console.log(FAILED_RESEND_CONFIRMATION_CODE_MESSAGE);
-  });
+  }, context);
 }
 
 module.exports = resendConfirmationCode;

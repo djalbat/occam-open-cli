@@ -5,5 +5,5 @@ module.exports = {
   Files: require('./lib/files'),
   Project: require('./lib/project'),
   Projects: require('./lib/projects'),
-  Package: require('./lib/package')
+  Release: require('./lib/release')
 };

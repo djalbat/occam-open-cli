@@ -24,8 +24,17 @@ class File {
     return this.content;
   }
 
+  save(projectsDirectoryPath) {
+    const absolutePath = concatenatePaths(projectsDirectoryPath, this.path),  ///
+          topmostAbsoluteDirectoryPath = topmostDirectoryPathFromPath(absolutePath);
+
+    mkdirp.sync(topmostAbsoluteDirectoryPath);
+
+    writeFile(absolutePath, this.content);
+  }
+
   toJSON() {
-    const type = File.type,
+    const { type } = File,
           path = this.path,
           content = this.content,
           json = {
@@ -37,21 +46,20 @@ class File {
     return json;
   }
 
-  save(projectsDirectoryPath) {
-    const absolutePath = concatenatePaths(projectsDirectoryPath, this.path),  ///
-          topmostAbsoluteDirectoryPath = topmostDirectoryPathFromPath(absolutePath);
-
-    mkdirp.sync(topmostAbsoluteDirectoryPath);
-
-    writeFile(absolutePath, this.content);
-  }
-
   static fromJSON(json) {
-    const pathJSON = json["path"],
-          contentJSON = json["content"],
-          path = pathJSON,  ///
-          content = contentJSON,  ///
-          file = new File(path, content);
+    let file = null;
+
+    const { type } = File,
+          typeJSON = json["type"];
+
+    if (typeJSON === type) {  ///
+      const pathJSON = json["path"],
+            contentJSON = json["content"],
+            path = pathJSON,  ///
+            content = contentJSON;  ///
+
+      file = new File(path, content);
+    }
 
     return file;
   }
@@ -98,6 +106,10 @@ class File {
   }
 }
 
-File.type = 'File';
+const type = 'File';
+
+Object.assign(File, {
+  type: type
+});
 
 module.exports = File;

@@ -11,10 +11,6 @@ class Project {
     this.entries = entries;
   }
 
-  getName() {
-    return this.name;
-  }
-
   toJSON() {
     const name = this.name,
           entriesJSON = this.entries.toJSON(),
@@ -71,13 +67,8 @@ class Project {
   }
 
   static fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
-    let project = null;
-
-    try {
-      const entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
-
-      project = new Project(topmostDirectoryName, entries);
-    } catch(error) {}  ///
+    const entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories),
+          project = new Project(topmostDirectoryName, entries);
 
     return project;
   }

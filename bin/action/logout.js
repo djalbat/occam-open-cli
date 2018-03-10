@@ -14,17 +14,17 @@ const { miscellaneousUtilities } = necessary,
       { LOGGED_OUT_MESSAGE } = messages;
 
 function logout() {
-  const callbacks = [
+  const uri = LOGOUT_URI,
+        callbacks = [
           checkLoggedInCallback
         ],
-        context = {},
-        uri = LOGOUT_URI;
+        context = {};
 
-  action(callbacks, context, uri, function(json) {
+  action(callbacks, uri, function(json) {
     updateRCFile(null, 'accessToken');
       
     console.log(LOGGED_OUT_MESSAGE);
-  });
+  }, context);
 }
 
 module.exports = logout;

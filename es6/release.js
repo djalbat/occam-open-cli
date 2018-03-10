@@ -1,30 +1,50 @@
 'use strict';
 
-const Project = require('./project');
+const Entries = require('./entries');
 
 class Release {
-  constructor(project) {
-    this.project = project;
+  constructor(entries, packageName) {
+    this.entries = entries;
+    this.packageName = packageName;
   }
 
   getPackageName() {
-    const projectName = this.project.getName(),
-          packageName = projectName;  ///
+    return this.packageName;
+  }
 
-    return packageName;
+  toJSON() {
+    const entriesJSON = this.entries.toJSON(),
+          packageName = this.packageName,
+          entries = entriesJSON,  ///
+          json = {
+            entries: entries,
+            packageName: packageName
+          };
+
+    return json;
+  }
+
+  static fromJSON(json) {
+    const entriesJSON = json["entries"],
+          packageNameJSON = json["entries"],
+          entries = Entries.fromJSON(entriesJSON),
+          packageName = packageNameJSON,  ///
+          release = new Release(entries, packageName);
+
+    return release;
   }
 
   static fromPackageName(packageName) {
     let release = null;
 
-    const topmostDirectoryName = packageName, ///
-          projectsDirectoryPath = '.',  ///,
-          doNotLoadHiddenFilesAndDirectories = true,
-          project = Project.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
+    try {
+      const topmostDirectoryName = packageName, ///
+            projectsDirectoryPath = '.',  ///
+            doNotLoadHiddenFilesAndDirectories = true,
+            entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
 
-    if (project !== null) {
-      release = new Release(project);
-    }
+      release = new Release(entries, packageName);
+    } catch (error) {}  ///
 
     return release;
   }

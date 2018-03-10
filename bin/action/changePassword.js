@@ -16,6 +16,7 @@ function changePassword(argument) {
   const username = argument,  ///
         oldPassword = null,
         newPassword = null,
+        uri = CHANGE_PASSWORD_URI,
         callbacks = [
           checkLoggedInCallback,
           usernamePromptCallback,
@@ -27,16 +28,15 @@ function changePassword(argument) {
           username: username,
           oldPassword: oldPassword,
           newPassword: newPassword
-        },
-        uri = CHANGE_PASSWORD_URI;
+        };
 
-  action(callbacks, context, uri, function(json) {
+  action(callbacks, uri, function(json) {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_CHANGE_PASSWORD_MESSAGE) :
         console.log(FAILED_CHANGE_PASSWORD_MESSAGE);
-  });
+  }, context);
 }
 
 module.exports = changePassword;

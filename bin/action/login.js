@@ -17,6 +17,7 @@ const { miscellaneousUtilities } = necessary,
 function login(argument) {
   const username = argument,  ///
         password = null,
+        uri = LOGIN_URI,
         callbacks = [
           usernamePromptCallback,
           passwordPromptCallback
@@ -24,10 +25,9 @@ function login(argument) {
         context = {
           username: username,
           password: password
-        },
-        uri = LOGIN_URI;
+        };
   
-  action(callbacks, context, uri, function(json) {
+  action(callbacks, uri, function(json) {
     const { success } = json;
 
     if (success) {
@@ -41,7 +41,7 @@ function login(argument) {
     } else {
       console.log(FAILED_LOGIN_MESSAGE);
     }
-  });
+  }, context);
 }
 
 module.exports = login;

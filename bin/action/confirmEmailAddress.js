@@ -13,6 +13,7 @@ const { CONFIRM_EMAIL_ADDRESS_URI } = constants,
 function confirmEmailAddress(argument) {
   const emailAddress = argument,  ///
         confirmationCode = null,
+        uri = CONFIRM_EMAIL_ADDRESS_URI,
         callbacks = [
           checkLoggedInCallback,
           emailAddressPromptCallback,
@@ -21,16 +22,15 @@ function confirmEmailAddress(argument) {
         context = {
           emailAddress: emailAddress,
           confirmationCode: confirmationCode
-        },
-        uri = CONFIRM_EMAIL_ADDRESS_URI;
+        };
 
-  action(callbacks, context, uri, function(json) {
+  action(callbacks, uri, function(json) {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE) :
         console.log(FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE);
-  });
+  }, context);
 }
 
 module.exports = confirmEmailAddress;
