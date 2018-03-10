@@ -26,7 +26,7 @@ class Release {
 
   static fromJSON(json) {
     const entriesJSON = json["entries"],
-          packageNameJSON = json["entries"],
+          packageNameJSON = json["packageName"],
           entries = Entries.fromJSON(entriesJSON),
           packageName = packageNameJSON,  ///
           release = new Release(entries, packageName);
