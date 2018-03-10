@@ -2,6 +2,7 @@
 
 const LOGIN_URI = 'login',
       LOGOUT_URI = 'logout',
+      PUBLISH_URI = 'publish',
       REGISTER_URI = 'register',
       RESET_PASSWORD_URI = 'resetPassword',
       CHANGE_PASSWORD_URI = 'changePassword',
@@ -11,6 +12,7 @@ const LOGIN_URI = 'login',
 const constants = {
   LOGIN_URI: LOGIN_URI,
   LOGOUT_URI: LOGOUT_URI,
+  PUBLISH_URI: PUBLISH_URI,
   REGISTER_URI: REGISTER_URI,
   RESET_PASSWORD_URI: RESET_PASSWORD_URI,
   CHANGE_PASSWORD_URI: CHANGE_PASSWORD_URI,

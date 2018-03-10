@@ -11,6 +11,10 @@ class Project {
     this.entries = entries;
   }
 
+  getName() {
+    return this.name;
+  }
+
   toJSON() {
     const name = this.name,
           entriesJSON = this.entries.toJSON(),
@@ -31,15 +35,22 @@ class Project {
           };
 
     request(params, function(error, response) {
-      if (!error && (response.statusCode == 200)) {
-        const body = response.body;
+      const { statusCode } = response;
 
-        JSZip.loadAsync(body).then(function(jsZip) {
+      error = error || (statusCode !== 200);  ///
+
+      if (error) {
+        callback(null);
+
+        return;
+      }
+
+      const { body } = response;
+
+      JSZip.loadAsync(body)
+        .then(function(jsZip) {
           Project.fromJSZip(jsZip, callback);
         });
-      } else {
-        callback(null);
-      }
     });
   }
 
@@ -60,8 +71,13 @@ class Project {
   }
 
   static fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
-    const entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories),
-          project = new Project(topmostDirectoryName, entries);
+    let project = null;
+
+    try {
+      const entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
+
+      project = new Project(topmostDirectoryName, entries);
+    } catch(error) {}  ///
 
     return project;
   }
