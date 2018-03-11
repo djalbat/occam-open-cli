@@ -64,7 +64,7 @@ class File {
     return file;
   }
 
-  static fromFilePath(path, projectsDirectoryPath) {
+  static fromPath(path, projectsDirectoryPath) {
     const absolutePath = concatenatePaths(projectsDirectoryPath, path),
           entryFile = isEntryFile(absolutePath);
 

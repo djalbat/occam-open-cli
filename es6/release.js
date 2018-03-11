@@ -3,47 +3,47 @@
 const Entries = require('./entries');
 
 class Release {
-  constructor(entries, packageName) {
+  constructor(entries, name) {
+    this.name = name;
     this.entries = entries;
-    this.packageName = packageName;
   }
 
-  getPackageName() {
-    return this.packageName;
+  getName() {
+    return this.name;
   }
 
   toJSON() {
     const entriesJSON = this.entries.toJSON(),
-          packageName = this.packageName,
+          name = this.name,
           entries = entriesJSON,  ///
           json = {
-            entries: entries,
-            packageName: packageName
+            name: name,
+            entries: entries
           };
 
     return json;
   }
 
   static fromJSON(json) {
-    const entriesJSON = json["entries"],
-          packageNameJSON = json["packageName"],
+    const nameJSON = json["name"],
+          entriesJSON = json["entries"],
+          name = nameJSON,  ///
           entries = Entries.fromJSON(entriesJSON),
-          packageName = packageNameJSON,  ///
-          release = new Release(entries, packageName);
+          release = new Release(name, entries);
 
     return release;
   }
 
-  static fromPackageName(packageName) {
+  static fromName(name) {
     let release = null;
 
     try {
-      const topmostDirectoryName = packageName, ///
+      const topmostDirectoryName = name, ///
             projectsDirectoryPath = '.',  ///
             doNotLoadHiddenFilesAndDirectories = true,
             entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
 
-      release = new Release(entries, packageName);
+      release = new Release(name, entries);
     } catch (error) {}  ///
 
     return release;

@@ -5,12 +5,13 @@ const zlib = require('zlib');
 const messages = require('../messages'),
       Release = require('../../es6/release');
 
-const { UNABLE_TO_CREATE_RELEASE } = messages,
-      { deflate } = zlib;
+const { deflate } = zlib,
+      { UNABLE_TO_CREATE_RELEASE } = messages;
 
 function createDeflatedRelease(proceed, abort, context) {
   const { packageName } = context,
-        release = Release.fromPackageName(packageName);
+        name = packageName, ///
+        release = Release.fromName(name);
 
   if (release === null) {
     console.log(UNABLE_TO_CREATE_RELEASE);
