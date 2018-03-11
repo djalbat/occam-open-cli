@@ -64,8 +64,8 @@ class File {
     return file;
   }
 
-  static fromFilePath(filePath, projectsDirectoryPath) {
-    const absolutePath = concatenatePaths(projectsDirectoryPath, filePath),
+  static fromFilePath(path, projectsDirectoryPath) {
+    const absolutePath = concatenatePaths(projectsDirectoryPath, path),
           entryFile = isEntryFile(absolutePath);
 
     let content = null;
@@ -74,11 +74,9 @@ class File {
       if (entryFile) {
         content = readFile(absolutePath);
       }
-    }
-    catch (error) {}
+    } catch (error) {}  ///
 
-    const path = filePath,  ///
-          file = new File(path, content);
+    const file = new File(path, content);
 
     return file;
   }

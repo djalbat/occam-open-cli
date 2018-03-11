@@ -45,15 +45,13 @@ class Directory {
     return directory;
   }
 
-  static fromDirectoryPath(directoryPath, projectsDirectoryPath) {
+  static fromPath(path, projectsDirectoryPath) {
     let directory = null;
 
-    const absolutePath = concatenatePaths(projectsDirectoryPath, directoryPath),
+    const absolutePath = concatenatePaths(projectsDirectoryPath, path),
           entryDirectory = isEntryDirectory(absolutePath);
 
     if (entryDirectory) {
-      const path = directoryPath; ///
-
       directory = new Directory(path);
     }
 
@@ -63,15 +61,16 @@ class Directory {
   static fromJSZipEntry(jsZipEntry, callback) {
     let directory = null;
     
-    const jsZipEntryDirectory = jsZipEntry.dir; ///
+    const { dir } = jsZipEntry,
+          jsZipEntryDirectory = dir; ///
 
     if (!jsZipEntryDirectory) {
       callback(directory);
     } else {
       const jsZipDirectory = jsZipEntry,
-            jsZipDirectoryPath = jsZipDirectory.name;  ///
+            { name } = jsZipDirectory;  ///
 
-      let path = jsZipDirectoryPath;  ///
+      let path = name;  ///
 
       path = pathWithoutTrailingSlashFromPath(path);  ///
 

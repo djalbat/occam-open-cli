@@ -18,10 +18,6 @@ class Entries {
     this.array = array;
   }
 
-  addEntry(entry) {
-    this.array.push(entry);
-  }
-
   getTopmostDirectoryName() {
     let topmostDirectoryName = null;
     
@@ -132,18 +128,18 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
       let entry;
 
       const path = concatenatePaths(relativeDirectoryPath, subEntryName),
-            directoryPath = path, ///
-            directory = Directory.fromDirectoryPath(directoryPath, projectsDirectoryPath);
+            directory = Directory.fromPath(path, projectsDirectoryPath);
 
       if (directory !== null) {
+        const directoryPath = path; ///
+
         entry = directory;  ///
 
         array.push(entry);  ///
 
         entriesFromRelativeDirectoryPath(array, directoryPath, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories); ///
       } else {
-        const filePath = directoryPath, //
-              file = File.fromFilePath(filePath, projectsDirectoryPath);
+        const file = File.fromPath(path, projectsDirectoryPath);
 
         if (file !== null) {
           entry = file; ///
