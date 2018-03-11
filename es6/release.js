@@ -3,7 +3,7 @@
 const Entries = require('./entries');
 
 class Release {
-  constructor(entries, name) {
+  constructor(name, entries) {
     this.name = name;
     this.entries = entries;
   }

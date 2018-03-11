@@ -14,7 +14,7 @@ const { miscellaneousUtilities } = necessary,
       { onETX } = miscellaneousUtilities,
       { exit } = process,
       { PUBLISH_URI } = constants,
-      { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages;
+      { SERVER_ERROR_MESSAGE, FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages;
 
 function publish(argument) {
   const packageName = argument,  ///

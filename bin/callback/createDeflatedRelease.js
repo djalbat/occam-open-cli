@@ -32,6 +32,8 @@ function createDeflatedRelease(proceed, abort, context) {
       deflatedRelease: deflatedRelease
     });
 
+    delete context.packageName;
+
     proceed();
   });
 }
