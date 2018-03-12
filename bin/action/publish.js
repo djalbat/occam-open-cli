@@ -2,10 +2,10 @@
 
 const necessary = require('necessary');
 
-const messages = require('../messages'),
+const post = require('../post'),
+      messages = require('../messages'),
       constants = require('../constants'),
       executeCallbacks = require('../executeCallbacks'),
-      postMultipartData = require('../postMultipartData'),
       checkLoggedInCallback = require('../callback/checkLoggedIn'),
       packageNamePromptCallback = require('../callback/prompt/packageName'),
       createDeflatedReleaseCallback = require('../callback/createDeflatedRelease');
@@ -38,7 +38,7 @@ function publish(argument) {
     const offETX = onETX(exit),
           data = context; ///
 
-    postMultipartData(uri, data, function(json) {
+    post(uri, data, function(json) {
       offETX();
 
       if (json !== null) {

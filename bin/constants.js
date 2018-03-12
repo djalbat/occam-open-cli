@@ -1,6 +1,10 @@
 'use strict';
 
-const LOGIN_URI = 'login',
+const API_URL = 'http://localhost:8002/api/',
+      API_METHOD = 'POST',
+      API_TIMEOUT = 10000,
+      API_ENCODING = 'utf8',
+      LOGIN_URI = 'login',
       LOGOUT_URI = 'logout',
       PUBLISH_URI = 'publish',
       REGISTER_URI = 'register',
@@ -10,6 +14,10 @@ const LOGIN_URI = 'login',
       RESEND_CONFIRMATION_CODE_URI = 'resendConfirmationCode';
 
 const constants = {
+  API_URL: API_URL,
+  API_METHOD: API_METHOD,
+  API_TIMEOUT: API_TIMEOUT,
+  API_ENCODING: API_ENCODING,
   LOGIN_URI: LOGIN_URI,
   LOGOUT_URI: LOGOUT_URI,
   PUBLISH_URI: PUBLISH_URI,

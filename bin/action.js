@@ -2,9 +2,9 @@
 
 const necessary = require('necessary');
 
-const messages = require('./messages'),
-      executeCallbacks = require('./executeCallbacks'),
-      postURLEncodedData = require('./postURLEncodedData');
+const post = require('./post'),
+      messages = require('./messages'),
+      executeCallbacks = require('./executeCallbacks');
 
 const { miscellaneousUtilities } = necessary,
       { onETX } = miscellaneousUtilities,
@@ -20,7 +20,7 @@ function action(callbacks, uri, callback, context) {
     const offETX = onETX(exit),
           data = context; ///
 
-    postURLEncodedData(uri, data, function(json) {
+    post(uri, data, function(json) {
       offETX();
 
       if (json !== null) {

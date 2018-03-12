@@ -7,16 +7,16 @@ const main = require('./bin/main');
 const { arrayUtilities, miscellaneousUtilities } = necessary,
       { first, second, filter } = arrayUtilities,
       { rc } = miscellaneousUtilities,
-      { setRCBaseExtension } = rc,
+      { setRCBaseExtension, checkRCFileExists, createVacuousRCFile } = rc,
       { argv } = process;
 
 setRCBaseExtension('open');
 
 const rcFileExists = checkRCFileExists();
 
-if
-
-rc();
+if (!rcFileExists) {
+  createVacuousRCFile();
+}
 
 const options = optionsFromArgv(argv),
       command = commandFromArgv(argv),
