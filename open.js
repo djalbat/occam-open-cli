@@ -12,6 +12,10 @@ const { arrayUtilities, miscellaneousUtilities } = necessary,
 
 setRCBaseExtension('open');
 
+const rcFileExists = checkRCFileExists();
+
+if
+
 rc();
 
 const options = optionsFromArgv(argv),
