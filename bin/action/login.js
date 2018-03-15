@@ -26,7 +26,7 @@ function login(argument) {
           username: username,
           password: password
         };
-  
+
   action(callbacks, uri, function(json) {
     const { success } = json;
 

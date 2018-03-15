@@ -11,7 +11,8 @@ const { miscellaneousUtilities } = necessary,
       { INVALID_USERNAME_MESSAGE } = messages;
 
 function usernamePromptCallback(proceed, abort, context) {
-  const { username } = context;
+  const { username } = context,
+        errorMessage = INVALID_USERNAME_MESSAGE;
 
   if (username !== null) {
     const valid = validateUsername(username);
@@ -20,11 +21,12 @@ function usernamePromptCallback(proceed, abort, context) {
       proceed();
       
       return;
+    } else {
+      console.log(errorMessage);
     }
   }
 
   const description = 'Username: ',
-        errorMessage = INVALID_USERNAME_MESSAGE,
         validationFunction = validateUsername,
         options = {
           description: description,

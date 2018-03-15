@@ -11,7 +11,8 @@ const { miscellaneousUtilities } = necessary,
       { INVALID_PACKAGE_NAME_MESSAGE } = messages;
 
 function packageNamePromptCallback(proceed, abort, context) {
-  const { packageName } = context;
+  const { packageName } = context,
+        errorMessage = INVALID_PACKAGE_NAME_MESSAGE;
 
   if (packageName !== null) {
     const valid = validatePackageName(packageName);
@@ -20,11 +21,12 @@ function packageNamePromptCallback(proceed, abort, context) {
       proceed();
       
       return;
+    } else {
+      console.log(errorMessage);
     }
   }
 
   const description = 'Package name: ',
-        errorMessage = INVALID_PACKAGE_NAME_MESSAGE,
         validationFunction = validatePackageName,
         options = {
           description: description,

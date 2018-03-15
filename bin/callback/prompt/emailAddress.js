@@ -11,7 +11,8 @@ const { miscellaneousUtilities } = necessary,
       { INVALID_EMAIL_ADDRESS_MESSAGE } = messages;
 
 function emailAddressPromptCallback(proceed, abort, context) {
-  const { emailAddress } = context;
+  const { emailAddress } = context,
+        errorMessage = INVALID_EMAIL_ADDRESS_MESSAGE;
   
   if (emailAddress !== null) {
     const valid = validateEmailAddress(emailAddress);
@@ -20,11 +21,12 @@ function emailAddressPromptCallback(proceed, abort, context) {
       proceed();
       
       return;
+    } else {
+      console.log(errorMessage);
     }
   }
 
   const description = 'Email address: ',
-        errorMessage = INVALID_EMAIL_ADDRESS_MESSAGE,
         validationFunction = validateEmailAddress,
         options = {
           description: description,
