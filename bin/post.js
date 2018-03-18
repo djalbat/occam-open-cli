@@ -6,14 +6,14 @@ const messages = require('./messages'),
       constants = require('./constants');
 
 const { SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages,
-      { API_URL, API_METHOD, API_TIMEOUT, API_ENCODING } = constants;
+      { HOST_URL, POST_METHOD, TIMEOUT, UTF_ENCODING } = constants;
 
 function post(uri, data, callback) {
-  const url = `${API_URL}${uri}`,
+  const url = `${HOST_URL}${uri}`,
         form = data, ///
-        method = API_METHOD,
-        timeout = API_TIMEOUT,
-        encoding = API_ENCODING,
+        timeout = TIMEOUT,
+        method = POST_METHOD,
+        encoding = UTF_ENCODING,
         options = {
           url : url,
           form: form,
