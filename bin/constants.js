@@ -1,9 +1,9 @@
 'use strict';
 
-const HOST_URL = 'http://localhost:8002/',
+const TIMEOUT = 10000,
+      HOST_URL = 'http://localhost:8002/',
       POST_METHOD = 'POST',
       UTF_ENCODING = 'utf8',
-      TIMEOUT = 10000,
       LOGIN_URI = 'login',
       LOGOUT_URI = 'logout',
       PUBLISH_URI = 'publish',
@@ -14,10 +14,10 @@ const HOST_URL = 'http://localhost:8002/',
       RESEND_CONFIRMATION_CODE_URI = 'resendConfirmationCode';
 
 const constants = {
+  TIMEOUT: TIMEOUT,
   HOST_URL: HOST_URL,
   POST_METHOD: POST_METHOD,
   UTF_ENCODING: UTF_ENCODING,
-  TIMEOUT: TIMEOUT,
   LOGIN_URI: LOGIN_URI,
   LOGOUT_URI: LOGOUT_URI,
   PUBLISH_URI: PUBLISH_URI,
