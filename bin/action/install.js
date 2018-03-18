@@ -4,9 +4,9 @@ function install(argument) {
   if (argument === null) {
     console.log('You need to specify a package name.')
   } else {
-    const packageName = argument; ///
+    const releaseName = argument; ///
 
-    console.log(`Installing '${packageName}'...`);
+    console.log(`Installing '${releaseName}'...`);
   }
 }
 

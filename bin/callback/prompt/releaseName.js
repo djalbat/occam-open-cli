@@ -6,16 +6,16 @@ const validate = require('../../validate'),
       messages = require('../../messages');
 
 const { miscellaneousUtilities } = necessary,
-      { validatePackageName } = validate,
+      { validateReleaseName } = validate,
       { prompt } = miscellaneousUtilities,
       { INVALID_PACKAGE_NAME_MESSAGE } = messages;
 
-function packageNamePromptCallback(proceed, abort, context) {
-  const { packageName } = context,
+function releaseNamePromptCallback(proceed, abort, context) {
+  const { releaseName } = context,
         errorMessage = INVALID_PACKAGE_NAME_MESSAGE;
 
-  if (packageName !== null) {
-    const valid = validatePackageName(packageName);
+  if (releaseName !== null) {
+    const valid = validateReleaseName(releaseName);
 
     if (valid) {
       proceed();
@@ -27,19 +27,19 @@ function packageNamePromptCallback(proceed, abort, context) {
   }
 
   const description = 'Package name: ',
-        validationFunction = validatePackageName,
+        validationFunction = validateReleaseName,
         options = {
           description: description,
           errorMessage: errorMessage,
           validationFunction: validationFunction
         };
 
-  prompt(options, function(packageName) {
-    const valid = (packageName !== null);
+  prompt(options, function(releaseName) {
+    const valid = (releaseName !== null);
 
     if (valid) {
       Object.assign(context, {
-        packageName: packageName
+        releaseName: releaseName
       });
 
       proceed();
@@ -51,4 +51,4 @@ function packageNamePromptCallback(proceed, abort, context) {
   });
 }
 
-module.exports = packageNamePromptCallback;
+module.exports = releaseNamePromptCallback;

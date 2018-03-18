@@ -1,9 +1,9 @@
 'use strict';
 
 function remove(argument) {
-  const packageName = argument; ///
+  const releaseName = argument; ///
   
-  console.log(`Removing '${packageName}'...`);
+  console.log(`Removing '${releaseName}'...`);
 }
 
 module.exports = remove;

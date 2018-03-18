@@ -9,8 +9,8 @@ const { deflate } = zlib,
       { UNABLE_TO_CREATE_RELEASE } = messages;
 
 function createDeflatedRelease(proceed, abort, context) {
-  const { packageName } = context,
-        name = packageName, ///
+  const { releaseName } = context,
+        name = releaseName, ///
         release = Release.fromName(name);
 
   if (release === null) {
@@ -32,7 +32,7 @@ function createDeflatedRelease(proceed, abort, context) {
       deflatedRelease: deflatedRelease
     });
 
-    delete context.packageName;
+    delete context.releaseName;
 
     proceed();
   });

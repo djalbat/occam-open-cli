@@ -7,7 +7,7 @@ const post = require('../post'),
       constants = require('../constants'),
       executeCallbacks = require('../executeCallbacks'),
       checkLoggedInCallback = require('../callback/checkLoggedIn'),
-      packageNamePromptCallback = require('../callback/prompt/packageName'),
+      releaseNamePromptCallback = require('../callback/prompt/releaseName'),
       createDeflatedReleaseCallback = require('../callback/createDeflatedRelease');
 
 const { miscellaneousUtilities } = necessary,
@@ -17,15 +17,15 @@ const { miscellaneousUtilities } = necessary,
       { SERVER_ERROR_MESSAGE, FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages;
 
 function publish(argument) {
-  const packageName = argument,  ///
+  const releaseName = argument,  ///
         uri = PUBLISH_URI,
         callbacks = [
           checkLoggedInCallback,
-          packageNamePromptCallback,
+          releaseNamePromptCallback,
           createDeflatedReleaseCallback
         ],
         context = {
-          packageName: packageName
+          releaseName: releaseName
         };
 
   executeCallbacks(callbacks, function(completed) {
