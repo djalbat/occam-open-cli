@@ -1,17 +1,17 @@
 'use strict';
 
 const TIMEOUT = 10000,
-      HOST_URL = 'http://localhost:8002/',
+      HOST_URL = 'http://localhost:8002',
       POST_METHOD = 'POST',
       UTF_ENCODING = 'utf8',
-      LOGIN_URI = 'login',
-      LOGOUT_URI = 'logout',
-      PUBLISH_URI = 'publish',
-      REGISTER_URI = 'register',
-      RESET_PASSWORD_URI = 'resetPassword',
-      CHANGE_PASSWORD_URI = 'changePassword',
-      CONFIRM_EMAIL_ADDRESS_URI = 'confirmEmailAddress',
-      RESEND_CONFIRMATION_CODE_URI = 'resendConfirmationCode';
+      LOGIN_URI = '/login',
+      LOGOUT_URI = '/logout',
+      PUBLISH_URI = '/publish',
+      REGISTER_URI = '/register',
+      RESET_PASSWORD_URI = '/resetPassword',
+      CHANGE_PASSWORD_URI = '/changePassword',
+      CONFIRM_EMAIL_ADDRESS_URI = '/confirmEmailAddress',
+      RESEND_CONFIRMATION_CODE_URI = '/resendConfirmationCode';
 
 const constants = {
   TIMEOUT: TIMEOUT,
