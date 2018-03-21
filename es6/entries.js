@@ -36,6 +36,14 @@ class Entries {
     return topmostDirectoryName;
   }
 
+  mapEntry(callback) { return this.array.map(callback); }
+
+  someEntry(callback) { return this.array.some(callback); }
+
+  everyEntry(callback) { return this.array.every(callback); }
+
+  forEachEntry(callback) { this.array.forEach(callback); }
+
   toJSON() {
     const entriesJSON = this.array.map(function(entry) {
             const entryJSON = entry.toJSON();
