@@ -24,6 +24,18 @@ class File {
     return this.content;
   }
 
+  isFile() {
+    const file = true;
+
+    return file;
+  }
+
+  isDirectory() {
+    const directory = false;
+
+    return directory;
+  }
+
   save(projectsDirectoryPath) {
     const absolutePath = concatenatePaths(projectsDirectoryPath, this.path),  ///
           topmostAbsoluteDirectoryPath = topmostDirectoryPathFromPath(absolutePath);

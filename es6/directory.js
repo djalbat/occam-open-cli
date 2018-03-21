@@ -18,6 +18,18 @@ class Directory {
     return this.path;
   }
 
+  isFile() {
+    const file = false;
+
+    return file;
+  }
+
+  isDirectory() {
+    const directory = true;
+
+    return directory;
+  }
+
   toJSON() {
     const { type } = Directory,
           path = this.path,
