@@ -1,6 +1,6 @@
 'use strict';
 
-const SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE = 'The server failed to respond in a timely fasion. If this problem persists, please be kind enough to report it.',
+const SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE = 'The server failed to respond in a timely fashion. If this problem persists, please be kind enough to report it.',
       SERVER_ERROR_MESSAGE = 'There was an error on the server. If the problem persists, please be kind enough to report it (including the date and time).',
       INVALID_USERNAME_MESSAGE = 'Usernames must consist of groups of at least two and no more than sixteen numbers or lowercase letters, separated by dashes.',
       INVALID_PASSWORD_MESSAGE = 'Passwords must consist of at least eight letters, numbers or common punctuation symbols.',
