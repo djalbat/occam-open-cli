@@ -6,5 +6,6 @@ module.exports = {
   Project: require('./lib/project'),
   Projects: require('./lib/projects'),
   Release: require('./lib/release'),
+  Version: require('./lib/version'),
   Entries: require('./lib/entries')
 };
