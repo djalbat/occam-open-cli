@@ -44,9 +44,15 @@ function publish(argument) {
       if (json !== null) {
         const { error } = json;
 
-        error ?
-          console.log(SERVER_ERROR_MESSAGE) :
-            console.log(SUCCESSFUL_PUBLISH_MESSAGE);
+        if (error) {
+          console.log(SERVER_ERROR_MESSAGE);
+        } else {
+          const { success } = json;
+
+          success ?
+            console.log(SUCCESSFUL_PUBLISH_MESSAGE) :
+              console.log(FAILED_PUBLISH_MESSAGE);
+        }
       }
 
       exit(); ///
