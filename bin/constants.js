@@ -1,7 +1,7 @@
 'use strict';
 
 const TIMEOUT = 10000,
-      HOST_URL = 'http://openmathematics.org',
+      HOST_URL = 'http://localhost:8002',
       POST_METHOD = 'POST',
       UTF_ENCODING = 'utf8',
       LOGIN_URI = '/login',

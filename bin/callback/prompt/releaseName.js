@@ -8,11 +8,11 @@ const validate = require('../../validate'),
 const { miscellaneousUtilities } = necessary,
       { validateReleaseName } = validate,
       { prompt } = miscellaneousUtilities,
-      { INVALID_PACKAGE_NAME_MESSAGE } = messages;
+      { INVALID_RELEASE_NAME_MESSAGE } = messages;
 
 function releaseNamePromptCallback(proceed, abort, context) {
   const { releaseName } = context,
-        errorMessage = INVALID_PACKAGE_NAME_MESSAGE;
+        errorMessage = INVALID_RELEASE_NAME_MESSAGE;
 
   if (releaseName !== null) {
     const valid = validateReleaseName(releaseName);
