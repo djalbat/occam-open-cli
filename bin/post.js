@@ -1,12 +1,16 @@
 'use strict';
 
-const request = require('request');
+const request = require('request'),
+      necessary = require('necessary');
 
 const messages = require('./messages'),
       constants = require('./constants');
 
-const { SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages,
-      { HOST_URL, POST_METHOD, TIMEOUT, UTF_ENCODING } = constants;
+const { miscellaneousUtilities } = necessary,
+      { onETX } = miscellaneousUtilities,
+      { exit } = process,
+      { HOST_URL, POST_METHOD, TIMEOUT, UTF_ENCODING } = constants,
+      { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages;
 
 function post(uri, data, callback) {
   const url = `${HOST_URL}${uri}`,
@@ -22,20 +26,33 @@ function post(uri, data, callback) {
           encoding: encoding
         };
 
+  const offETX = onETX(exit);
+
   request(options, function(error, response) {
-    let json;
+    offETX();
 
     if (error) {
       console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
-
-      json = null;
     } else {
-      const { body } = response;
+      const { body } = response,
+            json = JSON.parse(body);
+      
+      const { info, error, message } = json;
 
-      json = JSON.parse(body);
+      if (info) { ///
+        console.log(info);
+      }
+
+      if (message) {  ///
+        console.log(message);
+      }
+
+      error ?
+        console.log(SERVER_ERROR_MESSAGE) :
+          callback(json);
     }
-
-    callback(json);
+    
+    exit();
   });
 }
 
