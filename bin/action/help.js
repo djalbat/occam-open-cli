@@ -13,10 +13,6 @@ function help() {
 
 Commmands:
 
-  help                             Show this help
-
-  version                          Show the version
-
   install <package_name>           Install a package
 
   clone <package_name>             Clone a package with Git
