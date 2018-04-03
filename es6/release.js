@@ -52,7 +52,7 @@ class Release {
 
     try {
       const topmostDirectoryName = name, ///
-            projectsDirectoryPath = '.',  ///
+            projectsDirectoryPath = '.',
             doNotLoadHiddenFilesAndDirectories = true,
             entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories),
             versionNumber = null; ///
