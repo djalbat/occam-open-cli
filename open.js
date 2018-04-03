@@ -1,22 +1,14 @@
 #!/usr/bin/env node
 
+require('./bin/configuration'); ///
+
 const necessary = require('necessary');
 
 const main = require('./bin/main');
 
-const { arrayUtilities, miscellaneousUtilities } = necessary,
+const { arrayUtilities } = necessary,
       { first, second, filter } = arrayUtilities,
-      { rc } = miscellaneousUtilities,
-      { setRCBaseExtension, checkRCFileExists, createVacuousRCFile } = rc,
       { argv } = process;
-
-setRCBaseExtension('open');
-
-const rcFileExists = checkRCFileExists();
-
-if (!rcFileExists) {
-  createVacuousRCFile();
-}
 
 const options = optionsFromArgv(argv),
       command = commandFromArgv(argv),

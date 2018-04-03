@@ -1,17 +1,14 @@
 'use strict';
 
-const necessary = require('necessary');
-
 const action = require('../action'),
       messages = require('../messages'),
       constants = require('../constants'),
+      configuration = require('../configuration'),
       checkLoggedInCallback = require('../callback/checkLoggedIn');
 
-const { miscellaneousUtilities } = necessary,
-      { rc } = miscellaneousUtilities,
-      { updateRCFile } = rc,
-      { LOGOUT_URI } = constants,
-      { LOGGED_OUT_MESSAGE } = messages;
+const { LOGOUT_URI } = constants,
+      { LOGGED_OUT_MESSAGE } = messages,
+      { removeAccessToken } = configuration;
 
 function logout() {
   const uri = LOGOUT_URI,
@@ -21,8 +18,8 @@ function logout() {
         context = {};
 
   action(callbacks, uri, function(json) {
-    updateRCFile(null, 'accessToken');
-      
+    removeAccessToken();
+
     console.log(LOGGED_OUT_MESSAGE);
   }, context);
 }
