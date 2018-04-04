@@ -2,8 +2,8 @@
 
 function remove(argument) {
   const releaseName = argument; ///
-  
-  console.log(`Removing '${releaseName}'...`);
+
+  console.log('This functionality is not implemented yet.');
 }
 
 module.exports = remove;
