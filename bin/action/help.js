@@ -27,9 +27,9 @@ Commmands:
 
   register [<username>]            Register
    
-  login [<username>]               Login 
+  login [<username>]               Log in 
 
-  logout                           Logout 
+  logout                           Log out 
  
   resend [<email_address>]         Resend a confirmation code
 
