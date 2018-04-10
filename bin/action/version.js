@@ -6,7 +6,7 @@ const { fileSystemUtilities } = necessary,
       { readFile } = fileSystemUtilities;
 
 function version() {
-  const packageJSONFilePath = './package.json',
+  const packageJSONFilePath = `${__dirname}/package.json`,  ///
         packageJSONFile = readFile(packageJSONFilePath),
         packageJSON = JSON.parse(packageJSONFile),
         { version } = packageJSON;
