@@ -1,17 +1,13 @@
 'use strict';
 
-const necessary = require('necessary');
+const messages = require('../messages'),
+      configuration = require('../configuration');
 
-const messages = require('../messages');
-
-const { miscellaneousUtilities } = necessary,
-      { rc } = miscellaneousUtilities,
-      { readRCFile } = rc,
+const { retrieveAccessToken } = configuration,
       { NOT_LOGGED_IN_MESSAGE } = messages;
 
 function checkLoggedInCallback(proceed, abort, context) {
-  const json = readRCFile(),
-        { accessToken } = json,
+  const accessToken = retrieveAccessToken(),
         loggedIn = !!accessToken;
 
   if (!loggedIn) {

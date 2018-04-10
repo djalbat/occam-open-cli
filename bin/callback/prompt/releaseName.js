@@ -3,14 +3,18 @@
 const necessary = require('necessary');
 
 const validate = require('../../validate'),
-      messages = require('../../messages');
+      messages = require('../../messages'),
+      configuration = require('../../configuration');
 
 const { miscellaneousUtilities } = necessary,
       { validateReleaseName } = validate,
+      { updateContextReleaseName } = configuration,
       { prompt } = miscellaneousUtilities,
       { INVALID_RELEASE_NAME_MESSAGE } = messages;
 
 function releaseNamePromptCallback(proceed, abort, context) {
+  updateContextReleaseName(context);
+
   const { releaseName } = context,
         errorMessage = INVALID_RELEASE_NAME_MESSAGE;
 

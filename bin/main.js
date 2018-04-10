@@ -1,6 +1,7 @@
 'use strict';
 
-const help = require('./action/help'),
+const commands = require('./commands'),
+      help = require('./action/help'),
       clone = require('./action/clone'),
       login = require('./action/login'),
       logout = require('./action/logout'),
@@ -13,6 +14,22 @@ const help = require('./action/help'),
       changePassword = require('./action/changePassword'),
       confirmEmailAddress = require('./action/confirmEmailAddress'),
       resendConfirmationCode = require('./action/resendConfirmationCode');
+
+const {
+  HELP_COMMAND,
+  VERSION_COMMAND,
+  INSTALL_COMMAND,
+  REMOVE_COMMAND,
+  CLONE_COMMAND,
+  PUBLISH_COMMAND,
+  REGISTER_COMMAND,
+  LOGIN_COMMAND,
+  LOGOUT_COMMAND,
+  RESEND_COMMAND,
+  RESET_PASSWORD_COMMAND,
+  CHANGE_PASSWORD_COMMAND,
+  CONFIRM_EMAIL_ADDRESS_COMMAND
+} = commands;
 
 function main(command, argument, options) {
   const commandMissing = (command === null),
@@ -28,19 +45,19 @@ function main(command, argument, options) {
   }
 
   switch (command) {
-    case 'help': help(); break;
-    case 'version': version(); break;
-    case 'install': install(argument); break;
-    case 'remove': remove(argument); break;
-    case 'clone': clone(argument); break;
-    case 'publish': publish(argument); break;
-    case 'register': register(argument); break;
-    case 'login': login(argument); break;
-    case 'logout': logout(); break;
-    case 'resend': resendConfirmationCode(argument); break; ///
-    case 'confirm': confirmEmailAddress(argument); break; ///
-    case 'reset-password': resetPassword(argument); break;
-    case 'change-password': changePassword(argument); break;
+    case HELP_COMMAND: help(); break;
+    case VERSION_COMMAND: version(); break;
+    case INSTALL_COMMAND: install(argument); break;
+    case REMOVE_COMMAND: remove(argument); break;
+    case CLONE_COMMAND: clone(argument); break;
+    case PUBLISH_COMMAND: publish(argument); break;
+    case REGISTER_COMMAND: register(argument); break;
+    case LOGIN_COMMAND: login(argument); break;
+    case LOGOUT_COMMAND: logout(); break;
+    case RESEND_COMMAND: resendConfirmationCode(argument); break; ///
+    case RESET_PASSWORD_COMMAND: resetPassword(argument); break;
+    case CHANGE_PASSWORD_COMMAND: changePassword(argument); break;
+    case CONFIRM_EMAIL_ADDRESS_COMMAND: confirmEmailAddress(argument); break; ///
 
     default:
       argument = command;  ///

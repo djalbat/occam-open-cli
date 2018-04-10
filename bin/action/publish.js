@@ -1,7 +1,5 @@
 'use strict';
 
-const necessary = require('necessary');
-
 const post = require('../post'),
       messages = require('../messages'),
       constants = require('../constants'),
@@ -10,11 +8,9 @@ const post = require('../post'),
       releaseNamePromptCallback = require('../callback/prompt/releaseName'),
       createDeflatedReleaseCallback = require('../callback/createDeflatedRelease');
 
-const { miscellaneousUtilities } = necessary,
-      { onETX } = miscellaneousUtilities,
-      { exit } = process,
+const { exit } = process,
       { PUBLISH_URI } = constants,
-      { SERVER_ERROR_MESSAGE, FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages;
+      { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages;
 
 function publish(argument) {
   const releaseName = argument,  ///
@@ -35,27 +31,14 @@ function publish(argument) {
       exit();
     }
 
-    const offETX = onETX(exit),
-          data = context; ///
+    const data = context; ///
 
     post(uri, data, function(json) {
-      offETX();
+      const { success } = json;
 
-      if (json !== null) {
-        const { error } = json;
-
-        if (error) {
-          console.log(SERVER_ERROR_MESSAGE);
-        } else {
-          const { success } = json;
-
-          success ?
-            console.log(SUCCESSFUL_PUBLISH_MESSAGE) :
-              console.log(FAILED_PUBLISH_MESSAGE);
-        }
-      }
-
-      exit(); ///
+      success ?
+        console.log(SUCCESSFUL_PUBLISH_MESSAGE) :
+          console.log(FAILED_PUBLISH_MESSAGE);
     });
   }, context);
 }

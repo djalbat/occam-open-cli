@@ -6,7 +6,7 @@ function clone(argument) {
   } else {
     const releaseName = argument; ///
 
-    console.log(`Cloning '${releaseName}'...`);
+    console.log('This functionality is not implemented yet.');
   }
 }
 

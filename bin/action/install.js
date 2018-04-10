@@ -6,7 +6,7 @@ function install(argument) {
   } else {
     const releaseName = argument; ///
 
-    console.log(`Installing '${releaseName}'...`);
+    console.log('This functionality is not implemented yet.');
   }
 }
 
