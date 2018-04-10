@@ -31,7 +31,7 @@ const {
   CONFIRM_EMAIL_ADDRESS_COMMAND
 } = commands;
 
-function main(command, argument, options) {
+function main(command, argument, options, dirname) {
   const commandMissing = (command === null),
         optionsIncludesHelp = options.includes('help'),
         optionsIncludesVersion = options.includes('version');
@@ -46,7 +46,7 @@ function main(command, argument, options) {
 
   switch (command) {
     case HELP_COMMAND: help(); break;
-    case VERSION_COMMAND: version(); break;
+    case VERSION_COMMAND: version(dirname); break;
     case INSTALL_COMMAND: install(argument); break;
     case REMOVE_COMMAND: remove(argument); break;
     case CLONE_COMMAND: clone(argument); break;
