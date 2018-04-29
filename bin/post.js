@@ -20,8 +20,9 @@ function post(uri, data, callback) {
         method = POST_METHOD,
         encoding = UTF_ENCODING,
         osType = os.type(),
+        operatingSystem = osType, ///
         headers = {
-          'User-Agent': `Open-CLI/${osType}`
+          'User-Agent': `Open-CLI/${operatingSystem}`
         },
         options = {
           url : url,
