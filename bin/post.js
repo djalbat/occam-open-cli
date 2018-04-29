@@ -1,6 +1,7 @@
 'use strict';
 
-const request = require('request'),
+const os = require('os'),
+      request = require('request'),
       necessary = require('necessary');
 
 const messages = require('./messages'),
@@ -18,12 +19,17 @@ function post(uri, data, callback) {
         timeout = TIMEOUT,
         method = POST_METHOD,
         encoding = UTF_ENCODING,
+        osType = os.type(),
+        headers = {
+          'User-Agent': `Open-CLI/${osType}`
+        },
         options = {
           url : url,
           form: form,
           method : method,
           timeout: timeout,
-          encoding: encoding
+          encoding: encoding,
+          headers: headers
         };
 
   const offETX = onETX(exit);
