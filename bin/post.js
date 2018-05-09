@@ -36,29 +36,33 @@ function post(uri, data, callback) {
   const offETX = onETX(exit);
 
   request(options, function(error, response) {
-    offETX();
+    offETX && offETX(); ///
 
     if (error) {
       console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
     } else {
-      const { body } = response,
-            json = JSON.parse(body);
-      
-      const { info, error, message } = json;
+      try {
+        const { body } = response,
+              json = JSON.parse(body);
 
-      if (info) { ///
-        console.log(info);
+        const { info, message, error } = json;
+
+        if (info) { ///
+          console.log(info);
+        }
+
+        if (message) {  ///
+          console.log(message);
+        }
+
+        error ?
+          console.log(SERVER_ERROR_MESSAGE) :
+            callback(json);
+      } catch (error) {
+        console.log(SERVER_ERROR_MESSAGE);
       }
-
-      if (message) {  ///
-        console.log(message);
-      }
-
-      error ?
-        console.log(SERVER_ERROR_MESSAGE) :
-          callback(json);
     }
-    
+
     exit();
   });
 }
