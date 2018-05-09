@@ -34,7 +34,7 @@ class Version {
     return string;
   }
 
-  static asNumber() {
+  asNumber() {
     const number = this.patchNumber * 1e0 + this.minorNumber * 1e6 + this.majorNumber * 1e12; ///
 
     return number;
