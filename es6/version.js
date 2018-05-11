@@ -3,7 +3,7 @@
 const necessary = require('necessary');
 
 const { arrayUtilities } = necessary,
-      { second, third, fourth } = arrayUtilities;
+      { second } = arrayUtilities;
 
 class Version {
   constructor(majorNumber, minorNumber, patchNumber) {
@@ -41,13 +41,9 @@ class Version {
   }
 
   static fromString(string) {
-    const matches = string.match(/^(\d+)\.(\d+)\.(\d+)$/),
-          secondMatch = second(matches),
-          thirdMatch = third(matches),
-          fourthMatch = fourth(matches),
-          majorNumber = secondMatch,  ///
-          minorNumber = thirdMatch, ///
-          patchNumber = fourthMatch,  ///
+    const majorNumber = majorNumberFromString(string),
+          minorNumber = minorNumberFromString(string),
+          patchNumber = patchNumberFromString(string),
           version = new Version(majorNumber, minorNumber, patchNumber);
 
     return version;
@@ -86,6 +82,45 @@ function patchNumberFromNumber(number) {
   const patchNumber = (number !== null) ?
                         Math.floor(number / 1e0) :
                           0;  ///
+
+  return patchNumber;
+}
+
+function majorNumberFromString(string) {
+  let majorNumber = 0;
+
+  if (string) {
+    const matches = string.match(/^(\d+)\.\d+\.\d+$/),
+          secondMatch = second(matches);
+
+    majorNumber = secondMatch;  ///
+  }
+
+  return majorNumber;
+}
+
+function minorNumberFromString(string) {
+  let minorNumber = 0;
+
+  if (string) {
+    const matches = string.match(/^\d+\.(\d+)\.\d+$/),
+          secondMatch = second(matches);
+
+    minorNumber = secondMatch;  ///
+  }
+
+  return minorNumber;
+}
+
+function patchNumberFromString(string) {
+  let patchNumber = 0;
+
+  if (string) {
+    const matches = string.match(/^\d+\.\d+\.(\d+)$/),
+          secondMatch = second(matches);
+
+    patchNumber = secondMatch;  ///
+  }
 
   return patchNumber;
 }

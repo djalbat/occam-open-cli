@@ -10,7 +10,6 @@ const { optionsFromArgv, commandFromArgv, argumentFromArgv } = parameters,
 
 const options = optionsFromArgv(argv),
       command = commandFromArgv(argv),
-      argument = argumentFromArgv(argv),
-      dirname = __dirname;  ///
+      argument = argumentFromArgv(argv);
 
-main(command, argument, options, dirname);
+main(command, argument, options);

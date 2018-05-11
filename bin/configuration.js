@@ -6,8 +6,9 @@ const commands = require('./commands'),
       parameters = require('./parameters');
 
 const { commandFromArgv } = parameters,
-      { pathUtilities, miscellaneousUtilities } = necessary,
-      { bottommostNameFromPath } = pathUtilities,
+      { pathUtilities, fileSystemUtilities, miscellaneousUtilities } = necessary,
+      { bottommostNameFromPath, pathWithoutBottommostNameFromPath } = pathUtilities,
+      { readFile } = fileSystemUtilities,
       { rc } = miscellaneousUtilities,
       { cwd, chdir } = process,
       { PUBLISH_COMMAND } = commands,
@@ -26,6 +27,8 @@ if (!rcFileExists) {
     createVacuousRCFile();
   }
 }
+
+addVersionString();
 
 function addAccessToken(accessToken) {
   updateRCFile({
@@ -92,4 +95,18 @@ function changeDirectory(directoryPath) {
   const oldCurrentWorkingDirectoryPath = currentWorkingDirectoryPath; ///
 
   return oldCurrentWorkingDirectoryPath;
+}
+
+function addVersionString() {
+  const binDirectoryName = __dirname, ///
+        applicationDirectoryName = pathWithoutBottommostNameFromPath(binDirectoryName), ///
+        packageJSONFilePath = `${applicationDirectoryName}/package.json`,  ///
+        packageJSONFile = readFile(packageJSONFilePath),
+        packageJSON = JSON.parse(packageJSONFile),
+        { version } = packageJSON,
+        versionString = version;  ///
+
+  Object.assign(rc, {
+    versionString: versionString
+  });
 }
