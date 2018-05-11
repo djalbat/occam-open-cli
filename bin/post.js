@@ -8,14 +8,17 @@ const messages = require('./messages'),
       constants = require('./constants');
 
 const { miscellaneousUtilities } = necessary,
-      { onETX } = miscellaneousUtilities,
+      { rc, onETX } = miscellaneousUtilities,
+      { versionString } = rc,
       { exit } = process,
       { HOST_URL, POST_METHOD, TIMEOUT, UTF_ENCODING } = constants,
       { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages;
 
 function post(uri, data, callback) {
   const url = `${HOST_URL}${uri}`,
-        form = data, ///
+        form = Object.assign(data, {
+          versionString: versionString
+        }),
         timeout = TIMEOUT,
         method = POST_METHOD,
         encoding = UTF_ENCODING,
