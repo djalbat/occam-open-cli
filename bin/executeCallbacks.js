@@ -29,9 +29,9 @@ module.exports = executeCallbacks;
 function executeCallback(next, done, context, index) {
   const { callbacks } = context,
         callbacksLength = callbacks.length,
-        lastOperationIndex = callbacksLength - 1;
+        lastIndex = callbacksLength - 1;
 
-  if (index > lastOperationIndex) {
+  if (index > lastIndex) {
     done();
 
     return;

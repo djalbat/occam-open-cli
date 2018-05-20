@@ -21,6 +21,8 @@ Commmands:
 
   publish <package_name>           Publish a package
 
+  deprecate <package_name>         Deprecate a package
+
   register [<username>]            Register
    
   login [<username>]               Log in 
