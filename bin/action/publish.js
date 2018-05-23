@@ -4,9 +4,13 @@ const post = require('../post'),
       messages = require('../messages'),
       constants = require('../constants'),
       executeCallbacks = require('../executeCallbacks'),
-      checkLoggedInCallback = require('../callback/checkLoggedIn'),
       releaseNamePromptCallback = require('../callback/prompt/releaseName'),
-      createDeflatedReleaseCallback = require('../callback/createDeflatedRelease');
+      checkLoggedInCallback = require('../callback/checkLoggedIn'),
+      createReleaseCallback = require('../callback/createRelease'),
+      deflateReleaseCallback = require('../callback/deflateRelease'),
+      checkReadmeFileExistsCallback = require('../callback/checkReadmeFileExists'),
+      checkMetaJSONFileExistsCallback = require('../callback/checkMetaJSONFileExists'),
+      checkMetaJSONRepositoryExistsCallback = require('../callback/checkMetaJSONRepositoryExists');
 
 const { exit } = process,
       { PUBLISH_URI } = constants,
@@ -18,7 +22,11 @@ function publish(argument) {
         callbacks = [
           checkLoggedInCallback,
           releaseNamePromptCallback,
-          createDeflatedReleaseCallback
+          createReleaseCallback,
+          checkReadmeFileExistsCallback,
+          checkMetaJSONFileExistsCallback,
+          checkMetaJSONRepositoryExistsCallback,
+          deflateReleaseCallback
         ],
         context = {
           releaseName: releaseName

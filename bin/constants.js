@@ -1,9 +1,10 @@
 'use strict';
 
 const TIMEOUT = 10000,
-      HOST_URL = 'https://openmathematics.org',
+      HOST_URL = 'http://localhost:8002',///https://openmathematics.org',
       POST_METHOD = 'POST',
       UTF_ENCODING = 'utf8',
+      BASE64_ENCODING = 'base64',
       LOGIN_URI = '/login',
       LOGOUT_URI = '/logout',
       PUBLISH_URI = '/publish',
@@ -19,6 +20,7 @@ const constants = {
   HOST_URL: HOST_URL,
   POST_METHOD: POST_METHOD,
   UTF_ENCODING: UTF_ENCODING,
+  BASE64_ENCODING: BASE64_ENCODING,
   LOGIN_URI: LOGIN_URI,
   LOGOUT_URI: LOGOUT_URI,
   PUBLISH_URI: PUBLISH_URI,
