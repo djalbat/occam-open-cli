@@ -1,6 +1,7 @@
 'use strict';
 
-const Entries = require('./entries');
+const Entries = require('./entries'),
+      MetaJSONFile = require('./file/metaJSON');
 
 const filePathUtilities = require('./utilities/filePath');
 
@@ -43,9 +44,9 @@ class Release {
 
   getReadmeFile() { return this.getFile(isFilePathReadmeFilePath); }
 
-  getMetaJSONFile() { return this.getFile(isFilePathMetaJSONFilePath); }
+  getMetaJSONFile() { return this.getFile(isFilePathMetaJSONFilePath, MetaJSONFile); }
 
-  getFile(test) {
+  getFile(test, Class) {
     let foundFile = null;
 
     const files = this.getFiles();
@@ -55,7 +56,9 @@ class Release {
           fileFound = test(filePath);
 
       if (fileFound) {
-        foundFile = file;
+        foundFile = Class ?
+                      Class.fromFile(file) :
+                        file;
 
         return true;
       }

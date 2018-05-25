@@ -10,7 +10,7 @@ const post = require('../post'),
       deflateReleaseCallback = require('../callback/deflateRelease'),
       checkReadmeFileExistsCallback = require('../callback/checkReadmeFileExists'),
       checkMetaJSONFileExistsCallback = require('../callback/checkMetaJSONFileExists'),
-      checkMetaJSONRepositoryExistsCallback = require('../callback/checkMetaJSONRepositoryExists');
+      checkMetaJSONFileRepositoryExistsCallback = require('../callback/checkMetaJSONFileRepositoryExists');
 
 const { exit } = process,
       { PUBLISH_URI } = constants,
@@ -25,7 +25,7 @@ function publish(argument) {
           createReleaseCallback,
           checkReadmeFileExistsCallback,
           checkMetaJSONFileExistsCallback,
-          checkMetaJSONRepositoryExistsCallback,
+          checkMetaJSONFileRepositoryExistsCallback,
           deflateReleaseCallback
         ],
         context = {
