@@ -2,9 +2,23 @@
 
 const childProcess = require('child_process');
 
-const { exec } = childProcess;
+const configuration = require('./configuration');
+
+const { exec } = childProcess,
+      { retrieveOptions } = configuration;
 
 function cloneRepository(repository, callback) {
+  const options = retrieveOptions(),
+        { useSSH, hostNameSuffix } = options;
+
+  if (useSSH) {
+    repository = repository.replace('https://github.com/', 'git@github.com:')
+  }
+
+  if (hostNameSuffix) {
+    repository = repository.replace('github.com', `github.com${hostNameSuffix}`);
+  }
+
   const command = `git clone ${repository}.git`;
 
   exec(command, function(error) {
@@ -19,3 +33,4 @@ function cloneRepository(repository, callback) {
 }
 
 module.exports = cloneRepository;
+

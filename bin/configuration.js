@@ -3,7 +3,8 @@
 const necessary = require('necessary');
 
 const commands = require('./commands'),
-      parameters = require('./parameters');
+      parameters = require('./parameters'),
+      defaultOptions = require('./defaultOptions');
 
 const { commandFromArgv } = parameters,
       { pathUtilities, fileSystemUtilities, miscellaneousUtilities } = necessary,
@@ -40,6 +41,16 @@ function removeAccessToken() {
   updateRCFile(null, 'accessToken');
 }
 
+function retrieveOptions() {
+  const json = readRCFile();
+
+  let { options } = json;
+
+  options = Object.assign(defaultOptions, options); ///
+
+  return options;
+}
+
 function retrieveAccessToken() {
   const json = readRCFile(),
         { accessToken } = json;
@@ -56,6 +67,7 @@ function updateContextReleaseName(context) {
 }
 
 module.exports = {
+  retrieveOptions: retrieveOptions,
   addAccessToken: addAccessToken,
   removeAccessToken: removeAccessToken,
   retrieveAccessToken: retrieveAccessToken,
