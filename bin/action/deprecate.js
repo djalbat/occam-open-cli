@@ -26,12 +26,14 @@ function deprecate(argument) {
           releaseName: releaseName
         };
 
-  action(callbacks, uri, function(json) {
+  action(callbacks, uri, function(json, done) {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_DEPRECATE_MESSAGE) :
         console.log(FAILED_DEPRECATE_MESSAGE);
+
+    done();
   }, context);
 }
 

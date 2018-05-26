@@ -28,12 +28,14 @@ function register(argument) {
           emailAddress: emailAddress
         };
 
-  action(callbacks, uri, function(json) {
+  action(callbacks, uri, function(json, done) {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_REGISTER_MESSAGE) :
         console.log(FAILED_REGISTER_MESSAGE);
+
+    done();
   }, context);
 }
 

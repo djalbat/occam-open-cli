@@ -18,12 +18,14 @@ function resetPassword(argument) {
           username: username
         };
 
-  action(callbacks, uri, function(json) {
+  action(callbacks, uri, function(json, done) {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_RESET_PASSWORD_MESSAGE) :
         console.log(FAILED_RESET_PASSWORD_MESSAGE);
+
+    done();
   }, context);
 }
 

@@ -24,12 +24,14 @@ function confirmEmailAddress(argument) {
           confirmationCode: confirmationCode
         };
 
-  action(callbacks, uri, function(json) {
+  action(callbacks, uri, function(json, done) {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE) :
         console.log(FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE);
+
+    done();
   }, context);
 }
 

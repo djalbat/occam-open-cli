@@ -43,35 +43,44 @@ function post(uri, data, callback) {
 
     if (error) {
       console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
-    } else {
-      const { body } = response;
 
-      let json;
+      exit();
 
-      try {
-        json = JSON.parse(body);
-      } catch (error) {
-        console.log(SERVER_ERROR_MESSAGE);
-
-        exit();
-      }
-
-      const { info, message, error } = json;
-
-      if (info) { ///
-        console.log(info);
-      }
-
-      if (message) {  ///
-        console.log(message);
-      }
-
-      error ?
-        console.log(SERVER_ERROR_MESSAGE) :
-          callback(json);
     }
 
-    exit();
+    const { body } = response;
+
+    let json;
+
+    try {
+      json = JSON.parse(body);
+    } catch (error) {
+      console.log(SERVER_ERROR_MESSAGE);
+
+      exit();
+    }
+
+    const { info, message } = json;
+
+    if (info) { ///
+      console.log(info);
+    }
+
+    if (message) {  ///
+      console.log(message);
+    }
+
+    error = json.error; ///
+
+    if (error) {
+      console.log(SERVER_ERROR_MESSAGE);
+
+      exit();
+    }
+
+    callback(json, function() {
+      exit();
+    });
   });
 }
 

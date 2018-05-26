@@ -24,7 +24,7 @@ function login(argument) {
           password: password
         };
 
-  action(callbacks, uri, function(json) {
+  action(callbacks, uri, function(json, done) {
     const { success } = json;
 
     if (success) {
@@ -36,6 +36,8 @@ function login(argument) {
     } else {
       console.log(FAILED_LOGIN_MESSAGE);
     }
+
+    done();
   }, context);
 }
 

@@ -30,12 +30,14 @@ function changePassword(argument) {
           newPassword: newPassword
         };
 
-  action(callbacks, uri, function(json) {
+  action(callbacks, uri, function(json, done) {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_CHANGE_PASSWORD_MESSAGE) :
         console.log(FAILED_CHANGE_PASSWORD_MESSAGE);
+
+    done();
   }, context);
 }
 
