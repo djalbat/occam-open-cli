@@ -31,16 +31,6 @@ if (!rcFileExists) {
 
 addVersionString();
 
-function addAccessToken(accessToken) {
-  updateRCFile({
-    accessToken: accessToken
-  });
-}
-
-function removeAccessToken() {
-  updateRCFile(null, 'accessToken');
-}
-
 function retrieveOptions() {
   const json = readRCFile();
 
@@ -49,6 +39,22 @@ function retrieveOptions() {
   options = Object.assign(defaultOptions, options); ///
 
   return options;
+}
+
+function updateOptions(options) {
+  updateRCFile({
+    options: options
+  });
+}
+
+function addAccessToken(accessToken) {
+  updateRCFile({
+    accessToken: accessToken
+  });
+}
+
+function removeAccessToken() {
+  updateRCFile(null, 'accessToken');
 }
 
 function retrieveAccessToken() {
@@ -68,6 +74,7 @@ function updateContextReleaseName(context) {
 
 module.exports = {
   retrieveOptions: retrieveOptions,
+  updateOptions: updateOptions,
   addAccessToken: addAccessToken,
   removeAccessToken: removeAccessToken,
   retrieveAccessToken: retrieveAccessToken,

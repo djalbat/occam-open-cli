@@ -28,6 +28,8 @@ Commmands:
   login [<username>]               Log in 
 
   logout                           Log out 
+
+  options                          Set options 
  
   resend [<email_address>]         Resend a confirmation code
 

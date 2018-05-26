@@ -11,6 +11,7 @@ const commands = require('./commands'),
       publish = require('./action/publish'),
       register = require('./action/register'),
       deprecate = require('./action/deprecate'),
+      setOptions = require('./action/setOptions'),
       resetPassword = require('./action/resetPassword'),
       changePassword = require('./action/changePassword'),
       confirmEmailAddress = require('./action/confirmEmailAddress'),
@@ -27,6 +28,7 @@ const {
   PUBLISH_COMMAND,
   REGISTER_COMMAND,
   DEPRECATE_COMMAND,
+  SET_OPTIONS_COMMAND,
   RESET_PASSWORD_COMMAND,
   CHANGE_PASSWORD_COMMAND,
   CONFIRM_EMAIL_ADDRESS_COMMAND,
@@ -57,6 +59,7 @@ function main(command, argument, options) {
     case PUBLISH_COMMAND: publish(argument); break;
     case REGISTER_COMMAND: register(argument); break;
     case DEPRECATE_COMMAND: deprecate(argument); break;
+    case SET_OPTIONS_COMMAND: setOptions(); break;
     case RESET_PASSWORD_COMMAND: resetPassword(argument); break;
     case CHANGE_PASSWORD_COMMAND: changePassword(argument); break;
     case CONFIRM_EMAIL_ADDRESS_COMMAND: confirmEmailAddress(argument); break;
