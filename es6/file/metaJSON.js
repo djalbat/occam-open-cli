@@ -11,7 +11,7 @@ const File = require('../file'),
 
 const { MetaJSONLexer } = lexers,
       { MetaJSONParser } = parsers,
-      { findNode, findNodes } = nodeUtilities,
+      { findNodeByClass, findNodesByClass } = nodeUtilities,
       { significantTokensFromTokens } = tokensUtilities;
 
 const mappings = {
@@ -54,8 +54,8 @@ class MetaJSONFile extends File {
           tokens = metaJSONLexer.tokensFromContent(content),
           significantTokens = significantTokensFromTokens(tokens),
           node = metaJSONParser.nodeFromSignificantTokens(significantTokens),
-          repositoryNode = findNode(node, RepositoryNode),
-          dependencyNodes = findNodes(node, DependencyNode),
+          repositoryNode = findNodeByClass(node, RepositoryNode),
+          dependencyNodes = findNodesByClass(node, DependencyNode),
           metaJSONFile = new MetaJSONFile(path, content, repositoryNode, dependencyNodes);
 
     return metaJSONFile;

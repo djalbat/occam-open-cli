@@ -3,9 +3,12 @@
 const parsers = require('occam-parsers'),
       necessary = require('necessary');
 
+const nodeUtilities = require('../utilities/node');
+
 const { NonTerminalNode } = parsers,
       { arrayUtilities } = necessary,
-      { first, second } = arrayUtilities;
+      { findTerminalNodes } = nodeUtilities,
+      { first } = arrayUtilities;
 
 class DependencyNode extends NonTerminalNode {
   constructor(ruleName, childNodes) {
@@ -15,13 +18,12 @@ class DependencyNode extends NonTerminalNode {
   }
 
   getDependency() {
-    const childNodes = this.getChildNodes(),
-          firstChildNode = first(childNodes),
-          firstChildNodeSignificantToken = firstChildNode.getSignificantToken(),
-          firstChildNodeSignificantTokenContent = firstChildNodeSignificantToken.getContent(),
-          matches = firstChildNodeSignificantTokenContent.match(/^"([^"]+)"$/),
-          secondMatch = second(matches),
-          dependency = secondMatch; ///
+    const node = this,  ///
+          terminalNodes = findTerminalNodes(node),
+          firstTerminalNode = first(terminalNodes),
+          firstTerminalNodeSignificantToken = firstTerminalNode.getSignificantToken(),
+          firstTerminalNodeSignificantTokenString = firstTerminalNodeSignificantToken.getString(),
+          dependency = firstTerminalNodeSignificantTokenString; ///
 
     return dependency;
   }

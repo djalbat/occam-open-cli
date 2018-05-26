@@ -3,8 +3,11 @@
 const parsers = require('occam-parsers'),
       necessary = require('necessary');
 
+const nodeUtilities = require('../utilities/node');
+
 const { NonTerminalNode } = parsers,
       { arrayUtilities } = necessary,
+      { findTerminalNodes } = nodeUtilities,
       { third } = arrayUtilities;
 
 class RepositoryNode extends NonTerminalNode {
@@ -15,11 +18,12 @@ class RepositoryNode extends NonTerminalNode {
   }
 
   getRepository() {
-    const childNodes = this.getChildNodes(),
-          thirdChildNode = third(childNodes),
-          thirdChildNodeSignificantToken = thirdChildNode.getSignificantToken(),
-          thirdChildNodeSignificantTokenContent = thirdChildNodeSignificantToken.getContent(),
-          repository = thirdChildNodeSignificantTokenContent;  ///
+    const node = this,  ///
+          terminalNodes = findTerminalNodes(node),
+          thirdTerminalNode = third(terminalNodes),
+          thirdTerminalNodeSignificantToken = thirdTerminalNode.getSignificantToken(),
+          thirdTerminalNodeSignificantTokenString = thirdTerminalNodeSignificantToken.getString(),
+          repository = thirdTerminalNodeSignificantTokenString;  ///
 
     return repository;
   }

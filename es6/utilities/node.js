@@ -1,6 +1,6 @@
 'use strict';
 
-function findNode(node, Class) {
+function findNodeByClass(node, Class) {
   let foundNode = null;
 
   if (node instanceof Class) {
@@ -13,7 +13,7 @@ function findNode(node, Class) {
             childNodes = nonTerminalNode.getChildNodes();
 
       childNodes.some(function(childNode) {
-        foundNode = findNode(childNode, Class);
+        foundNode = findNodeByClass(childNode, Class);
 
         if (foundNode !== null) {
           return true;
@@ -25,7 +25,7 @@ function findNode(node, Class) {
   return foundNode;
 }
 
-function findNodes(node, Class, foundNodes = []) {
+function findNodesByClass(node, Class, foundNodes = []) {
   if (node instanceof Class) {
     const foundNode = node; ///
 
@@ -38,7 +38,7 @@ function findNodes(node, Class, foundNodes = []) {
             childNodes = nonTerminalNode.getChildNodes();
 
       childNodes.forEach(function(childNode) {
-        findNodes(childNode, Class, foundNodes);
+        findNodesByClass(childNode, Class, foundNodes);
       });
     }
   }
@@ -46,7 +46,31 @@ function findNodes(node, Class, foundNodes = []) {
   return foundNodes;
 }
 
+function findTerminalNodes(node, foundTerminalNodes = []) {
+  const nodeTerminalNode = node.isTerminalNode();
+
+  if (nodeTerminalNode) {
+    const foundTerminalNode = node; ///
+
+    foundTerminalNodes.push(foundTerminalNode);
+  } else {
+    const nodeNonTerminalNode = node.isNonTerminalNode();
+
+    if (nodeNonTerminalNode) {
+      const nonTerminalNode = node, ///
+            childNodes = nonTerminalNode.getChildNodes();
+
+      childNodes.forEach(function(childNode) {
+        findTerminalNodes(childNode, foundTerminalNodes);
+      });
+    }
+  }
+
+  return foundTerminalNodes;
+}
+
 module.exports = {
-  findNode: findNode,
-  findNodes: findNodes
+  findNodeByClass: findNodeByClass,
+  findNodesByClass: findNodesByClass,
+  findTerminalNodes: findTerminalNodes
 };
