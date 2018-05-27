@@ -24,10 +24,12 @@ class Project {
   }
 
   static fromURL(url, callback) {
-    const params = {
-            method : "GET",
+    const method = 'GET',
+          encoding = null,
+          params = {
             url : url,
-            encoding: null
+            method : method,
+            encoding: encoding
           };
 
     request(params, function(error, response) {
