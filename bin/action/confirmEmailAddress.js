@@ -20,8 +20,8 @@ function confirmEmailAddress(argument) {
           confirmationCodePromptCallback
         ],
         context = {
-          emailAddress: emailAddress,
-          confirmationCode: confirmationCode
+          emailAddress,
+          confirmationCode
         };
 
   action(callbacks, uri, function(json, done) {

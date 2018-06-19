@@ -23,9 +23,9 @@ function register(argument) {
           emailAddressPromptCallback
         ],
         context = {
-          username: username,
-          password: password,
-          emailAddress: emailAddress
+          username,
+          password,
+          emailAddress
         };
 
   action(callbacks, uri, function(json, done) {

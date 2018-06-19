@@ -13,11 +13,11 @@ const { miscellaneousUtilities } = necessary,
 function useSSHPromptCallback(proceed, abort, context) {
   const description = 'Use SSH when cloning: ',
         errorMessage = INVALID_ANSWER_MESSAGE,
-        validationFunction = validateAnswer,
+        validationFunction = validateAnswer,  ///
         options = {
-          description: description,
-          errorMessage: errorMessage,
-          validationFunction: validationFunction
+          description,
+          errorMessage,
+          validationFunction
         };
 
   prompt(options, function(answer) {
@@ -28,7 +28,7 @@ function useSSHPromptCallback(proceed, abort, context) {
             useSSH = yes; ///
 
       Object.assign(context, {
-        useSSH: useSSH
+        useSSH
       });
 
       proceed();

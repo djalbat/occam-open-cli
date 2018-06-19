@@ -31,11 +31,11 @@ function releaseNamePromptCallback(proceed, abort, context) {
   }
 
   const description = 'Package name: ',
-        validationFunction = validateReleaseName,
+        validationFunction = validateReleaseName, ///
         options = {
-          description: description,
-          errorMessage: errorMessage,
-          validationFunction: validationFunction
+          description,
+          errorMessage,
+          validationFunction
         };
 
   prompt(options, function(releaseName) {
@@ -43,7 +43,7 @@ function releaseNamePromptCallback(proceed, abort, context) {
 
     if (valid) {
       Object.assign(context, {
-        releaseName: releaseName
+        releaseName
       });
 
       proceed();

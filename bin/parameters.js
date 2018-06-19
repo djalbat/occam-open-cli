@@ -46,9 +46,9 @@ function argumentFromArgv(argv) {
 }
 
 module.exports = {
-  optionsFromArgv: optionsFromArgv,
-  commandFromArgv: commandFromArgv,
-  argumentFromArgv: argumentFromArgv
+  optionsFromArgv,
+  commandFromArgv,
+  argumentFromArgv
 };
 
 function longhandOptionFromArgument(argument, availableOptions, optionsMap) {

@@ -29,7 +29,7 @@ function publish(argument) {
           deflateReleaseCallback
         ],
         context = {
-          releaseName: releaseName
+          releaseName
         };
 
   executeCallbacks(callbacks, function(completed) {

@@ -25,9 +25,9 @@ function changePassword(argument) {
           confirmNewPasswordPromptCallback
         ],
         context = {
-          username: username,
-          oldPassword: oldPassword,
-          newPassword: newPassword
+          username,
+          oldPassword,
+          newPassword
         };
 
   action(callbacks, uri, function(json, done) {

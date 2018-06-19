@@ -17,7 +17,7 @@ function clone(argument) {
           releaseNamePromptCallback
         ],
         context = {
-          name: name
+          name
         };
 
   action(callbacks, uri, function(json, done) {

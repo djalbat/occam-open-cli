@@ -27,9 +27,9 @@ class Project {
     const method = 'GET',
           encoding = null,
           params = {
-            url : url,
-            method : method,
-            encoding: encoding
+            url,
+            method ,
+            encoding
           };
 
     request(params, function(error, response) {

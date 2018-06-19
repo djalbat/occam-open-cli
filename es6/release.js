@@ -75,9 +75,9 @@ class Release {
           entries = entriesJSON,  ///
           versionNumber = this.versionNumber,
           json = {
-            name: name,
-            entries: entries,
-            versionNumber: versionNumber
+            name,
+            entries,
+            versionNumber
           };
 
     return json;

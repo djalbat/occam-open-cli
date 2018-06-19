@@ -14,6 +14,6 @@ function removeMasterDirectoryNameFromPath(path) {
 }
 
 module.exports = {
-  isNameHiddenName: isNameHiddenName,
-  removeMasterDirectoryNameFromPath: removeMasterDirectoryNameFromPath
+  isNameHiddenName,
+  removeMasterDirectoryNameFromPath
 };

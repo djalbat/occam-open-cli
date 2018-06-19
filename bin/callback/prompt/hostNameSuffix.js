@@ -13,11 +13,11 @@ const { miscellaneousUtilities } = necessary,
 function hostNameSuffixPromptCallback(proceed, abort, context) {
   const description = 'Host name suffix: ',
         errorMessage = INVALID_HOST_NAME_SUFFIX_MESSAGE,
-        validationFunction = validateHostNameSuffix,
+        validationFunction = validateHostNameSuffix,  ///
         options = {
-          description: description,
-          errorMessage: errorMessage,
-          validationFunction: validationFunction
+          description,
+          errorMessage,
+          validationFunction
         };
 
   prompt(options, function(hostNameSuffix) {
@@ -25,7 +25,7 @@ function hostNameSuffixPromptCallback(proceed, abort, context) {
 
     if (valid) {
       Object.assign(context, {
-        hostNameSuffix: hostNameSuffix
+        hostNameSuffix
       });
 
       proceed();

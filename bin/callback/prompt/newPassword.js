@@ -14,12 +14,12 @@ function newPasswordPromptCallback(proceed, abort, context) {
   const hidden = true,
         description = 'New password: ',
         errorMessage = INVALID_PASSWORD_MESSAGE,
-        validationFunction = validatePassword,
+        validationFunction = validatePassword,  ///
         options = {
-          hidden: hidden,
-          description: description,
-          errorMessage: errorMessage,
-          validationFunction: validationFunction
+          hidden,
+          description,
+          errorMessage,
+          validationFunction
         };
 
   prompt(options, function(newPassword) {
@@ -27,7 +27,7 @@ function newPasswordPromptCallback(proceed, abort, context) {
 
     if (valid) {
       Object.assign(context, {
-        newPassword: newPassword
+        newPassword
       });
 
       proceed();

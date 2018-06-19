@@ -18,7 +18,7 @@ function isFilePathMetaJSONFilePath(filePath) { return metaJSONFilePathRegularEx
 function isFilePathRecognisedFilePath(filePath) { return recognisedFilePathRegularExpression.test(filePath); }
 
 module.exports = {
-  isFilePathReadmeFilePath: isFilePathReadmeFilePath,
-  isFilePathMetaJSONFilePath: isFilePathMetaJSONFilePath,
-  isFilePathRecognisedFilePath: isFilePathRecognisedFilePath
+  isFilePathReadmeFilePath,
+  isFilePathMetaJSONFilePath,
+  isFilePathRecognisedFilePath
 };
