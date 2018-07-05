@@ -8,7 +8,7 @@ const File = require('./file'),
       filePathUtilities = require('./utilities/filePath');
 
 const { pathUtilities, arrayUtilities, asynchronousUtilities, fileSystemUtilities } = necessary,
-      { first } = arrayUtilities,
+      { first, filter } = arrayUtilities,
       { forEach } = asynchronousUtilities,
       { readDirectory } = fileSystemUtilities,
       { isNameHiddenName } = nameUtilities,
@@ -25,7 +25,7 @@ class Entries {
     
     const firstEntry = first(this.array); ///
 
-    if (firstEntry !== undefined) {
+    if (firstEntry) { ///
       const firstEntryPath = firstEntry.getPath();
 
       topmostDirectoryName = topmostDirectoryNameFromPath(firstEntryPath);
@@ -36,6 +36,27 @@ class Entries {
     }
 
     return topmostDirectoryName;
+  }
+
+  removeFileByPath(path) {
+    filter(this.array, function(entry) {
+      const entryFile = entry.isFile();
+
+      if (entryFile) {
+        const file = entry, ///
+              filePath = file.getPath();
+
+        if (filePath === path) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+  }
+
+  addFile(file) {
+    this.array.push(file);
   }
 
   mapEntry(callback) { return this.array.map(callback); }
