@@ -15,11 +15,11 @@ function validateHostNameSuffix(hostNameSuffix) { return /^[a-zA-Z0-9.\-]*$/.tes
 function validateConfirmationCode(confirmationCode) { return /^[a-zA-Z0-9]{6,10}$/.test(confirmationCode); }
 
 module.exports = {
-  validateAnswer: validateAnswer,
-  validateUsername: validateUsername,
-  validatePassword: validatePassword,
-  validateReleaseName: validateReleaseName,
-  validateEmailAddress: validateEmailAddress,
-  validateHostNameSuffix: validateHostNameSuffix,
-  validateConfirmationCode: validateConfirmationCode
+  validateAnswer,
+  validateUsername,
+  validatePassword,
+  validateReleaseName,
+  validateEmailAddress,
+  validateHostNameSuffix,
+  validateConfirmationCode
 };

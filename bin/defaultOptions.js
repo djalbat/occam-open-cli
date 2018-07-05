@@ -4,6 +4,6 @@ const useSSH = false,
       hostNameSuffix = '';
 
 module.exports = {
-  useSSH: useSSH,
-  hostNameSuffix: hostNameSuffix
+  useSSH,
+  hostNameSuffix
 };

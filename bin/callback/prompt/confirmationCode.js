@@ -14,12 +14,12 @@ function confirmationCodePromptCallback(proceed, abort, context) {
   const hidden = true,
         description = 'Confirmation code: ',
         errorMessage = INVALID_CONFIRMATION_CODE_MESSAGE,
-        validationFunction = validateConfirmationCode,
+        validationFunction = validateConfirmationCode,  ///
         options = {
-          hidden: hidden,
-          description: description,
-          errorMessage: errorMessage,
-          validationFunction: validationFunction
+          hidden,
+          description,
+          errorMessage,
+          validationFunction
         };
 
   prompt(options, function(confirmationCode) {
@@ -27,7 +27,7 @@ function confirmationCodePromptCallback(proceed, abort, context) {
 
     if (valid) {
       Object.assign(context, {
-        confirmationCode: confirmationCode
+        confirmationCode
       });
 
       proceed();

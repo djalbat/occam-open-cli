@@ -15,7 +15,7 @@ function resetPassword(argument) {
           usernamePromptCallback
         ],
         context = {
-          username: username
+          username
         };
 
   action(callbacks, uri, function(json, done) {

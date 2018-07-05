@@ -70,7 +70,7 @@ function findTerminalNodes(node, foundTerminalNodes = []) {
 }
 
 module.exports = {
-  findNodeByClass: findNodeByClass,
-  findNodesByClass: findNodesByClass,
-  findTerminalNodes: findTerminalNodes
+  findNodeByClass,
+  findNodesByClass,
+  findTerminalNodes
 };

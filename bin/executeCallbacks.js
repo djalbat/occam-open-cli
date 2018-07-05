@@ -9,8 +9,8 @@ function executeCallbacks(callbacks, callback, context) {
   const completed = true;
 
   Object.assign(context, {
-    callbacks: callbacks,
-    completed: completed
+    callbacks,
+    completed
   });
 
   whilst(executeCallback, function() {
@@ -44,7 +44,7 @@ function executeCallback(next, done, context, index) {
     const completed = false;
 
     Object.assign(context, {
-      completed: completed
+      completed
     });
 
     done();

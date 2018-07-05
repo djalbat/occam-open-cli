@@ -20,8 +20,8 @@ function login(argument) {
           passwordPromptCallback
         ],
         context = {
-          username: username,
-          password: password
+          username,
+          password
         };
 
   action(callbacks, uri, function(json, done) {

@@ -98,7 +98,7 @@ class Directory {
 const type = 'Directory';
 
 Object.assign(Directory, {
-  type: type
+  type
 });
 
 module.exports = Directory;

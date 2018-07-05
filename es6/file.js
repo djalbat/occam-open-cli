@@ -119,7 +119,7 @@ class File {
 const type = 'File';
 
 Object.assign(File, {
-  type: type
+  type
 });
 
 module.exports = File;

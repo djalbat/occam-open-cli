@@ -17,7 +17,7 @@ const { miscellaneousUtilities } = necessary,
 function post(uri, data, callback) {
   const url = `${HOST_URL}${uri}`,
         form = Object.assign(data, {
-          versionString: versionString
+          versionString
         }),
         timeout = TIMEOUT,
         method = POST_METHOD,
@@ -28,12 +28,12 @@ function post(uri, data, callback) {
           'User-Agent': `Open-CLI/${operatingSystem}`
         },
         options = {
-          url : url,
-          form: form,
-          method : method,
-          timeout: timeout,
-          encoding: encoding,
-          headers: headers
+          url,
+          form,
+          method ,
+          timeout,
+          encoding,
+          headers
         };
 
   const offETX = onETX(exit);

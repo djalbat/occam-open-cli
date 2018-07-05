@@ -43,13 +43,13 @@ function retrieveOptions() {
 
 function updateOptions(options) {
   updateRCFile({
-    options: options
+    options
   });
 }
 
 function addAccessToken(accessToken) {
   updateRCFile({
-    accessToken: accessToken
+    accessToken
   });
 }
 
@@ -67,18 +67,18 @@ function retrieveAccessToken() {
 function updateContextReleaseName(context) {
   if (releaseName !== null) {
     Object.assign(context, {
-      releaseName: releaseName
+      releaseName
     })
   }
 }
 
 module.exports = {
-  retrieveOptions: retrieveOptions,
-  updateOptions: updateOptions,
-  addAccessToken: addAccessToken,
-  removeAccessToken: removeAccessToken,
-  retrieveAccessToken: retrieveAccessToken,
-  updateContextReleaseName: updateContextReleaseName
+  retrieveOptions,
+  updateOptions,
+  addAccessToken,
+  removeAccessToken,
+  retrieveAccessToken,
+  updateContextReleaseName
 };
 
 function changeDirectoryAndSetReleaseName() {
@@ -126,6 +126,6 @@ function addVersionString() {
         versionString = version;  ///
 
   Object.assign(rc, {
-    versionString: versionString
+    versionString
   });
 }

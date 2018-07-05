@@ -19,7 +19,7 @@ function createReleaseCallback(proceed, abort, context) {
   }
 
   Object.assign(context, {
-    release: release
+    release
   });
 
   delete context.releaseName;

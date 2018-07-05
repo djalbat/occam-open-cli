@@ -17,5 +17,5 @@ function significantTokensFromTokens(tokens) {
 }
 
 module.exports = {
-  significantTokensFromTokens: significantTokensFromTokens
+  significantTokensFromTokens
 };

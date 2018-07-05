@@ -13,11 +13,11 @@ const { miscellaneousUtilities } = necessary,
 function areYouSurePromptCallback(proceed, abort, context) {
   const description = 'Are you sure: ',
         errorMessage = INVALID_ANSWER_MESSAGE,
-        validationFunction = validateAnswer,
+        validationFunction = validateAnswer,  ///
         options = {
-          description: description,
-          errorMessage: errorMessage,
-          validationFunction: validationFunction
+          description,
+          errorMessage,
+          validationFunction
         };
 
   prompt(options, function(answer) {

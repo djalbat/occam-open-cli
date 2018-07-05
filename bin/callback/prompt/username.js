@@ -27,11 +27,11 @@ function usernamePromptCallback(proceed, abort, context) {
   }
 
   const description = 'Username: ',
-        validationFunction = validateUsername,
+        validationFunction = validateUsername,  ///
         options = {
-          description: description,
-          errorMessage: errorMessage,
-          validationFunction: validationFunction
+          description,
+          errorMessage,
+          validationFunction
         };
 
   prompt(options, function(username) {
@@ -39,7 +39,7 @@ function usernamePromptCallback(proceed, abort, context) {
 
     if (valid) {
       Object.assign(context, {
-        username: username
+        username
       });
 
       proceed();

@@ -27,7 +27,7 @@ function deflateRelease(proceed, abort, context) {
           deflatedRelease = deflatedReleaseJSONString;  ///
 
     Object.assign(context, {
-      deflatedRelease: deflatedRelease
+      deflatedRelease
     });
 
     proceed();

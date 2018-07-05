@@ -17,7 +17,7 @@ function resendConfirmationCode(argument) {
           emailAddressPromptCallback
         ],
         context = {
-          emailAddress: emailAddress
+          emailAddress
         };
 
   action(callbacks, uri, function(json, done) {

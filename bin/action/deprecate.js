@@ -22,8 +22,8 @@ function deprecate(argument) {
           areYouSurePromptCallback
         ],
         context = {
-          password: password,
-          releaseName: releaseName
+          password,
+          releaseName
         };
 
   action(callbacks, uri, function(json, done) {
