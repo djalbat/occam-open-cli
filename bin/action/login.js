@@ -3,13 +3,13 @@
 const action = require('../action'),
       messages = require('../messages'),
       constants = require('../constants'),
-      configuration = require('../configuration'),
+      configurationUtilities = require('../utilities/configuration'),
       usernamePromptCallback = require('../callback/prompt/username'),
       passwordPromptCallback = require('../callback/prompt/password');
 
-const { LOGIN_URI } = constants,
-      { FAILED_LOGIN_MESSAGE, SUCCESSFUL_LOGIN_MESSAGE } = messages,
-      { addAccessToken } = configuration;
+const { addAccessToken } = configurationUtilities,
+      { LOGIN_URI } = constants,
+      { FAILED_LOGIN_MESSAGE, SUCCESSFUL_LOGIN_MESSAGE } = messages;
 
 function login(argument) {
   const username = argument,  ///

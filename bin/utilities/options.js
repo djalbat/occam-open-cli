@@ -1,17 +1,21 @@
 'use strict';
 
-const os = require('os'),
-      necessary = require('necessary');
+const os = require('os');
 
-const constants = require('./constants');
+const state = require('../state'),
+			constants = require('../constants'),
+			configurationUtilities = require('../utilities/configuration');
 
-const { miscellaneousUtilities } = necessary,
-      { rc } = miscellaneousUtilities,
-      { versionString } = rc,
-      { HOST_URL, TIMEOUT, POST_METHOD, UTF_ENCODING } = constants;
+const { getVersionString } = state,
+			{ retrieveOptions } = configurationUtilities,
+      { TIMEOUT, POST_METHOD, UTF_ENCODING } = constants;
 
 function optionsFromURIAndData(uri, data) {
-	const url = `${HOST_URL}${uri}`,
+	let options = retrieveOptions();
+
+	const { hostURL } = options,
+				url = `${hostURL}${uri}`,
+				versionString = getVersionString(),
 				form = Object.assign(data, {
 					versionString
 				}),
@@ -23,15 +27,16 @@ function optionsFromURIAndData(uri, data) {
 				userAgent = `Open-CLI/${operatingSystem}`,
 				headers = {
 					'User-Agent': userAgent
-				},
-				options = {
-					url,
-					form,
-					method ,
-					timeout,
-					encoding,
-					headers
 				};
+
+	options = {	///
+		url,
+		form,
+		method ,
+		timeout,
+		encoding,
+		headers
+	};
 
 	return options;
 }

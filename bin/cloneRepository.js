@@ -2,10 +2,10 @@
 
 const childProcess = require('child_process');
 
-const configuration = require('./configuration');
+const configurationUtilities = require('./utilities/configuration');
 
 const { exec } = childProcess,
-      { retrieveOptions } = configuration;
+      { retrieveOptions } = configurationUtilities;
 
 function cloneRepository(repository, callback) {
   const options = retrieveOptions(),

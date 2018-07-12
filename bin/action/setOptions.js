@@ -1,12 +1,12 @@
 'use strict';
 
 const messages = require('../messages'),
-      configuration = require('../configuration'),
       callbackUtilities = require('../utilities/callback'),
       useSSHPromptCallback = require('../callback/prompt/useSSH'),
-      hostNameSuffixPromptCallback = require('../callback/prompt/hostNameSuffix');
+			configurationUtilities = require('../utilities/configuration'),
+			hostNameSuffixPromptCallback = require('../callback/prompt/hostNameSuffix');
 
-const { updateOptions } = configuration,
+const { updateOptions } = configurationUtilities,
 			{ executeCallbacks } = callbackUtilities,
       { FAILED_SET_OPTIONS_MESSAGE, SUCCESSFUL_SET_OPTIONS_MESSAGE } = messages;
 

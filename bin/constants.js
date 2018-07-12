@@ -1,10 +1,12 @@
 'use strict';
 
 const TIMEOUT = 10000,
-      HOST_URL = 'http://localhost:8002',///https://openmathematics.org',
+      USE_SSH = false,
+      HOST_URL = 'http://localhost:8002',
       POST_METHOD = 'POST',
       UTF_ENCODING = 'utf8',
       BASE64_ENCODING = 'base64',
+			HOST_NAME_SUFFIX = '',
       CLONE_URI = '/clone',
       LOGIN_URI = '/login',
       LOGOUT_URI = '/logout',
@@ -18,10 +20,12 @@ const TIMEOUT = 10000,
 
 const constants = {
   TIMEOUT,
+	USE_SSH,
   HOST_URL,
   POST_METHOD,
   UTF_ENCODING,
   BASE64_ENCODING,
+	HOST_NAME_SUFFIX,
   CLONE_URI,
   LOGIN_URI,
   LOGOUT_URI,

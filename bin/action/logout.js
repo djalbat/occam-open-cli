@@ -3,12 +3,12 @@
 const action = require('../action'),
       messages = require('../messages'),
       constants = require('../constants'),
-      configuration = require('../configuration'),
-      checkLoggedInCallback = require('../callback/checkLoggedIn');
+      checkLoggedInCallback = require('../callback/checkLoggedIn'),
+      configurationUtilities = require('../utilities/configuration');
 
 const { LOGOUT_URI } = constants,
       { LOGGED_OUT_MESSAGE } = messages,
-      { removeAccessToken } = configuration;
+      { removeAccessToken } = configurationUtilities;
 
 function logout() {
   const uri = LOGOUT_URI,

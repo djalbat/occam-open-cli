@@ -1,12 +1,11 @@
 'use strict';
 
-const necessary = require('necessary');
+const state = require('../state');
 
-const { miscellaneousUtilities } = necessary,
-      { rc } = miscellaneousUtilities;
+const { getVersionString } = state;
 
 function version() {
-  const { versionString } = rc;
+  const versionString = getVersionString();
 
   console.log(`Open-CLI version ${versionString}`);
 }
