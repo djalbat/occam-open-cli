@@ -1,7 +1,9 @@
 'use strict';
 
 const post = require('./post'),
-      executeCallbacks = require('./executeCallbacks');
+      callbackUtilities = require('./utilities/callback');
+
+const { executeCallbacks } = callbackUtilities;
 
 function action(callbacks, uri, callback, context) {
   executeCallbacks(callbacks, function(completed) {

@@ -24,7 +24,9 @@ function executeCallbacks(callbacks, callback, context) {
   }, context);
 }
 
-module.exports = executeCallbacks;
+module.exports = {
+	executeCallbacks
+};
 
 function executeCallback(next, done, context, index) {
   const { callbacks } = context,

@@ -3,14 +3,16 @@
 const post = require('../post'),
       messages = require('../messages'),
       constants = require('../constants'),
-      executeCallbacks = require('../executeCallbacks'),
+			callbackUtilities = require('../utilities/callback'),
       checkLoggedInCallback = require('../callback/checkLoggedIn'),
       releaseNamePromptCallback = require('../callback/prompt/releaseName'),
       createDeflatedReleaseCallback = require('../callback/createDeflatedRelease');
 
+
 const { exit } = process,
       { PUBLISH_URI } = constants,
-      { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages;
+      { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages,
+      { executeCallbacks } = callbackUtilities;;
 
 function publish(argument) {
   const releaseName = argument,  ///

@@ -33,10 +33,10 @@ function post(uri, data, callback) {
           headers: headers
         };
 
-  const offETX = onETX(exit);
+  // const offETX = onETX(exit);
 
   request(options, function(error, response) {
-    offETX();
+    // offETX();
 
     if (error) {
       console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);

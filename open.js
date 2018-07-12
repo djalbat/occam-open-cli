@@ -3,10 +3,10 @@
 require('./bin/configuration'); ///
 
 const main = require('./bin/main'),
-      parameters = require('./bin/parameters');
+      parameterUtilities = require('./bin/utilities/parameter');
 
-const { optionsFromArgv, commandFromArgv, argumentFromArgv } = parameters,
-      { argv } = process;
+const { argv } = process,
+			{ optionsFromArgv, commandFromArgv, argumentFromArgv } = parameterUtilities;
 
 const options = optionsFromArgv(argv),
       command = commandFromArgv(argv),
