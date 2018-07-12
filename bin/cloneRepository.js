@@ -33,4 +33,3 @@ function cloneRepository(repository, callback) {
 }
 
 module.exports = cloneRepository;
-
