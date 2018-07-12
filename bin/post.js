@@ -55,7 +55,9 @@ function post(uri, data, callback) {
       exit();
     }
 
-    callback(json, exit);
+    callback(json, function() {
+    	exit();
+		});
   });
 }
 

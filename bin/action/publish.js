@@ -12,7 +12,6 @@ const post = require('../post'),
       checkMetaJSONFileExistsCallback = require('../callback/checkMetaJSONFileExists'),
       checkMetaJSONFileRepositoryExistsCallback = require('../callback/checkMetaJSONFileRepositoryExists');
 
-
 const { exit } = process,
       { PUBLISH_URI } = constants,
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages,
@@ -43,12 +42,14 @@ function publish(argument) {
 
     const data = context; ///
 
-    post(uri, data, function(json) {
+    post(uri, data, function(json, done) {
       const { success } = json;
 
       success ?
         console.log(SUCCESSFUL_PUBLISH_MESSAGE) :
           console.log(FAILED_PUBLISH_MESSAGE);
+
+      done();
     });
   }, context);
 }
