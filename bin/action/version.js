@@ -2,16 +2,13 @@
 
 const necessary = require('necessary');
 
-const { fileSystemUtilities } = necessary,
-      { readFile } = fileSystemUtilities;
+const { miscellaneousUtilities } = necessary,
+      { rc } = miscellaneousUtilities;
 
-function version(dirname) {
-  const packageJSONFilePath = `${dirname}/package.json`,  ///
-        packageJSONFile = readFile(packageJSONFilePath),
-        packageJSON = JSON.parse(packageJSONFile),
-        { version } = packageJSON;
+function version() {
+  const { versionString } = rc;
 
-  console.log(`Open-CLI version ${version}`);
+  console.log(`Open-CLI version ${versionString}`);
 }
 
 module.exports = version;

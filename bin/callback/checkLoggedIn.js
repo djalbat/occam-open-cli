@@ -19,7 +19,7 @@ function checkLoggedInCallback(proceed, abort, context) {
   }
 
   Object.assign(context, {
-    accessToken: accessToken
+    accessToken
   });
 
   proceed();

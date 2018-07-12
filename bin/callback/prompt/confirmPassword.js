@@ -14,10 +14,10 @@ function confirmPasswordPromptCallback(proceed, abort, context) {
         description = 'Confirm password: ',
         errorMessage = PASSWORDS_DO_NOT_MATCH_MESSAGE,
         options = {
-          hidden: hidden,
-          description: description,
-          errorMessage: errorMessage,
-          validationFunction: validationFunction
+          hidden,
+          description,
+          errorMessage,
+          validationFunction
         };
 
   prompt(options, function(password) {

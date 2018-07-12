@@ -3,11 +3,13 @@
 const necessary = require('necessary');
 
 const commands = require('./commands'),
-      parameters = require('./parameters');
+      parameters = require('./parameters'),
+      defaultOptions = require('./defaultOptions');
 
 const { commandFromArgv } = parameters,
-      { pathUtilities, miscellaneousUtilities } = necessary,
-      { bottommostNameFromPath } = pathUtilities,
+      { pathUtilities, fileSystemUtilities, miscellaneousUtilities } = necessary,
+      { bottommostNameFromPath, pathWithoutBottommostNameFromPath } = pathUtilities,
+      { readFile } = fileSystemUtilities,
       { rc } = miscellaneousUtilities,
       { cwd, chdir } = process,
       { PUBLISH_COMMAND } = commands,
@@ -27,9 +29,27 @@ if (!rcFileExists) {
   }
 }
 
+addVersionString();
+
+function retrieveOptions() {
+  const json = readRCFile();
+
+  let { options } = json;
+
+  options = Object.assign(defaultOptions, options); ///
+
+  return options;
+}
+
+function updateOptions(options) {
+  updateRCFile({
+    options
+  });
+}
+
 function addAccessToken(accessToken) {
   updateRCFile({
-    accessToken: accessToken
+    accessToken
   });
 }
 
@@ -47,16 +67,18 @@ function retrieveAccessToken() {
 function updateContextReleaseName(context) {
   if (releaseName !== null) {
     Object.assign(context, {
-      releaseName: releaseName
+      releaseName
     })
   }
 }
 
 module.exports = {
-  addAccessToken: addAccessToken,
-  removeAccessToken: removeAccessToken,
-  retrieveAccessToken: retrieveAccessToken,
-  updateContextReleaseName: updateContextReleaseName
+  retrieveOptions,
+  updateOptions,
+  addAccessToken,
+  removeAccessToken,
+  retrieveAccessToken,
+  updateContextReleaseName
 };
 
 function changeDirectoryAndSetReleaseName() {
@@ -92,4 +114,18 @@ function changeDirectory(directoryPath) {
   const oldCurrentWorkingDirectoryPath = currentWorkingDirectoryPath; ///
 
   return oldCurrentWorkingDirectoryPath;
+}
+
+function addVersionString() {
+  const binDirectoryName = __dirname, ///
+        applicationDirectoryName = pathWithoutBottommostNameFromPath(binDirectoryName), ///
+        packageJSONFilePath = `${applicationDirectoryName}/package.json`,  ///
+        packageJSONFile = readFile(packageJSONFilePath),
+        packageJSON = JSON.parse(packageJSONFile),
+        { version } = packageJSON,
+        versionString = version;  ///
+
+  Object.assign(rc, {
+    versionString
+  });
 }

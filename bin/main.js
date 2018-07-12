@@ -10,6 +10,8 @@ const commands = require('./commands'),
       install = require('./action/install'),
       publish = require('./action/publish'),
       register = require('./action/register'),
+      deprecate = require('./action/deprecate'),
+      setOptions = require('./action/setOptions'),
       resetPassword = require('./action/resetPassword'),
       changePassword = require('./action/changePassword'),
       confirmEmailAddress = require('./action/confirmEmailAddress'),
@@ -17,21 +19,23 @@ const commands = require('./commands'),
 
 const {
   HELP_COMMAND,
-  VERSION_COMMAND,
-  INSTALL_COMMAND,
-  REMOVE_COMMAND,
   CLONE_COMMAND,
-  PUBLISH_COMMAND,
-  REGISTER_COMMAND,
   LOGIN_COMMAND,
   LOGOUT_COMMAND,
-  RESEND_COMMAND,
+  REMOVE_COMMAND,
+  VERSION_COMMAND,
+  INSTALL_COMMAND,
+  PUBLISH_COMMAND,
+  REGISTER_COMMAND,
+  DEPRECATE_COMMAND,
+  SET_OPTIONS_COMMAND,
   RESET_PASSWORD_COMMAND,
   CHANGE_PASSWORD_COMMAND,
-  CONFIRM_EMAIL_ADDRESS_COMMAND
+  CONFIRM_EMAIL_ADDRESS_COMMAND,
+  RESEND_CONFIRMATION_CODE_COMMAND
 } = commands;
 
-function main(command, argument, options, dirname) {
+function main(command, argument, options) {
   const commandMissing = (command === null),
         optionsIncludesHelp = options.includes('help'),
         optionsIncludesVersion = options.includes('version');
@@ -46,18 +50,20 @@ function main(command, argument, options, dirname) {
 
   switch (command) {
     case HELP_COMMAND: help(); break;
-    case VERSION_COMMAND: version(dirname); break;
-    case INSTALL_COMMAND: install(argument); break;
-    case REMOVE_COMMAND: remove(argument); break;
     case CLONE_COMMAND: clone(argument); break;
-    case PUBLISH_COMMAND: publish(argument); break;
-    case REGISTER_COMMAND: register(argument); break;
     case LOGIN_COMMAND: login(argument); break;
     case LOGOUT_COMMAND: logout(); break;
-    case RESEND_COMMAND: resendConfirmationCode(argument); break; ///
+    case REMOVE_COMMAND: remove(argument); break;
+    case VERSION_COMMAND: version(); break;
+    case INSTALL_COMMAND: install(argument); break;
+    case PUBLISH_COMMAND: publish(argument); break;
+    case REGISTER_COMMAND: register(argument); break;
+    case DEPRECATE_COMMAND: deprecate(argument); break;
+    case SET_OPTIONS_COMMAND: setOptions(); break;
     case RESET_PASSWORD_COMMAND: resetPassword(argument); break;
     case CHANGE_PASSWORD_COMMAND: changePassword(argument); break;
-    case CONFIRM_EMAIL_ADDRESS_COMMAND: confirmEmailAddress(argument); break; ///
+    case CONFIRM_EMAIL_ADDRESS_COMMAND: confirmEmailAddress(argument); break;
+    case RESEND_CONFIRMATION_CODE_COMMAND: resendConfirmationCode(argument); break;
 
     default:
       argument = command;  ///

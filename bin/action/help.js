@@ -21,11 +21,15 @@ Commmands:
 
   publish <package_name>           Publish a package
 
+  deprecate <package_name>         Deprecate a package
+
   register [<username>]            Register
    
   login [<username>]               Log in 
 
   logout                           Log out 
+
+  options                          Set options 
  
   resend [<email_address>]         Resend a confirmation code
 

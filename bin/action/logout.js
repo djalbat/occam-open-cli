@@ -17,10 +17,12 @@ function logout() {
         ],
         context = {};
 
-  action(callbacks, uri, function(json) {
+  action(callbacks, uri, function(json, done) {
     removeAccessToken();
 
     console.log(LOGGED_OUT_MESSAGE);
+
+    done();
   }, context);
 }
 

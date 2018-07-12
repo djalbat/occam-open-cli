@@ -20,11 +20,11 @@ function login(argument) {
           passwordPromptCallback
         ],
         context = {
-          username: username,
-          password: password
+          username,
+          password
         };
 
-  action(callbacks, uri, function(json) {
+  action(callbacks, uri, function(json, done) {
     const { success } = json;
 
     if (success) {
@@ -36,6 +36,8 @@ function login(argument) {
     } else {
       console.log(FAILED_LOGIN_MESSAGE);
     }
+
+    done();
   }, context);
 }
 

@@ -4,15 +4,19 @@ const post = require('../post'),
       messages = require('../messages'),
       constants = require('../constants'),
 			callbackUtilities = require('../utilities/callback'),
-      checkLoggedInCallback = require('../callback/checkLoggedIn'),
       releaseNamePromptCallback = require('../callback/prompt/releaseName'),
-      createDeflatedReleaseCallback = require('../callback/createDeflatedRelease');
+      checkLoggedInCallback = require('../callback/checkLoggedIn'),
+      createReleaseCallback = require('../callback/createRelease'),
+      deflateReleaseCallback = require('../callback/deflateRelease'),
+      checkReadmeFileExistsCallback = require('../callback/checkReadmeFileExists'),
+      checkMetaJSONFileExistsCallback = require('../callback/checkMetaJSONFileExists'),
+      checkMetaJSONFileRepositoryExistsCallback = require('../callback/checkMetaJSONFileRepositoryExists');
 
 
 const { exit } = process,
       { PUBLISH_URI } = constants,
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages,
-      { executeCallbacks } = callbackUtilities;;
+      { executeCallbacks } = callbackUtilities;
 
 function publish(argument) {
   const releaseName = argument,  ///
@@ -20,10 +24,14 @@ function publish(argument) {
         callbacks = [
           checkLoggedInCallback,
           releaseNamePromptCallback,
-          createDeflatedReleaseCallback
+          createReleaseCallback,
+          checkReadmeFileExistsCallback,
+          checkMetaJSONFileExistsCallback,
+          checkMetaJSONFileRepositoryExistsCallback,
+          deflateReleaseCallback
         ],
         context = {
-          releaseName: releaseName
+          releaseName
         };
 
   executeCallbacks(callbacks, function(completed) {

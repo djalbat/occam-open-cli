@@ -23,17 +23,19 @@ function register(argument) {
           emailAddressPromptCallback
         ],
         context = {
-          username: username,
-          password: password,
-          emailAddress: emailAddress
+          username,
+          password,
+          emailAddress
         };
 
-  action(callbacks, uri, function(json) {
+  action(callbacks, uri, function(json, done) {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_REGISTER_MESSAGE) :
         console.log(FAILED_REGISTER_MESSAGE);
+
+    done();
   }, context);
 }
 

@@ -9,8 +9,8 @@ function executeCallbacks(callbacks, callback, context) {
   const completed = true;
 
   Object.assign(context, {
-    callbacks: callbacks,
-    completed: completed
+    callbacks,
+    completed
   });
 
   whilst(executeCallback, function() {
@@ -31,9 +31,9 @@ module.exports = {
 function executeCallback(next, done, context, index) {
   const { callbacks } = context,
         callbacksLength = callbacks.length,
-        lastOperationIndex = callbacksLength - 1;
+        lastIndex = callbacksLength - 1;
 
-  if (index > lastOperationIndex) {
+  if (index > lastIndex) {
     done();
 
     return;
@@ -46,7 +46,7 @@ function executeCallback(next, done, context, index) {
     const completed = false;
 
     Object.assign(context, {
-      completed: completed
+      completed
     });
 
     done();

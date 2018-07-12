@@ -29,12 +29,12 @@ class Projects {
     return json;
   }
 
-  static fromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
+  static fromProjectsDirectoryPath(projectsDirectoryPath, allowOnlyRecognisedFiles, disallowHiddenFilesAndDirectories) {
     const projects = new Projects(),
-          topmostDirectoryNames = topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
+          topmostDirectoryNames = topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, disallowHiddenFilesAndDirectories);
 
     topmostDirectoryNames.forEach(function(topmostDirectoryName) {
-      const project = Project.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
+      const project = Project.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, allowOnlyRecognisedFiles, disallowHiddenFilesAndDirectories);
 
       projects.addProject(project);
     });
@@ -45,7 +45,7 @@ class Projects {
 
 module.exports = Projects;
 
-function topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
+function topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, disallowHiddenFilesAndDirectories) {
   let topmostDirectoryNames;
 
   try {
@@ -55,7 +55,7 @@ function topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, d
       const absoluteSubEntryPath = concatenatePaths(projectsDirectoryPath, subEntryName),
             subEntryNameHiddenName = isNameHiddenName(subEntryName),
             subEntryNameNotHiddenName = !subEntryNameHiddenName,
-            loadHiddenFilesAndDirectories = !doNotLoadHiddenFilesAndDirectories;
+            loadHiddenFilesAndDirectories = !disallowHiddenFilesAndDirectories;
 
       if (subEntryNameNotHiddenName || loadHiddenFilesAndDirectories) {
         const subEntryDirectory = isEntryDirectory(absoluteSubEntryPath);

@@ -27,11 +27,11 @@ function emailAddressPromptCallback(proceed, abort, context) {
   }
 
   const description = 'Email address: ',
-        validationFunction = validateEmailAddress,
+        validationFunction = validateEmailAddress,  ///
         options = {
-          description: description,
-          errorMessage: errorMessage,
-          validationFunction: validationFunction
+          description,
+          errorMessage,
+          validationFunction
         };
 
   prompt(options, function(emailAddress) {
@@ -39,7 +39,7 @@ function emailAddressPromptCallback(proceed, abort, context) {
 
     if (valid) {
       Object.assign(context, {
-        emailAddress: emailAddress
+        emailAddress
       });
 
       proceed();

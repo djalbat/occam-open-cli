@@ -17,15 +17,17 @@ function resendConfirmationCode(argument) {
           emailAddressPromptCallback
         ],
         context = {
-          emailAddress: emailAddress
+          emailAddress
         };
 
-  action(callbacks, uri, function(json) {
+  action(callbacks, uri, function(json, done) {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE) :
         console.log(FAILED_RESEND_CONFIRMATION_CODE_MESSAGE);
+
+    done();
   }, context);
 }
 
