@@ -1,42 +1,20 @@
 'use strict';
 
-const os = require('os'),
-      request = require('request'),
+const request = require('request'),
       necessary = require('necessary');
 
 const messages = require('./messages'),
-      constants = require('./constants');
+			optionsUtilities = require('./utilities/options');
 
 const { miscellaneousUtilities } = necessary,
+			{ optionsFromURIAndData } = optionsUtilities,
       { exit } = process,
-      { rc, onETX } = miscellaneousUtilities,
-      { versionString } = rc,
-      { HOST_URL, POST_METHOD, TIMEOUT, UTF_ENCODING } = constants,
+      { onETX } = miscellaneousUtilities,
       { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages;
 
 function post(uri, data, callback) {
-  const url = `${HOST_URL}${uri}`,
-        form = Object.assign(data, {
-          versionString
-        }),
-        timeout = TIMEOUT,
-        method = POST_METHOD,
-        encoding = UTF_ENCODING,
-        osType = os.type(),
-        operatingSystem = osType, ///
-        headers = {
-          'User-Agent': `Open-CLI/${operatingSystem}`
-        },
-        options = {
-          url,
-          form,
-          method ,
-          timeout,
-          encoding,
-          headers
-        };
-
-  const offETX = onETX(exit);
+  const options = optionsFromURIAndData(uri, data),
+				offETX = onETX(exit);
 
   request(options, function(error, response) {
     offETX && offETX(); ///
@@ -45,7 +23,6 @@ function post(uri, data, callback) {
       console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
 
       exit();
-
     }
 
     const { body } = response;
@@ -78,9 +55,7 @@ function post(uri, data, callback) {
       exit();
     }
 
-    callback(json, function() {
-      exit();
-    });
+    callback(json, exit);
   });
 }
 

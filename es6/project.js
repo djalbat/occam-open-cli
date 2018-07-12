@@ -26,13 +26,13 @@ class Project {
   static fromURL(url, callback) {
     const method = 'GET',
           encoding = null,
-          params = {
+          options = {
             url,
             method ,
             encoding
           };
 
-    request(params, function(error, response) {
+    request(options, function(error, response) {
       const { statusCode } = response;
 
       error = error || (statusCode !== 200);  ///
