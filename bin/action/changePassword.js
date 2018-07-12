@@ -3,10 +3,10 @@
 const action = require('../action'),
       messages = require('../messages'),
       constants = require('../constants'),
-      checkLoggedInCallback = require('../callback/checkLoggedIn'),
       usernamePromptCallback = require('../callback/prompt/username'),
       passwordPromptCallback = require('../callback/prompt/password'),
       newPasswordPromptCallback = require('../callback/prompt/newPassword'),
+      retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
       confirmNewPasswordPromptCallback = require('../callback/prompt/confirmNewPassword');
 
 const { CHANGE_PASSWORD_URI } = constants,
@@ -18,7 +18,7 @@ function changePassword(argument) {
         newPassword = null,
         uri = CHANGE_PASSWORD_URI,
         callbacks = [
-          checkLoggedInCallback,
+          retrieveAccessTokenCallback,
           usernamePromptCallback,
           passwordPromptCallback,
           newPasswordPromptCallback,

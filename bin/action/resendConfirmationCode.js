@@ -3,8 +3,8 @@
 const action = require('../action'),
       messages = require('../messages'),
       constants = require('../constants'),
-      checkLoggedInCallback = require('../callback/checkLoggedIn'),
-      emailAddressPromptCallback = require('../callback/prompt/emailAddress');
+      emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
+      retrieveAccessTokenCallback = require('../callback/retrieveAccessToken');
 
 const { RESEND_CONFIRMATION_CODE_URI } = constants,
       { SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE, FAILED_RESEND_CONFIRMATION_CODE_MESSAGE } = messages;
@@ -13,7 +13,7 @@ function resendConfirmationCode(argument) {
   const emailAddress = argument,  ///
         uri = RESEND_CONFIRMATION_CODE_URI,
         callbacks = [
-          checkLoggedInCallback,
+          retrieveAccessTokenCallback,
           emailAddressPromptCallback
         ],
         context = {

@@ -3,10 +3,10 @@
 const action = require('../action'),
       messages = require('../messages'),
       constants = require('../constants'),
-      checkLoggedInCallback = require('../callback/checkLoggedIn'),
       passwordPromptCallback = require('../callback/prompt/password'),
       areYouSurePromptCallback = require('../callback/prompt/areYouSure'),
-      releaseNamePromptCallback = require('../callback/prompt/releaseName');
+      releaseNamePromptCallback = require('../callback/prompt/releaseName'),
+      retrieveAccessTokenCallback = require('../callback/retrieveAccessToken');
 
 const { DEPRECATE_URI } = constants,
       { FAILED_DEPRECATE_MESSAGE, SUCCESSFUL_DEPRECATE_MESSAGE } = messages;
@@ -16,7 +16,7 @@ function deprecate(argument) {
         password = null,
         uri = DEPRECATE_URI,
         callbacks = [
-          checkLoggedInCallback,
+          retrieveAccessTokenCallback,
           releaseNamePromptCallback,
           passwordPromptCallback,
           areYouSurePromptCallback

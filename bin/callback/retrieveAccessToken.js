@@ -6,11 +6,10 @@ const messages = require('../messages'),
 const { retrieveAccessToken } = configurationUtilities,
       { NOT_LOGGED_IN_MESSAGE } = messages;
 
-function checkLoggedInCallback(proceed, abort, context) {
-  const accessToken = retrieveAccessToken(),
-        loggedIn = !!accessToken;
+function retrieveAccessTokenCallback(proceed, abort, context) {
+  const accessToken = retrieveAccessToken();
 
-  if (!loggedIn) {
+  if (!accessToken) {
     console.log(NOT_LOGGED_IN_MESSAGE);
 
     abort();
@@ -25,4 +24,4 @@ function checkLoggedInCallback(proceed, abort, context) {
   proceed();
 }
 
-module.exports = checkLoggedInCallback;
+module.exports = retrieveAccessTokenCallback;

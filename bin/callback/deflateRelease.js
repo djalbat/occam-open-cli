@@ -8,11 +8,8 @@ const { deflate } = zlib,
       { BASE64_ENCODING } = constants;
 
 function deflateRelease(proceed, abort, context) {
-  const { release } = context;
-
-  delete context.release;
-
-  const releaseJSON = release.toJSON(),
+  const { release } = context,
+        releaseJSON = release.toJSON(),
         releaseJSONString = JSON.stringify(releaseJSON);
 
   deflate(releaseJSONString, function(error, buffer) {

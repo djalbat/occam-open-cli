@@ -3,8 +3,8 @@
 const action = require('../action'),
       messages = require('../messages'),
       constants = require('../constants'),
-      checkLoggedInCallback = require('../callback/checkLoggedIn'),
-      configurationUtilities = require('../utilities/configuration');
+      configurationUtilities = require('../utilities/configuration'),
+      retrieveAccessTokenCallback = require('../callback/retrieveAccessToken');
 
 const { LOGOUT_URI } = constants,
       { LOGGED_OUT_MESSAGE } = messages,
@@ -13,7 +13,7 @@ const { LOGOUT_URI } = constants,
 function logout() {
   const uri = LOGOUT_URI,
         callbacks = [
-          checkLoggedInCallback
+          retrieveAccessTokenCallback
         ],
         context = {};
 

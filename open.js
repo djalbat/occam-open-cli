@@ -3,6 +3,7 @@
 const necessary = require('necessary');
 
 const main = require('./bin/main'),
+			state = require('./bin/state'),
 			commands = require('./bin/commands'),
 			argvUtilities = require('./bin/utilities/argv'),
 			directoryUtilities = require('./bin/utilities/directory'),
@@ -11,6 +12,7 @@ const main = require('./bin/main'),
 const { miscellaneousUtilities } = necessary,
 			{ rc } = miscellaneousUtilities,
 			{ argv } = process,
+			{ setReleaseName } = state,
 			{ PUBLISH_COMMAND } = commands,
 			{ setRCBaseExtension, checkRCFileExists, createVacuousRCFile } = rc,
 			{ changeDirectory } = directoryUtilities,

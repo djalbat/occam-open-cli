@@ -4,10 +4,10 @@ const post = require('../post'),
       messages = require('../messages'),
       constants = require('../constants'),
 			callbackUtilities = require('../utilities/callback'),
-      releaseNamePromptCallback = require('../callback/prompt/releaseName'),
-      checkLoggedInCallback = require('../callback/checkLoggedIn'),
       createReleaseCallback = require('../callback/createRelease'),
       deflateReleaseCallback = require('../callback/deflateRelease'),
+			releaseNamePromptCallback = require('../callback/prompt/releaseName'),
+			retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
       checkReadmeFileExistsCallback = require('../callback/checkReadmeFileExists'),
       checkMetaJSONFileExistsCallback = require('../callback/checkMetaJSONFileExists'),
       checkMetaJSONFileRepositoryExistsCallback = require('../callback/checkMetaJSONFileRepositoryExists');
@@ -22,7 +22,7 @@ function publish(argument) {
   const releaseName = argument,  ///
         uri = PUBLISH_URI,
         callbacks = [
-          checkLoggedInCallback,
+          retrieveAccessTokenCallback,
           releaseNamePromptCallback,
           createReleaseCallback,
           checkReadmeFileExistsCallback,

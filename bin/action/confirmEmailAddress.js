@@ -3,8 +3,8 @@
 const action = require('../action'),
       messages = require('../messages'),
       constants = require('../constants'),
-      checkLoggedInCallback = require('../callback/checkLoggedIn'),
       emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
+      retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
       confirmationCodePromptCallback = require('../callback/prompt/confirmationCode');
 
 const { CONFIRM_EMAIL_ADDRESS_URI } = constants,
@@ -15,7 +15,7 @@ function confirmEmailAddress(argument) {
         confirmationCode = null,
         uri = CONFIRM_EMAIL_ADDRESS_URI,
         callbacks = [
-          checkLoggedInCallback,
+          retrieveAccessTokenCallback,
           emailAddressPromptCallback,
           confirmationCodePromptCallback
         ],

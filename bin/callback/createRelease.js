@@ -22,8 +22,6 @@ function createReleaseCallback(proceed, abort, context) {
     release
   });
 
-  delete context.releaseName;
-
   proceed();
 }
 
