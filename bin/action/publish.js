@@ -1,6 +1,7 @@
 'use strict';
 
 const post = require('../post'),
+      state = require('../state'),
       messages = require('../messages'),
       constants = require('../constants'),
 			callbackUtilities = require('../utilities/callback'),
@@ -15,10 +16,11 @@ const post = require('../post'),
 const { exit } = process,
       { PUBLISH_URI } = constants,
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages,
+      { getReleaseName } = state,
       { executeCallbacks } = callbackUtilities;
 
 function publish(argument) {
-  const releaseName = argument,  ///
+  const releaseName = argument || getReleaseName(),  ///
         uri = PUBLISH_URI,
         callbacks = [
           retrieveAccessTokenCallback,

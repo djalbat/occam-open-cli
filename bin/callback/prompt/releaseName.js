@@ -2,28 +2,22 @@
 
 const necessary = require('necessary');
 
-const state = require('../../state'),
-      validate = require('../../validate'),
+const validate = require('../../validate'),
       messages = require('../../messages');
 
 const { miscellaneousUtilities } = necessary,
       { validateReleaseName } = validate,
-      { getReleaseName } = state,
       { prompt } = miscellaneousUtilities,
       { INVALID_RELEASE_NAME_MESSAGE } = messages;
 
 function releaseNamePromptCallback(proceed, abort, context) {
-  const releaseName = getReleaseName(),
+  const { releaseName } = context,
 				errorMessage = INVALID_RELEASE_NAME_MESSAGE;
 
   if (releaseName !== null) {
     const valid = validateReleaseName(releaseName);
 
     if (valid) {
-			Object.assign(context, {
-				releaseName
-			});
-
       proceed();
       
       return;
