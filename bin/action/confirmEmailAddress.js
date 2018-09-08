@@ -1,13 +1,13 @@
 'use strict';
 
-const action = require('../action'),
+const uris = require('../uris'),
+			action = require('../action'),
       messages = require('../messages'),
-      constants = require('../constants'),
       emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
       retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
       confirmationCodePromptCallback = require('../callback/prompt/confirmationCode');
 
-const { CONFIRM_EMAIL_ADDRESS_URI } = constants,
+const { CONFIRM_EMAIL_ADDRESS_URI } = uris,
       { FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE, SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE } = messages;
 
 function confirmEmailAddress(argument) {

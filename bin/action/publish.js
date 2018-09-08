@@ -1,10 +1,10 @@
 'use strict';
 
-const post = require('../post'),
+const uris = require('../uris'),
+			post = require('../post'),
       state = require('../state'),
       messages = require('../messages'),
-      constants = require('../constants'),
-			callbackUtilities = require('../utilities/callback'),
+      callbackUtilities = require('../utilities/callback'),
       createReleaseCallback = require('../callback/createRelease'),
       deflateReleaseCallback = require('../callback/deflateRelease'),
 			releaseNamePromptCallback = require('../callback/prompt/releaseName'),
@@ -14,7 +14,7 @@ const post = require('../post'),
       checkMetaJSONFileRepositoryExistsCallback = require('../callback/checkMetaJSONFileRepositoryExists');
 
 const { exit } = process,
-      { PUBLISH_URI } = constants,
+      { PUBLISH_URI } = uris,
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages,
       { getReleaseName } = state,
       { executeCallbacks } = callbackUtilities;

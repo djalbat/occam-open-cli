@@ -14,6 +14,7 @@ const commands = require('./commands'),
       setOptions = require('./action/setOptions'),
       resetPassword = require('./action/resetPassword'),
       changePassword = require('./action/changePassword'),
+			changeEmailAddress = require('./action/changeEmailAddress'),
       confirmEmailAddress = require('./action/confirmEmailAddress'),
       resendConfirmationCode = require('./action/resendConfirmationCode');
 
@@ -31,6 +32,7 @@ const {
   SET_OPTIONS_COMMAND,
   RESET_PASSWORD_COMMAND,
   CHANGE_PASSWORD_COMMAND,
+	CHANGE_EMAIL_ADDRESS_COMMAND,
   CONFIRM_EMAIL_ADDRESS_COMMAND,
   RESEND_CONFIRMATION_CODE_COMMAND
 } = commands;
@@ -62,6 +64,7 @@ function main(command, argument, options) {
     case SET_OPTIONS_COMMAND: setOptions(); break;
     case RESET_PASSWORD_COMMAND: resetPassword(argument); break;
     case CHANGE_PASSWORD_COMMAND: changePassword(argument); break;
+		case CHANGE_EMAIL_ADDRESS_COMMAND: changeEmailAddress(argument); break;
     case CONFIRM_EMAIL_ADDRESS_COMMAND: confirmEmailAddress(argument); break;
     case RESEND_CONFIRMATION_CODE_COMMAND: resendConfirmationCode(argument); break;
 

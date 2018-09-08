@@ -1,12 +1,12 @@
 'use strict';
 
-const action = require('../action'),
+const uris = require('../uris'),
+			action = require('../action'),
       messages = require('../messages'),
-      constants = require('../constants'),
       cloneRepository = require('../cloneRepository'),
       releaseNamePromptCallback = require('../callback/prompt/releaseName');
 
-const { CLONE_URI } = constants,
+const { CLONE_URI } = uris,
       { FAILED_CLONE_MESSAGE, SUCCESSFUL_CLONE_MESSAGE } = messages;
 
 function clone(argument) {

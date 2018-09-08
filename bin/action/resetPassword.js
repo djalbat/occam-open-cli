@@ -1,11 +1,11 @@
 'use strict';
 
-const action = require('../action'),
+const uris = require('../uris'),
+			action = require('../action'),
       messages = require('../messages'),
-      constants = require('../constants'),
       usernamePromptCallback = require('../callback/prompt/username');
 
-const { RESET_PASSWORD_URI } = constants,
+const { RESET_PASSWORD_URI } = uris,
       { FAILED_RESET_PASSWORD_MESSAGE, SUCCESSFUL_RESET_PASSWORD_MESSAGE } = messages;
 
 function resetPassword(argument) {

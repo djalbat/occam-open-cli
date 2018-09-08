@@ -1,14 +1,14 @@
 'use strict';
 
-const action = require('../action'),
+const uris = require('../uris'),
+			action = require('../action'),
       messages = require('../messages'),
-      constants = require('../constants'),
       configurationUtilities = require('../utilities/configuration'),
       usernamePromptCallback = require('../callback/prompt/username'),
       passwordPromptCallback = require('../callback/prompt/password');
 
 const { addAccessToken } = configurationUtilities,
-      { LOGIN_URI } = constants,
+      { LOGIN_URI } = uris,
       { FAILED_LOGIN_MESSAGE, SUCCESSFUL_LOGIN_MESSAGE } = messages;
 
 function login(argument) {

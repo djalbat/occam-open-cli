@@ -1,14 +1,14 @@
 'use strict';
 
-const action = require('../action'),
+const uris = require('../uris'),
+			action = require('../action'),
       messages = require('../messages'),
-      constants = require('../constants'),
       usernamePromptCallback = require('../callback/prompt/username'),
       passwordPromptCallback = require('../callback/prompt/password'),
       emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
       confirmPasswordPromptCallback = require('../callback/prompt/confirmPassword');
 
-const { REGISTER_URI } = constants,
+const { REGISTER_URI } = uris,
       { FAILED_REGISTER_MESSAGE, SUCCESSFUL_REGISTER_MESSAGE } = messages;
 
 function register(argument) {

@@ -1,14 +1,14 @@
 'use strict';
 
-const action = require('../action'),
+const uris = require('../uris'),
+			action = require('../action'),
       messages = require('../messages'),
-      constants = require('../constants'),
       passwordPromptCallback = require('../callback/prompt/password'),
       areYouSurePromptCallback = require('../callback/prompt/areYouSure'),
       releaseNamePromptCallback = require('../callback/prompt/releaseName'),
       retrieveAccessTokenCallback = require('../callback/retrieveAccessToken');
 
-const { DEPRECATE_URI } = constants,
+const { DEPRECATE_URI } = uris,
       { FAILED_DEPRECATE_MESSAGE, SUCCESSFUL_DEPRECATE_MESSAGE } = messages;
 
 function deprecate(argument) {

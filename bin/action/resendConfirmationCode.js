@@ -1,12 +1,12 @@
 'use strict';
 
-const action = require('../action'),
+const uris = require('../uris'),
+			action = require('../action'),
       messages = require('../messages'),
-      constants = require('../constants'),
       emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
       retrieveAccessTokenCallback = require('../callback/retrieveAccessToken');
 
-const { RESEND_CONFIRMATION_CODE_URI } = constants,
+const { RESEND_CONFIRMATION_CODE_URI } = uris,
       { SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE, FAILED_RESEND_CONFIRMATION_CODE_MESSAGE } = messages;
 
 function resendConfirmationCode(argument) {

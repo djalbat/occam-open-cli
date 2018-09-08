@@ -12,6 +12,7 @@ const SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE = 'The server failed to respond in 
       PASSWORDS_DO_NOT_MATCH_MESSAGE = 'The passwords do not match.',
       UNABLE_TO_CREATE_RELEASE_MESSAGE = 'Unable to create a package.',
       README_FILE_DOES_NOT_EXIST_MESSAGE = 'Published packages must include a readme file.',
+			EMAIL_ADDRESSES_DO_NOT_MATCH_MESSAGE = 'The email addresses do not match.',
       META_JSON_FILE_DOES_NOT_EXIST_MESSAGE = 'Published packages must include a \'meta.json\' file.',
       META_JSON_FILE_REPOSITORY_DOES_NOT_EXIST_MESSAGE = 'The \'meta.json\' file must include a repository.',
       NOT_LOGGED_IN_MESSAGE = 'You are not logged in.',
@@ -24,6 +25,7 @@ const SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE = 'The server failed to respond in 
       FAILED_SET_OPTIONS_MESSAGE = 'Failed to set options.',
       FAILED_RESET_PASSWORD_MESSAGE = 'Failed to reset password.',
       FAILED_CHANGE_PASSWORD_MESSAGE = 'Failed to change password.',
+			FAILED_CHANGE_EMAIL_ADDRESS_MESSAGE = 'Failed to change email address.',
       FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE = 'Failed to confirm email address.',
       FAILED_RESEND_CONFIRMATION_CODE_MESSAGE = 'Failed to resend confirmation code.',
       SUCCESSFUL_CLONE_MESSAGE = 'The package has been cloned succssfully.',
@@ -34,6 +36,7 @@ const SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE = 'The server failed to respond in 
       SUCCESSFUL_SET_OPTIONS_MESSAGE = 'The options have been set successfully.',
       SUCCESSFUL_RESET_PASSWORD_MESSAGE = 'Your password has been reset successfully. Please check your email for further instructions.',
       SUCCESSFUL_CHANGE_PASSWORD_MESSAGE = 'Your password has been changed successfully.',
+			SUCCESSFUL_CHANGE_EMAIL_ADDRESS_MESSAGE = 'You have successfully changed your email address.',
       SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE = 'You have successfully confirmed your email address.',
       SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE = 'A new confirmation code was sent successfully. Please check your email.';
 
@@ -50,6 +53,7 @@ module.exports = {
 	PASSWORDS_DO_NOT_MATCH_MESSAGE,
 	UNABLE_TO_CREATE_RELEASE_MESSAGE,
 	README_FILE_DOES_NOT_EXIST_MESSAGE,
+	EMAIL_ADDRESSES_DO_NOT_MATCH_MESSAGE,
 	META_JSON_FILE_DOES_NOT_EXIST_MESSAGE,
 	META_JSON_FILE_REPOSITORY_DOES_NOT_EXIST_MESSAGE,
 	NOT_LOGGED_IN_MESSAGE,
@@ -62,6 +66,7 @@ module.exports = {
 	FAILED_SET_OPTIONS_MESSAGE,
 	FAILED_RESET_PASSWORD_MESSAGE,
 	FAILED_CHANGE_PASSWORD_MESSAGE,
+	FAILED_CHANGE_EMAIL_ADDRESS_MESSAGE,
 	FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE,
 	FAILED_RESEND_CONFIRMATION_CODE_MESSAGE,
 	SUCCESSFUL_CLONE_MESSAGE,
@@ -72,6 +77,7 @@ module.exports = {
 	SUCCESSFUL_SET_OPTIONS_MESSAGE,
 	SUCCESSFUL_RESET_PASSWORD_MESSAGE,
 	SUCCESSFUL_CHANGE_PASSWORD_MESSAGE,
+	SUCCESSFUL_CHANGE_EMAIL_ADDRESS_MESSAGE,
 	SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE,
 	SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE
 };
