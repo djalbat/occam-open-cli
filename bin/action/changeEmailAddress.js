@@ -6,8 +6,7 @@ const uris = require('../uris'),
 			usernamePromptCallback = require('../callback/prompt/username'),
       emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
       retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
-			newEmailAddressPromptCallback = require('../callback/prompt/newEmailAddress'),
-			confirmNewEmailAddressPromptCallback = require('../callback/prompt/confirmNewEmailAddress');
+			newEmailAddressPromptCallback = require('../callback/prompt/newEmailAddress');
 
 const { CHANGE_EMAIL_ADDRESS_URI } = uris,
       { FAILED_CHANGE_EMAIL_ADDRESS_MESSAGE, SUCCESSFUL_CHANGE_EMAIL_ADDRESS_MESSAGE } = messages;
@@ -20,8 +19,7 @@ function changeEmailAddress(argument) {
           retrieveAccessTokenCallback,
 					usernamePromptCallback,
           emailAddressPromptCallback,
-					newEmailAddressPromptCallback,
-					confirmNewEmailAddressPromptCallback
+					newEmailAddressPromptCallback
         ],
         context = {
           username,
