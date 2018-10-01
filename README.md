@@ -60,5 +60,5 @@ Roughly speaking, the signature of a package would be the union of the signature
 
 ## Contact
 
-* jecs@imperial.ac.uk
+* james.smith@openmathematics.org
 * http://djalbat.com
