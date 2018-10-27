@@ -8,7 +8,7 @@ const state = require('../state'),
 
 const { getVersionString } = state,
 			{ retrieveOptions } = configurationUtilities,
-      { TIMEOUT, POST_METHOD, UTF_ENCODING } = constants;
+      { TIMEOUT, POST_METHOD, UTF8_ENCODING } = constants;
 
 function optionsFromURIAndData(uri, data) {
 	let options = retrieveOptions();
@@ -16,12 +16,13 @@ function optionsFromURIAndData(uri, data) {
 	const { hostURL } = options,
 				url = `${hostURL}${uri}`,
 				versionString = getVersionString(),
-				form = Object.assign(data, {
+				body = Object.assign(data, {
 					versionString
 				}),
+        json = true,
 				timeout = TIMEOUT,
 				method = POST_METHOD,
-				encoding = UTF_ENCODING,
+				encoding = UTF8_ENCODING,
 				osType = os.type(),
 				operatingSystem = osType, ///
 				userAgent = `Open-CLI/${operatingSystem}`,
@@ -31,8 +32,9 @@ function optionsFromURIAndData(uri, data) {
 
 	options = {	///
 		url,
-		form,
-		method ,
+		body,
+    json,
+		method,
 		timeout,
 		encoding,
 		headers

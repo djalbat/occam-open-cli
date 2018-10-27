@@ -21,7 +21,11 @@ The `open` command line tool provides similar functionality to [npm](https://www
 The tool is installed globally via npm:
 
     npm install --global occam-open-cli
-    
+
+You can also clone the repository with [Git](https://git-scm.com/)...
+
+    git clone https://github.com/djalbat/Easy.git
+
 ## Usage
 
 This is slightly different from npm in that `open` is executed from the parent directory of any project rather than from within the project directory itself. It could reside in a `~/Mathematics/` directory, for example, with all of the projects being contained in sub-directories. It creates and updates its own hidden `.openrc` file, which it uses to store an access token when the user is logged in.

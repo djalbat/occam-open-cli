@@ -21,9 +21,9 @@ function clone(argument) {
         };
 
   action(callbacks, uri, function(json, done) {
-    const { releaseExists } = json;
+    const { exists } = json;
 
-    if (!releaseExists) {
+    if (!exists) {
       console.log(FAILED_CLONE_MESSAGE);
 
       done();
