@@ -1,6 +1,6 @@
 # Open-CLI
 
-Occam's c**o**mmand line **p**ackag**e** manageme**n**t tool.
+[Occam](https://github.com/jecs-imperial/occam)'s c**o**mmand line **p**ackag**e** manageme**n**t tool.
 
 ### Contents
 
