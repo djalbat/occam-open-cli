@@ -3,7 +3,6 @@
 const necessary = require('necessary');
 
 const main = require('./bin/main'),
-			state = require('./bin/state'),
 			commands = require('./bin/commands'),
       constants = require('./bin/constants'),
 			argvUtilities = require('./bin/utilities/argv'),
@@ -13,21 +12,20 @@ const main = require('./bin/main'),
 const { miscellaneousUtilities } = necessary,
 			{ rc } = miscellaneousUtilities,
 			{ argv } = process,
-			{ setReleaseName } = state,
 			{ PUBLISH_COMMAND } = commands,
       { RC_BASE_EXTENSION } = constants,
-			{ setRCBaseExtension, checkRCFileExists, createVacuousRCFile } = rc,
 			{ changeDirectory } = directoryUtilities,
 			{ setDefaultOptions } = configurationUtilities,
-			{ optionsFromArgv, commandFromArgv, argumentFromArgv } = argvUtilities;
+			{ optionsFromArgv, commandFromArgv, argumentFromArgv } = argvUtilities,
+      { setRCBaseExtension, checkRCFileExists, createVacuousRCFile } = rc;
 
 setRCBaseExtension(RC_BASE_EXTENSION);
 
-const options = optionsFromArgv(argv),
-      command = commandFromArgv(argv),
-      argument = argumentFromArgv(argv);
+const command = commandFromArgv(argv),
+      options = optionsFromArgv(argv);
 
-let rcFileExists = checkRCFileExists();
+let argument = argumentFromArgv(argv),
+    rcFileExists = checkRCFileExists();
 
 if (!rcFileExists) {
 	const commandPublishCommand = (command === PUBLISH_COMMAND);
@@ -36,7 +34,7 @@ if (!rcFileExists) {
 		const releaseName = changeDirectory();
 
 		if (releaseName !== null) {
-			setReleaseName(releaseName);
+      argument = releaseName; ///
 
 			rcFileExists = true;
 		}

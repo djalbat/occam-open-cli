@@ -2,7 +2,6 @@
 
 const uris = require('../uris'),
 			post = require('../post'),
-      state = require('../state'),
       messages = require('../messages'),
       callbackUtilities = require('../utilities/callback'),
       createReleaseCallback = require('../callback/createRelease'),
@@ -16,11 +15,10 @@ const uris = require('../uris'),
 const { exit } = process,
       { PUBLISH_URI } = uris,
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages,
-      { getReleaseName } = state,
       { executeCallbacks } = callbackUtilities;
 
 function publish(argument) {
-  const releaseName = argument || getReleaseName(),  ///
+  const releaseName = argument,
         uri = PUBLISH_URI,
         callbacks = [
           retrieveAccessTokenCallback,
