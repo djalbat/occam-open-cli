@@ -6,7 +6,8 @@ const TIMEOUT = 10000,
       POST_METHOD = 'POST',
       UTF8_ENCODING = 'utf8',
       BASE64_ENCODING = 'base64',
-			HOST_NAME_SUFFIX = '';
+			HOST_NAME_SUFFIX = '',
+      PACKAGE_JSON_FILE_NAME = 'package.json';
 
 module.exports = {
 	TIMEOUT,
@@ -15,5 +16,6 @@ module.exports = {
 	POST_METHOD,
 	UTF8_ENCODING,
 	BASE64_ENCODING,
-	HOST_NAME_SUFFIX
+	HOST_NAME_SUFFIX,
+  PACKAGE_JSON_FILE_NAME
 };

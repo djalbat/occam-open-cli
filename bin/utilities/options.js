@@ -2,11 +2,11 @@
 
 const os = require('os');
 
-const state = require('../state'),
-			constants = require('../constants'),
-			configurationUtilities = require('../utilities/configuration');
+const constants = require('../constants'),
+      packageUtilities = require('../utilities/package'),
+      configurationUtilities = require('../utilities/configuration');
 
-const { getVersionString } = state,
+const { getVersionString } = packageUtilities,
 			{ retrieveOptions } = configurationUtilities,
       { TIMEOUT, POST_METHOD, UTF8_ENCODING } = constants;
 

@@ -1,8 +1,8 @@
 'use strict';
 
-const state = require('../state');
+const packageUtilities = require('../utilities/package');
 
-const { getVersionString } = state;
+const { getVersionString } = packageUtilities;
 
 function version() {
   const versionString = getVersionString();
