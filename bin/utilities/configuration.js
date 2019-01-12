@@ -6,24 +6,10 @@ const constants = require('../constants');
 
 const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
-      { updateRCFile, readRCFile } = rc,
-			{ USE_SSH, HOST_URL, HOST_NAME_SUFFIX } = constants;
+			{ USE_SSH, HOST_URL, HOST_NAME_SUFFIX, RC_BASE_EXTENSION } = constants,
+      { setRCBaseExtension, checkRCFileExists, createVacuousRCFile, updateRCFile, readRCFile } = rc;
 
-function setDefaultOptions() {
-	const useSSH = USE_SSH,
-				hostURL = HOST_URL,
-				hostNameSuffix = HOST_NAME_SUFFIX,
-				defaultOptions = {
-					useSSH,
-					hostURL,
-					hostNameSuffix
-				},
-				options = defaultOptions;	///
-
-	updateRCFile({
-		options
-	});
-}
+setRCBaseExtension(RC_BASE_EXTENSION);
 
 function retrieveOptions() {
   const json = readRCFile(),
@@ -55,11 +41,41 @@ function retrieveAccessToken() {
   return accessToken || null; ///
 }
 
+function checkConfigurationFileExists() {
+  const rcFileExists = checkRCFileExists(),
+        configurationFileExists = rcFileExists; ///
+
+  return configurationFileExists;
+}
+
+function createVacuousConfigurationFile() {
+  createVacuousRCFile();
+
+  setDefaultOptions();
+}
+
 module.exports = {
-	setDefaultOptions,
   retrieveOptions,
   updateOptions,
   addAccessToken,
   removeAccessToken,
-  retrieveAccessToken
+  retrieveAccessToken,
+  checkConfigurationFileExists,
+  createVacuousConfigurationFile
 };
+
+function setDefaultOptions() {
+  const useSSH = USE_SSH,
+        hostURL = HOST_URL,
+        hostNameSuffix = HOST_NAME_SUFFIX,
+        defaultOptions = {
+          useSSH,
+          hostURL,
+          hostNameSuffix
+        },
+        options = defaultOptions;	///
+
+  updateRCFile({
+    options
+  });
+}

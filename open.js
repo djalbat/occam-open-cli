@@ -1,33 +1,24 @@
 #!/usr/bin/env node
 
-const necessary = require('necessary');
-
 const main = require('./bin/main'),
 			commands = require('./bin/commands'),
-      constants = require('./bin/constants'),
 			argvUtilities = require('./bin/utilities/argv'),
 			directoryUtilities = require('./bin/utilities/directory'),
 			configurationUtilities = require('./bin/utilities/configuration');
 
-const { miscellaneousUtilities } = necessary,
-			{ rc } = miscellaneousUtilities,
-			{ argv } = process,
+const { argv } = process,
 			{ PUBLISH_COMMAND } = commands,
-      { RC_BASE_EXTENSION } = constants,
 			{ changeDirectory } = directoryUtilities,
-			{ setDefaultOptions } = configurationUtilities,
 			{ optionsFromArgv, commandFromArgv, argumentFromArgv } = argvUtilities,
-      { setRCBaseExtension, checkRCFileExists, createVacuousRCFile } = rc;
-
-setRCBaseExtension(RC_BASE_EXTENSION);
+      { checkConfigurationFileExists, createVacuousConfigurationFile } = configurationUtilities;
 
 const command = commandFromArgv(argv),
       options = optionsFromArgv(argv);
 
 let argument = argumentFromArgv(argv),
-    rcFileExists = checkRCFileExists();
+    configurationFileExists = checkConfigurationFileExists();
 
-if (!rcFileExists) {
+if (!configurationFileExists) {
 	const commandPublishCommand = (command === PUBLISH_COMMAND);
 
 	if (commandPublishCommand) {
@@ -36,15 +27,13 @@ if (!rcFileExists) {
 		if (releaseName !== null) {
       argument = releaseName; ///
 
-			rcFileExists = true;
+			configurationFileExists = true;
 		}
 	}
 }
 
-if (!rcFileExists) {
-	createVacuousRCFile();
-
-	setDefaultOptions();
+if (!configurationFileExists) {
+  createVacuousConfigurationFile();
 }
 
 main(command, argument, options);

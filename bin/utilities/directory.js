@@ -2,11 +2,12 @@
 
 const necessary = require('necessary');
 
-const { pathUtilities, miscellaneousUtilities } = necessary,
-      { bottommostNameFromPath } = pathUtilities,
-			{ rc } = miscellaneousUtilities,
+const configurationUtilities = require('../utilities/configuration');
+
+const { pathUtilities } = necessary,
       { cwd, chdir } = process,
-      { checkRCFileExists } = rc;
+      { bottommostNameFromPath } = pathUtilities,
+      { checkConfigurationFileExists } = configurationUtilities;
 
 function changeDirectory() {
   let releaseName = null;
@@ -16,9 +17,9 @@ function changeDirectory() {
 	chdir('..');
 
 	const oldCurrentWorkingDirectoryPath = currentWorkingDirectoryPath, ///
-				rcFileExists = checkRCFileExists();
+				configurationFileExists = checkConfigurationFileExists();
 
-	if (rcFileExists) {
+	if (configurationFileExists) {
 		const bottommostOldCurrentWorkingDirectoryName = bottommostNameFromPath(oldCurrentWorkingDirectoryPath);
 
 		releaseName = bottommostOldCurrentWorkingDirectoryName; ///
