@@ -2,7 +2,10 @@
 
 const necessary = require('necessary');
 
+const options = require('../options');
+
 const { arrayUtilities } = necessary,
+      { HELP_OPTION, VERSION_OPTION } = options,
       { first, second, third, fourth, filter } = arrayUtilities;
 
 function optionsFromArgv(argv) {
@@ -13,8 +16,8 @@ function optionsFromArgv(argv) {
 
   const optionsMap = {},
         availableOptions = [
-        'help',
-            'version'
+          HELP_OPTION,
+          VERSION_OPTION
         ];
 
   filter(argv, function(argument) { ///

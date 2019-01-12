@@ -1,6 +1,7 @@
 'use strict';
 
-const commands = require('./commands'),
+const options = require('./options'),
+      commands = require('./commands'),
       help = require('./action/help'),
       clone = require('./action/clone'),
       login = require('./action/login'),
@@ -18,36 +19,37 @@ const commands = require('./commands'),
       confirmEmailAddress = require('./action/confirmEmailAddress'),
       resendConfirmationCode = require('./action/resendConfirmationCode');
 
-const {
-  HELP_COMMAND,
-  CLONE_COMMAND,
-  LOGIN_COMMAND,
-  LOGOUT_COMMAND,
-  REMOVE_COMMAND,
-  VERSION_COMMAND,
-  INSTALL_COMMAND,
-  PUBLISH_COMMAND,
-  REGISTER_COMMAND,
-  DEPRECATE_COMMAND,
-  SET_OPTIONS_COMMAND,
-  RESET_PASSWORD_COMMAND,
-  CHANGE_PASSWORD_COMMAND,
-	CHANGE_EMAIL_ADDRESS_COMMAND,
-  CONFIRM_EMAIL_ADDRESS_COMMAND,
-  RESEND_CONFIRMATION_CODE_COMMAND
-} = commands;
+const { HELP_OPTION, VERSION_OPTION } = options,
+      {
+        HELP_COMMAND,
+        CLONE_COMMAND,
+        LOGIN_COMMAND,
+        LOGOUT_COMMAND,
+        REMOVE_COMMAND,
+        VERSION_COMMAND,
+        INSTALL_COMMAND,
+        PUBLISH_COMMAND,
+        REGISTER_COMMAND,
+        DEPRECATE_COMMAND,
+        SET_OPTIONS_COMMAND,
+        RESET_PASSWORD_COMMAND,
+        CHANGE_PASSWORD_COMMAND,
+        CHANGE_EMAIL_ADDRESS_COMMAND,
+        CONFIRM_EMAIL_ADDRESS_COMMAND,
+        RESEND_CONFIRMATION_CODE_COMMAND
+      } = commands;
 
 function main(command, argument, options) {
   const commandMissing = (command === null),
-        optionsIncludesHelp = options.includes('help'),
-        optionsIncludesVersion = options.includes('version');
+        optionsIncludesHelp = options.includes(HELP_OPTION),
+        optionsIncludesVersion = options.includes(VERSION_OPTION);
 
   if (false) {
-
+    ///
   } else if (optionsIncludesVersion) {
-    command = 'version';
+    command = VERSION_COMMAND;
   } else if (commandMissing || optionsIncludesHelp) {
-    command = 'help';
+    command = HELP_COMMAND;
   }
 
   switch (command) {
