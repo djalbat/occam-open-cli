@@ -5,6 +5,7 @@ const necessary = require('necessary');
 const main = require('./bin/main'),
 			state = require('./bin/state'),
 			commands = require('./bin/commands'),
+      constants = require('./bin/constants'),
 			argvUtilities = require('./bin/utilities/argv'),
 			directoryUtilities = require('./bin/utilities/directory'),
 			configurationUtilities = require('./bin/utilities/configuration');
@@ -14,12 +15,13 @@ const { miscellaneousUtilities } = necessary,
 			{ argv } = process,
 			{ setReleaseName } = state,
 			{ PUBLISH_COMMAND } = commands,
+      { RC_BASE_EXTENSION } = constants,
 			{ setRCBaseExtension, checkRCFileExists, createVacuousRCFile } = rc,
 			{ changeDirectory } = directoryUtilities,
 			{ setDefaultOptions } = configurationUtilities,
 			{ optionsFromArgv, commandFromArgv, argumentFromArgv } = argvUtilities;
 
-setRCBaseExtension('open');
+setRCBaseExtension(RC_BASE_EXTENSION);
 
 const options = optionsFromArgv(argv),
       command = commandFromArgv(argv),

@@ -7,6 +7,7 @@ const TIMEOUT = 10000,
       UTF8_ENCODING = 'utf8',
       BASE64_ENCODING = 'base64',
 			HOST_NAME_SUFFIX = '',
+      RC_BASE_EXTENSION = 'open',
       PACKAGE_JSON_FILE_NAME = 'package.json';
 
 module.exports = {
@@ -17,5 +18,6 @@ module.exports = {
 	UTF8_ENCODING,
 	BASE64_ENCODING,
 	HOST_NAME_SUFFIX,
+  RC_BASE_EXTENSION,
   PACKAGE_JSON_FILE_NAME
 };
