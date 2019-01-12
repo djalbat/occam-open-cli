@@ -8,6 +8,20 @@ const { arrayUtilities } = necessary,
       { HELP_OPTION, VERSION_OPTION } = options,
       { first, second, third, fourth, filter } = arrayUtilities;
 
+function commandFromArgv(argv) {
+  const thirdArgument = third(argv),  ///
+        command = thirdArgument || null;  ///
+
+  return command;
+}
+
+function argumentFromArgv(argv) {
+  const fourthArgument = fourth(argv),  ///
+        argument = fourthArgument || null;  ///
+
+  return argument;
+}
+
 function optionsFromArgv(argv) {
   argv = argv.slice();  ///
 
@@ -34,24 +48,10 @@ function optionsFromArgv(argv) {
   return options;
 }
 
-function commandFromArgv(argv) {
-  const thirdArgument = third(argv),  ///
-        command = thirdArgument || null;  ///
-
-  return command;
-}
-
-function argumentFromArgv(argv) {
-  const fourthArgument = fourth(argv),  ///
-        argument = fourthArgument || null;  ///
-
-  return argument;
-}
-
 module.exports = {
-  optionsFromArgv,
   commandFromArgv,
-  argumentFromArgv
+  argumentFromArgv,
+  optionsFromArgv
 };
 
 function longhandOptionFromArgument(argument, availableOptions, optionsMap) {
