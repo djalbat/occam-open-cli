@@ -3,17 +3,15 @@
 function help() {
   console.log(`Usage: 
   
-  open [--help|-h]                               Show this help
+  open [help|--help|-h]                          Show this help
   
   open --version|-v                              Show the version
 
-  open <package_name>                            Install a package
+  open [install] <package_name>                  Install a package
 
   open <command> [<argument>]
 
 Commmands:
-
-  install <package_name>                         Install a package
 
   clone <package_name>                           Clone a package with Git
 

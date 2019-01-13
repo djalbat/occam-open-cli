@@ -3,12 +3,12 @@
 const uris = require('../uris'),
 			action = require('../action'),
       messages = require('../messages'),
-      configurationUtilities = require('../utilities/configuration'),
+      configuration = require('../configuration'),
       retrieveAccessTokenCallback = require('../callback/retrieveAccessToken');
 
 const { LOGOUT_URI } = uris,
-      { LOGGED_OUT_MESSAGE } = messages,
-      { removeAccessToken } = configurationUtilities;
+      { removeAccessToken } = configuration,
+      { LOGGED_OUT_MESSAGE } = messages;
 
 function logout() {
   const uri = LOGOUT_URI,

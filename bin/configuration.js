@@ -2,7 +2,7 @@
 
 const necessary = require('necessary');
 
-const constants = require('../constants');
+const constants = require('./constants');
 
 const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,

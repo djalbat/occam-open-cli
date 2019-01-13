@@ -7,13 +7,13 @@ const request = require('request'),
 
 const messages = require('./messages'),
       constants = require('./constants'),
-      packageUtilities = require('./utilities/package'),
-      configurationUtilities = require('./utilities/configuration');
+      configuration = require('./configuration'),
+      packageUtilities = require('./utilities/package');
 
 const { miscellaneousUtilities } = necessary,
       { exit } = process,
       { onETX } = miscellaneousUtilities,
-      { retrieveOptions } = configurationUtilities,
+      { retrieveOptions } = configuration,
       { getVersionString } = packageUtilities,
       { OPEN_CLI, TIMEOUT, POST_METHOD, UTF8_ENCODING } = constants,
       { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages;

@@ -2,12 +2,12 @@
 
 const necessary = require('necessary');
 
-const configurationUtilities = require('../utilities/configuration');
+const configuration = require('../configuration');
 
 const { pathUtilities } = necessary,
       { cwd, chdir } = process,
       { bottommostNameFromPath } = pathUtilities,
-      { checkConfigurationFileExists } = configurationUtilities;
+      { checkConfigurationFileExists } = configuration;
 
 function changeDirectory() {
   let releaseName = null;

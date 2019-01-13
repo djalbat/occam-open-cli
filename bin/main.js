@@ -2,12 +2,12 @@
 
 const actions = require('./actions'),
 			commands = require('./commands'),
-			directoryUtilities = require('./utilities/directory'),
-			configurationUtilities = require('./utilities/configuration');
+      configuration = require('./configuration'),
+			directoryUtilities = require('./utilities/directory');
 
 const { PUBLISH_COMMAND } = commands,
 			{ changeDirectory } = directoryUtilities,
-      { checkConfigurationFileExists, createVacuousConfigurationFile } = configurationUtilities;
+      { checkConfigurationFileExists, createVacuousConfigurationFile } = configuration;
 
 function main(command, argument, options) {
   let configurationFileExists = checkConfigurationFileExists();
