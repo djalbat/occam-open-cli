@@ -1,0 +1,11 @@
+{
+	"environments": [
+		{}
+	],
+	"options": {
+		"useSSH": true,
+		"hostNameSuffix": "--jecs-imperial",
+		"hostURL": "http://localhost:8002"
+	},
+	"accessToken": "497f0c4697724220868519519be76b84"
+}

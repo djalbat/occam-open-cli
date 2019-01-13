@@ -1,25 +1,25 @@
 'use strict';
 
 const TIMEOUT = 10000,
-      USE_SSH = false,
       OPEN_CLI = 'Open-CLI',
-      HOST_URL = 'https://openmathematics.org',
       POST_METHOD = 'POST',
       UTF8_ENCODING = 'utf8',
+      DEFAULT_USE_SSH = false,
       BASE64_ENCODING = 'base64',
-			HOST_NAME_SUFFIX = '',
+      DEFAULT_HOST_URL = 'https://openmathematics.org',
       RC_BASE_EXTENSION = 'open',
-      PACKAGE_JSON_FILE_NAME = 'package.json';
+      PACKAGE_JSON_FILE_NAME = 'package.json',
+      DEFAULT_HOST_NAME_SUFFIX = '';
 
 module.exports = {
 	TIMEOUT,
-	USE_SSH,
   OPEN_CLI,
-	HOST_URL,
 	POST_METHOD,
 	UTF8_ENCODING,
+  DEFAULT_USE_SSH,
 	BASE64_ENCODING,
-	HOST_NAME_SUFFIX,
+  DEFAULT_HOST_URL,
   RC_BASE_EXTENSION,
-  PACKAGE_JSON_FILE_NAME
+  PACKAGE_JSON_FILE_NAME,
+  DEFAULT_HOST_NAME_SUFFIX
 };

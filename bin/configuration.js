@@ -2,12 +2,14 @@
 
 const necessary = require('necessary');
 
-const constants = require('./constants');
+const constants = require('./constants'),
+      latestConfiguration = require('./configuration/latest');
 
 const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
-			{ USE_SSH, HOST_URL, HOST_NAME_SUFFIX, RC_BASE_EXTENSION } = constants,
-      { setRCBaseExtension, checkRCFileExists, createVacuousRCFile, updateRCFile, readRCFile } = rc;
+			{ RC_BASE_EXTENSION } = constants,
+      { createVacuousConfigurationFile } = latestConfiguration,
+      { setRCBaseExtension, checkRCFileExists, updateRCFile, readRCFile } = rc;
 
 setRCBaseExtension(RC_BASE_EXTENSION);
 
@@ -48,12 +50,6 @@ function checkConfigurationFileExists() {
   return configurationFileExists;
 }
 
-function createVacuousConfigurationFile() {
-  createVacuousRCFile();
-
-  setDefaultOptions();
-}
-
 module.exports = {
   retrieveOptions,
   updateOptions,
@@ -63,19 +59,3 @@ module.exports = {
   checkConfigurationFileExists,
   createVacuousConfigurationFile
 };
-
-function setDefaultOptions() {
-  const useSSH = USE_SSH,
-        hostURL = HOST_URL,
-        hostNameSuffix = HOST_NAME_SUFFIX,
-        defaultOptions = {
-          useSSH,
-          hostURL,
-          hostNameSuffix
-        },
-        options = defaultOptions;	///
-
-  updateRCFile({
-    options
-  });
-}
