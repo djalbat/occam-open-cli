@@ -23,8 +23,6 @@ function changeDirectory() {
 		const bottommostOldCurrentWorkingDirectoryName = bottommostNameFromPath(oldCurrentWorkingDirectoryPath);
 
 		releaseName = bottommostOldCurrentWorkingDirectoryName; ///
-	} else {
-		chdir(oldCurrentWorkingDirectoryPath);
 	}
 
   return releaseName;
