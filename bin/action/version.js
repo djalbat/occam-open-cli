@@ -4,12 +4,13 @@ const constants = require('../constants'),
       packageUtilities = require('../utilities/package');
 
 const { OPEN_CLI } = constants,
-      { getVersionString } = packageUtilities;
+      { getCurrentVersion } = packageUtilities;
 
 function version() {
-  const versionString = getVersionString();
+  const currentVersion = getCurrentVersion(),
+        version = currentVersion; ///
 
-  console.log(`${OPEN_CLI} version ${versionString}`);
+  console.log(`${OPEN_CLI} version ${version}`);
 }
 
 module.exports = version;

@@ -3,15 +3,17 @@
 const necessary = require('necessary');
 
 const validate = require('../../validate'),
-      messages = require('../../messages');
+      messages = require('../../messages'),
+      promptUtilities = require('../../utilities/prompt');
 
 const { miscellaneousUtilities } = necessary,
       { validateAnswer } = validate,
       { prompt } = miscellaneousUtilities,
+      { isAnswerAffirmative } = promptUtilities,
       { INVALID_ANSWER_MESSAGE } = messages;
 
 function areYouSurePromptCallback(proceed, abort, context) {
-  const description = 'Are you sure: ',
+  const description = 'Are you sure? (y)es (n)o: ',
         errorMessage = INVALID_ANSWER_MESSAGE,
         validationFunction = validateAnswer,  ///
         options = {
@@ -24,9 +26,9 @@ function areYouSurePromptCallback(proceed, abort, context) {
     const valid = (answer !== null);
 
     if (valid) {
-      const yes = /^y.*/i.test(answer);
+      const affirmative = isAnswerAffirmative(answer);
 
-      if (yes) {
+      if (affirmative) {
         proceed();
 
         return;

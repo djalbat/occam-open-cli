@@ -17,12 +17,23 @@ const utilitiesDirectoryName = __dirname, ///
 			packageJSONFile = readFile(packageJSONFilePath),
 			packageJSON = JSON.parse(packageJSONFile),
 			{ version } = packageJSON,
-			versionString = version;  ///
+			currentVersion = version;  ///
 
-function getVersionString() {
-	return versionString;
+function getCurrentVersion() {
+	return currentVersion;
+}
+
+function isVersionUpToDate(version) {
+  let versionUpToDate = false;
+
+  if (version) {  ///
+    versionUpToDate = true;
+  }
+
+  return versionUpToDate;
 }
 
 module.exports = {
-	getVersionString
+	getCurrentVersion,
+  isVersionUpToDate
 };

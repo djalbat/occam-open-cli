@@ -7,7 +7,7 @@ const actions = require('./actions'),
 
 const { PUBLISH_COMMAND } = commands,
 			{ changeDirectory } = directoryUtilities,
-      { checkConfigurationFileExists, createVacuousConfigurationFile } = configuration;
+      { checkConfigurationFileExists, upgradeConfigurationFile, createConfigurationFile } = configuration;
 
 function main(command, argument, options) {
   let configurationFileExists = checkConfigurationFileExists();
@@ -26,9 +26,9 @@ function main(command, argument, options) {
     }
   }
 
-  if (!configurationFileExists) {
-    createVacuousConfigurationFile();
-  }
+  configurationFileExists ?
+    upgradeConfigurationFile() :
+      createConfigurationFile();
 
   actions(command, argument, options);
 }

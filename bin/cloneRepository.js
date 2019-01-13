@@ -2,21 +2,21 @@
 
 const childProcess = require('child_process');
 
-const configuration = require('./configuration');
+const constants = require('./constants'),
+      configuration = require('./configuration');
 
 const { exec } = childProcess,
-      { retrieveOptions } = configuration;
+      { retrieveOptions } = configuration,
+      { DEFAULT_GITHUB_HOST_NAME } = constants;
 
 function cloneRepository(repository, callback) {
   const options = retrieveOptions(),
-        { useSSH, hostNameSuffix } = options;
+        { ssh } = options;
 
-  if (useSSH) {
-    repository = repository.replace('https://github.com/', 'git@github.com:')
-  }
+  if (ssh) {
+    const { gitHubHostName } = ssh;
 
-  if (hostNameSuffix) {
-    repository = repository.replace('github.com', `github.com${hostNameSuffix}`);
+    repository = repository.replace(`https://${DEFAULT_GITHUB_HOST_NAME}/`, `git@${gitHubHostName}:`)
   }
 
   const command = `git clone ${repository}.git`;

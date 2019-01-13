@@ -3,11 +3,13 @@
 const necessary = require('necessary');
 
 const validate = require('../../validate'),
-      messages = require('../../messages');
+      messages = require('../../messages'),
+      promptUtilities = require('../../utilities/prompt');
 
 const { miscellaneousUtilities } = necessary,
       { validateAnswer } = validate,
       { prompt } = miscellaneousUtilities,
+      { isAnswerAffirmative } = promptUtilities,
       { INVALID_ANSWER_MESSAGE } = messages;
 
 function useSSHPromptCallback(proceed, abort, context) {
@@ -24,8 +26,8 @@ function useSSHPromptCallback(proceed, abort, context) {
     const valid = (answer !== null);
 
     if (valid) {
-      const yes = /^y.*/i.test(answer),
-            useSSH = yes; ///
+      const affirmative = isAnswerAffirmative(answer),
+            useSSH = affirmative; ///
 
       Object.assign(context, {
         useSSH

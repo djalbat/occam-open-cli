@@ -4,16 +4,17 @@ const messages = require('../messages'),
       configuration = require('../configuration'),
       callbackUtilities = require('../utilities/callback'),
       useSSHPromptCallback = require('../callback/prompt/useSSH'),
-			hostNameSuffixPromptCallback = require('../callback/prompt/hostNameSuffix');
+			gitHubHostNamePromptCallback = require('../callback/prompt/gitHubHostName');
 
-const { updateOptions } = configuration,
+const { exit } = process,
+      { updateOptions } = configuration,
 			{ executeCallbacks } = callbackUtilities,
       { FAILED_SET_OPTIONS_MESSAGE, SUCCESSFUL_SET_OPTIONS_MESSAGE } = messages;
 
 function setOptions() {
   const callbacks = [
           useSSHPromptCallback,
-          hostNameSuffixPromptCallback
+          gitHubHostNamePromptCallback
         ],
         context = {};
 
@@ -24,7 +25,19 @@ function setOptions() {
       exit();
     }
 
-    const options = context;
+    const { useSSH } = context,
+          options = {};
+
+    if (useSSH) {
+      const { gitHubHostName } = context,
+            ssh = {
+              gitHubHostName
+            };
+
+      Object.assign(options, {
+        ssh
+      });
+    }
 
     updateOptions(options);
 

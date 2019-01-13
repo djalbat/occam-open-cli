@@ -3,15 +3,22 @@
 const necessary = require('necessary');
 
 const constants = require('./constants'),
-      latestConfiguration = require('./configuration/latest');
+      configurationVersion_1_5 = require('./configuration/version_1_5');
 
 const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
 			{ RC_BASE_EXTENSION } = constants,
-      { createVacuousConfigurationFile } = latestConfiguration,
+      { upgradeConfigurationFile, createConfigurationFile } = configurationVersion_1_5,
       { setRCBaseExtension, checkRCFileExists, updateRCFile, readRCFile } = rc;
 
 setRCBaseExtension(RC_BASE_EXTENSION);
+
+function retrieveHostURL() {
+  const json = readRCFile(),
+        { hostURL } = json;
+
+  return hostURL;
+}
 
 function retrieveOptions() {
   const json = readRCFile(),
@@ -51,11 +58,13 @@ function checkConfigurationFileExists() {
 }
 
 module.exports = {
+  retrieveHostURL,
   retrieveOptions,
   updateOptions,
   addAccessToken,
   removeAccessToken,
   retrieveAccessToken,
-  checkConfigurationFileExists,
-  createVacuousConfigurationFile
+  createConfigurationFile,
+  upgradeConfigurationFile,
+  checkConfigurationFileExists
 };

@@ -9,7 +9,7 @@ const { miscellaneousUtilities } = necessary,
       { createVacuousRCFile, updateRCFile } = rc,
 			{ DEFAULT_USE_SSH, DEFAULT_HOST_URL, DEFAULT_HOST_NAME_SUFFIX } = constants;
 
-function createVacuousConfigurationFile() {
+function createConfigurationFile() {
   createVacuousRCFile();
 
   const useSSH = DEFAULT_USE_SSH,
@@ -27,6 +27,11 @@ function createVacuousConfigurationFile() {
   });
 }
 
+function upgradeConfigurationFile() {
+  ///
+}
+
 module.exports = {
-  createVacuousConfigurationFile
+  createConfigurationFile,
+  upgradeConfigurationFile
 };

@@ -3,7 +3,8 @@
 const post = require('./post'),
       callbackUtilities = require('./utilities/callback');
 
-const { executeCallbacks } = callbackUtilities;
+const { exit } = process,
+      { executeCallbacks } = callbackUtilities;
 
 function action(callbacks, uri, callback, context) {
   executeCallbacks(callbacks, function(completed) {

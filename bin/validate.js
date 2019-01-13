@@ -10,7 +10,7 @@ function validateReleaseName(releaseName) { return  /^[a-z0-9]{2,16}(?:-[a-z0-9]
 
 function validateEmailAddress(emailAddress) { return /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,16}$/.test(emailAddress); }
 
-function validateHostNameSuffix(hostNameSuffix) { return /^[a-zA-Z0-9.\-]*$/.test(hostNameSuffix); }
+function validateGitHubHostName(gitHubHostName) { return /^[a-zA-Z0-9.\-]*$/.test(gitHubHostName); }
 
 function validateConfirmationCode(confirmationCode) { return /^[a-zA-Z0-9]{6,10}$/.test(confirmationCode); }
 
@@ -20,6 +20,6 @@ module.exports = {
   validatePassword,
   validateReleaseName,
   validateEmailAddress,
-  validateHostNameSuffix,
+  validateGitHubHostName,
   validateConfirmationCode
 };

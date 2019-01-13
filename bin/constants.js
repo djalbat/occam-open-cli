@@ -9,7 +9,8 @@ const TIMEOUT = 10000,
       DEFAULT_HOST_URL = 'https://openmathematics.org',
       RC_BASE_EXTENSION = 'open',
       PACKAGE_JSON_FILE_NAME = 'package.json',
-      DEFAULT_HOST_NAME_SUFFIX = '';
+      DEFAULT_HOST_NAME_SUFFIX = '',
+      DEFAULT_GITHUB_HOST_NAME = 'github.com';
 
 module.exports = {
 	TIMEOUT,
@@ -21,5 +22,6 @@ module.exports = {
   DEFAULT_HOST_URL,
   RC_BASE_EXTENSION,
   PACKAGE_JSON_FILE_NAME,
-  DEFAULT_HOST_NAME_SUFFIX
+  DEFAULT_HOST_NAME_SUFFIX,
+  DEFAULT_GITHUB_HOST_NAME
 };

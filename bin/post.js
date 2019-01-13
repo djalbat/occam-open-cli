@@ -13,8 +13,8 @@ const messages = require('./messages'),
 const { miscellaneousUtilities } = necessary,
       { exit } = process,
       { onETX } = miscellaneousUtilities,
-      { retrieveOptions } = configuration,
-      { getVersionString } = packageUtilities,
+      { retrieveHostURL } = configuration,
+      { getCurrentVersion } = packageUtilities,
       { OPEN_CLI, TIMEOUT, POST_METHOD, UTF8_ENCODING } = constants,
       { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages;
 
@@ -56,11 +56,10 @@ function post(uri, data, callback) {
 module.exports = post;
 
 function optionsFromURIAndData(uri, data) {
-  let options = retrieveOptions();
-
-  const { hostURL } = options,
+  const hostURL = retrieveHostURL(),
         url = `${hostURL}${uri}`,
-        versionString = getVersionString(),
+        currentVersion = getCurrentVersion(),
+        versionString = currentVersion, ///
         body = Object.assign(data, {
           versionString
         }),
@@ -73,17 +72,16 @@ function optionsFromURIAndData(uri, data) {
         userAgent = `${OPEN_CLI}/${operatingSystem}`,
         headers = {
           'User-Agent': userAgent
+        },
+        options = {	///
+          url,
+          body,
+          json,
+          method,
+          timeout,
+          encoding,
+          headers
         };
-
-  options = {	///
-    url,
-    body,
-    json,
-    method,
-    timeout,
-    encoding,
-    headers
-  };
 
   return options;
 }
