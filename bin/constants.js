@@ -2,6 +2,7 @@
 
 const TIMEOUT = 10000,
       USE_SSH = false,
+      OPEN_CLI = 'Open-CLI',
       HOST_URL = 'https://openmathematics.org',
       POST_METHOD = 'POST',
       UTF8_ENCODING = 'utf8',
@@ -13,6 +14,7 @@ const TIMEOUT = 10000,
 module.exports = {
 	TIMEOUT,
 	USE_SSH,
+  OPEN_CLI,
 	HOST_URL,
 	POST_METHOD,
 	UTF8_ENCODING,

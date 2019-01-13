@@ -1,15 +1,21 @@
 'use strict';
 
+const os = require('os');
+
 const request = require('request'),
       necessary = require('necessary');
 
 const messages = require('./messages'),
-			optionsUtilities = require('./utilities/options');
+      constants = require('./constants'),
+      packageUtilities = require('./utilities/package'),
+      configurationUtilities = require('./utilities/configuration');
 
 const { miscellaneousUtilities } = necessary,
-			{ optionsFromURIAndData } = optionsUtilities,
       { exit } = process,
       { onETX } = miscellaneousUtilities,
+      { retrieveOptions } = configurationUtilities,
+      { getVersionString } = packageUtilities,
+      { OPEN_CLI, TIMEOUT, POST_METHOD, UTF8_ENCODING } = constants,
       { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages;
 
 function post(uri, data, callback) {
@@ -33,7 +39,7 @@ function post(uri, data, callback) {
       console.log(message);
     }
 
-    error = json.error; ///
+    ({ error } = json); ///
 
     if (error) {
       console.log(SERVER_ERROR_MESSAGE);
@@ -48,3 +54,36 @@ function post(uri, data, callback) {
 }
 
 module.exports = post;
+
+function optionsFromURIAndData(uri, data) {
+  let options = retrieveOptions();
+
+  const { hostURL } = options,
+        url = `${hostURL}${uri}`,
+        versionString = getVersionString(),
+        body = Object.assign(data, {
+          versionString
+        }),
+        json = true,
+        timeout = TIMEOUT,
+        method = POST_METHOD,
+        encoding = UTF8_ENCODING,
+        osType = os.type(),
+        operatingSystem = osType, ///
+        userAgent = `${OPEN_CLI}/${operatingSystem}`,
+        headers = {
+          'User-Agent': userAgent
+        };
+
+  options = {	///
+    url,
+    body,
+    json,
+    method,
+    timeout,
+    encoding,
+    headers
+  };
+
+  return options;
+}

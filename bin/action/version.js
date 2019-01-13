@@ -1,13 +1,15 @@
 'use strict';
 
-const packageUtilities = require('../utilities/package');
+const constants = require('../constants'),
+      packageUtilities = require('../utilities/package');
 
-const { getVersionString } = packageUtilities;
+const { OPEN_CLI } = constants,
+      { getVersionString } = packageUtilities;
 
 function version() {
   const versionString = getVersionString();
 
-  console.log(`Open-CLI version ${versionString}`);
+  console.log(`${OPEN_CLI} version ${versionString}`);
 }
 
 module.exports = version;
