@@ -153,6 +153,7 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
   subEntryNames.forEach(function(subEntryName) {
     const subEntryNameHiddenName = isNameHiddenName(subEntryName),
           subEntryNameNotHiddenName = !subEntryNameHiddenName,
+          allowAllFilesAndDirectories = !allowOnlyRecognisedFiles,
           allowHiddenFilesAndDirectories = !disallowHiddenFilesAndDirectories;
 
     if (subEntryNameNotHiddenName || allowHiddenFilesAndDirectories) {
@@ -164,7 +165,7 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
       if (directory !== null) {
         const directoryPath = path; ///
 
-        if (!allowOnlyRecognisedFiles) {
+        if (allowAllFilesAndDirectories) {
           entry = directory;  ///
 
           array.push(entry);  ///
@@ -175,16 +176,14 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
         const file = File.fromPath(path, projectsDirectoryPath);
 
         if (file !== null) {
-          if (allowOnlyRecognisedFiles) {
-            const filePath = file.getPath(),
-                  filePathRecognisedFilePath = isFilePathRecognisedFilePath(filePath),
-                  fileRecognisedFile = filePathRecognisedFilePath;  ///
+          const filePath = file.getPath(),
+                filePathRecognisedFilePath = isFilePathRecognisedFilePath(filePath),
+                fileRecognisedFile = filePathRecognisedFilePath;  ///
 
-            if (fileRecognisedFile) {
-              entry = file; ///
+          if (fileRecognisedFile || allowAllFilesAndDirectories) {
+            entry = file; ///
 
-              array.push(entry);  ///
-            }
+            array.push(entry);  ///
           }
         }
       }
