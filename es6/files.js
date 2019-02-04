@@ -41,11 +41,11 @@ class Files {
     return files;
   }
 
-  static fromFilePaths(filePaths, projectsDirectoryPath) {
+  static fromPaths(paths, projectsDirectoryPath) {
     const files = new Files();
 
-    filePaths.forEach(function(filePath) {
-      const file = File.fromFilePath(filePath, projectsDirectoryPath);
+    paths.forEach(function(path) {
+      const file = File.fromPath(path, projectsDirectoryPath);
 
       files.addFile(file);
     });

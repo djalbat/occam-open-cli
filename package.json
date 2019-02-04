@@ -1,7 +1,7 @@
 {
   "name": "occam-open-cli",
   "author": "James Smith",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "license": "MIT",
   "homepage": "https://github.com/jecs-imperial/occam-open-cli",
   "description": "Occam's command line package management tool.",
