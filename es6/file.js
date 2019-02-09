@@ -77,18 +77,18 @@ class File {
   }
 
   static fromPath(path, projectsDirectoryPath) {
+    let file = null;
+
     const absolutePath = concatenatePaths(projectsDirectoryPath, path),
           entryFile = isEntryFile(absolutePath);
 
-    let content = null;
-
     try {
       if (entryFile) {
-        content = readFile(absolutePath);
+        const content = readFile(absolutePath);
+
+        file = new File(path, content);
       }
     } catch (error) {}  ///
-
-    const file = new File(path, content);
 
     return file;
   }
