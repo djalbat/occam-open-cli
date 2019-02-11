@@ -11,6 +11,69 @@ class Project {
     this.entries = entries;
   }
 
+  getName() {
+    return this.name;
+  }
+
+  getEntries() {
+    return this.entries;
+  }
+
+  getFiles() {
+    const files = this.entries.reduce(function(files, entry) {
+      const entryDirectory = entry.isDirectory(),
+            entryFile = !entryDirectory;
+
+      if (entryFile) {
+        const file = entry; ///
+
+        files.push(file);
+      }
+
+      return files;
+    }, []);
+
+    return files;
+  }
+
+  getDirectories() {
+    const directories = this.entries.reduce(function(directories, entry) {
+      const entryDirectory = entry.isDirectory();
+
+      if (entryDirectory) {
+        const directory = entry;  ///
+
+        directories.push(directory);
+      }
+
+      return directories;
+    }, []);
+
+    return directories;
+  }
+
+  getFilePaths() {
+    const files = this.getFiles(),
+          filePaths = files.map(function(file) {
+            const filePath = file.getPath();
+
+            return filePath;
+          });
+
+    return filePaths;
+  }
+
+  getDirectoryPaths() {
+    const directories = this.getDirectories(),
+          directoryPaths = directories.map(function(directory) {
+            const directoryPath = directory.getPath();
+
+            return directoryPath;
+          });
+
+    return directoryPaths;
+  }
+
   toJSON() {
     const name = this.name,
           entriesJSON = this.entries.toJSON(),
@@ -21,6 +84,19 @@ class Project {
           };
 
     return json;
+  }
+
+  static fromJSON(json) {
+    const nameJSON = json["name"],
+          entriesJSON = json["entries"];
+
+    json = entriesJSON; ///
+
+    const name = nameJSON,  ///
+          entries = Entries.fromJSON(json),
+          project = new Project(name, entries);
+
+    return project;
   }
 
   static fromURL(url, callback) {

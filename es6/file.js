@@ -36,6 +36,18 @@ class File {
     return directory;
   }
 
+  setPath(path) {
+    this.path = path;
+  }
+
+  setContent(content) {
+    this.content = content;
+  }
+
+  convertTabsToWhitespace() {
+    this.content = this.content.replace(/\t/g, '  ');  ///
+  }
+
   save(projectsDirectoryPath) {
     const absolutePath = concatenatePaths(projectsDirectoryPath, this.path),  ///
           topmostAbsoluteDirectoryPath = topmostDirectoryPathFromPath(absolutePath);
@@ -89,6 +101,15 @@ class File {
         file = new File(path, content);
       }
     } catch (error) {}  ///
+
+    return file;
+  }
+
+  static fromDocument(document) {
+    const filePath = document.getFilePath(),
+          content = document.getContent(),
+          path = filePath,  ///
+          file = new File(path, content);
 
     return file;
   }

@@ -19,6 +19,22 @@ class Projects {
     this.array.push(project);
   }
 
+  mapProject(callback) {
+    return this.array.map(callback);
+  }
+
+  reduceProject(callback, initialValue) {
+    return this.array.reduce(callback, initialValue);
+  }
+
+  forEachProject(callback) {
+    this.array.forEach(callback);
+  }
+
+  asynchronousForEachProject(callback, done) {
+    forEach(this.array, callback, done);
+  }
+
   toJSON() {
     const json = this.array.map(function(project) {
       const projectJSON = project.toJSON();
@@ -27,6 +43,24 @@ class Projects {
     });
 
     return json;
+  }
+  
+  static fromJSON(json) {
+    const array = json.map(function(json) {  ///
+            const project = Project.fromJSON(json);
+
+            return project;
+          }),
+          projects = new Projects(array);
+
+    return projects;
+  }
+
+  static fromNothing() {
+    const array = [],
+          projects = new Projects(array);
+
+    return projects;
   }
 
   static fromProjectsDirectoryPath(projectsDirectoryPath, allowOnlyRecognisedFiles, disallowHiddenFilesAndDirectories) {
