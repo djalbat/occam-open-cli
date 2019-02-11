@@ -16,6 +16,10 @@ class Projects {
     this.array = [];
   }
 
+  getLength() {
+    return this.array.length;
+  }
+
   addProject(project) {
     this.array.push(project);
   }
