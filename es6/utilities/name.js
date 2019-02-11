@@ -1,10 +1,11 @@
 'use strict';
 
-function isNameHiddenName(name) {
-  const position = name.search(/^\..+/),
-        bottommostNameHiddenName = (position !== -1);
+const hiddenNameRegularExpression = /^\..+/;
 
-  return bottommostNameHiddenName;
+function isNameHiddenName(name) {
+  const nameHiddenName = hiddenNameRegularExpression.test(name)
+
+  return nameHiddenName;
 }
 
 function removeMasterDirectoryNameFromPath(path) {
