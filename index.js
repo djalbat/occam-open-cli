@@ -7,5 +7,6 @@ module.exports = {
   Projects: require('./lib/projects'),
   Release: require('./lib/release'),
   Version: require('./lib/version'),
-  Entries: require('./lib/entries')
+  Entries: require('./lib/entries'),
+  filePathUtilities: require('./lib/utilities/filePath')
 };
