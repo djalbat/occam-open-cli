@@ -5,7 +5,8 @@ const necessary = require('necessary');
 const Project = require('./project'),
       nameUtilities = require('./utilities/name');
 
-const { pathUtilities, fileSystemUtilities } = necessary,
+const { pathUtilities, fileSystemUtilities, asynchronousUtilities } = necessary,
+      { forEach } = asynchronousUtilities,
       { concatenatePaths } = pathUtilities,
       { isNameHiddenName } = nameUtilities,
       { isEntryDirectory, readDirectory } = fileSystemUtilities;
@@ -44,7 +45,7 @@ class Projects {
 
     return json;
   }
-  
+
   static fromJSON(json) {
     const array = json.map(function(json) {  ///
             const project = Project.fromJSON(json);
