@@ -153,8 +153,8 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
   subEntryNames.forEach(function(subEntryName) {
     const subEntryNameHiddenName = isNameHiddenName(subEntryName),
           subEntryNameNotHiddenName = !subEntryNameHiddenName,
-          allowAllFilesAndDirectories = !allowOnlyRecognisedFiles,
-          allowHiddenFilesAndDirectories = !disallowHiddenFilesAndDirectories;
+          allowHiddenFilesAndDirectories = !disallowHiddenFilesAndDirectories,
+          allowUnrecognisedFilesAndDirectories = !allowOnlyRecognisedFiles;
 
     if (subEntryNameNotHiddenName || allowHiddenFilesAndDirectories) {
       let entry;
@@ -165,7 +165,7 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
       if (directory !== null) {
         const directoryPath = path; ///
 
-        if (allowAllFilesAndDirectories) {
+        if (allowUnrecognisedFilesAndDirectories) {
           entry = directory;  ///
 
           array.push(entry);  ///
@@ -180,7 +180,7 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
                 filePathRecognisedFilePath = isFilePathRecognisedFilePath(filePath),
                 fileRecognisedFile = filePathRecognisedFilePath;  ///
 
-          if (fileRecognisedFile || allowAllFilesAndDirectories) {
+          if (fileRecognisedFile || allowUnrecognisedFilesAndDirectories) {
             entry = file; ///
 
             array.push(entry);  ///
