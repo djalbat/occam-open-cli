@@ -12,8 +12,8 @@ const { pathUtilities, fileSystemUtilities, asynchronousUtilities } = necessary,
       { isEntryDirectory, readDirectory } = fileSystemUtilities;
 
 class Projects {
-  constructor() {
-    this.array = [];
+  constructor(array) {
+    this.array = array;
   }
 
   getLength() {
@@ -69,7 +69,7 @@ class Projects {
   }
 
   static fromProjectsDirectoryPath(projectsDirectoryPath, allowOnlyRecognisedFiles, disallowHiddenFilesAndDirectories) {
-    const projects = new Projects(),
+    const projects = Projects.fromNothing(),
           topmostDirectoryNames = topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, disallowHiddenFilesAndDirectories);
 
     topmostDirectoryNames.forEach(function(topmostDirectoryName) {
