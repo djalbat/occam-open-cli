@@ -20,7 +20,7 @@ class Project {
   }
 
   getFiles() {
-    const files = this.entries.reduce(function(files, entry) {
+    const files = this.entries.reduceEntry(function(files, entry) {
       const entryDirectory = entry.isDirectory(),
             entryFile = !entryDirectory;
 
@@ -37,7 +37,7 @@ class Project {
   }
 
   getDirectories() {
-    const directories = this.entries.reduce(function(directories, entry) {
+    const directories = this.entries.reduceEntry(function(directories, entry) {
       const entryDirectory = entry.isDirectory();
 
       if (entryDirectory) {

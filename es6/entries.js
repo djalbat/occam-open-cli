@@ -67,6 +67,8 @@ class Entries {
 
   forEachEntry(callback) { this.array.forEach(callback); }
 
+  reduceEntry(callback, initialValue) { return this.array.reduce(callback, initialValue); }
+
   toJSON() {
     const entriesJSON = this.array.map(function(entry) {
             const entryJSON = entry.toJSON();
