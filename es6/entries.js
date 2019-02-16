@@ -71,6 +71,22 @@ class Entries {
     return files;
   }
 
+  getDirectories() {
+    const directories = this.reduceEntry(function(directories, entry) {
+      const entryDirectory = entry.isDirectory();
+
+      if (entryDirectory) {
+        const directory = entry; ///
+
+        directories.push(directory);
+      }
+
+      return directories;
+    }, []);
+
+    return directories;
+  }
+
   addFile(file) {
     this.array.push(file);
   }
