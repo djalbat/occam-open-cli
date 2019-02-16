@@ -69,7 +69,8 @@ class Projects {
   }
 
   static fromProjectsDirectoryPath(projectsDirectoryPath, allowOnlyRecognisedFiles, disallowHiddenFilesAndDirectories) {
-    const projects = Projects.fromNothing(),
+    const array = [],
+          projects = new Projects(array),
           topmostDirectoryNames = topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, disallowHiddenFilesAndDirectories);
 
     topmostDirectoryNames.forEach(function(topmostDirectoryName) {
@@ -90,7 +91,7 @@ function topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, d
   try {
     const subEntryNames = readDirectory(projectsDirectoryPath);
 
-    topmostDirectoryNames = subEntryNames.reduce(function (topmostDirectoryNames, subEntryName) {
+    topmostDirectoryNames = subEntryNames.reduce(function(topmostDirectoryNames, subEntryName) {
       const absoluteSubEntryPath = concatenatePaths(projectsDirectoryPath, subEntryName),
             subEntryNameHiddenName = isNameHiddenName(subEntryName),
             subEntryNameNotHiddenName = !subEntryNameHiddenName,

@@ -117,23 +117,28 @@ class File {
   static fromJSZipEntry(jsZipEntry, callback) {
     let file = null;
     
-    const jsZipEntryName = jsZipEntry.name,
-          jsZipEntryDirectory = jsZipEntry.dir, ///
+    const { dir } = jsZipEntry,
+          jsZipEntryDirectory = dir,  ///
           jsZipEntryFile = !jsZipEntryDirectory;  ///
 
     if (!jsZipEntryFile) {
       callback(file);
-    } else {
-      let path = jsZipEntryName; ///
 
-      path = removeMasterDirectoryNameFromPath(path);
-
-      jsZipEntry.async('string').then(function(content) {
-        file = new File(path, content);
-
-        callback(file);
-      });
+      return;
     }
+
+    const jsZipFile = jsZipEntry,  ///
+          { name } = jsZipFile;
+
+    let path = name; ///
+
+    path = removeMasterDirectoryNameFromPath(path);
+
+    jsZipEntry.async('string').then(function(content) {
+      file = new File(path, content);
+
+      callback(file);
+    });
   }
 }
 

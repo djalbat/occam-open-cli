@@ -101,28 +101,20 @@ class Entries {
           jsZipEntries = files, ///
           jsZipEntryNames = Object.keys(jsZipEntries);
 
-    function done() {
-      const entries = new Entries(array);
-
-      callback(entries);
-    }
-
-    forEach(jsZipEntryNames, function (jsZipEntryName, next) {
+    forEach(jsZipEntryNames, function(jsZipEntryName, next) {
       const jsZipEntry = jsZipEntries[jsZipEntryName];
 
-      let entry;
-
-      Directory.fromJSZipEntry(jsZipEntry, function (directory) {
+      Directory.fromJSZipEntry(jsZipEntry, function(directory) {
         if (directory !== null) {
-          entry = directory;  ///
+          const entry = directory;  ///
 
           array.push(entry);  ///
 
           next();
         } else {
-          File.fromJSZipEntry(jsZipEntry, function (file) {
+          File.fromJSZipEntry(jsZipEntry, function(file) {
             if (file !== null) {
-              entry = file;
+              const entry = file;
 
               array.push(entry);  ///
             }
@@ -132,6 +124,12 @@ class Entries {
         }
       });
     }, done);
+
+    function done() {
+      const entries = new Entries(array);
+
+      callback(entries);
+    }
   }
 
   static fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, allowOnlyRecognisedFiles, disallowHiddenFilesAndDirectories) {

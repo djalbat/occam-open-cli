@@ -114,7 +114,9 @@ class Project {
       error = error || (statusCode !== 200);  ///
 
       if (error) {
-        callback(null);
+        const project = null;
+
+        callback(project);
 
         return;
       }
@@ -129,9 +131,9 @@ class Project {
   }
 
   static fromJSZip(jsZip, callback) {
-    let project = null;
-
     Entries.fromJSZip(jsZip, function(entries) {
+      let project = null;
+
       const topmostDirectoryName = entries.getTopmostDirectoryName();
 
       if (topmostDirectoryName !== null) {

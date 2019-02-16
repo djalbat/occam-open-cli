@@ -78,20 +78,22 @@ class Directory {
 
     if (!jsZipEntryDirectory) {
       callback(directory);
-    } else {
-      const jsZipDirectory = jsZipEntry,
-            { name } = jsZipDirectory;  ///
 
-      let path = name;  ///
-
-      path = pathWithoutTrailingSlashFromPath(path);  ///
-
-      path = removeMasterDirectoryNameFromPath(path); ///
-
-      directory = new Directory(path);
-
-      callback(directory);
+      return;
     }
+
+    const jsZipDirectory = jsZipEntry,  ///
+          { name } = jsZipDirectory;
+
+    let path = name;  ///
+
+    path = pathWithoutTrailingSlashFromPath(path);  ///
+
+    path = removeMasterDirectoryNameFromPath(path); ///
+
+    directory = new Directory(path);
+
+    callback(directory);
   }
 }
 
