@@ -55,6 +55,22 @@ class Entries {
     });
   }
 
+  getFiles() {
+    const files = this.reduceEntry(function(files, entry) {
+      const entryFile = entry.isFile();
+
+      if (entryFile) {
+        const file = entry; ///
+
+        files.push(file);
+      }
+
+      return files;
+    }, []);
+
+    return files;
+  }
+
   addFile(file) {
     this.array.push(file);
   }

@@ -1,11 +1,6 @@
 'use strict';
 
-const Entries = require('./entries'),
-      MetaJSONFile = require('./file/metaJSON');
-
-const filePathUtilities = require('./utilities/filePath');
-
-const { isFilePathReadmeFilePath, isFilePathMetaJSONFilePath } = filePathUtilities;
+const Entries = require('./entries');
 
 class Release {
   constructor(name, entries, versionNumber) {
@@ -26,48 +21,9 @@ class Release {
     return this.versionNumber;
   }
 
-  getFiles() {
-    const files = [];
+  getFiles() { return this.entries.getFiles(); }
 
-    this.entries.forEachEntry(function(entry) {
-      const entryFile = entry.isFile();
-
-      if (entryFile) {
-        const file = entry; ///
-
-        files.push(file);
-      }
-    });
-
-    return files;
-  }
-
-  getReadmeFile() { return this.getFile(isFilePathReadmeFilePath); }
-
-  getMetaJSONFile() { return this.getFile(isFilePathMetaJSONFilePath, MetaJSONFile); }
-
-  getFile(test, Class) {
-    let foundFile = null;
-
-    const files = this.getFiles();
-
-    files.some(function(file) {
-      const filePath = file.getPath(),
-          fileFound = test(filePath);
-
-      if (fileFound) {
-        foundFile = Class ?
-                      Class.fromFile(file) :
-                        file;
-
-        return true;
-      }
-    });
-
-    const file = foundFile;
-
-    return file;
-  }
+  getDirectories() { return this.entries.getDirectories(); }
 
   toJSON() {
     const entriesJSON = this.entries.toJSON(),
@@ -96,18 +52,13 @@ class Release {
   }
 
   static fromName(name) {
-    let release = null;
-
-    try {
-      const topmostDirectoryName = name, ///
-            projectsDirectoryPath = '.',
-            allowOnlyRecognisedFiles = true,
-            disallowHiddenFilesAndDirectories = true,
-            entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, allowOnlyRecognisedFiles, disallowHiddenFilesAndDirectories),
-            versionNumber = null; ///
-
-      release = new Release(name, entries, versionNumber);
-    } catch (error) {}  ///
+    const topmostDirectoryName = name, ///
+          projectsDirectoryPath = '.',
+          allowOnlyRecognisedFiles = true,
+          disallowHiddenFilesAndDirectories = true,
+          entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, allowOnlyRecognisedFiles, disallowHiddenFilesAndDirectories),
+          versionNumber = null, ///
+          release = new Release(name, entries, versionNumber);
 
     return release;
   }

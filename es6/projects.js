@@ -88,30 +88,26 @@ module.exports = Projects;
 function topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, disallowHiddenFilesAndDirectories) {
   let topmostDirectoryNames;
 
-  try {
-    const subEntryNames = readDirectory(projectsDirectoryPath);
+  const subEntryNames = readDirectory(projectsDirectoryPath);
 
-    topmostDirectoryNames = subEntryNames.reduce(function(topmostDirectoryNames, subEntryName) {
-      const absoluteSubEntryPath = concatenatePaths(projectsDirectoryPath, subEntryName),
-            subEntryNameHiddenName = isNameHiddenName(subEntryName),
-            subEntryNameNotHiddenName = !subEntryNameHiddenName,
-            loadHiddenFilesAndDirectories = !disallowHiddenFilesAndDirectories;
+  topmostDirectoryNames = subEntryNames.reduce(function(topmostDirectoryNames, subEntryName) {
+    const absoluteSubEntryPath = concatenatePaths(projectsDirectoryPath, subEntryName),
+          subEntryNameHiddenName = isNameHiddenName(subEntryName),
+          subEntryNameNotHiddenName = !subEntryNameHiddenName,
+          loadHiddenFilesAndDirectories = !disallowHiddenFilesAndDirectories;
 
-      if (subEntryNameNotHiddenName || loadHiddenFilesAndDirectories) {
-        const subEntryDirectory = isEntryDirectory(absoluteSubEntryPath);
+    if (subEntryNameNotHiddenName || loadHiddenFilesAndDirectories) {
+      const subEntryDirectory = isEntryDirectory(absoluteSubEntryPath);
 
-        if (subEntryDirectory) {
-          const topmostDirectoryName = subEntryName;  ///
+      if (subEntryDirectory) {
+        const topmostDirectoryName = subEntryName;  ///
 
-          topmostDirectoryNames.push(topmostDirectoryName)
-        }
+        topmostDirectoryNames.push(topmostDirectoryName)
       }
+    }
 
-      return topmostDirectoryNames;
-    }, []);
-  } catch (error) {
-    topmostDirectoryNames = [];
-  }
+    return topmostDirectoryNames;
+  }, []);
 
   return topmostDirectoryNames;
 }

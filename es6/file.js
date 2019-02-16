@@ -94,13 +94,11 @@ class File {
     const absolutePath = concatenatePaths(projectsDirectoryPath, path),
           entryFile = isEntryFile(absolutePath);
 
-    try {
-      if (entryFile) {
-        const content = readFile(absolutePath);
+    if (entryFile) {
+      const content = readFile(absolutePath);
 
-        file = new File(path, content);
-      }
-    } catch (error) {}  ///
+      file = new File(path, content);
+    }
 
     return file;
   }

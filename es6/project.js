@@ -19,38 +19,7 @@ class Project {
     return this.entries;
   }
 
-  getFiles() {
-    const files = this.entries.reduceEntry(function(files, entry) {
-      const entryDirectory = entry.isDirectory(),
-            entryFile = !entryDirectory;
-
-      if (entryFile) {
-        const file = entry; ///
-
-        files.push(file);
-      }
-
-      return files;
-    }, []);
-
-    return files;
-  }
-
-  getDirectories() {
-    const directories = this.entries.reduceEntry(function(directories, entry) {
-      const entryDirectory = entry.isDirectory();
-
-      if (entryDirectory) {
-        const directory = entry;  ///
-
-        directories.push(directory);
-      }
-
-      return directories;
-    }, []);
-
-    return directories;
-  }
+  getFiles() { return this.entries.getFiles(); }
 
   getFilePaths() {
     const files = this.getFiles(),
@@ -62,6 +31,8 @@ class Project {
 
     return filePaths;
   }
+
+  getDirectories() { return this.entries.getDirectories(); }
 
   getDirectoryPaths() {
     const directories = this.getDirectories(),
