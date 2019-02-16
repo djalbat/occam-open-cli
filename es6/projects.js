@@ -68,13 +68,13 @@ class Projects {
     return projects;
   }
 
-  static fromProjectsDirectoryPath(projectsDirectoryPath, allowOnlyRecognisedFiles, disallowHiddenFilesAndDirectories) {
+  static fromProjectsDirectoryPath(projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
     const array = [],
           projects = new Projects(array),
-          topmostDirectoryNames = topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, disallowHiddenFilesAndDirectories);
+          topmostDirectoryNames = topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
 
     topmostDirectoryNames.forEach(function(topmostDirectoryName) {
-      const project = Project.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, allowOnlyRecognisedFiles, disallowHiddenFilesAndDirectories);
+      const project = Project.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories);
 
       projects.addProject(project);
     });
@@ -85,7 +85,7 @@ class Projects {
 
 module.exports = Projects;
 
-function topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, disallowHiddenFilesAndDirectories) {
+function topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
   let topmostDirectoryNames;
 
   const subEntryNames = readDirectory(projectsDirectoryPath);
@@ -94,7 +94,7 @@ function topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, d
     const absoluteSubEntryPath = concatenatePaths(projectsDirectoryPath, subEntryName),
           subEntryNameHiddenName = isNameHiddenName(subEntryName),
           subEntryNameNotHiddenName = !subEntryNameHiddenName,
-          loadHiddenFilesAndDirectories = !disallowHiddenFilesAndDirectories;
+          loadHiddenFilesAndDirectories = !doNotLoadHiddenFilesAndDirectories;
 
     if (subEntryNameNotHiddenName || loadHiddenFilesAndDirectories) {
       const subEntryDirectory = isEntryDirectory(absoluteSubEntryPath);

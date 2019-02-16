@@ -54,9 +54,9 @@ class Release {
   static fromName(name) {
     const topmostDirectoryName = name, ///
           projectsDirectoryPath = '.',
-          allowOnlyRecognisedFiles = true,
-          disallowHiddenFilesAndDirectories = true,
-          entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, allowOnlyRecognisedFiles, disallowHiddenFilesAndDirectories),
+          loadOnlyRecognisedFiles = true,
+          doNotLoadHiddenFilesAndDirectories = true,
+          entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories),
           versionNumber = null, ///
           release = new Release(name, entries, versionNumber);
 
