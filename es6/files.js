@@ -30,7 +30,8 @@ class Files {
 
   static fromJSON(json) {
     const filesJSON = json, ///
-          files = new Files();
+          array = [],
+          files = new Files(array);
     
     filesJSON.forEach(function(fileJSON) {
       const file = File.fromJSON(fileJSON);
@@ -42,7 +43,8 @@ class Files {
   }
 
   static fromPaths(paths, projectsDirectoryPath) {
-    const files = new Files();
+    const array = [],
+          files = new Files(array);
 
     paths.forEach(function(path) {
       const file = File.fromPath(path, projectsDirectoryPath);
