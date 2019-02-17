@@ -23,8 +23,6 @@ class Release {
 
   getFiles() { return this.entries.getFiles(); }
 
-  getDirectories() { return this.entries.getDirectories(); }
-
   toJSON() {
     const entriesJSON = this.entries.toJSON(),
           name = this.name,
