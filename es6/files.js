@@ -6,9 +6,35 @@ class Files {
   constructor() {
     this.array = [];
   }
-  
+
+  getFilePaths() {
+    const filePaths = this.mapFile(function(file) {
+      const filePath = file.getPath();
+
+      return filePath;
+    });
+
+    return filePaths;
+  }
+
   addFile(file) {
     this.array.push(file);
+  }
+
+  mapFile(callback) {
+    this.array.map(callback);
+  }
+
+  someFile(callback) {
+    return this.array.some(callback);
+  }
+
+  forEachFile(callback) {
+    this.array.forEach(callback);
+  }
+
+  reduceFile(callback, initialValue) {
+    return this.array.reduce(callback, initialValue);
   }
 
   save(projectsDirectoryPath) {
