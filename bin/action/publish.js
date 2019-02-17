@@ -9,8 +9,7 @@ const uris = require('../uris'),
 			releaseNamePromptCallback = require('../callback/prompt/releaseName'),
 			retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
       checkReadmeFileExistsCallback = require('../callback/checkReadmeFileExists'),
-      checkMetaJSONFileExistsCallback = require('../callback/checkMetaJSONFileExists'),
-      checkMetaJSONFileRepositoryExistsCallback = require('../callback/checkMetaJSONFileRepositoryExists');
+      checkMetaJSONFileExistsCallback = require('../callback/checkMetaJSONFileExists');
 
 const { exit } = process,
       { PUBLISH_URI } = uris,
@@ -26,7 +25,6 @@ function publish(argument) {
           createReleaseCallback,
           checkReadmeFileExistsCallback,
           checkMetaJSONFileExistsCallback,
-          checkMetaJSONFileRepositoryExistsCallback,
           deflateReleaseCallback
         ],
         context = {
