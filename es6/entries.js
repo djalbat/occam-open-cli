@@ -3,6 +3,7 @@
 const necessary = require('necessary');
 
 const File = require('./file'),
+      Files = require('./files'),
       Directory = require('./directory'),
       nameUtilities = require('./utilities/name'),
       filePathUtilities = require('./utilities/filePath');
@@ -56,35 +57,53 @@ class Entries {
   }
 
   getFiles() {
-    const files = this.reduceEntry(function(files, entry) {
+    const files = Files.fromNothing();
+
+    this.mapEntry(function(entry) {
       const entryFile = entry.isFile();
 
       if (entryFile) {
         const file = entry; ///
 
-        files.push(file);
+        files.add(file);
       }
-
-      return files;
-    }, []);
+    });
 
     return files;
   }
 
-  getDirectories() {
-    const directories = this.reduceEntry(function(directories, entry) {
+  getFilePaths() {
+    const filePaths = this.reduceEntry(function(filePaths, entry) {
+      const entryFile = entry.isFile();
+
+      if (entryFile) {
+        const file = entry, ///
+              filePath = file.getPath();
+
+        filePaths.push(filePath);
+      }
+
+      return filePaths;
+    }, []);
+
+    return filePaths;
+  }
+
+  getDirectoryPaths() {
+    const directoryPaths = this.reduceEntry(function(directoryPaths, entry) {
       const entryDirectory = entry.isDirectory();
 
       if (entryDirectory) {
-        const directory = entry; ///
+        const directory = entry, ///
+              directoryPath = directory.getPath();
 
-        directories.push(directory);
+        directoryPaths.push(directoryPath);
       }
 
-      return directories;
+      return directoryPaths;
     }, []);
 
-    return directories;
+    return directoryPaths;
   }
 
   addFile(file) {

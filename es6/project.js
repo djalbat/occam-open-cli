@@ -21,29 +21,9 @@ class Project {
 
   getFiles() { return this.entries.getFiles(); }
 
-  getFilePaths() {
-    const files = this.getFiles(),
-          filePaths = files.map(function(file) {
-            const filePath = file.getPath();
+  getFilePaths() { return this.entries.getFilePaths(); }
 
-            return filePath;
-          });
-
-    return filePaths;
-  }
-
-  getDirectories() { return this.entries.getDirectories(); }
-
-  getDirectoryPaths() {
-    const directories = this.getDirectories(),
-          directoryPaths = directories.map(function(directory) {
-            const directoryPath = directory.getPath();
-
-            return directoryPath;
-          });
-
-    return directoryPaths;
-  }
+  getDirectoryPaths() { return this.entries.getDirectoryPaths(); }
 
   toJSON() {
     const name = this.name,

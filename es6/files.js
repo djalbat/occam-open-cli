@@ -3,8 +3,8 @@
 const File = require('./file');
 
 class Files {
-  constructor() {
-    this.array = [];
+  constructor(array) {
+    this.array = array;
   }
 
   getFilePaths() {
@@ -65,6 +65,13 @@ class Files {
       files.addFile(file);
     });
     
+    return files;
+  }
+
+  static fromNothing() {
+    const array = [],
+          files = new Files(array);
+
     return files;
   }
 
