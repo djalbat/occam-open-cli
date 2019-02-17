@@ -145,6 +145,14 @@ class File {
       callback(file);
     });
   }
+
+  static fromPathAndContent(path, content) {
+    content = convertContentTabsToWhitespace(content);  ///
+
+    const file = new File(path, content);
+
+    return file;
+  }
 }
 
 const type = 'File';
