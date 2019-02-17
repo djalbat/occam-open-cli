@@ -44,10 +44,6 @@ class File {
     this.content = content;
   }
 
-  convertTabsToWhitespace() {
-    this.content = this.content.replace(/\t/g, '  ');  ///
-  }
-
   save(projectsDirectoryPath) {
     const absolutePath = concatenatePaths(projectsDirectoryPath, this.path),  ///
           topmostAbsoluteDirectoryPath = topmostDirectoryPathFromPath(absolutePath);
@@ -79,8 +75,11 @@ class File {
     if (typeJSON === type) {  ///
       const pathJSON = json["path"],
             contentJSON = json["content"],
-            path = pathJSON,  ///
-            content = contentJSON;  ///
+            path = pathJSON;  ///
+
+      let content = contentJSON;  ///
+
+      content = convertContentTabsToWhitespace(content);  ///
 
       file = new File(path, content);
     }
@@ -95,7 +94,9 @@ class File {
           entryFile = isEntryFile(absolutePath);
 
     if (entryFile) {
-      const content = readFile(absolutePath);
+      let content = readFile(absolutePath);
+
+      content = convertContentTabsToWhitespace(content);  ///
 
       file = new File(path, content);
     }
@@ -105,9 +106,13 @@ class File {
 
   static fromDocument(document) {
     const filePath = document.getFilePath(),
-          content = document.getContent(),
-          path = filePath,  ///
-          file = new File(path, content);
+          path = filePath;  ///
+
+    let content = document.getContent();
+
+    content = convertContentTabsToWhitespace(content);  ///
+
+    const file = new File(path, content);
 
     return file;
   }
@@ -133,6 +138,8 @@ class File {
     path = removeMasterDirectoryNameFromPath(path);
 
     jsZipEntry.async('string').then(function(content) {
+      content = convertContentTabsToWhitespace(content);  ///
+
       file = new File(path, content);
 
       callback(file);
@@ -147,3 +154,5 @@ Object.assign(File, {
 });
 
 module.exports = File;
+
+function convertContentTabsToWhitespace(content) { return content.replace(/\t/g, '  '); } ///
