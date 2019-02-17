@@ -65,7 +65,7 @@ class Entries {
       if (entryFile) {
         const file = entry; ///
 
-        files.add(file);
+        files.addFile(file);
       }
     });
 
