@@ -1,6 +1,9 @@
 'use strict';
 
-const Entries = require('./entries');
+const Entries = require('./entries'),
+      filePathUtilities = require('./utilities/filePath');
+
+const { isFilePathReadmeFilePath, isFilePathMetaJSONFilePath } = filePathUtilities;
 
 class Release {
   constructor(name, entries, versionNumber) {
@@ -22,6 +25,44 @@ class Release {
   }
 
   getFiles() { return this.entries.getFiles(); }
+
+  getReadmeFile() {
+    let readmeFile = null;
+
+    const files = this.getFiles();
+
+    files.someFile(function(file) {
+      const filePath = file.getPath(),
+            filePathReadmeFilePath = isFilePathReadmeFilePath(filePath);
+
+      if (filePathReadmeFilePath) {
+        readmeFile = file;  ///
+
+        return true;
+      }
+    });
+
+    return readmeFile;
+  }
+
+  getMetaJSONFile() {
+    let metaJSONFile = null;
+
+    const files = this.getFiles();
+
+    files.someFile(function(file) {
+      const filePath = file.getPath(),
+            filePathMetaJSONFilePath = isFilePathMetaJSONFilePath(filePath);
+
+      if (filePathMetaJSONFilePath) {
+        metaJSONFile = file;  ///
+
+        return true;
+      }
+    });
+
+    return metaJSONFile;
+  }
 
   toJSON() {
     const entriesJSON = this.entries.toJSON(),
