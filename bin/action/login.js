@@ -27,14 +27,14 @@ function login(argument) {
   action(callbacks, uri, function(json, done) {
     const { success } = json;
 
+    success ?
+      console.log(SUCCESSFUL_LOGIN_MESSAGE) :
+        console.log(FAILED_LOGIN_MESSAGE);
+
     if (success) {
       const { accessToken } = json;
 
       addAccessToken(accessToken);
-
-      console.log(SUCCESSFUL_LOGIN_MESSAGE)
-    } else {
-      console.log(FAILED_LOGIN_MESSAGE);
     }
 
     done();

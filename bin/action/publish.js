@@ -1,9 +1,8 @@
 'use strict';
 
 const uris = require('../uris'),
-			post = require('../post'),
+      action = require('../action'),
       messages = require('../messages'),
-      callbackUtilities = require('../utilities/callback'),
       createReleaseCallback = require('../callback/createRelease'),
       deflateReleaseCallback = require('../callback/deflateRelease'),
 			releaseNamePromptCallback = require('../callback/prompt/releaseName'),
@@ -11,10 +10,8 @@ const uris = require('../uris'),
       checkReadmeFileExistsCallback = require('../callback/checkReadmeFileExists'),
       checkMetaJSONFileExistsCallback = require('../callback/checkMetaJSONFileExists');
 
-const { exit } = process,
-      { PUBLISH_URI } = uris,
-      { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages,
-      { executeCallbacks } = callbackUtilities;
+const { PUBLISH_URI } = uris,
+      { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages;
 
 function publish(argument) {
   const releaseName = argument,
@@ -31,24 +28,14 @@ function publish(argument) {
           releaseName
         };
 
-  executeCallbacks(callbacks, function(completed) {
-    if (!completed) {
-      console.log(FAILED_PUBLISH_MESSAGE);
+  action(callbacks, uri, function(json, done) {
+    const { success } = json;
 
-      exit();
-    }
+    success ?
+      console.log(SUCCESSFUL_PUBLISH_MESSAGE) :
+        console.log(FAILED_PUBLISH_MESSAGE);
 
-    const data = context; ///
-
-    post(uri, data, function(json, done) {
-      const { success } = json;
-
-      success ?
-        console.log(SUCCESSFUL_PUBLISH_MESSAGE) :
-          console.log(FAILED_PUBLISH_MESSAGE);
-
-      done();
-    });
+    done();
   }, context);
 }
 
