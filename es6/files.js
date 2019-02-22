@@ -22,19 +22,19 @@ class Files {
   }
 
   mapFile(callback) {
-    this.array.map(callback);
+    return this.array.map(callback);
   }
 
   someFile(callback) {
     return this.array.some(callback);
   }
 
-  forEachFile(callback) {
-    this.array.forEach(callback);
-  }
-
   reduceFile(callback, initialValue) {
     return this.array.reduce(callback, initialValue);
+  }
+
+  forEachFile(callback) {
+    this.array.forEach(callback);
   }
 
   save(projectsDirectoryPath) {
