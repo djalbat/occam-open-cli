@@ -4,6 +4,8 @@ const necessary = require('necessary');
 
 const File = require('./file'),
       Files = require('./files'),
+      messages = require('./messages'),
+      constants = require('./constants'),
       Directory = require('./directory'),
       nameUtilities = require('./utilities/name'),
       filePathUtilities = require('./utilities/filePath');
@@ -14,6 +16,8 @@ const { pathUtilities, arrayUtilities, asynchronousUtilities, fileSystemUtilitie
       { readDirectory } = fileSystemUtilities,
       { isNameHiddenName } = nameUtilities,
       { isFilePathRecognisedFilePath } = filePathUtilities,
+      { ENTRIES_MAXIMUM_ARRAY_LENGTH } = constants,
+      { ENTRIES_MAXIMUM_ARRAY_LENGTH_EXCEEDED_MESSAGE } = messages,
       { concatenatePaths, topmostDirectoryNameFromPath } = pathUtilities;
 
 class Entries {
@@ -220,6 +224,12 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
           entry = directory;  ///
 
           array.push(entry);  ///
+
+          const arrayLength = array.length;
+
+          if (arrayLength > ENTRIES_MAXIMUM_ARRAY_LENGTH) {
+           throw new Error(ENTRIES_MAXIMUM_ARRAY_LENGTH_EXCEEDED_MESSAGE)
+          }
         }
 
         entriesFromRelativeDirectoryPath(array, directoryPath, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories); ///
@@ -235,6 +245,12 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
             entry = file; ///
 
             array.push(entry);  ///
+
+            const arrayLength = array.length;
+
+            if (arrayLength > ENTRIES_MAXIMUM_ARRAY_LENGTH) {
+              throw new Error(ENTRIES_MAXIMUM_ARRAY_LENGTH_EXCEEDED_MESSAGE)
+            }
           }
         }
       }
