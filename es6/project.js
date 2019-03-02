@@ -3,7 +3,10 @@
 const JSZip = require('jszip'),
       request = require('request');
 
-const Entries = require('./entries');
+const Entries = require('./entries'),
+      filePathUtilities = require('./utilities/filePath');
+
+const { isFilePathFlorenceFilePath } = filePathUtilities;
 
 class Project {
   constructor(name, entries) {
@@ -24,6 +27,25 @@ class Project {
   getFilePaths() { return this.entries.getFilePaths(); }
 
   getDirectoryPaths() { return this.entries.getDirectoryPaths(); }
+
+  getFlorenceFiles() {
+    const files = this.getFiles(),
+          florenceFiles = files.reduce(function(florenceFiles, file) {
+            const filePath = file.getPath(),
+                  filePathFlorenceFilePath = isFilePathFlorenceFilePath(filePath),
+                  fileFlorenceFile = filePathFlorenceFilePath;  ///
+
+            if (fileFlorenceFile) {
+              const florenceFile = file;  ///
+
+              florenceFiles.push(florenceFile);
+            }
+
+            return florenceFiles;
+          }, []);
+
+    return florenceFiles;
+  }
 
   toJSON() {
     const name = this.name,
