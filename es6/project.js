@@ -30,7 +30,7 @@ class Project {
 
   getFlorenceFiles() {
     const files = this.getFiles(),
-          florenceFiles = files.reduce(function(florenceFiles, file) {
+          florenceFiles = files.reduceFile(function(florenceFiles, file) {
             const filePath = file.getPath(),
                   filePathFlorenceFilePath = isFilePathFlorenceFilePath(filePath),
                   fileFlorenceFile = filePathFlorenceFilePath;  ///
