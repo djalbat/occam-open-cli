@@ -45,7 +45,9 @@ class Files {
 
   toJSON() {
     const filesJSON = this.array.map(function(file) {
-            const fileJSON = file.toJSON();
+            const fileJSON = (file !== null) ?
+                                file.toJSON() :
+                                  null;
   
             return fileJSON;
           }),
