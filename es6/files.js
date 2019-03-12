@@ -62,7 +62,8 @@ class Files {
           files = new Files(array);
     
     filesJSON.forEach(function(fileJSON) {
-      const file = File.fromJSON(fileJSON);
+      const json = fileJSON,  ///
+            file = File.fromJSON(json);
 
       files.addFile(file);
     });

@@ -69,19 +69,21 @@ class File {
   static fromJSON(json) {
     let file = null;
 
-    const { type } = File,
-          typeJSON = json["type"];
+    if (json !== null) {
+      const { type } = File,
+            typeJSON = json["type"];
 
-    if (typeJSON === type) {  ///
-      const pathJSON = json["path"],
-            contentJSON = json["content"],
-            path = pathJSON;  ///
+      if (typeJSON === type) {  ///
+        const pathJSON = json["path"],
+              contentJSON = json["content"],
+              path = pathJSON;  ///
 
-      let content = contentJSON;  ///
+        let content = contentJSON;  ///
 
-      content = convertContentTabsToWhitespace(content);  ///
+        content = convertContentTabsToWhitespace(content);  ///
 
-      file = new File(path, content);
+        file = new File(path, content);
+      }
     }
 
     return file;

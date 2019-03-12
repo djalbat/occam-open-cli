@@ -44,14 +44,16 @@ class Directory {
   static fromJSON(json) {
     let directory = null;
 
-    const { type } = Directory,
-          typeJSON = json["type"];
+    if (json !== null) {
+      const { type } = Directory,
+            typeJSON = json["type"];
 
-    if (typeJSON === type) {  ///
-      const pathJSON = json["path"],
-            path = pathJSON;  ///
+      if (typeJSON === type) {  ///
+        const pathJSON = json["path"],
+              path = pathJSON;  ///
 
-      directory = new Directory(path);
+        directory = new Directory(path);
+      }
     }
 
     return directory;
