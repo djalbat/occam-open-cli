@@ -60,11 +60,15 @@ class Directory {
   static fromPath(path, projectsDirectoryPath) {
     let directory = null;
 
-    const absolutePath = concatenatePaths(projectsDirectoryPath, path),
-          entryDirectory = isEntryDirectory(absolutePath);
+    try {
+      const absolutePath = concatenatePaths(projectsDirectoryPath, path),
+            entryDirectory = isEntryDirectory(absolutePath);
 
-    if (entryDirectory) {
-      directory = new Directory(path);
+      if (entryDirectory) {
+        directory = new Directory(path);
+      }
+    } catch (error) {
+      ///
     }
 
     return directory;

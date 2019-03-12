@@ -90,15 +90,19 @@ class File {
   static fromPath(path, projectsDirectoryPath) {
     let file = null;
 
-    const absolutePath = concatenatePaths(projectsDirectoryPath, path),
-          entryFile = isEntryFile(absolutePath);
+    try {
+      const absolutePath = concatenatePaths(projectsDirectoryPath, path),
+            entryFile = isEntryFile(absolutePath);
 
-    if (entryFile) {
-      let content = readFile(absolutePath);
+      if (entryFile) {
+        let content = readFile(absolutePath);
 
-      content = convertContentTabsToWhitespace(content);  ///
+        content = convertContentTabsToWhitespace(content);  ///
 
-      file = new File(path, content);
+        file = new File(path, content);
+      }
+    } catch (error) {
+      ///
     }
 
     return file;
