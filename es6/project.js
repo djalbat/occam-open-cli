@@ -6,7 +6,7 @@ const JSZip = require('jszip'),
 const Entries = require('./entries'),
       filePathUtilities = require('./utilities/filePath');
 
-const { isFilePathFlorenceFilePath } = filePathUtilities;
+const { isFilePathFlorenceFilePath, isFilePathMetaJSONFilePath } = filePathUtilities;
 
 class Project {
   constructor(name, entries) {
@@ -45,6 +45,25 @@ class Project {
           }, []);
 
     return florenceFiles;
+  }
+
+  getMetaJSONFile() {
+    let metaJSONFile = null;
+
+    const files = this.getFiles();
+
+    files.someFile(function(file) {
+      const filePath = file.getPath(),
+            filePathMetaJSONFilePath = isFilePathMetaJSONFilePath(filePath);
+
+      if (filePathMetaJSONFilePath) {
+        metaJSONFile = file;  ///
+
+        return true;
+      }
+    });
+
+    return metaJSONFile;
   }
 
   toJSON() {
