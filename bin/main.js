@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+'use strict';
 
 const actions = require('./actions'),
       messages = require('./messages'),
