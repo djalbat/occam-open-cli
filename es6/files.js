@@ -37,6 +37,10 @@ class Files {
     this.array.forEach(callback);
   }
 
+  findFile(callback) {
+    return this.array.find(callback) || null; ///
+  }
+
   save(projectsDirectoryPath) {
     this.array.forEach(function(file) {
       file.save(projectsDirectoryPath);

@@ -49,42 +49,42 @@ class Project {
 
   getMetaJSONFile() {
     const files = this.getFiles(),
-          metaJSONFile = files.find(function(file) {
+          metaJSONFile = files.findFile(function(file) {
             const filePath = file.getPath(),
                   filePathMetaJSONFilePath = isFilePathMetaJSONFilePath(filePath);
 
             if (filePathMetaJSONFilePath) {
               return true;
             }
-          }) || null; ///
+          });
 
     return metaJSONFile;
   }
 
   getCustomGrammarBNFFile() {
     const files = this.getFiles(),
-          customGrammarBNFFile = files.find(function(file) {
+          customGrammarBNFFile = files.findFile(function(file) {
             const filePath = file.getPath(),
                   filePatCustomGrammarBNFFilePath = isFilePatCustomGrammarBNFFilePath(filePath);
 
             if (filePatCustomGrammarBNFFilePath) {
               return true;
             }
-          }) || null; ///
+          });
 
     return customGrammarBNFFile;
   }
 
   getCustomGrammarLexicalPatternFile() {
     const files = this.getFiles(),
-          customGrammarLexicalPatternFile = files.find(function(file) {
+          customGrammarLexicalPatternFile = files.findFile(function(file) {
             const filePath = file.getPath(),
                   filePatCustomGrammarLexicalPatternFilePath = isFilePatCustomGrammarLexicalPatternFilePath(filePath);
 
             if (filePatCustomGrammarLexicalPatternFilePath) {
               return true;
             }
-          }) || null; ///
+          });
 
     return customGrammarLexicalPatternFile;
   }
