@@ -28,6 +28,20 @@ class Project {
 
   getDirectoryPaths() { return this.entries.getDirectoryPaths(); }
 
+  getMetaJSONFile() {
+    const files = this.getFiles(),
+          metaJSONFile = files.findFile(function(file) {
+          const filePath = file.getPath(),
+                filePathMetaJSONFilePath = isFilePathMetaJSONFilePath(filePath);
+
+          if (filePathMetaJSONFilePath) {
+            return true;
+          }
+        });
+
+    return metaJSONFile;
+  }
+
   getFlorenceFiles() {
     const files = this.getFiles(),
           florenceFiles = files.reduceFile(function(florenceFiles, file) {
@@ -47,32 +61,23 @@ class Project {
     return florenceFiles;
   }
 
-  getMetaJSONFile() {
+  getCustomGrammarBNFFiles() {
     const files = this.getFiles(),
-          metaJSONFile = files.findFile(function(file) {
+          customGrammarBNFFiles = files.reduceFile(function(customGrammarBNFFiles, file) {
             const filePath = file.getPath(),
-                  filePathMetaJSONFilePath = isFilePathMetaJSONFilePath(filePath);
+                  filePathCustomGrammarBNFFilePath = isFilePathCustomGrammarBNFFilePath(filePath),
+                  fileCustomGrammarBNFFile = filePathCustomGrammarBNFFilePath;  ///
 
-            if (filePathMetaJSONFilePath) {
-              return true;
+            if (fileCustomGrammarBNFFile) {
+              const customGrammarBNFFile = file;  ///
+
+              customGrammarBNFFiles.push(customGrammarBNFFile);
             }
-          });
 
-    return metaJSONFile;
-  }
+            return customGrammarBNFFiles;
+          }, []);
 
-  getCustomGrammarBNFFile() {
-    const files = this.getFiles(),
-          customGrammarBNFFile = files.findFile(function(file) {
-            const filePath = file.getPath(),
-                  filePatCustomGrammarBNFFilePath = isFilePathCustomGrammarBNFFilePath(filePath);
-
-            if (filePatCustomGrammarBNFFilePath) {
-              return true;
-            }
-          });
-
-    return customGrammarBNFFile;
+    return customGrammarBNFFiles;
   }
 
   getCustomGrammarLexicalPatternFile() {
