@@ -6,7 +6,7 @@ const JSZip = require('jszip'),
 const Entries = require('./entries'),
       filePathUtilities = require('./utilities/filePath');
 
-const { isFilePathFlorenceFilePath, isFilePathMetaJSONFilePath } = filePathUtilities;
+const { isFilePathFlorenceFilePath, isFilePathMetaJSONFilePath, isFilePathCustomGrammarBNFFilePath, isFilePathCustomGrammarLexicalPatternFilePath } = filePathUtilities;
 
 class Project {
   constructor(name, entries) {
@@ -48,22 +48,45 @@ class Project {
   }
 
   getMetaJSONFile() {
-    let metaJSONFile = null;
+    const files = this.getFiles(),
+          metaJSONFile = files.find(function(file) {
+            const filePath = file.getPath(),
+                  filePathMetaJSONFilePath = isFilePathMetaJSONFilePath(filePath);
 
-    const files = this.getFiles();
-
-    files.someFile(function(file) {
-      const filePath = file.getPath(),
-            filePathMetaJSONFilePath = isFilePathMetaJSONFilePath(filePath);
-
-      if (filePathMetaJSONFilePath) {
-        metaJSONFile = file;  ///
-
-        return true;
-      }
-    });
+            if (filePathMetaJSONFilePath) {
+              return true;
+            }
+          }) || null; ///
 
     return metaJSONFile;
+  }
+
+  getCustomGrammarBNFFile() {
+    const files = this.getFiles(),
+          customGrammarBNFFile = files.find(function(file) {
+            const filePath = file.getPath(),
+                  filePatCustomGrammarBNFFilePath = isFilePatCustomGrammarBNFFilePath(filePath);
+
+            if (filePatCustomGrammarBNFFilePath) {
+              return true;
+            }
+          }) || null; ///
+
+    return customGrammarBNFFile;
+  }
+
+  getCustomGrammarLexicalPatternFile() {
+    const files = this.getFiles(),
+          customGrammarLexicalPatternFile = files.find(function(file) {
+            const filePath = file.getPath(),
+                  filePatCustomGrammarLexicalPatternFilePath = isFilePatCustomGrammarLexicalPatternFilePath(filePath);
+
+            if (filePatCustomGrammarLexicalPatternFilePath) {
+              return true;
+            }
+          }) || null; ///
+
+    return customGrammarLexicalPatternFile;
   }
 
   toJSON() {
