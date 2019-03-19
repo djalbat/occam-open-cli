@@ -65,7 +65,7 @@ class Project {
     const files = this.getFiles(),
           customGrammarBNFFile = files.findFile(function(file) {
             const filePath = file.getPath(),
-                  filePatCustomGrammarBNFFilePath = isFilePatCustomGrammarBNFFilePath(filePath);
+                  filePatCustomGrammarBNFFilePath = isFilePathCustomGrammarBNFFilePath(filePath);
 
             if (filePatCustomGrammarBNFFilePath) {
               return true;
@@ -79,7 +79,7 @@ class Project {
     const files = this.getFiles(),
           customGrammarLexicalPatternFile = files.findFile(function(file) {
             const filePath = file.getPath(),
-                  filePatCustomGrammarLexicalPatternFilePath = isFilePatCustomGrammarLexicalPatternFilePath(filePath);
+                  filePatCustomGrammarLexicalPatternFilePath = isFilePathCustomGrammarLexicalPatternFilePath(filePath);
 
             if (filePatCustomGrammarLexicalPatternFilePath) {
               return true;
