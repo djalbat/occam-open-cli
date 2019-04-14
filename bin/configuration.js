@@ -2,7 +2,7 @@
 
 const necessary = require('necessary');
 
-const versions = require('../es6/versions'),  ///
+const versions = require('./versions'),
       constants = require('./constants'),
       configurationVersion_1_5 = require('./configuration/version_1_5'),
       configurationVersion_2_0 = require('./configuration/version_2_0');
