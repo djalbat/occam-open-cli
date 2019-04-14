@@ -2,7 +2,7 @@
 
 const necessary = require('necessary');
 
-const versions = require('../versions'),
+const versions = require('../../es6/versions'), ///
       constants = require('../constants');
 
 const { miscellaneousUtilities } = necessary,
@@ -38,4 +38,3 @@ module.exports = {
   createConfigurationFile,
   upgradeConfigurationFileToVersion_2_0
 };
-

@@ -2,8 +2,11 @@
 
 const necessary = require('necessary');
 
+const versions = require('./versions');
+
 const { arrayUtilities } = necessary,
-      { second } = arrayUtilities;
+      { second } = arrayUtilities,
+      { CURRENT_VERSION } = versions;
 
 class Version {
   constructor(majorNumber, minorNumber, patchNumber) {
@@ -38,6 +41,12 @@ class Version {
     const number = this.patchNumber * 1e0 + this.minorNumber * 1e6 + this.majorNumber * 1e12; ///
 
     return number;
+  }
+
+  static getCurrentVersion() {
+    const currentVersion = CURRENT_VERSION; ///
+
+    return currentVersion;
   }
 
   static fromString(string) {
