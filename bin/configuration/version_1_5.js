@@ -3,13 +3,11 @@
 const necessary = require('necessary');
 
 const versions = require('../versions'),
-      constants = require('../constants'),
-      packageUtilities = require('../utilities/package');
+      constants = require('../constants');
 
 const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
       { VERSION_1_5 } = versions,
-      { isVersionUpToDate } = packageUtilities,
       { readRCFile, writeRCFile } = rc,
       { DEFAULT_GITHUB_HOST_NAME, DEFAULT_HOST_URL } = constants;
 
@@ -24,21 +22,6 @@ function createConfigurationFile() {
     hostURL
   });
 }
-
-function upgradeConfigurationFile() {
-  const json = readRCFile(),
-        { version } = json,
-        versionUpToDate = isVersionUpToDate(version);
-
-  if (!versionUpToDate) {
-    upgradeConfigurationFileToVersion_1_5()
-  }
-}
-
-module.exports = {
-  createConfigurationFile,
-  upgradeConfigurationFile
-};
 
 function upgradeConfigurationFileToVersion_1_5() {
   let json = readRCFile(),
@@ -75,3 +58,8 @@ function upgradeConfigurationFileToVersion_1_5() {
 
   writeRCFile(json);
 }
+
+module.exports = {
+  createConfigurationFile,
+  upgradeConfigurationFileToVersion_1_5
+};

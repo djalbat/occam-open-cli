@@ -14,7 +14,7 @@ const { miscellaneousUtilities } = necessary,
       { exit } = process,
       { onETX } = miscellaneousUtilities,
       { retrieveHostURL } = configuration,
-      { getCurrentVersion } = packageUtilities,
+      { getPackageVersion } = packageUtilities,
       { OPEN_CLI, TIMEOUT, POST_METHOD, UTF8_ENCODING } = constants,
       { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages;
 
@@ -60,8 +60,8 @@ module.exports = post;
 function optionsFromURIAndData(uri, data) {
   const hostURL = retrieveHostURL(),
         url = `${hostURL}${uri}`,
-        currentVersion = getCurrentVersion(),
-        versionString = currentVersion, ///
+        packageVersion = getPackageVersion(),
+        versionString = packageVersion, ///
         body = Object.assign(data, {
           versionString
         }),

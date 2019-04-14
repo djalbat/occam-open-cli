@@ -2,16 +2,32 @@
 
 const necessary = require('necessary');
 
-const constants = require('./constants'),
-      configurationVersion_1_5 = require('./configuration/version_1_5');
+const versions = require('./versions'),
+      constants = require('./constants'),
+      configurationVersion_1_5 = require('./configuration/version_1_5'),
+      configurationVersion_2_0 = require('./configuration/version_2_0');
 
 const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
 			{ RC_BASE_EXTENSION } = constants,
-      { upgradeConfigurationFile, createConfigurationFile } = configurationVersion_1_5,
+      { UNVERSIONED, VERSION_1_5, CURRENT_VERSION } = versions,
+      { upgradeConfigurationFileToVersion_1_5 } = configurationVersion_1_5,
+      { upgradeConfigurationFileToVersion_2_0, createConfigurationFile } = configurationVersion_2_0,
       { setRCBaseExtension, checkRCFileExists, updateRCFile, readRCFile } = rc;
 
 setRCBaseExtension(RC_BASE_EXTENSION);
+
+function retrieveVersion() {
+  const json = readRCFile();
+
+  let { version } = json;
+
+  if (version === undefined) {
+    version = UNVERSIONED;
+  }
+
+  return version;
+}
 
 function retrieveHostURL() {
   const json = readRCFile(),
@@ -50,6 +66,24 @@ function retrieveAccessToken() {
   return accessToken || null; ///
 }
 
+function upgradeConfigurationFile() {
+  let version = retrieveVersion();
+
+  while (version !== CURRENT_VERSION) {
+    switch (version) {
+      case UNVERSIONED:
+        upgradeConfigurationFileToVersion_1_5();
+        break;
+
+      case VERSION_1_5:
+        upgradeConfigurationFileToVersion_2_0();
+        break;
+    }
+
+    version = retrieveVersion();
+  }
+}
+
 function checkConfigurationFileExists() {
   const rcFileExists = checkRCFileExists(),
         configurationFileExists = rcFileExists; ///
@@ -58,6 +92,7 @@ function checkConfigurationFileExists() {
 }
 
 module.exports = {
+  retrieveVersion,
   retrieveHostURL,
   retrieveOptions,
   updateOptions,

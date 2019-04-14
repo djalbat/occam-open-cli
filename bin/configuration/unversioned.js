@@ -27,11 +27,6 @@ function createConfigurationFile() {
   });
 }
 
-function upgradeConfigurationFile() {
-  ///
-}
-
 module.exports = {
-  createConfigurationFile,
-  upgradeConfigurationFile
+  createConfigurationFile
 };
