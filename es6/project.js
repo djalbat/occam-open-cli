@@ -124,7 +124,7 @@ class Project {
           encoding = null,
           options = {
             url,
-            method ,
+            method,
             encoding
           };
 
