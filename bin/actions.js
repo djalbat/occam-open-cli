@@ -41,14 +41,14 @@ const { HELP_OPTION, VERSION_OPTION } = options,
 
 function actions(command, argument, options) {
   const commandMissing = (command === null),
-        optionsIncludesHelp = options.includes(HELP_OPTION),
-        optionsIncludesVersion = options.includes(VERSION_OPTION);
+        helpOptionPresent = options.hasOwnProperty(HELP_OPTION),
+        versionOptionPresent = options.hasOwnProperty(VERSION_OPTION);
 
   if (false) {
     ///
-  } else if (optionsIncludesVersion) {
+  } else if (versionOptionPresent) {
     command = VERSION_COMMAND;
-  } else if (commandMissing || optionsIncludesHelp) {
+  } else if (commandMissing || helpOptionPresent) {
     command = HELP_COMMAND;
   }
 
