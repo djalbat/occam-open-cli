@@ -20,8 +20,7 @@ const commands = require('./commands'),
       resendConfirmationCode = require('./action/resendConfirmationCode');
 
 const { HELP_OPTION, VERSION_OPTION } = options,
-      {
-        HELP_COMMAND,
+      { HELP_COMMAND,
         CLONE_COMMAND,
         LOGIN_COMMAND,
         LOGOUT_COMMAND,
@@ -36,8 +35,7 @@ const { HELP_OPTION, VERSION_OPTION } = options,
         CHANGE_PASSWORD_COMMAND,
         CHANGE_EMAIL_ADDRESS_COMMAND,
         CONFIRM_EMAIL_ADDRESS_COMMAND,
-        RESEND_CONFIRMATION_CODE_COMMAND
-      } = commands;
+        RESEND_CONFIRMATION_CODE_COMMAND } = commands;
 
 function actions(command, argument, options) {
   const commandMissing = (command === null),
