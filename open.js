@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const necessary = require('necessary'),
-      argumentative = require('./argumentative');
+      argumentative = require('argumentative');
 
 const main = require('./bin/main'),
       abbreviations = require('./bin/abbreviations');
