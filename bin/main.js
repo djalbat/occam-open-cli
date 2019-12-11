@@ -1,38 +1,40 @@
 'use strict';
 
-const actions = require('./actions'),
-      messages = require('./messages'),
-			commands = require('./commands'),
-      configuration = require('./configuration'),
-			directoryUtilities = require('./utilities/directory');
+const necessary = require('necessary');
 
-const { exit } = process,
+const actions = require('./actions'),
+			commands = require('./commands'),
+      configuration = require('./configuration');
+
+const { cwd, chdir } = process,
+      { pathUtilities } = necessary,
       { PUBLISH_COMMAND } = commands,
-			{ changeDirectory } = directoryUtilities,
-      { FAILED_PUBLISH_NO_CONFIGURATION_FILE_MESSAGE } = messages,
-      { checkConfigurationFileExists, upgradeConfigurationFile, createConfigurationFile } = configuration;
+      { bottommostNameFromPath } = pathUtilities,
+      { checkConfigurationFileExists, upgradeConfigurationFile } = configuration;
 
 function main(command, argument, options) {
   let configurationFileExists = checkConfigurationFileExists();
 
+  if (command === PUBLISH_COMMAND) {
+    if (!configurationFileExists) {
+      const currentWorkingDirectoryPath = cwd(); ///
+
+      chdir('..');
+
+      const oldCurrentWorkingDirectoryPath = currentWorkingDirectoryPath; ///
+
+      configurationFileExists = checkConfigurationFileExists();
+
+      if (configurationFileExists) {
+        const bottommostOldCurrentWorkingDirectoryName = bottommostNameFromPath(oldCurrentWorkingDirectoryPath);
+
+        argument = bottommostOldCurrentWorkingDirectoryName; ///
+      }
+    }
+  }
+
   if (configurationFileExists) {
     upgradeConfigurationFile();
-  } else {
-    if (command === PUBLISH_COMMAND) {
-      const releaseName = changeDirectory();
-
-      if (releaseName !== null) {
-        argument = releaseName; ///
-
-        upgradeConfigurationFile();
-      } else {
-        console.log(FAILED_PUBLISH_NO_CONFIGURATION_FILE_MESSAGE);
-
-        exit();
-      }
-    } else {
-      createConfigurationFile();
-    }
   }
 
   actions(command, argument, options);

@@ -14,7 +14,7 @@ const { PUBLISH_URI } = uris,
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages;
 
 function publish(argument) {
-  const releaseName = argument,
+  const releaseName = argument, ///
         uri = PUBLISH_URI,
         callbacks = [
           retrieveAccessTokenCallback,

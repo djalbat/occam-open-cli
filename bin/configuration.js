@@ -3,85 +3,93 @@
 const necessary = require('necessary');
 
 const versions = require('./versions'),
+      messages = require('./messages'),
       constants = require('./constants'),
       configurationVersion_1_5 = require('./configuration/version_1_5'),
       configurationVersion_2_0 = require('./configuration/version_2_0');
 
 const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
-			{ RC_BASE_EXTENSION } = constants,
+      { exit } = process,
+      { RC_BASE_EXTENSION } = constants,
+      { CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE } = messages,
       { UNVERSIONED, VERSION_1_5, CURRENT_VERSION } = versions,
-      { upgradeConfigurationFileToVersion_1_5 } = configurationVersion_1_5,
-      { upgradeConfigurationFileToVersion_2_0, createConfigurationFile } = configurationVersion_2_0,
-      { setRCBaseExtension, checkRCFileExists, updateRCFile, readRCFile } = rc;
+      { upgradeConfigurationToVersion_1_5 } = configurationVersion_1_5,
+      { upgradeConfigurationToVersion_2_0, createConfiguration } = configurationVersion_2_0,
+      { setRCBaseExtension, checkRCFileExists, updateRCFile, writeRCFile, readRCFile } = rc;
 
 setRCBaseExtension(RC_BASE_EXTENSION);
 
-function retrieveVersion() {
-  const json = readRCFile();
-
-  let { version } = json;
-
-  if (version === undefined) {
-    version = UNVERSIONED;
-  }
-
-  return version;
-}
-
 function retrieveHostURL() {
-  const json = readRCFile(),
-        { hostURL } = json;
+  const configuration = readConfigurationFile(),
+        { hostURL } = configuration;
 
   return hostURL;
 }
 
 function retrieveOptions() {
-  const json = readRCFile(),
-				{ options } = json;
+  const configuration = readConfigurationFile(),
+        { options } = configuration;
 
   return options;
 }
 
+function retrieveAccessToken() {
+  const configuration = readConfigurationFile(),
+        { accessToken } = configuration;
+
+  return accessToken || null; ///
+}
+
 function updateOptions(options) {
-  updateRCFile({
+  updateConfigurationFile({
     options
   });
 }
 
 function addAccessToken(accessToken) {
-  updateRCFile({
+  updateConfigurationFile({
     accessToken
   });
 }
 
 function removeAccessToken() {
-  updateRCFile(null, 'accessToken');
+  updateConfigurationFile(null, 'accessToken');
 }
 
-function retrieveAccessToken() {
-  const json = readRCFile(),
-        { accessToken } = json;
+function createConfigurationFile() {
+  const configuration = createConfiguration(),
+        json = configuration; ///
 
-  return accessToken || null; ///
+  writeRCFile(json);
 }
 
 function upgradeConfigurationFile() {
-  let version = retrieveVersion();
+  let version;
+
+  let json = readRCFile();
+
+  let configuration = json; ///
+
+  version = configuration.version || UNVERSIONED; ///
 
   while (version !== CURRENT_VERSION) {
     switch (version) {
       case UNVERSIONED:
-        upgradeConfigurationFileToVersion_1_5();
+        configuration = upgradeConfigurationToVersion_1_5(configuration);
         break;
 
       case VERSION_1_5:
-        upgradeConfigurationFileToVersion_2_0();
+        configuration = upgradeConfigurationToVersion_2_0(configuration);
         break;
     }
 
-    version = retrieveVersion();
+    version = configuration.version || UNVERSIONED; ///
   }
+
+  json = configuration; ///
+
+  writeRCFile(json);
 }
 
 function checkConfigurationFileExists() {
@@ -92,7 +100,6 @@ function checkConfigurationFileExists() {
 }
 
 module.exports = {
-  retrieveVersion,
   retrieveHostURL,
   retrieveOptions,
   updateOptions,
@@ -103,3 +110,39 @@ module.exports = {
   upgradeConfigurationFile,
   checkConfigurationFileExists
 };
+
+function readConfigurationFile() {
+  assertConfigurationFileExists();
+
+  const json = readRCFile(),
+        configuration = json; ///
+
+  return configuration;
+}
+
+function writeConfigurationFile(configuration) {
+  assertConfigurationFileExists();
+
+  const json = configuration; ///
+
+  writeRCFile(json);
+}
+
+function updateConfigurationFile(addedConfiguration, ...deleteConfigurationNames) {
+  assertConfigurationFileExists();
+
+  const addedProperties = addedConfiguration, ///
+        deletedPropertyNames = deleteConfigurationNames;  ///
+
+  updateRCFile(addedProperties, ...deletedPropertyNames);
+}
+
+function assertConfigurationFileExists() {
+  const configurationFileExists = checkConfigurationFileExists();
+
+  if (!configurationFileExists) {
+    console.log(CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE);
+
+    exit(1);
+  }
+}

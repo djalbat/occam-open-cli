@@ -13,6 +13,8 @@ function help() {
 
 Commmands:
 
+  initialise                                     Create a configuration file
+
   clone <package_name>                           Clone a package with Git
 
   remove <package_name>                          Remove a package

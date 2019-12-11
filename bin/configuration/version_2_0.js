@@ -1,40 +1,35 @@
 'use strict';
 
-const necessary = require('necessary');
-
 const versions = require('../versions'),
       constants = require('../constants');
 
-const { miscellaneousUtilities } = necessary,
-      { rc } = miscellaneousUtilities,
-      { VERSION_2_0 } = versions,
-      { DEFAULT_HOST_URL } = constants,
-      { readRCFile, writeRCFile } = rc;
+const { VERSION_2_0 } = versions,
+      { DEFAULT_HOST_URL } = constants;
 
-function createConfigurationFile() {
+function createConfiguration() {
   const version = VERSION_2_0,  ///
         options = {},
-        hostURL = DEFAULT_HOST_URL; ///
+        hostURL = DEFAULT_HOST_URL, ///
+        configuration = {
+          version,
+          options,
+          hostURL
+        };
 
-  writeRCFile({
-    version,
-    options,
-    hostURL
-  });
+  return configuration;
 }
 
-function upgradeConfigurationFileToVersion_2_0() {
-  const json = readRCFile(),
-        version = VERSION_2_0;
+function upgradeConfigurationToVersion_2_0(configuration) {
+  const version = VERSION_2_0;
 
-  Object.assign(json, {
+  Object.assign(configuration, {
     version
   });
 
-  writeRCFile(json);
+  return configuration;
 }
 
 module.exports = {
-  createConfigurationFile,
-  upgradeConfigurationFileToVersion_2_0
+  createConfiguration,
+  upgradeConfigurationToVersion_2_0
 };

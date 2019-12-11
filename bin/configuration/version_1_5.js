@@ -1,31 +1,26 @@
 'use strict';
 
-const necessary = require('necessary');
-
 const versions = require('../versions'),
       constants = require('../constants');
 
-const { miscellaneousUtilities } = necessary,
-      { rc } = miscellaneousUtilities,
-      { VERSION_1_5 } = versions,
-      { readRCFile, writeRCFile } = rc,
+const { VERSION_1_5 } = versions,
       { DEFAULT_GITHUB_HOST_NAME, DEFAULT_HOST_URL } = constants;
 
-function createConfigurationFile() {
+function createConfiguration() {
   const version = VERSION_1_5,  ///
         options = {},
-        hostURL = DEFAULT_HOST_URL; ///
+        hostURL = DEFAULT_HOST_URL, ///
+        configuration = {
+          version,
+          options,
+          hostURL
+        } ;
 
-  writeRCFile({
-    version,
-    options,
-    hostURL
-  });
+  return configuration;
 }
 
-function upgradeConfigurationFileToVersion_1_5() {
-  let json = readRCFile(),
-      { options } = json;
+function upgradeConfigurationToVersion_1_5(configuration) {
+  let { options } = configuration;
 
   const version = VERSION_1_5,  ///
         { accessToken } = json,
@@ -44,22 +39,22 @@ function upgradeConfigurationFileToVersion_1_5() {
     });
   }
 
-  json = {
+  configuration = {
     version,
     options,
     hostURL
   };
 
   if (accessToken) {
-    Object.assign(json, {
+    Object.assign(configuration, {
       accessToken
     });
   }
 
-  writeRCFile(json);
+  return configuration;
 }
 
 module.exports = {
-  createConfigurationFile,
-  upgradeConfigurationFileToVersion_1_5
+  createConfiguration,
+  upgradeConfigurationToVersion_1_5
 };

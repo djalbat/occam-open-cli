@@ -12,6 +12,7 @@ const commands = require('./commands'),
       publish = require('./action/publish'),
       register = require('./action/register'),
       deprecate = require('./action/deprecate'),
+      initialise = require('./action/initialise'),
       setOptions = require('./action/setOptions'),
       resetPassword = require('./action/resetPassword'),
       changePassword = require('./action/changePassword'),
@@ -30,6 +31,7 @@ const { HELP_OPTION, VERSION_OPTION } = options,
         PUBLISH_COMMAND,
         REGISTER_COMMAND,
         DEPRECATE_COMMAND,
+        INITIALISE_COMMAND,
         SET_OPTIONS_COMMAND,
         RESET_PASSWORD_COMMAND,
         CHANGE_PASSWORD_COMMAND,
@@ -61,6 +63,7 @@ function actions(command, argument, options) {
     case PUBLISH_COMMAND: publish(argument); break;
     case REGISTER_COMMAND: register(argument); break;
     case DEPRECATE_COMMAND: deprecate(argument); break;
+    case INITIALISE_COMMAND: initialise(); break;
     case SET_OPTIONS_COMMAND: setOptions(); break;
     case RESET_PASSWORD_COMMAND: resetPassword(argument); break;
     case CHANGE_PASSWORD_COMMAND: changePassword(argument); break;

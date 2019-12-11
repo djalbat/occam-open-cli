@@ -1,17 +1,10 @@
 'use strict';
 
-const necessary = require('necessary');
-
 const constants = require('../constants');
 
-const { miscellaneousUtilities } = necessary,
-      { rc } = miscellaneousUtilities,
-      { createVacuousRCFile, updateRCFile } = rc,
-			{ DEFAULT_USE_SSH, DEFAULT_HOST_URL, DEFAULT_HOST_NAME_SUFFIX } = constants;
+const { DEFAULT_USE_SSH, DEFAULT_HOST_URL, DEFAULT_HOST_NAME_SUFFIX } = constants;
 
-function createConfigurationFile() {
-  createVacuousRCFile();
-
+function createConfiguration() {
   const useSSH = DEFAULT_USE_SSH,
         hostURL = DEFAULT_HOST_URL,
         hostNameSuffix = DEFAULT_HOST_NAME_SUFFIX,
@@ -20,13 +13,14 @@ function createConfigurationFile() {
           hostURL,
           hostNameSuffix
         },
-        options = defaultOptions;	///
+        options = defaultOptions,	///
+        configuration = {
+          options
+        };
 
-  updateRCFile({
-    options
-  });
+  return configuration;
 }
 
 module.exports = {
-  createConfigurationFile
+  createConfiguration
 };
