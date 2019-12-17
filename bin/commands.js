@@ -12,11 +12,11 @@ const HELP_COMMAND = 'help',
       DEPRECATE_COMMAND = 'deprecate',
       INITIALISE_COMMAND = 'initialise',
       SET_OPTIONS_COMMAND = 'set-options',
-      RESET_PASSWORD_COMMAND = 'resetPassword',
-      CHANGE_PASSWORD_COMMAND = 'changePassword',
-			CHANGE_EMAIL_ADDRESS_COMMAND = 'changeEmailAddress',
-      CONFIRM_EMAIL_ADDRESS_COMMAND = 'confirmEmailAddress',
-      RESEND_CONFIRMATION_CODE_COMMAND = 'resendConfirmationCode';
+      RESET_PASSWORD_COMMAND = 'reset-password',
+      CHANGE_PASSWORD_COMMAND = 'change-password',
+			CHANGE_EMAIL_ADDRESS_COMMAND = 'change-email-address',
+      CONFIRM_EMAIL_ADDRESS_COMMAND = 'confirm-email-address',
+      RESEND_CONFIRMATION_CODE_COMMAND = 'resend-confirmation-code';
 
 module.exports = {
   HELP_COMMAND,
