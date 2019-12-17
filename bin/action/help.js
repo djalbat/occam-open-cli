@@ -11,7 +11,7 @@ function help() {
 
   open <command> [<argument>]
 
-Commmands:
+Commands:
 
   initialise                                     Create a configuration file
 
