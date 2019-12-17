@@ -29,7 +29,7 @@ Commmands:
 
   logout                                         Log out 
 
-  options                                        Set options 
+  set-options                                    Set options 
 
   reset-password [<username>]                    Reset your password 
 
