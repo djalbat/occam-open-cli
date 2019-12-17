@@ -11,10 +11,10 @@ const { argv } = process,
       { arrayUtilities } = necessary,
       { first, second } = arrayUtilities;
 
-let { commands, options } = parseArgv(argv, abbreviations),
-    firstCommand = first(commands),
-    secondCommand = second(commands),
-    command = firstCommand || null, ///
-    argument = secondCommand || null; ///
+const { commands, options } = parseArgv(argv, abbreviations),
+      firstCommand = first(commands),
+      secondCommand = second(commands),
+      command = firstCommand || null, ///
+      argument = secondCommand || null; ///
 
 main(command, argument, options);
