@@ -12,17 +12,17 @@ const { arrayUtilities, fileSystemUtilities } = necessary,
 const utilitiesDirectoryName = __dirname, ///
       matches = utilitiesDirectoryName.match(/^(.+)\/bin\/utilities$/),
       secondMatch = second(matches),
-			applicationDirectoryName = secondMatch, ///
-			packageJSONFilePath = `${applicationDirectoryName}/${PACKAGE_JSON_FILE_NAME}`,
-			packageJSONFile = readFile(packageJSONFilePath),
-			packageJSON = JSON.parse(packageJSONFile),
-			{ version } = packageJSON,
-			packageVersion = version;  ///
+      applicationDirectoryName = secondMatch, ///
+      packageJSONFilePath = `${applicationDirectoryName}/${PACKAGE_JSON_FILE_NAME}`,
+      packageJSONFile = readFile(packageJSONFilePath),
+      packageJSON = JSON.parse(packageJSONFile),
+      { version } = packageJSON,
+      packageVersion = version;  ///
 
 function getPackageVersion() {
-	return packageVersion;
+  return packageVersion;
 }
 
 module.exports = {
-	getPackageVersion
+  getPackageVersion
 };

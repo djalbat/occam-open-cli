@@ -1,7 +1,7 @@
 'use strict';
 
 const uris = require('../uris'),
-			action = require('../action'),
+      action = require('../action'),
       messages = require('../messages'),
       usernamePromptCallback = require('../callback/prompt/username');
 

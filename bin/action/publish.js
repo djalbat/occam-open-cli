@@ -5,8 +5,8 @@ const uris = require('../uris'),
       messages = require('../messages'),
       createReleaseCallback = require('../callback/createRelease'),
       deflateReleaseCallback = require('../callback/deflateRelease'),
-			releaseNamePromptCallback = require('../callback/prompt/releaseName'),
-			retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
+      releaseNamePromptCallback = require('../callback/prompt/releaseName'),
+      retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
       checkReadmeFileExistsCallback = require('../callback/checkReadmeFileExists'),
       checkMetaJSONFileExistsCallback = require('../callback/checkMetaJSONFileExists');
 

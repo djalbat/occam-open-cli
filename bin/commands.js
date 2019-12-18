@@ -14,7 +14,7 @@ const HELP_COMMAND = 'help',
       SET_OPTIONS_COMMAND = 'set-options',
       RESET_PASSWORD_COMMAND = 'reset-password',
       CHANGE_PASSWORD_COMMAND = 'change-password',
-			CHANGE_EMAIL_ADDRESS_COMMAND = 'change-email-address',
+      CHANGE_EMAIL_ADDRESS_COMMAND = 'change-email-address',
       CONFIRM_EMAIL_ADDRESS_COMMAND = 'confirm-email-address',
       RESEND_CONFIRMATION_CODE_COMMAND = 'resend-confirmation-code';
 
@@ -33,7 +33,7 @@ module.exports = {
   SET_OPTIONS_COMMAND,
   RESET_PASSWORD_COMMAND,
   CHANGE_PASSWORD_COMMAND,
-	CHANGE_EMAIL_ADDRESS_COMMAND,
+  CHANGE_EMAIL_ADDRESS_COMMAND,
   CONFIRM_EMAIL_ADDRESS_COMMAND,
   RESEND_CONFIRMATION_CODE_COMMAND
 };

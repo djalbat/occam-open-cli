@@ -1,29 +1,29 @@
 'use strict';
 
 const uris = require('../uris'),
-			action = require('../action'),
+      action = require('../action'),
       messages = require('../messages'),
-			usernamePromptCallback = require('../callback/prompt/username'),
+      usernamePromptCallback = require('../callback/prompt/username'),
       emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
       retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
-			newEmailAddressPromptCallback = require('../callback/prompt/newEmailAddress');
+      newEmailAddressPromptCallback = require('../callback/prompt/newEmailAddress');
 
 const { CHANGE_EMAIL_ADDRESS_URI } = uris,
       { FAILED_CHANGE_EMAIL_ADDRESS_MESSAGE, SUCCESSFUL_CHANGE_EMAIL_ADDRESS_MESSAGE } = messages;
 
 function changeEmailAddress(argument) {
   const username = argument,  ///
-				emailAddress = null,
+        emailAddress = null,
         uri = CHANGE_EMAIL_ADDRESS_URI,
         callbacks = [
           retrieveAccessTokenCallback,
-					usernamePromptCallback,
+          usernamePromptCallback,
           emailAddressPromptCallback,
-					newEmailAddressPromptCallback
+          newEmailAddressPromptCallback
         ],
         context = {
           username,
-					emailAddress
+          emailAddress
         };
 
   action(callbacks, uri, function(json, done) {

@@ -3,7 +3,7 @@
 const necessary = require('necessary');
 
 const actions = require('./actions'),
-			commands = require('./commands'),
+      commands = require('./commands'),
       configuration = require('./configuration');
 
 const { cwd, chdir } = process,
