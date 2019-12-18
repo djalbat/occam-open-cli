@@ -73,7 +73,7 @@ function optionsFromURIAndData(uri, data) {
         operatingSystem = osType, ///
         userAgent = `${OPEN_CLI}/${operatingSystem}`,
         headers = {
-          'User-Agent': userAgent
+          'User-Agent' : userAgent
         },
         options = {	///
           url,

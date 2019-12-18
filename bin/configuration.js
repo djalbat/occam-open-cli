@@ -75,11 +75,11 @@ function upgradeConfigurationFile() {
 
   while (version !== CURRENT_VERSION) {
     switch (version) {
-      case UNVERSIONED:
+      case UNVERSIONED :
         configuration = upgradeConfigurationToVersion_1_5(configuration);
         break;
 
-      case VERSION_1_5:
+      case VERSION_1_5 :
         configuration = upgradeConfigurationToVersion_2_0(configuration);
         break;
     }

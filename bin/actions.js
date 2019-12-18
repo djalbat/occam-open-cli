@@ -16,7 +16,7 @@ const commands = require('./commands'),
       setOptions = require('./action/setOptions'),
       resetPassword = require('./action/resetPassword'),
       changePassword = require('./action/changePassword'),
-			changeEmailAddress = require('./action/changeEmailAddress'),
+      changeEmailAddress = require('./action/changeEmailAddress'),
       confirmEmailAddress = require('./action/confirmEmailAddress'),
       resendConfirmationCode = require('./action/resendConfirmationCode');
 
@@ -53,25 +53,25 @@ function actions(command, argument, options) {
   }
 
   switch (command) {
-    case HELP_COMMAND: help(); break;
-    case CLONE_COMMAND: clone(argument); break;
-    case LOGIN_COMMAND: login(argument); break;
-    case LOGOUT_COMMAND: logout(); break;
-    case REMOVE_COMMAND: remove(argument); break;
-    case VERSION_COMMAND: version(); break;
-    case INSTALL_COMMAND: install(argument); break;
-    case PUBLISH_COMMAND: publish(argument); break;
-    case REGISTER_COMMAND: register(argument); break;
-    case DEPRECATE_COMMAND: deprecate(argument); break;
-    case INITIALISE_COMMAND: initialise(); break;
-    case SET_OPTIONS_COMMAND: setOptions(); break;
-    case RESET_PASSWORD_COMMAND: resetPassword(argument); break;
-    case CHANGE_PASSWORD_COMMAND: changePassword(argument); break;
-		case CHANGE_EMAIL_ADDRESS_COMMAND: changeEmailAddress(argument); break;
-    case CONFIRM_EMAIL_ADDRESS_COMMAND: confirmEmailAddress(argument); break;
-    case RESEND_CONFIRMATION_CODE_COMMAND: resendConfirmationCode(argument); break;
+    case HELP_COMMAND : help(); break;
+    case CLONE_COMMAND : clone(argument); break;
+    case LOGIN_COMMAND : login(argument); break;
+    case LOGOUT_COMMAND : logout(); break;
+    case REMOVE_COMMAND : remove(argument); break;
+    case VERSION_COMMAND : version(); break;
+    case INSTALL_COMMAND : install(argument); break;
+    case PUBLISH_COMMAND : publish(argument); break;
+    case REGISTER_COMMAND : register(argument); break;
+    case DEPRECATE_COMMAND : deprecate(argument); break;
+    case INITIALISE_COMMAND : initialise(); break;
+    case SET_OPTIONS_COMMAND : setOptions(); break;
+    case RESET_PASSWORD_COMMAND : resetPassword(argument); break;
+    case CHANGE_PASSWORD_COMMAND : changePassword(argument); break;
+    case CHANGE_EMAIL_ADDRESS_COMMAND : changeEmailAddress(argument); break;
+    case CONFIRM_EMAIL_ADDRESS_COMMAND : confirmEmailAddress(argument); break;
+    case RESEND_CONFIRMATION_CODE_COMMAND : resendConfirmationCode(argument); break;
 
-    default:
+    default :
       argument = command;  ///
 
       install(argument);
