@@ -14,29 +14,29 @@
 
 ## Introduction
 
-The `open` command line tool provides similar functionality to [`npm`](https://www.npmjs.com/), but for [Occam](http://djalbat.com/occam) packages. Published packages appear on the [Open Mathematics](https://openmathematics.org) website and can be utilised in the [Occam](http://occam.science) domain of reasoning.
+The `open` command line tool provides similar functionality to [`npm`](https://www.npmjs.com/), but for [Occam](http://djalbat.com/occam) packages. Published packages appear on the [Open Mathematics](https://openmathematics.org) website and can be utilised in Occam.
 
 ## Installation
 
-If you are an end user, you can install `open` via `npm`. Instructions for doing so together with other relevant information can be found in the 'How to contribute' section on the front page of the aforementioned Open Mathematics website.
+If you are an end user, you can install `open` via `npm`. Instructions for doing so, together with other relevant information, can be found in the 'How to contribute' section on the front page of the aforementioned Open Mathematics website.
 
-If you would like to contribute or would simply like to have a look at the code, you can clone the repository in the usual manner with [Git](https://git-scm.com/):
+If you would like to contribute or would simply like to have a look at the code, you can clone the repository with [Git](https://git-scm.com/):
 
     git clone https://github.com/jecs-imperial/occam-open-cli.git
 
 ## Usage
 
-This is slightly different from `npm` in that `open` is executed from the parent directory of any project rather than from within the project directory itself. Projects could reside in a `~/Mathematics/` directory, for example, in which case you should initialise open in there:
+This is slightly different from `npm` in that `open` is executed from the parent directory of a project rather than from within the project directory itself. Projects could reside in a `~/Mathematics/` directory, for example, in which case you should initialise `open` in there:
 
     open initialise
 
-This will create a hidden `.openrc` file which you should never share. If you log in to or register with the Open Mathematics site, for example, the access token will be stored in there.
+This will create a hidden `.openrc` file which you should never share. If you log in to the Open Mathematics site, for example, the access token will be stored in this hidden file.
 
-If you wish to publish a package, run `open` with the package name. For example, to publish the `induction` package, assuming you have a sub-directory called `induction`, run the following:
+If you wish to publish a package, run `open` with the package name. For example, to publish the `induction` package, assuming you have a sub-directory called `induction` in which the package resides, run the following:
 
     open publish induction
 
-In fact you can get away with publishing from within its own sub-directory by running `open publish` in which case `open` will go up one directory to find the `.openrc` file.
+Actually you can get away with publishing from within its own sub-directory by running `open publish` in which case `open` will go up one directory to find the `.openrc` file.
 
 Bear in mind that Occam does not as yet directly support packages. For now it is best to clone them, which can you again do with `open`:
 
