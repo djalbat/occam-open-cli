@@ -20,7 +20,7 @@ function confirmPasswordPromptCallback(proceed, abort, context) {
           validationFunction
         };
 
-  prompt(options, function(password) {
+  prompt(options, (password) => {
     const valid = (password !== null);
 
     if (valid) {

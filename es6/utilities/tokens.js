@@ -1,7 +1,7 @@
 'use strict';
 
 function significantTokensFromTokens(tokens) {
-  const significantTokens = tokens.reduce(function(significantTokens, token) {
+  const significantTokens = tokens.reduce((significantTokens, token) => {
           const tokenSignificant = token.isSignificant();
 
           if (tokenSignificant) {

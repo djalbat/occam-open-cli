@@ -17,7 +17,7 @@ function logout() {
         ],
         context = {};
 
-  action(callbacks, uri, function(json, done) {
+  action(callbacks, uri, (json, done) => {
     removeAccessToken();
 
     console.log(LOGGED_OUT_MESSAGE);

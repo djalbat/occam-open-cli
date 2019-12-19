@@ -21,7 +21,7 @@ function cloneRepository(repository, callback) {
 
   const command = `git clone ${repository}.git`;
 
-  exec(command, function(error) {
+  exec(command, (error) => {
     const success = !error;
 
     if (error) {

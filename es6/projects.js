@@ -41,7 +41,7 @@ class Projects {
   }
 
   toJSON() {
-    const json = this.array.map(function(project) {
+    const json = this.array.map((project) => {
       const projectJSON = project.toJSON();
 
       return projectJSON;
@@ -51,7 +51,7 @@ class Projects {
   }
 
   static fromJSON(json) {
-    const array = json.map(function(json) {  ///
+    const array = json.map((json) => {  ///
             const project = Project.fromJSON(json);
 
             return project;
@@ -73,7 +73,7 @@ class Projects {
           projects = new Projects(array),
           topmostDirectoryNames = topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
 
-    topmostDirectoryNames.forEach(function(topmostDirectoryName) {
+    topmostDirectoryNames.forEach((topmostDirectoryName) => {
       const project = Project.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories);
 
       projects.addProject(project);
@@ -90,7 +90,7 @@ function topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, d
 
   const subEntryNames = readDirectory(projectsDirectoryPath);
 
-  topmostDirectoryNames = subEntryNames.reduce(function(topmostDirectoryNames, subEntryName) {
+  topmostDirectoryNames = subEntryNames.reduce((topmostDirectoryNames, subEntryName) => {
     const absoluteSubEntryPath = concatenatePaths(projectsDirectoryPath, subEntryName),
           subEntryNameHiddenName = isNameHiddenName(subEntryName),
           subEntryNameNotHiddenName = !subEntryNameHiddenName,

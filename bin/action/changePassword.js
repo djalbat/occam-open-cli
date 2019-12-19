@@ -30,7 +30,7 @@ function changePassword(argument) {
           newPassword
         };
 
-  action(callbacks, uri, function(json, done) {
+  action(callbacks, uri, (json, done) => {
     const { success } = json;
 
     success ?

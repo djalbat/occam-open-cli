@@ -44,7 +44,7 @@ class Entries {
   }
 
   removeFileByPath(path) {
-    filter(this.array, function(entry) {
+    filter(this.array, (entry) => {
       const entryFile = entry.isFile();
 
       if (entryFile) {
@@ -63,7 +63,7 @@ class Entries {
   getFiles() {
     const files = Files.fromNothing();
 
-    this.mapEntry(function(entry) {
+    this.mapEntry((entry) => {
       const entryFile = entry.isFile();
 
       if (entryFile) {
@@ -77,7 +77,7 @@ class Entries {
   }
 
   getFilePaths() {
-    const filePaths = this.reduceEntry(function(filePaths, entry) {
+    const filePaths = this.reduceEntry((filePaths, entry) => {
       const entryFile = entry.isFile();
 
       if (entryFile) {
@@ -94,7 +94,7 @@ class Entries {
   }
 
   getDirectoryPaths() {
-    const directoryPaths = this.reduceEntry(function(directoryPaths, entry) {
+    const directoryPaths = this.reduceEntry((directoryPaths, entry) => {
       const entryDirectory = entry.isDirectory();
 
       if (entryDirectory) {
@@ -125,7 +125,7 @@ class Entries {
   reduceEntry(callback, initialValue) { return this.array.reduce(callback, initialValue); }
 
   toJSON() {
-    const entriesJSON = this.array.map(function(entry) {
+    const entriesJSON = this.array.map((entry) => {
             const entryJSON = entry.toJSON();
   
             return entryJSON;
@@ -137,7 +137,7 @@ class Entries {
 
   static fromJSON(json) {
     const entriesJSON = json, ///
-          array = entriesJSON.map(function(entryJSON) {
+          array = entriesJSON.map((entryJSON) => {
             const json = entryJSON, ///
                   file = File.fromJSON(json),
                   directory = Directory.fromJSON(json),
@@ -156,10 +156,10 @@ class Entries {
           jsZipEntries = files, ///
           jsZipEntryNames = Object.keys(jsZipEntries);
 
-    forEach(jsZipEntryNames, function(jsZipEntryName, next) {
+    forEach(jsZipEntryNames, (jsZipEntryName, next) => {
       const jsZipEntry = jsZipEntries[jsZipEntryName];
 
-      Directory.fromJSZipEntry(jsZipEntry, function(directory) {
+      Directory.fromJSZipEntry(jsZipEntry, (directory) => {
         if (directory !== null) {
           const entry = directory;  ///
 
@@ -167,7 +167,7 @@ class Entries {
 
           next();
         } else {
-          File.fromJSZipEntry(jsZipEntry, function(file) {
+          File.fromJSZipEntry(jsZipEntry, (file) => {
             if (file !== null) {
               const entry = file;
 
@@ -205,7 +205,7 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
   const absoluteDirectoryPath = concatenatePaths(projectsDirectoryPath, relativeDirectoryPath),
         subEntryNames = readDirectory(absoluteDirectoryPath);
 
-  subEntryNames.forEach(function(subEntryName) {
+  subEntryNames.forEach((subEntryName) => {
     const subEntryNameHiddenName = isNameHiddenName(subEntryName),
           subEntryNameNotHiddenName = !subEntryNameHiddenName,
           loadHiddenFilesAndDirectories = !doNotLoadHiddenFilesAndDirectories,

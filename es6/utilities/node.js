@@ -12,7 +12,7 @@ function findNodeByClass(node, Class) {
       const nonTerminalNode = node, ///
             childNodes = nonTerminalNode.getChildNodes();
 
-      childNodes.some(function(childNode) {
+      childNodes.some((childNode) => {
         foundNode = findNodeByClass(childNode, Class);
 
         if (foundNode !== null) {
@@ -37,7 +37,7 @@ function findNodesByClass(node, Class, foundNodes = []) {
       const nonTerminalNode = node, ///
             childNodes = nonTerminalNode.getChildNodes();
 
-      childNodes.forEach(function(childNode) {
+      childNodes.forEach((childNode) => {
         findNodesByClass(childNode, Class, foundNodes);
       });
     }
@@ -60,7 +60,7 @@ function findTerminalNodes(node, foundTerminalNodes = []) {
       const nonTerminalNode = node, ///
             childNodes = nonTerminalNode.getChildNodes();
 
-      childNodes.forEach(function(childNode) {
+      childNodes.forEach((childNode) => {
         findTerminalNodes(childNode, foundTerminalNodes);
       });
     }

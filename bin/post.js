@@ -22,7 +22,7 @@ function post(uri, data, callback) {
   const options = optionsFromURIAndData(uri, data),
 				offETX = onETX(exit);
 
-  request(options, function(error, response) {
+  request(options, (error, response) => {
     offETX && offETX(); ///
 
     if (error) {

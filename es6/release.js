@@ -31,7 +31,7 @@ class Release {
 
     const files = this.getFiles();
 
-    files.someFile(function(file) {
+    files.someFile((file) => {
       const filePath = file.getPath(),
             filePathReadmeFilePath = isFilePathReadmeFilePath(filePath);
 
@@ -50,7 +50,7 @@ class Release {
 
     const files = this.getFiles();
 
-    files.someFile(function(file) {
+    files.someFile((file) => {
       const filePath = file.getPath(),
             filePathMetaJSONFilePath = isFilePathMetaJSONFilePath(filePath);
 

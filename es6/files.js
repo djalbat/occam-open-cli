@@ -8,7 +8,7 @@ class Files {
   }
 
   getFilePaths() {
-    const filePaths = this.mapFile(function(file) {
+    const filePaths = this.mapFile((file) => {
       const filePath = file.getPath();
 
       return filePath;
@@ -42,13 +42,13 @@ class Files {
   }
 
   save(projectsDirectoryPath) {
-    this.array.forEach(function(file) {
+    this.array.forEach((file) => {
       file.save(projectsDirectoryPath);
     });
   }
 
   toJSON() {
-    const filesJSON = this.array.map(function(file) {
+    const filesJSON = this.array.map((file) => {
             const fileJSON = (file !== null) ?
                                 file.toJSON() :
                                   null;
@@ -65,7 +65,7 @@ class Files {
           array = [],
           files = new Files(array);
     
-    filesJSON.forEach(function(fileJSON) {
+    filesJSON.forEach((fileJSON) => {
       const json = fileJSON,  ///
             file = File.fromJSON(json);
 
@@ -86,7 +86,7 @@ class Files {
     const array = [],
           files = new Files(array);
 
-    paths.forEach(function(path) {
+    paths.forEach((path) => {
       const file = File.fromPath(path, projectsDirectoryPath);
 
       files.addFile(file);

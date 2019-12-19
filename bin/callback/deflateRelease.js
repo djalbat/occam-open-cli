@@ -12,7 +12,7 @@ function deflateRelease(proceed, abort, context) {
         releaseJSON = release.toJSON(),
         releaseJSONString = JSON.stringify(releaseJSON);
 
-  deflate(releaseJSONString, function(error, buffer) {
+  deflate(releaseJSONString, (error, buffer) => {
     if (error) {
       abort();
 

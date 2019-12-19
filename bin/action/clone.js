@@ -20,7 +20,7 @@ function clone(argument) {
           name
         };
 
-  action(callbacks, uri, function(json, done) {
+  action(callbacks, uri, (json, done) => {
     const { exists } = json;
 
     if (!exists) {
@@ -33,7 +33,7 @@ function clone(argument) {
 
     const { repository } = json;
 
-    cloneRepository(repository, function(success) {
+    cloneRepository(repository, (success) => {
       success ?
         console.log(SUCCESSFUL_CLONE_MESSAGE) :
           console.log(FAILED_CLONE_MESSAGE);

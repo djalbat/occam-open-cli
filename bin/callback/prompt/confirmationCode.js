@@ -22,7 +22,7 @@ function confirmationCodePromptCallback(proceed, abort, context) {
           validationFunction
         };
 
-  prompt(options, function(confirmationCode) {
+  prompt(options, (confirmationCode) => {
     const valid = (confirmationCode !== null);
 
     if (valid) {

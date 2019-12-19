@@ -34,7 +34,7 @@ function usernamePromptCallback(proceed, abort, context) {
           validationFunction
         };
 
-  prompt(options, function(username) {
+  prompt(options, (username) => {
     const valid = (username !== null);
 
     if (valid) {

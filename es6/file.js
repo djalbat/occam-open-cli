@@ -143,7 +143,7 @@ class File {
 
     path = removeMasterDirectoryNameFromPath(path);
 
-    jsZipEntry.async('string').then(function(content) {
+    jsZipEntry.async('string').then((content) => {
       content = convertContentTabsToWhitespace(content);  ///
 
       file = new File(path, content);

@@ -30,7 +30,7 @@ function gitHubHostNamePromptCallback(proceed, abort, context) {
           validationFunction
         };
 
-  prompt(options, function(gitHubHostName) {
+  prompt(options, (gitHubHostName) => {
     const valid = (gitHubHostName !== null);
 
     if (valid) {

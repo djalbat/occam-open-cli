@@ -20,7 +20,7 @@ function resendConfirmationCode(argument) {
           emailAddress
         };
 
-  action(callbacks, uri, function(json, done) {
+  action(callbacks, uri, (json, done) => {
     const { success } = json;
 
     success ?

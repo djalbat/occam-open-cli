@@ -22,7 +22,7 @@ function useSSHPromptCallback(proceed, abort, context) {
           validationFunction
         };
 
-  prompt(options, function(answer) {
+  prompt(options, (answer) => {
     const valid = (answer !== null);
 
     if (valid) {

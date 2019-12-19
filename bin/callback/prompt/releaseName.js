@@ -34,7 +34,7 @@ function releaseNamePromptCallback(proceed, abort, context) {
           validationFunction
         };
 
-  prompt(options, function(releaseName) {
+  prompt(options, (releaseName) => {
     const valid = (releaseName !== null);
 
     if (valid) {

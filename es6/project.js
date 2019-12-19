@@ -30,7 +30,7 @@ class Project {
 
   getMetaJSONFile() {
     const files = this.getFiles(),
-          metaJSONFile = files.findFile(function(file) {
+          metaJSONFile = files.findFile((file) => {
           const filePath = file.getPath(),
                 filePathMetaJSONFilePath = isFilePathMetaJSONFilePath(filePath);
 
@@ -44,7 +44,7 @@ class Project {
 
   getFlorenceFiles() {
     const files = this.getFiles(),
-          florenceFiles = files.reduceFile(function(florenceFiles, file) {
+          florenceFiles = files.reduceFile((florenceFiles, file) => {
             const filePath = file.getPath(),
                   filePathFlorenceFilePath = isFilePathFlorenceFilePath(filePath),
                   fileFlorenceFile = filePathFlorenceFilePath;  ///
@@ -63,7 +63,7 @@ class Project {
 
   getCustomGrammarBNFFiles() {
     const files = this.getFiles(),
-          customGrammarBNFFiles = files.reduceFile(function(customGrammarBNFFiles, file) {
+          customGrammarBNFFiles = files.reduceFile((customGrammarBNFFiles, file) => {
             const filePath = file.getPath(),
                   filePathCustomGrammarBNFFilePath = isFilePathCustomGrammarBNFFilePath(filePath),
                   fileCustomGrammarBNFFile = filePathCustomGrammarBNFFilePath;  ///
@@ -82,7 +82,7 @@ class Project {
 
   getCustomGrammarLexicalPatternFile() {
     const files = this.getFiles(),
-          customGrammarLexicalPatternFile = files.findFile(function(file) {
+          customGrammarLexicalPatternFile = files.findFile((file) => {
             const filePath = file.getPath(),
                   filePatCustomGrammarLexicalPatternFilePath = isFilePathCustomGrammarLexicalPatternFilePath(filePath);
 
@@ -128,7 +128,7 @@ class Project {
             encoding
           };
 
-    request(options, function(error, response) {
+    request(options, (error, response) => {
       const { statusCode } = response;
 
       error = error || (statusCode !== 200);  ///
@@ -144,14 +144,14 @@ class Project {
       const { body } = response;
 
       JSZip.loadAsync(body)
-        .then(function(jsZip) {
+        .then((jsZip) => {
           Project.fromJSZip(jsZip, callback);
         });
     });
   }
 
   static fromJSZip(jsZip, callback) {
-    Entries.fromJSZip(jsZip, function(entries) {
+    Entries.fromJSZip(jsZip, (entries) => {
       let project = null;
 
       const topmostDirectoryName = entries.getTopmostDirectoryName();

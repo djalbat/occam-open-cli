@@ -7,7 +7,7 @@ const { exit } = process,
       { executeCallbacks } = callbackUtilities;
 
 function action(callbacks, uri, callback, context) {
-  executeCallbacks(callbacks, function(completed) {
+  executeCallbacks(callbacks, (completed) => {
     if (!completed) {
       exit();
     }
