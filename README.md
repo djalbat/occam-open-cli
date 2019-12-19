@@ -30,7 +30,7 @@ This is slightly different from `npm` in that `open` is executed from the parent
 
     open initialise
 
-This will create a hidden `.openrc` file which you should never share. If you log in to the Open Mathematics site, for example, the access token will be stored in this hidden file.
+This will create a hidden `.openrc` file which you should never share. The reason is that if you log in to the Open Mathematics site your access token will be stored in this hidden file.
 
 If you wish to publish the `induction` package, for example, assuming that you have a sub-directory called `induction` for that package, run the following:
 
@@ -38,13 +38,13 @@ If you wish to publish the `induction` package, for example, assuming that you h
 
 Actually you can in fact get away with publishing from within projects' sub-directories by running `open publish` in them, in which cases `open` will go up one directory in order to find the `.openrc` file.
 
-Bear in mind that Occam does not as yet directly support packages. For now it is best to clone them, which can you again do with `open`:
+Bear in mind that Occam does not as yet directly support packages. For now it is best to clone them, therefore, which you can again do with `open`:
 
     open clone natural-numbers
 
-In these cases `open` will recover the package's underlying GitHub repository from the package's meta-data and clone the repository for you.
+In these cases `open` will recover the underlying GitHub repository from the package's meta-data and clone the repository for you.
 
-Both Occam and the Open Mathematics site are works in progress, as indeed is this tool. The remainder of this readme file gives some of the current thinking on the versioning that has yet to be implemented.
+Both Occam and the Open Mathematics site are works in progress, as indeed is `open`. The remainder of this readme file gives some of the current thinking on the versioning that has yet to be implemented.
 
 ## Versioning
 
