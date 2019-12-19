@@ -26,17 +26,17 @@ If you would like to contribute or would simply like to have a look at the code,
 
 ## Usage
 
-This is slightly different from `npm` in that `open` is executed from the parent directory of a project rather than from within the project directory itself. Projects could reside in a `~/Mathematics/` directory, for example, in which case you should initialise `open` in there:
+This is slightly different from `npm` in that `open` is executed from the parent directory of a project rather than from within the project sub-directory itself. Projects might reside in a `~/Mathematics/` directory, for example, in which case you should initialise `open` in there:
 
     open initialise
 
 This will create a hidden `.openrc` file which you should never share. If you log in to the Open Mathematics site, for example, the access token will be stored in this hidden file.
 
-If you wish to publish a package, run `open` with the package name. For example, to publish the `induction` package, assuming you have a sub-directory called `induction` in which the package resides, run the following:
+If you wish to publish the `induction` package, for example, assuming that you have a sub-directory called `induction` for that package, run the following:
 
     open publish induction
 
-Actually you can get away with publishing from within its own sub-directory by running `open publish` in which case `open` will go up one directory to find the `.openrc` file.
+Actually you can in fact get away with publishing from within projects' sub-directories by running `open publish` in them, in which cases `open` will go up one directory in order to find the `.openrc` file.
 
 Bear in mind that Occam does not as yet directly support packages. For now it is best to clone them, which can you again do with `open`:
 
