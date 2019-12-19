@@ -14,25 +14,41 @@
 
 ## Introduction
 
-The `open` command line tool provides similar functionality to [npm](https://www.npmjs.com/), but for [Occam](http://djalbat.com/occam) packages. A package is defined as P=(V,Z) where V is the version and Z is a compressed file containing the files.
+The `open` command line tool provides similar functionality to [npm](https://www.npmjs.com/), but for [Occam](http://djalbat.com/occam) packages. Published packages appear on the [Open Mathematics](https://openmathematics.org) website and can be utilised in the [Occam](http://occam.science) domain of reasoning.
 
 ## Installation
 
-The tool is installed globally via npm:
+If you are an end user, you can install `open` via `npm`. Instructions on how to do so, together with other relevant information, can be found in the 'How to contribute' section on the front page of the aforementioned Open Mathematics website.
 
-    npm install --global occam-open-cli
+If you would like to contribute or would simply like to have a look at the code, you can clone the repository in the usual manner with [Git](https://git-scm.com/):
 
-You can also clone the repository with [Git](https://git-scm.com/)...
-
-    git clone https://github.com/djalbat/Easy.git
+    git clone https://github.com/jecs-imperial/occam-open-cli.git
 
 ## Usage
 
-This is slightly different from npm in that `open` is executed from the parent directory of any project rather than from within the project directory itself. It could reside in a `~/Mathematics/` directory, for example, with all of the projects being contained in sub-directories. It creates and updates its own hidden `.openrc` file, which it uses to store an access token when the user is logged in.
+This is slightly different from `npm` in that `open` is executed from the parent directory of any project rather than from within the project directory itself. Projects could reside in a `~/Mathematics/` directory, for example, in which case you should initialise open in there:
+
+    open initialise
+
+This will create a hidden `.openrc` file which you should never share. If you log in to or register with the Open Mathematics site, for example, the access token will be stored in there.
+
+If you wish to publish a package, run `open` with the package name. For example, to publish the `induction` package, assuming you have a sub-directory called `induction`, run the following:
+
+    open publish induction
+
+In fact you can get away with publishing from within its own sub-directory by running `open publish` in which case `open` will go up one directory to find the `.openrc` file.
+
+Bear in mind that Occam does not as yet directly support packages. For now it is best to clone them, which can you again do with `open`:
+
+    open clone natural-numbers
+
+In these cases `open` will recover the package's underlying GitHub repository from the package's meta-data and clone the repository for you.
+
+Both Occam and the Open Mathematics site are works in progress, as indeed is this tool. The remainder of this readme file gives some of the current thinking on the versioning that has yet to be implemented.
 
 ## Versioning
 
-Versioning is taken out of the user's hands in order to avoid problems. Version numbers are bumped whenever packages are published, ideally according to the following rules:
+Versioning is taken out of the user's hands in order to avoid problems. A package is defined as P=(V,Z) where V is the version and Z is a compressed file containing the files. Version numbers are bumped whenever packages are published, ideally according to the following rules:
 
 * Let P be a package, namely a project that is published or about to be published. Packages are published incrementally, thus P<sub>0</sub>,P<sub>1</sub>,...P<sub>n</sub>.
 
