@@ -14,11 +14,11 @@
 
 ## Introduction
 
-The `open` command line tool provides similar functionality to [npm](https://www.npmjs.com/), but for [Occam](http://djalbat.com/occam) packages. Published packages appear on the [Open Mathematics](https://openmathematics.org) website and can be utilised in the [Occam](http://occam.science) domain of reasoning.
+The `open` command line tool provides similar functionality to [`npm`](https://www.npmjs.com/), but for [Occam](http://djalbat.com/occam) packages. Published packages appear on the [Open Mathematics](https://openmathematics.org) website and can be utilised in the [Occam](http://occam.science) domain of reasoning.
 
 ## Installation
 
-If you are an end user, you can install `open` via `npm`. Instructions on how to do so, together with other relevant information, can be found in the 'How to contribute' section on the front page of the aforementioned Open Mathematics website.
+If you are an end user, you can install `open` via `npm`. Instructions for doing so together with other relevant information can be found in the 'How to contribute' section on the front page of the aforementioned Open Mathematics website.
 
 If you would like to contribute or would simply like to have a look at the code, you can clone the repository in the usual manner with [Git](https://git-scm.com/):
 
