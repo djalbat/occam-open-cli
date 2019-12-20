@@ -40,6 +40,12 @@ Commands:
   confirm-email-address [<email_address>]        Confirm your email address
 
   resend-confirmation-code [<email_address>]     Resend a confirmation code
+
+Further information:
+
+Please see the readme file on GitHub:
+
+  https://github.com/jecs-imperial/occam-open-cli
 `);
 }
 
