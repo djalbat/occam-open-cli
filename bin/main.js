@@ -10,7 +10,7 @@ const { cwd, chdir } = process,
       { pathUtilities } = necessary,
       { PUBLISH_COMMAND } = commands,
       { bottommostNameFromPath } = pathUtilities,
-      { checkConfigurationFileExists, upgradeConfigurationFile } = configuration;
+      { checkConfigurationFileExists, migrateConfigurationFile } = configuration;
 
 function main(command, argument, options) {
   let configurationFileExists = checkConfigurationFileExists();
@@ -34,7 +34,7 @@ function main(command, argument, options) {
   }
 
   if (configurationFileExists) {
-    upgradeConfigurationFile();
+    migrateConfigurationFile();
   }
 
   actions(command, argument, options);

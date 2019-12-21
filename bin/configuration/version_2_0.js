@@ -19,7 +19,7 @@ function createConfiguration() {
   return configuration;
 }
 
-function upgradeConfigurationToVersion_2_0(configuration) {
+function migrateConfigurationToVersion_2_0(configuration) {
   const version = VERSION_2_0;
 
   Object.assign(configuration, {
@@ -31,5 +31,5 @@ function upgradeConfigurationToVersion_2_0(configuration) {
 
 module.exports = {
   createConfiguration,
-  upgradeConfigurationToVersion_2_0
+  migrateConfigurationToVersion_2_0
 };

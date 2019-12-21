@@ -14,8 +14,8 @@ const { miscellaneousUtilities } = necessary,
       { RC_BASE_EXTENSION } = constants,
       { CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE } = messages,
       { UNVERSIONED, VERSION_1_5, CURRENT_VERSION } = versions,
-      { upgradeConfigurationToVersion_1_5 } = configurationVersion_1_5,
-      { upgradeConfigurationToVersion_2_0, createConfiguration } = configurationVersion_2_0,
+      { migrateConfigurationToVersion_1_5 } = configurationVersion_1_5,
+      { migrateConfigurationToVersion_2_0, createConfiguration } = configurationVersion_2_0,
       { setRCBaseExtension, checkRCFileExists, updateRCFile, writeRCFile, readRCFile } = rc;
 
 setRCBaseExtension(RC_BASE_EXTENSION);
@@ -64,7 +64,7 @@ function createConfigurationFile() {
   writeRCFile(json);
 }
 
-function upgradeConfigurationFile() {
+function migrateConfigurationFile() {
   let version;
 
   let json = readRCFile();
@@ -76,11 +76,11 @@ function upgradeConfigurationFile() {
   while (version !== CURRENT_VERSION) {
     switch (version) {
       case UNVERSIONED :
-        configuration = upgradeConfigurationToVersion_1_5(configuration);
+        configuration = migrateConfigurationToVersion_1_5(configuration);
         break;
 
       case VERSION_1_5 :
-        configuration = upgradeConfigurationToVersion_2_0(configuration);
+        configuration = migrateConfigurationToVersion_2_0(configuration);
         break;
     }
 
@@ -107,7 +107,7 @@ module.exports = {
   removeAccessToken,
   retrieveAccessToken,
   createConfigurationFile,
-  upgradeConfigurationFile,
+  migrateConfigurationFile,
   checkConfigurationFileExists
 };
 
