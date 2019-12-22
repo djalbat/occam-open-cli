@@ -2,13 +2,13 @@
 
 const necessary = require('necessary');
 
-const validate = require('../../validate'),
-      messages = require('../../messages'),
-      constants = require('../../constants');
+const messages = require('../../messages'),
+      constants = require('../../constants'),
+      validateUtilities = require('../../utilities/validate');
 
 const { miscellaneousUtilities } = necessary,
-      { validateGitHubHostName } = validate,
       { prompt } = miscellaneousUtilities,
+      { validateGitHubHostName } = validateUtilities,
       { DEFAULT_GITHUB_HOST_NAME } = constants,
       { INVALID_GITHUB_HOST_NAME_MESSAGE } = messages;
 

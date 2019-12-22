@@ -2,12 +2,12 @@
 
 const necessary = require('necessary');
 
-const validate = require('../../validate'),
-      messages = require('../../messages');
+const messages = require('../../messages'),
+      validateUtilities = require('../../utilities/validate');
 
 const { miscellaneousUtilities } = necessary,
-      { validateConfirmationCode } = validate,
       { prompt } = miscellaneousUtilities,
+      { validateConfirmationCode } = validateUtilities,
       { INVALID_CONFIRMATION_CODE_MESSAGE } = messages;
 
 function confirmationCodePromptCallback(proceed, abort, context) {

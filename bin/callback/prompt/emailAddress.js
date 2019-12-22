@@ -2,12 +2,12 @@
 
 const necessary = require('necessary');
 
-const validate = require('../../validate'),
-      messages = require('../../messages');
+const messages = require('../../messages'),
+      validateUtilities = require('../../utilities/validate');
 
 const { miscellaneousUtilities } = necessary,
-      { validateEmailAddress } = validate,
       { prompt } = miscellaneousUtilities,
+      { validateEmailAddress } = validateUtilities,
       { INVALID_EMAIL_ADDRESS_MESSAGE } = messages;
 
 function emailAddressPromptCallback(proceed, abort, context) {

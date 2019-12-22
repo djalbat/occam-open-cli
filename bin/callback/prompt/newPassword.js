@@ -2,12 +2,12 @@
 
 const necessary = require('necessary');
 
-const validate = require('../../validate'),
-      messages = require('../../messages');
+const messages = require('../../messages'),
+      validateUtilities = require('../../utilities/validate');
 
 const { miscellaneousUtilities } = necessary,
-      { validatePassword } = validate,
       { prompt } = miscellaneousUtilities,
+      { validatePassword } = validateUtilities,
       { INVALID_PASSWORD_MESSAGE } = messages;
 
 function newPasswordPromptCallback(proceed, abort, context) {

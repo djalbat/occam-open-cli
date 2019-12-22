@@ -2,13 +2,13 @@
 
 const necessary = require('necessary');
 
-const validate = require('../../validate'),
-      messages = require('../../messages'),
-      promptUtilities = require('../../utilities/prompt');
+const messages = require('../../messages'),
+      promptUtilities = require('../../utilities/prompt'),
+      validateUtilities = require('../../utilities/validate');
 
 const { miscellaneousUtilities } = necessary,
-      { validateAnswer } = validate,
       { prompt } = miscellaneousUtilities,
+      { validateAnswer } = validateUtilities,
       { isAnswerAffirmative } = promptUtilities,
       { INVALID_ANSWER_MESSAGE } = messages;
 
