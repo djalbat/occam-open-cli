@@ -8,13 +8,13 @@ const request = require('request'),
 const messages = require('./messages'),
       constants = require('./constants'),
       configuration = require('./configuration'),
-      packageUtilities = require('./utilities/package');
+      packageJSONUtilities = require('./utilities/packageJSON');
 
 const { miscellaneousUtilities } = necessary,
       { exit } = process,
       { onETX } = miscellaneousUtilities,
       { retrieveHostURL } = configuration,
-      { getPackageVersion } = packageUtilities,
+      { getPackageVersion } = packageJSONUtilities,
       { OPEN_CLI, TIMEOUT, POST_METHOD, UTF8_ENCODING } = constants,
       { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages;
 
