@@ -1,10 +1,6 @@
 'use strict';
 
-function isAnswerAffirmative(answer) {
-  const answerAffirmative = /^y.*/i.test(answer); ///
-
-  return answerAffirmative;
-}
+function isAnswerAffirmative(answer) { return /^y.*/i.test(answer); }
 
 module.exports = {
   isAnswerAffirmative
