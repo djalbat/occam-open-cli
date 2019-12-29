@@ -3,10 +3,8 @@
 function help() {
   console.log(`Usage: 
   
-  open [help|--help|-h]                          Show this help
+  open [help]                                    Show this help
   
-  open --version|-v                              Show the version
-
   open [install] <package_name>                  Install a package
 
   open <command> [<argument>]
@@ -40,6 +38,13 @@ Commands:
   confirm-email-address [<email_address>]        Confirm your email address
 
   resend-confirmation-code [<email_address>]     Resend a confirmation code
+  
+Options:
+
+  --version|-v                                   Show the version
+
+  --help|-h                                      Show this help
+  
 
 Further information:
 
