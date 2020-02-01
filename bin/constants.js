@@ -1,9 +1,9 @@
 'use strict';
 
 const TIMEOUT = 10000,
-      OPEN_CLI = 'Open-CLI',
       POST_METHOD = 'POST',
       UTF8_ENCODING = 'utf8',
+      OCCAM_OPEN_CLI = 'Open-CLI',
       DEFAULT_USE_SSH = false,
       BASE64_ENCODING = 'base64',
       DEFAULT_HOST_URL = 'https://openmathematics.org',
@@ -14,9 +14,9 @@ const TIMEOUT = 10000,
 
 module.exports = {
   TIMEOUT,
-  OPEN_CLI,
   POST_METHOD,
   UTF8_ENCODING,
+  OCCAM_OPEN_CLI,
   DEFAULT_USE_SSH,
   BASE64_ENCODING,
   DEFAULT_HOST_URL,

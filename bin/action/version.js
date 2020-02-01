@@ -3,14 +3,14 @@
 const constants = require('../constants'),
       packageJSONUtilities = require('../utilities/packageJSON');
 
-const { OPEN_CLI } = constants,
+const { OCCAM_OPEN_CLI } = constants,
       { getPackageVersion } = packageJSONUtilities;
 
 function version() {
   const packageVersion = getPackageVersion(),
         version = packageVersion; ///
 
-  console.log(`${OPEN_CLI} version ${version}`);
+  console.log(`${OCCAM_OPEN_CLI} version ${version}`);
 }
 
 module.exports = version;

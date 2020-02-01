@@ -15,7 +15,7 @@ const { miscellaneousUtilities } = necessary,
       { onETX } = miscellaneousUtilities,
       { retrieveHostURL } = configuration,
       { getPackageVersion } = packageJSONUtilities,
-      { OPEN_CLI, TIMEOUT, POST_METHOD, UTF8_ENCODING } = constants,
+      { OCCAM_OPEN_CLI, TIMEOUT, POST_METHOD, UTF8_ENCODING } = constants,
       { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages;
 
 function post(uri, data, callback) {
@@ -71,7 +71,7 @@ function optionsFromURIAndData(uri, data) {
         encoding = UTF8_ENCODING,
         osType = os.type(),
         operatingSystem = osType, ///
-        userAgent = `${OPEN_CLI}/${operatingSystem}`,
+        userAgent = `${OCCAM_OPEN_CLI}/${operatingSystem}`,
         headers = {
           'User-Agent' : userAgent
         },
