@@ -28,7 +28,7 @@ function post(uri, data, callback) {
     if (error) {
       console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
 
-      exit();
+      exit(1);
     }
 
     const { body } = response,
@@ -44,7 +44,7 @@ function post(uri, data, callback) {
     if (error) {
       console.log(SERVER_ERROR_MESSAGE);
 
-      exit();
+      exit(1);
     }
 
     callback(json);

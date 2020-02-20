@@ -22,7 +22,7 @@ function setOptions() {
     if (!completed) {
       console.log(FAILED_SET_OPTIONS_MESSAGE);
 
-      exit();
+      exit(1);
     }
 
     const { useSSH } = context,

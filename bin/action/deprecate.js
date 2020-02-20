@@ -33,8 +33,6 @@ function deprecate(argument) {
     success ?
       console.log(SUCCESSFUL_DEPRECATE_MESSAGE) :
         console.log(FAILED_DEPRECATE_MESSAGE);
-
-    exit();
   }, context);
 }
 

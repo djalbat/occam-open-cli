@@ -35,8 +35,6 @@ function publish(argument) {
     success ?
       console.log(SUCCESSFUL_PUBLISH_MESSAGE) :
         console.log(FAILED_PUBLISH_MESSAGE);
-
-    exit();
   }, context);
 }
 

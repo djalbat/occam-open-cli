@@ -9,7 +9,7 @@ const { exit } = process,
 function action(callbacks, uri, callback, context) {
   executeCallbacks(callbacks, (completed) => {
     if (!completed) {
-      exit();
+      exit(1);
     }
 
     const data = context; ///

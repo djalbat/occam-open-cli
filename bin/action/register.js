@@ -35,8 +35,6 @@ function register(argument) {
     success ?
       console.log(SUCCESSFUL_REGISTER_MESSAGE) :
         console.log(FAILED_REGISTER_MESSAGE);
-
-    exit();
   }, context);
 }
 

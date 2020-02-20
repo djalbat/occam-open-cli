@@ -37,8 +37,6 @@ function changePassword(argument) {
     success ?
       console.log(SUCCESSFUL_CHANGE_PASSWORD_MESSAGE) :
         console.log(FAILED_CHANGE_PASSWORD_MESSAGE);
-
-    exit();
   }, context);
 }
 

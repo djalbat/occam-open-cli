@@ -37,8 +37,6 @@ function login(argument) {
 
       addAccessToken(accessToken);
     }
-
-    exit();
   }, context);
 }
 

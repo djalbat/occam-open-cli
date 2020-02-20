@@ -27,7 +27,7 @@ function clone(argument) {
     if (!exists) {
       console.log(FAILED_CLONE_MESSAGE);
 
-      exit();
+      exit(1);
     }
 
     const { repository } = json;
@@ -36,8 +36,6 @@ function clone(argument) {
       success ?
         console.log(SUCCESSFUL_CLONE_MESSAGE) :
           console.log(FAILED_CLONE_MESSAGE);
-
-      exit();
     });
   }, context);
 }

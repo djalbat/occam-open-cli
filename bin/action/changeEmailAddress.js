@@ -33,8 +33,6 @@ function changeEmailAddress(argument) {
     success ?
       console.log(SUCCESSFUL_CHANGE_EMAIL_ADDRESS_MESSAGE) :
         console.log(FAILED_CHANGE_EMAIL_ADDRESS_MESSAGE);
-
-    exit();
   }, context);
 }
 

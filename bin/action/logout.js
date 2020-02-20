@@ -22,8 +22,6 @@ function logout() {
     removeAccessToken();
 
     console.log(LOGGED_OUT_MESSAGE);
-
-    exit();
   }, context);
 }
 
