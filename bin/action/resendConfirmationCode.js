@@ -6,7 +6,8 @@ const uris = require('../uris'),
       emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
       retrieveAccessTokenCallback = require('../callback/retrieveAccessToken');
 
-const { RESEND_CONFIRMATION_CODE_URI } = uris,
+const { exit } = process,
+      { RESEND_CONFIRMATION_CODE_URI } = uris,
       { SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE, FAILED_RESEND_CONFIRMATION_CODE_MESSAGE } = messages;
 
 function resendConfirmationCode(argument) {
@@ -20,14 +21,14 @@ function resendConfirmationCode(argument) {
           emailAddress
         };
 
-  action(callbacks, uri, (json, done) => {
+  action(callbacks, uri, (json) => {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE) :
         console.log(FAILED_RESEND_CONFIRMATION_CODE_MESSAGE);
 
-    done();
+    exit();
   }, context);
 }
 

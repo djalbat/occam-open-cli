@@ -10,7 +10,8 @@ const uris = require('../uris'),
       checkReadmeFileExistsCallback = require('../callback/checkReadmeFileExists'),
       checkMetaJSONFileExistsCallback = require('../callback/checkMetaJSONFileExists');
 
-const { PUBLISH_URI } = uris,
+const { exit } = process,
+      { PUBLISH_URI } = uris,
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages;
 
 function publish(argument) {
@@ -28,14 +29,14 @@ function publish(argument) {
           releaseName
         };
 
-  action(callbacks, uri, (json, done) => {
+  action(callbacks, uri, (json) => {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_PUBLISH_MESSAGE) :
         console.log(FAILED_PUBLISH_MESSAGE);
 
-    done();
+    exit();
   }, context);
 }
 

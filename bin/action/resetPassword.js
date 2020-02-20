@@ -5,7 +5,8 @@ const uris = require('../uris'),
       messages = require('../messages'),
       usernamePromptCallback = require('../callback/prompt/username');
 
-const { RESET_PASSWORD_URI } = uris,
+const { exit } = process,
+      { RESET_PASSWORD_URI } = uris,
       { FAILED_RESET_PASSWORD_MESSAGE, SUCCESSFUL_RESET_PASSWORD_MESSAGE } = messages;
 
 function resetPassword(argument) {
@@ -18,14 +19,14 @@ function resetPassword(argument) {
           username
         };
 
-  action(callbacks, uri, (json, done) => {
+  action(callbacks, uri, (json) => {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_RESET_PASSWORD_MESSAGE) :
         console.log(FAILED_RESET_PASSWORD_MESSAGE);
 
-    done();
+    exit();
   }, context);
 }
 

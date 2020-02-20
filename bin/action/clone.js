@@ -6,7 +6,8 @@ const uris = require('../uris'),
       cloneRepository = require('../cloneRepository'),
       releaseNamePromptCallback = require('../callback/prompt/releaseName');
 
-const { CLONE_URI } = uris,
+const { exit } = process,
+      { CLONE_URI } = uris,
       { FAILED_CLONE_MESSAGE, SUCCESSFUL_CLONE_MESSAGE } = messages;
 
 function clone(argument) {
@@ -20,15 +21,13 @@ function clone(argument) {
           name
         };
 
-  action(callbacks, uri, (json, done) => {
+  action(callbacks, uri, (json) => {
     const { exists } = json;
 
     if (!exists) {
       console.log(FAILED_CLONE_MESSAGE);
 
-      done();
-
-      return;
+      exit();
     }
 
     const { repository } = json;
@@ -38,7 +37,7 @@ function clone(argument) {
         console.log(SUCCESSFUL_CLONE_MESSAGE) :
           console.log(FAILED_CLONE_MESSAGE);
 
-      done();
+      exit();
     });
   }, context);
 }

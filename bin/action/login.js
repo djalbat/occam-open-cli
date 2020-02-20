@@ -7,7 +7,8 @@ const uris = require('../uris'),
       usernamePromptCallback = require('../callback/prompt/username'),
       passwordPromptCallback = require('../callback/prompt/password');
 
-const { LOGIN_URI } = uris,
+const { exit } = process,
+      { LOGIN_URI } = uris,
       { addAccessToken } = configuration,
       { FAILED_LOGIN_MESSAGE, SUCCESSFUL_LOGIN_MESSAGE } = messages;
 
@@ -24,7 +25,7 @@ function login(argument) {
           password
         };
 
-  action(callbacks, uri, (json, done) => {
+  action(callbacks, uri, (json) => {
     const { success } = json;
 
     success ?
@@ -37,7 +38,7 @@ function login(argument) {
       addAccessToken(accessToken);
     }
 
-    done();
+    exit();
   }, context);
 }
 

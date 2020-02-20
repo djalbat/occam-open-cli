@@ -6,7 +6,8 @@ const uris = require('../uris'),
       configuration = require('../configuration'),
       retrieveAccessTokenCallback = require('../callback/retrieveAccessToken');
 
-const { LOGOUT_URI } = uris,
+const { exit } = process,
+      { LOGOUT_URI } = uris,
       { removeAccessToken } = configuration,
       { LOGGED_OUT_MESSAGE } = messages;
 
@@ -17,12 +18,12 @@ function logout() {
         ],
         context = {};
 
-  action(callbacks, uri, (json, done) => {
+  action(callbacks, uri, (json) => {
     removeAccessToken();
 
     console.log(LOGGED_OUT_MESSAGE);
 
-    done();
+    exit();
   }, context);
 }
 

@@ -8,7 +8,8 @@ const uris = require('../uris'),
       releaseNamePromptCallback = require('../callback/prompt/releaseName'),
       retrieveAccessTokenCallback = require('../callback/retrieveAccessToken');
 
-const { DEPRECATE_URI } = uris,
+const { exit } = process,
+      { DEPRECATE_URI } = uris,
       { FAILED_DEPRECATE_MESSAGE, SUCCESSFUL_DEPRECATE_MESSAGE } = messages;
 
 function deprecate(argument) {
@@ -26,14 +27,14 @@ function deprecate(argument) {
           releaseName
         };
 
-  action(callbacks, uri, (json, done) => {
+  action(callbacks, uri, (json) => {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_DEPRECATE_MESSAGE) :
         console.log(FAILED_DEPRECATE_MESSAGE);
 
-    done();
+    exit();
   }, context);
 }
 

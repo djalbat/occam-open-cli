@@ -7,7 +7,8 @@ const uris = require('../uris'),
       retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
       confirmationCodePromptCallback = require('../callback/prompt/confirmationCode');
 
-const { CONFIRM_EMAIL_ADDRESS_URI } = uris,
+const { exit } = process,
+      { CONFIRM_EMAIL_ADDRESS_URI } = uris,
       { FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE, SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE } = messages;
 
 function confirmEmailAddress(argument) {
@@ -24,14 +25,14 @@ function confirmEmailAddress(argument) {
           confirmationCode
         };
 
-  action(callbacks, uri, (json, done) => {
+  action(callbacks, uri, (json) => {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE) :
         console.log(FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE);
 
-    done();
+    exit();
   }, context);
 }
 

@@ -9,7 +9,8 @@ const uris = require('../uris'),
       retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
       confirmNewPasswordPromptCallback = require('../callback/prompt/confirmNewPassword');
 
-const { CHANGE_PASSWORD_URI } = uris,
+const { exit } = process,
+      { CHANGE_PASSWORD_URI } = uris,
       { FAILED_CHANGE_PASSWORD_MESSAGE, SUCCESSFUL_CHANGE_PASSWORD_MESSAGE } = messages;
 
 function changePassword(argument) {
@@ -30,14 +31,14 @@ function changePassword(argument) {
           newPassword
         };
 
-  action(callbacks, uri, (json, done) => {
+  action(callbacks, uri, (json) => {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_CHANGE_PASSWORD_MESSAGE) :
         console.log(FAILED_CHANGE_PASSWORD_MESSAGE);
 
-    done();
+    exit();
   }, context);
 }
 

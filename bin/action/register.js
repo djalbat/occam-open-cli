@@ -8,7 +8,8 @@ const uris = require('../uris'),
       emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
       confirmPasswordPromptCallback = require('../callback/prompt/confirmPassword');
 
-const { REGISTER_URI } = uris,
+const { exit } = process,
+      { REGISTER_URI } = uris,
       { FAILED_REGISTER_MESSAGE, SUCCESSFUL_REGISTER_MESSAGE } = messages;
 
 function register(argument) {
@@ -28,14 +29,14 @@ function register(argument) {
           emailAddress
         };
 
-  action(callbacks, uri, (json, done) => {
+  action(callbacks, uri, (json) => {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_REGISTER_MESSAGE) :
         console.log(FAILED_REGISTER_MESSAGE);
 
-    done();
+    exit();
   }, context);
 }
 

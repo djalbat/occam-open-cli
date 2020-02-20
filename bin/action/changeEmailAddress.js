@@ -8,7 +8,8 @@ const uris = require('../uris'),
       retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
       newEmailAddressPromptCallback = require('../callback/prompt/newEmailAddress');
 
-const { CHANGE_EMAIL_ADDRESS_URI } = uris,
+const { exit } = process,
+      { CHANGE_EMAIL_ADDRESS_URI } = uris,
       { FAILED_CHANGE_EMAIL_ADDRESS_MESSAGE, SUCCESSFUL_CHANGE_EMAIL_ADDRESS_MESSAGE } = messages;
 
 function changeEmailAddress(argument) {
@@ -26,14 +27,14 @@ function changeEmailAddress(argument) {
           emailAddress
         };
 
-  action(callbacks, uri, (json, done) => {
+  action(callbacks, uri, (json) => {
     const { success } = json;
 
     success ?
       console.log(SUCCESSFUL_CHANGE_EMAIL_ADDRESS_MESSAGE) :
         console.log(FAILED_CHANGE_EMAIL_ADDRESS_MESSAGE);
 
-    done();
+    exit();
   }, context);
 }
 
