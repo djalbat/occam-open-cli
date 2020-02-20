@@ -42,6 +42,8 @@ function setOptions() {
     updateOptions(options);
 
     console.log(SUCCESSFUL_SET_OPTIONS_MESSAGE);
+
+    exit();
   }, context);
 }
 

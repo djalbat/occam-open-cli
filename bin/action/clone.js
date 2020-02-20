@@ -36,6 +36,8 @@ function clone(argument) {
       success ?
         console.log(SUCCESSFUL_CLONE_MESSAGE) :
           console.log(FAILED_CLONE_MESSAGE);
+
+      exit();
     });
   }, context);
 }

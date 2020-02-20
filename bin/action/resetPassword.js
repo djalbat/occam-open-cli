@@ -25,6 +25,8 @@ function resetPassword(argument) {
     success ?
       console.log(SUCCESSFUL_RESET_PASSWORD_MESSAGE) :
         console.log(FAILED_RESET_PASSWORD_MESSAGE);
+
+    exit();
   }, context);
 }
 

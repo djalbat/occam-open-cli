@@ -31,6 +31,8 @@ function confirmEmailAddress(argument) {
     success ?
       console.log(SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE) :
         console.log(FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE);
+
+    exit();
   }, context);
 }
 

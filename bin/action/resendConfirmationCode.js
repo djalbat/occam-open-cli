@@ -27,6 +27,8 @@ function resendConfirmationCode(argument) {
     success ?
       console.log(SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE) :
         console.log(FAILED_RESEND_CONFIRMATION_CODE_MESSAGE);
+
+    exit();
   }, context);
 }
 
