@@ -3,13 +3,13 @@
 function help() {
   console.log(`Usage: 
   
-  open [help]                                    Show this help
-  
-  open [install] <package_name>                  Install a package
-
-  open <command> [<argument>]
+  open [<command>] [<argument>]
 
 Commands:
+
+  [help]                                         Show this help
+  
+  [install] <package_name>                       Install a package
 
   initialise                                     Create a configuration file
 
