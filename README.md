@@ -20,9 +20,13 @@ The `open` command line tool provides similar functionality to [`npm`](https://w
 
 If you are an end user, you can install `open` via `npm`. Instructions for doing so, together with other relevant information, can be found in the 'How to contribute' section on the front page of the aforementioned Open Mathematics website.
 
-If you would like to contribute or would simply like to have a look at the code, you can clone the repository with [Git](https://git-scm.com/):
+If you would like to contribute or would simply like to have a look at the code, you can clone the repository with [Git](https://git-scm.com/)...
 
     git clone https://github.com/jecs-imperial/occam-open-cli.git
+
+...and then install the dependencies with [npm](https://www.npmjs.com/) from within the project's root directory:
+
+    npm install
 
 ## Usage
 
