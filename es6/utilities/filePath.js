@@ -14,19 +14,19 @@ const readmeFilePathRegularExpression = new RegExp(readmeFilePathPattern),
       customGrammarBNFFilePathRegularExpression = new RegExp(customGrammarBNFFilePathPattern),
       customGrammarLexicalPatternFilePathRegularExpression = new RegExp(customGrammarLexicalPatternFilePathPattern);
 
-function isFilePathReadmeFilePath(filePath) { return readmeFilePathRegularExpression.test(filePath); }
+export function isFilePathReadmeFilePath(filePath) { return readmeFilePathRegularExpression.test(filePath); }
 
-function isFilePathFlorenceFilePath(filePath) { return florenceFilePathRegularExpression.test(filePath); }
+export function isFilePathFlorenceFilePath(filePath) { return florenceFilePathRegularExpression.test(filePath); }
 
-function isFilePathMetaJSONFilePath(filePath) { return metaJSONFilePathRegularExpression.test(filePath); }
+export function isFilePathMetaJSONFilePath(filePath) { return metaJSONFilePathRegularExpression.test(filePath); }
 
-function isFilePathRecognisedFilePath(filePath) { return recognisedFilePathRegularExpression.test(filePath); }
+export function isFilePathRecognisedFilePath(filePath) { return recognisedFilePathRegularExpression.test(filePath); }
 
-function isFilePathCustomGrammarBNFFilePath(filePath) { return customGrammarBNFFilePathRegularExpression.test(filePath); }
+export function isFilePathCustomGrammarBNFFilePath(filePath) { return customGrammarBNFFilePathRegularExpression.test(filePath); }
 
-function isFilePathCustomGrammarLexicalPatternFilePath(filePath) { return customGrammarLexicalPatternFilePathRegularExpression.test(filePath); }
+export function isFilePathCustomGrammarLexicalPatternFilePath(filePath) { return customGrammarLexicalPatternFilePathRegularExpression.test(filePath); }
 
-module.exports = {
+export default {
   isFilePathReadmeFilePath,
   isFilePathFlorenceFilePath,
   isFilePathMetaJSONFilePath,

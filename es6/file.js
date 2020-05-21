@@ -9,7 +9,7 @@ import { removeMasterDirectoryNameFromPath } from "./utilities/name";
 const { readFile, writeFile, isEntryFile } = fileSystemUtilities,
       { concatenatePaths, topmostDirectoryPathFromPath } = pathUtilities;
 
-class File {
+export default class File {
   constructor(path, content) {
     this.path = path;
     this.content = content;
@@ -64,6 +64,8 @@ class File {
 
     return json;
   }
+
+  static type = "File";
 
   static fromJSON(json) {
     let file = null;
@@ -159,13 +161,5 @@ class File {
     return file;
   }
 }
-
-const type = "File";
-
-Object.assign(File, {
-  type
-});
-
-module.exports = File;
 
 function convertContentTabsToWhitespace(content) { return content.replace(/\t/g, "  "); } ///

@@ -10,7 +10,7 @@ const { forEach } = asynchronousUtilities,
       { concatenatePaths } = pathUtilities,
       { isEntryDirectory, readDirectory } = fileSystemUtilities;
 
-class Projects {
+export default class Projects {
   constructor(array) {
     this.array = array;
   }
@@ -81,8 +81,6 @@ class Projects {
     return projects;
   }
 }
-
-module.exports = Projects;
 
 function topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
   let topmostDirectoryNames;

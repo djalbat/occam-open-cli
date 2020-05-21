@@ -1,6 +1,6 @@
 "use strict";
 
-function findNodeByClass(node, Class) {
+export function findNodeByClass(node, Class) {
   let foundNode = null;
 
   if (node instanceof Class) {
@@ -25,7 +25,7 @@ function findNodeByClass(node, Class) {
   return foundNode;
 }
 
-function findNodesByClass(node, Class, foundNodes = []) {
+export function findNodesByClass(node, Class, foundNodes = []) {
   if (node instanceof Class) {
     const foundNode = node; ///
 
@@ -46,7 +46,7 @@ function findNodesByClass(node, Class, foundNodes = []) {
   return foundNodes;
 }
 
-function findTerminalNodes(node, foundTerminalNodes = []) {
+export function findTerminalNodes(node, foundTerminalNodes = []) {
   const nodeTerminalNode = node.isTerminalNode();
 
   if (nodeTerminalNode) {
@@ -68,9 +68,3 @@ function findTerminalNodes(node, foundTerminalNodes = []) {
 
   return foundTerminalNodes;
 }
-
-module.exports = {
-  findNodeByClass,
-  findNodesByClass,
-  findTerminalNodes
-};

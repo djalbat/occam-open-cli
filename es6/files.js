@@ -2,7 +2,7 @@
 
 import File from "./file";
 
-class Files {
+export default class Files {
   constructor(array) {
     this.array = array;
   }
@@ -95,5 +95,3 @@ class Files {
     return files;
   }
 }
-
-module.exports = Files;

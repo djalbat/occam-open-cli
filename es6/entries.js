@@ -16,7 +16,7 @@ const { forEach } = asynchronousUtilities,
       { readDirectory } = fileSystemUtilities,
       { concatenatePaths, topmostDirectoryNameFromPath } = pathUtilities;
 
-class Entries {
+export default class Entries {
   constructor(array) {
     this.array = array;
   }
@@ -194,8 +194,6 @@ class Entries {
     return entries;
   }
 }
-
-module.exports = Entries;
 
 function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
   const absoluteDirectoryPath = concatenatePaths(projectsDirectoryPath, relativeDirectoryPath),

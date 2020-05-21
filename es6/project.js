@@ -7,7 +7,7 @@ import Entries from "./entries";
 
 import { isFilePathFlorenceFilePath, isFilePathMetaJSONFilePath, isFilePathCustomGrammarBNFFilePath, isFilePathCustomGrammarLexicalPatternFilePath } from "./utilities/filePath";
 
-class Project {
+export default class Project {
   constructor(name, entries) {
     this.name = name;
     this.entries = entries;
@@ -172,5 +172,3 @@ class Project {
     return project;
   }
 }
-
-module.exports = Project;

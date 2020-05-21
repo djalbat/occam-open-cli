@@ -4,7 +4,7 @@ import Entries from "./entries";
 
 import { isFilePathReadmeFilePath, isFilePathMetaJSONFilePath } from "./utilities/filePath";
 
-class Release {
+export default class Release {
   constructor(name, entries, versionNumber) {
     this.name = name;
     this.entries = entries;
@@ -101,5 +101,3 @@ class Release {
     return release;
   }
 }
-
-module.exports = Release;

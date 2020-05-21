@@ -1,6 +1,6 @@
 "use strict";
 
-function significantTokensFromTokens(tokens) {
+export function significantTokensFromTokens(tokens) {
   const significantTokens = tokens.reduce((significantTokens, token) => {
           const tokenSignificant = token.isSignificant();
 
@@ -15,7 +15,3 @@ function significantTokensFromTokens(tokens) {
 
   return significantTokens;
 }
-
-module.exports = {
-  significantTokensFromTokens
-};

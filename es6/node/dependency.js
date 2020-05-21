@@ -7,7 +7,7 @@ import { findTerminalNodes } from "../utilities/node";
 
 const { first } = arrayUtilities;
 
-class DependencyNode extends NonTerminalNode {
+export default class DependencyNode extends NonTerminalNode {
   constructor(ruleName, childNodes) {
     super(ruleName, childNodes);
 
@@ -32,5 +32,3 @@ class DependencyNode extends NonTerminalNode {
     return dependencyNode;
   }
 }
-
-module.exports = DependencyNode;

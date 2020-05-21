@@ -4,7 +4,7 @@ import { arrayUtilities } from "necessary";
 
 const { second } = arrayUtilities;
 
-class Version {
+export default class Version {
   constructor(majorNumber, minorNumber, patchNumber) {
     this.majorNumber = majorNumber;
     this.minorNumber = minorNumber;
@@ -58,8 +58,6 @@ class Version {
     return version;
   }
 }
-
-module.exports = Version;
 
 function majorNumberFromNumber(number) {
   const majorNumber = (number !== null) ?

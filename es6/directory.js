@@ -7,7 +7,7 @@ import { removeMasterDirectoryNameFromPath } from "./utilities/name";
 const { concatenatePaths } = pathUtilities,
       { isEntryDirectory } = fileSystemUtilities;
 
-class Directory {
+export default class Directory {
   constructor(path) {
     this.path = path;
   }
@@ -38,6 +38,8 @@ class Directory {
 
     return json;
   }
+
+  static type = "Directory";
 
   static fromJSON(json) {
     let directory = null;
@@ -100,14 +102,6 @@ class Directory {
     callback(directory);
   }
 }
-
-const type = "Directory";
-
-Object.assign(Directory, {
-  type
-});
-
-module.exports = Directory;
 
 function pathWithoutTrailingSlashFromPath(path) {
   const pathWithoutTrailingSlash = path.replace(/\/$/, "");
