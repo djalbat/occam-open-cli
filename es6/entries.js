@@ -1,23 +1,19 @@
 "use strict";
 
-const necessary = require("necessary");
+import { pathUtilities, arrayUtilities, asynchronousUtilities, fileSystemUtilities } from "necessary";
 
-const File = require("./file"),
-      Files = require("./files"),
-      messages = require("./messages"),
-      constants = require("./constants"),
-      Directory = require("./directory"),
-      nameUtilities = require("./utilities/name"),
-      filePathUtilities = require("./utilities/filePath");
+import File from "./file";
+import Files from "./files";
+import Directory from "./directory";
 
-const { pathUtilities, arrayUtilities, asynchronousUtilities, fileSystemUtilities } = necessary,
+import { isNameHiddenName } from "./utilities/name";
+import { ENTRIES_MAXIMUM_ARRAY_LENGTH } from "./constants";
+import { isFilePathRecognisedFilePath } from "./utilities/filePath";
+import { ENTRIES_MAXIMUM_ARRAY_LENGTH_EXCEEDED_MESSAGE } from "./messages";
+
+const { forEach } = asynchronousUtilities,
       { first, filter } = arrayUtilities,
-      { forEach } = asynchronousUtilities,
       { readDirectory } = fileSystemUtilities,
-      { isNameHiddenName } = nameUtilities,
-      { isFilePathRecognisedFilePath } = filePathUtilities,
-      { ENTRIES_MAXIMUM_ARRAY_LENGTH } = constants,
-      { ENTRIES_MAXIMUM_ARRAY_LENGTH_EXCEEDED_MESSAGE } = messages,
       { concatenatePaths, topmostDirectoryNameFromPath } = pathUtilities;
 
 class Entries {

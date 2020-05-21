@@ -1,14 +1,13 @@
 "use strict";
 
-const necessary = require("necessary");
+import { pathUtilities, fileSystemUtilities, asynchronousUtilities } from "necessary";
 
-const Project = require("./project"),
-      nameUtilities = require("./utilities/name");
+import Project from "./project";
 
-const { pathUtilities, fileSystemUtilities, asynchronousUtilities } = necessary,
-      { forEach } = asynchronousUtilities,
+import { isNameHiddenName } from "./utilities/name";
+
+const { forEach } = asynchronousUtilities,
       { concatenatePaths } = pathUtilities,
-      { isNameHiddenName } = nameUtilities,
       { isEntryDirectory, readDirectory } = fileSystemUtilities;
 
 class Projects {

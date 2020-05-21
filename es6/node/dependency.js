@@ -1,14 +1,11 @@
 "use strict";
 
-const parsers = require("occam-parsers"),
-      necessary = require("necessary");
+import { arrayUtilities } from "necessary";
+import { NonTerminalNode } from "occam-parsers";
 
-const nodeUtilities = require("../utilities/node");
+import { findTerminalNodes } from "../utilities/node";
 
-const { NonTerminalNode } = parsers,
-      { arrayUtilities } = necessary,
-      { findTerminalNodes } = nodeUtilities,
-      { first } = arrayUtilities;
+const { first } = arrayUtilities;
 
 class DependencyNode extends NonTerminalNode {
   constructor(ruleName, childNodes) {

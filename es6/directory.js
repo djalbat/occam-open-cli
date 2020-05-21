@@ -1,13 +1,11 @@
 "use strict";
 
-const necessary = require("necessary");
+import { pathUtilities, fileSystemUtilities } from "necessary";
 
-const nameUtilities = require("./utilities/name");
+import { removeMasterDirectoryNameFromPath } from "./utilities/name";
 
-const { pathUtilities, fileSystemUtilities } = necessary,
-      { concatenatePaths } = pathUtilities,
-      { isEntryDirectory } = fileSystemUtilities,
-      { removeMasterDirectoryNameFromPath } = nameUtilities;
+const { concatenatePaths } = pathUtilities,
+      { isEntryDirectory } = fileSystemUtilities;
 
 class Directory {
   constructor(path) {

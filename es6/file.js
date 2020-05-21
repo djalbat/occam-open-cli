@@ -1,13 +1,12 @@
 "use strict";
 
-const mkdirp = require("mkdirp"),
-      necessary = require("necessary");
+import { pathUtilities, fileSystemUtilities } from "necessary";
 
-const nameUtilities = require("./utilities/name");
+import mkdirp from "mkdirp";
 
-const { pathUtilities, fileSystemUtilities } = necessary,
-      { readFile, writeFile, isEntryFile } = fileSystemUtilities,
-      { removeMasterDirectoryNameFromPath } = nameUtilities,
+import { removeMasterDirectoryNameFromPath } from "./utilities/name";
+
+const { readFile, writeFile, isEntryFile } = fileSystemUtilities,
       { concatenatePaths, topmostDirectoryPathFromPath } = pathUtilities;
 
 class File {

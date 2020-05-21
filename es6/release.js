@@ -1,9 +1,8 @@
 "use strict";
 
-const Entries = require("./entries"),
-      filePathUtilities = require("./utilities/filePath");
+import Entries from "./entries";
 
-const { isFilePathReadmeFilePath, isFilePathMetaJSONFilePath } = filePathUtilities;
+import { isFilePathReadmeFilePath, isFilePathMetaJSONFilePath } from "./utilities/filePath";
 
 class Release {
   constructor(name, entries, versionNumber) {

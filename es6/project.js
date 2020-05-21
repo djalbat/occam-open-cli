@@ -1,12 +1,11 @@
 "use strict";
 
-const JSZip = require("jszip"),
-      request = require("request");
+import JSZip from "jszip";
+import request from "request";
 
-const Entries = require("./entries"),
-      filePathUtilities = require("./utilities/filePath");
+import Entries from "./entries";
 
-const { isFilePathFlorenceFilePath, isFilePathMetaJSONFilePath, isFilePathCustomGrammarBNFFilePath, isFilePathCustomGrammarLexicalPatternFilePath } = filePathUtilities;
+import { isFilePathFlorenceFilePath, isFilePathMetaJSONFilePath, isFilePathCustomGrammarBNFFilePath, isFilePathCustomGrammarLexicalPatternFilePath } from "./utilities/filePath";
 
 class Project {
   constructor(name, entries) {

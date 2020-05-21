@@ -1,9 +1,8 @@
 "use strict";
 
-const necessary = require("necessary");
+import { arrayUtilities } from "necessary";
 
-const { arrayUtilities } = necessary,
-      { second } = arrayUtilities;
+const { second } = arrayUtilities;
 
 class Version {
   constructor(majorNumber, minorNumber, patchNumber) {

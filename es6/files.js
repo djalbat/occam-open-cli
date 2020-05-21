@@ -1,6 +1,6 @@
 "use strict";
 
-const File = require("./file");
+import File from "./file";
 
 class Files {
   constructor(array) {
