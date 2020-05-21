@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const Entries = require('./entries'),
-      filePathUtilities = require('./utilities/filePath');
+const Entries = require("./entries"),
+      filePathUtilities = require("./utilities/filePath");
 
 const { isFilePathReadmeFilePath, isFilePathMetaJSONFilePath } = filePathUtilities;
 
@@ -92,7 +92,7 @@ class Release {
 
   static fromName(name) {
     const topmostDirectoryName = name, ///
-          projectsDirectoryPath = '.',
+          projectsDirectoryPath = ".",
           loadOnlyRecognisedFiles = true,
           doNotLoadHiddenFilesAndDirectories = true,
           entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories),

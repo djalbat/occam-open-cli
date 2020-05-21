@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 function significantTokensFromTokens(tokens) {
   const significantTokens = tokens.reduce((significantTokens, token) => {

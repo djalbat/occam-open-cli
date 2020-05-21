@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const necessary = require('necessary');
+const necessary = require("necessary");
 
-const nameUtilities = require('./utilities/name');
+const nameUtilities = require("./utilities/name");
 
 const { pathUtilities, fileSystemUtilities } = necessary,
       { concatenatePaths } = pathUtilities,
@@ -103,7 +103,7 @@ class Directory {
   }
 }
 
-const type = 'Directory';
+const type = "Directory";
 
 Object.assign(Directory, {
   type
@@ -112,8 +112,7 @@ Object.assign(Directory, {
 module.exports = Directory;
 
 function pathWithoutTrailingSlashFromPath(path) {
-  const pathWithoutTrailingSlash = path.replace(/\/$/, '');
+  const pathWithoutTrailingSlash = path.replace(/\/$/, "");
 
   return pathWithoutTrailingSlash;
 }
-

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 function findNodeByClass(node, Class) {
   let foundNode = null;

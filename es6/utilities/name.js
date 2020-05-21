@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const hiddenNameRegularExpression = /^\..+/;
 
@@ -9,7 +9,7 @@ function isNameHiddenName(name) {
 }
 
 function removeMasterDirectoryNameFromPath(path) {
-  path = path.replace(/\-master/, '');
+  path = path.replace(/\-master/, "");
 
   return path;
 }

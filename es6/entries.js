@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
-const necessary = require('necessary');
+const necessary = require("necessary");
 
-const File = require('./file'),
-      Files = require('./files'),
-      messages = require('./messages'),
-      constants = require('./constants'),
-      Directory = require('./directory'),
-      nameUtilities = require('./utilities/name'),
-      filePathUtilities = require('./utilities/filePath');
+const File = require("./file"),
+      Files = require("./files"),
+      messages = require("./messages"),
+      constants = require("./constants"),
+      Directory = require("./directory"),
+      nameUtilities = require("./utilities/name"),
+      filePathUtilities = require("./utilities/filePath");
 
 const { pathUtilities, arrayUtilities, asynchronousUtilities, fileSystemUtilities } = necessary,
       { first, filter } = arrayUtilities,

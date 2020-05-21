@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const necessary = require('necessary');
+const necessary = require("necessary");
 
-const Project = require('./project'),
-      nameUtilities = require('./utilities/name');
+const Project = require("./project"),
+      nameUtilities = require("./utilities/name");
 
 const { pathUtilities, fileSystemUtilities, asynchronousUtilities } = necessary,
       { forEach } = asynchronousUtilities,

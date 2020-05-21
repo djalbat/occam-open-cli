@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-const JSZip = require('jszip'),
-      request = require('request');
+const JSZip = require("jszip"),
+      request = require("request");
 
-const Entries = require('./entries'),
-      filePathUtilities = require('./utilities/filePath');
+const Entries = require("./entries"),
+      filePathUtilities = require("./utilities/filePath");
 
 const { isFilePathFlorenceFilePath, isFilePathMetaJSONFilePath, isFilePathCustomGrammarBNFFilePath, isFilePathCustomGrammarLexicalPatternFilePath } = filePathUtilities;
 
@@ -120,7 +120,7 @@ class Project {
   }
 
   static fromURL(url, callback) {
-    const method = 'GET',
+    const method = "GET",
           encoding = null,
           options = {
             url,

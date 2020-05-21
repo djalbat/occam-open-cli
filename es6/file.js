@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const mkdirp = require('mkdirp'),
-      necessary = require('necessary');
+const mkdirp = require("mkdirp"),
+      necessary = require("necessary");
 
-const nameUtilities = require('./utilities/name');
+const nameUtilities = require("./utilities/name");
 
 const { pathUtilities, fileSystemUtilities } = necessary,
       { readFile, writeFile, isEntryFile } = fileSystemUtilities,
@@ -143,7 +143,7 @@ class File {
 
     path = removeMasterDirectoryNameFromPath(path);
 
-    jsZipEntry.async('string').then((content) => {
+    jsZipEntry.async("string").then((content) => {
       content = convertContentTabsToWhitespace(content);  ///
 
       file = new File(path, content);
@@ -161,7 +161,7 @@ class File {
   }
 }
 
-const type = 'File';
+const type = "File";
 
 Object.assign(File, {
   type
@@ -169,4 +169,4 @@ Object.assign(File, {
 
 module.exports = File;
 
-function convertContentTabsToWhitespace(content) { return content.replace(/\t/g, '  '); } ///
+function convertContentTabsToWhitespace(content) { return content.replace(/\t/g, "  "); } ///

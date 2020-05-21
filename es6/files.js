@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const File = require('./file');
+const File = require("./file");
 
 class Files {
   constructor(array) {
