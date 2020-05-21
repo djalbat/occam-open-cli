@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const necessary = require('necessary');
+const necessary = require("necessary");
 
-const messages = require('../../messages'),
-      validateUtilities = require('../../utilities/validate');
+const messages = require("../../messages"),
+      validateUtilities = require("../../utilities/validate");
 
 const { miscellaneousUtilities } = necessary,
       { prompt } = miscellaneousUtilities,
@@ -12,7 +12,7 @@ const { miscellaneousUtilities } = necessary,
 
 function passwordPromptCallback(proceed, abort, context) {
   const hidden = true,
-        description = 'Password: ',
+        description = "Password: ",
         errorMessage = INVALID_PASSWORD_MESSAGE,
         validationFunction = validatePassword,  ///
         options = {

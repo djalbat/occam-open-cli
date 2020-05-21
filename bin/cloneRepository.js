@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const childProcess = require('child_process');
+const childProcess = require("child_process");
 
-const constants = require('./constants'),
-      configuration = require('./configuration');
+const constants = require("./constants"),
+      configuration = require("./configuration");
 
 const { exec } = childProcess,
       { retrieveOptions } = configuration,

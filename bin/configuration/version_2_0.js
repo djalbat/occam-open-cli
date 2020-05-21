@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const versions = require('../versions'),
-      constants = require('../constants');
+const versions = require("../versions"),
+      constants = require("../constants");
 
 const { VERSION_2_0 } = versions,
       { DEFAULT_HOST_URL } = constants;

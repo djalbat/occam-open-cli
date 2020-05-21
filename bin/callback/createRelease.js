@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const messages = require('../messages'),
-      Release = require('../../es6/release');
+const messages = require("../messages"),
+      Release = require("../../es6/release");
 
 const { UNABLE_TO_CREATE_RELEASE_MESSAGE } = messages;
 

@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const necessary = require('necessary');
+const necessary = require("necessary");
 
-const messages = require('../../messages'),
-      validateUtilities = require('../../utilities/validate');
+const messages = require("../../messages"),
+      validateUtilities = require("../../utilities/validate");
 
 const { miscellaneousUtilities } = necessary,
       { prompt } = miscellaneousUtilities,
@@ -26,7 +26,7 @@ function releaseNamePromptCallback(proceed, abort, context) {
     }
   }
 
-  const description = 'Package name: ',
+  const description = "Package name: ",
         validationFunction = validateReleaseName, ///
         options = {
           description,

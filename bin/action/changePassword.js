@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
-const uris = require('../uris'),
-      action = require('../action'),
-      messages = require('../messages'),
-      usernamePromptCallback = require('../callback/prompt/username'),
-      passwordPromptCallback = require('../callback/prompt/password'),
-      newPasswordPromptCallback = require('../callback/prompt/newPassword'),
-      retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
-      confirmNewPasswordPromptCallback = require('../callback/prompt/confirmNewPassword');
+const uris = require("../uris"),
+      action = require("../action"),
+      messages = require("../messages"),
+      usernamePromptCallback = require("../callback/prompt/username"),
+      passwordPromptCallback = require("../callback/prompt/password"),
+      newPasswordPromptCallback = require("../callback/prompt/newPassword"),
+      retrieveAccessTokenCallback = require("../callback/retrieveAccessToken"),
+      confirmNewPasswordPromptCallback = require("../callback/prompt/confirmNewPassword");
 
 const { exit } = process,
       { CHANGE_PASSWORD_URI } = uris,

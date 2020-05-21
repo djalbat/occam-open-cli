@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
-const uris = require('../uris'),
-      action = require('../action'),
-      messages = require('../messages'),
-      createReleaseCallback = require('../callback/createRelease'),
-      deflateReleaseCallback = require('../callback/deflateRelease'),
-      releaseNamePromptCallback = require('../callback/prompt/releaseName'),
-      retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
-      checkReadmeFileExistsCallback = require('../callback/checkReadmeFileExists'),
-      checkMetaJSONFileExistsCallback = require('../callback/checkMetaJSONFileExists');
+const uris = require("../uris"),
+      action = require("../action"),
+      messages = require("../messages"),
+      createReleaseCallback = require("../callback/createRelease"),
+      deflateReleaseCallback = require("../callback/deflateRelease"),
+      releaseNamePromptCallback = require("../callback/prompt/releaseName"),
+      retrieveAccessTokenCallback = require("../callback/retrieveAccessToken"),
+      checkReadmeFileExistsCallback = require("../callback/checkReadmeFileExists"),
+      checkMetaJSONFileExistsCallback = require("../callback/checkMetaJSONFileExists");
 
 const { exit } = process,
       { PUBLISH_URI } = uris,

@@ -1,22 +1,22 @@
-'use strict';
+"use strict";
 
-const HELP_COMMAND = 'help',
-      CLONE_COMMAND = 'clone',
-      LOGIN_COMMAND = 'login',
-      LOGOUT_COMMAND = 'logout',
-      REMOVE_COMMAND = 'remove',
-      VERSION_COMMAND = 'version',
-      INSTALL_COMMAND = 'install',
-      PUBLISH_COMMAND = 'publish',
-      REGISTER_COMMAND = 'register',
-      DEPRECATE_COMMAND = 'deprecate',
-      INITIALISE_COMMAND = 'initialise',
-      SET_OPTIONS_COMMAND = 'set-options',
-      RESET_PASSWORD_COMMAND = 'reset-password',
-      CHANGE_PASSWORD_COMMAND = 'change-password',
-      CHANGE_EMAIL_ADDRESS_COMMAND = 'change-email-address',
-      CONFIRM_EMAIL_ADDRESS_COMMAND = 'confirm-email-address',
-      RESEND_CONFIRMATION_CODE_COMMAND = 'resend-confirmation-code';
+const HELP_COMMAND = "help",
+      CLONE_COMMAND = "clone",
+      LOGIN_COMMAND = "login",
+      LOGOUT_COMMAND = "logout",
+      REMOVE_COMMAND = "remove",
+      VERSION_COMMAND = "version",
+      INSTALL_COMMAND = "install",
+      PUBLISH_COMMAND = "publish",
+      REGISTER_COMMAND = "register",
+      DEPRECATE_COMMAND = "deprecate",
+      INITIALISE_COMMAND = "initialise",
+      SET_OPTIONS_COMMAND = "set-options",
+      RESET_PASSWORD_COMMAND = "reset-password",
+      CHANGE_PASSWORD_COMMAND = "change-password",
+      CHANGE_EMAIL_ADDRESS_COMMAND = "change-email-address",
+      CONFIRM_EMAIL_ADDRESS_COMMAND = "confirm-email-address",
+      RESEND_CONFIRMATION_CODE_COMMAND = "resend-confirmation-code";
 
 module.exports = {
   HELP_COMMAND,

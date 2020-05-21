@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
-const os = require('os');
+const os = require("os");
 
-const request = require('request'),
-      necessary = require('necessary');
+const request = require("request"),
+      necessary = require("necessary");
 
-const messages = require('./messages'),
-      constants = require('./constants'),
-      configuration = require('./configuration'),
-      packageJSONUtilities = require('./utilities/packageJSON');
+const messages = require("./messages"),
+      constants = require("./constants"),
+      configuration = require("./configuration"),
+      packageJSONUtilities = require("./utilities/packageJSON");
 
 const { miscellaneousUtilities } = necessary,
       { exit } = process,
@@ -69,7 +69,7 @@ function optionsFromURIAndData(uri, data) {
         operatingSystem = osType, ///
         userAgent = `${OCCAM_OPEN_CLI}/${operatingSystem}`,
         headers = {
-          'User-Agent' : userAgent
+          "User-Agent" : userAgent
         },
         options = {	///
           url,

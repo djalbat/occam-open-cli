@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const post = require('./post'),
-      callbackUtilities = require('./utilities/callback');
+const post = require("./post"),
+      callbackUtilities = require("./utilities/callback");
 
 const { exit } = process,
       { executeCallbacks } = callbackUtilities;

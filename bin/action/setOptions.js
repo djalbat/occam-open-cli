@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-const messages = require('../messages'),
-      configuration = require('../configuration'),
-      callbackUtilities = require('../utilities/callback'),
-      useSSHPromptCallback = require('../callback/prompt/useSSH'),
-      gitHubHostNamePromptCallback = require('../callback/prompt/gitHubHostName');
+const messages = require("../messages"),
+      configuration = require("../configuration"),
+      callbackUtilities = require("../utilities/callback"),
+      useSSHPromptCallback = require("../callback/prompt/useSSH"),
+      gitHubHostNamePromptCallback = require("../callback/prompt/gitHubHostName");
 
 const { exit } = process,
       { updateOptions } = configuration,

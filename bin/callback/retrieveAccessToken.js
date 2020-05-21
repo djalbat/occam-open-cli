@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const messages = require('../messages'),
-      configuration = require('../configuration');
+const messages = require("../messages"),
+      configuration = require("../configuration");
 
 const { retrieveAccessToken } = configuration,
       { NOT_LOGGED_IN_MESSAGE } = messages;

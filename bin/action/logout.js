@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-const uris = require('../uris'),
-      action = require('../action'),
-      messages = require('../messages'),
-      configuration = require('../configuration'),
-      retrieveAccessTokenCallback = require('../callback/retrieveAccessToken');
+const uris = require("../uris"),
+      action = require("../action"),
+      messages = require("../messages"),
+      configuration = require("../configuration"),
+      retrieveAccessTokenCallback = require("../callback/retrieveAccessToken");
 
 const { exit } = process,
       { LOGOUT_URI } = uris,

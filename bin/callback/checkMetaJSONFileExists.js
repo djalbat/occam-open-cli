@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const messages = require('../messages');
+const messages = require("../messages");
 
 const { META_JSON_FILE_DOES_NOT_EXIST_MESSAGE } = messages;
 

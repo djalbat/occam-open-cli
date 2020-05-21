@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const messages = require('../messages');
+const messages = require("../messages");
 
 const { README_FILE_DOES_NOT_EXIST_MESSAGE } = messages;
 

@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 
-const necessary = require('necessary');
+const necessary = require("necessary");
 
-const versions = require('./versions'),
-      messages = require('./messages'),
-      constants = require('./constants'),
-      configurationVersion_1_5 = require('./configuration/version_1_5'),
-      configurationVersion_2_0 = require('./configuration/version_2_0');
+const versions = require("./versions"),
+      messages = require("./messages"),
+      constants = require("./constants"),
+      configurationVersion_1_5 = require("./configuration/version_1_5"),
+      configurationVersion_2_0 = require("./configuration/version_2_0");
 
 const { miscellaneousUtilities } = necessary,
       { rc } = miscellaneousUtilities,
@@ -54,7 +54,7 @@ function addAccessToken(accessToken) {
 }
 
 function removeAccessToken() {
-  updateConfigurationFile(null, 'accessToken');
+  updateConfigurationFile(null, "accessToken");
 }
 
 function createConfigurationFile() {

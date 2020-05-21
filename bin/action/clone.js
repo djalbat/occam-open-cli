@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-const uris = require('../uris'),
-      action = require('../action'),
-      messages = require('../messages'),
-      cloneRepository = require('../cloneRepository'),
-      releaseNamePromptCallback = require('../callback/prompt/releaseName');
+const uris = require("../uris"),
+      action = require("../action"),
+      messages = require("../messages"),
+      cloneRepository = require("../cloneRepository"),
+      releaseNamePromptCallback = require("../callback/prompt/releaseName");
 
 const { exit } = process,
       { CLONE_URI } = uris,

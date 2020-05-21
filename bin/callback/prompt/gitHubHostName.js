@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-const necessary = require('necessary');
+const necessary = require("necessary");
 
-const messages = require('../../messages'),
-      constants = require('../../constants'),
-      validateUtilities = require('../../utilities/validate');
+const messages = require("../../messages"),
+      constants = require("../../constants"),
+      validateUtilities = require("../../utilities/validate");
 
 const { miscellaneousUtilities } = necessary,
       { prompt } = miscellaneousUtilities,
@@ -21,7 +21,7 @@ function gitHubHostNamePromptCallback(proceed, abort, context) {
     return;
   }
 
-  const description = 'GitHub host name (leave blank for default): ',
+  const description = "GitHub host name (leave blank for default): ",
         errorMessage = INVALID_GITHUB_HOST_NAME_MESSAGE,
         validationFunction = validateGitHubHostName,  ///
         options = {
@@ -34,7 +34,7 @@ function gitHubHostNamePromptCallback(proceed, abort, context) {
     const valid = (gitHubHostName !== null);
 
     if (valid) {
-      if (gitHubHostName === '') {
+      if (gitHubHostName === "") {
         gitHubHostName = DEFAULT_GITHUB_HOST_NAME;
       }
 

@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 
-const uris = require('../uris'),
-      action = require('../action'),
-      messages = require('../messages'),
-      passwordPromptCallback = require('../callback/prompt/password'),
-      areYouSurePromptCallback = require('../callback/prompt/areYouSure'),
-      releaseNamePromptCallback = require('../callback/prompt/releaseName'),
-      retrieveAccessTokenCallback = require('../callback/retrieveAccessToken');
+const uris = require("../uris"),
+      action = require("../action"),
+      messages = require("../messages"),
+      passwordPromptCallback = require("../callback/prompt/password"),
+      areYouSurePromptCallback = require("../callback/prompt/areYouSure"),
+      releaseNamePromptCallback = require("../callback/prompt/releaseName"),
+      retrieveAccessTokenCallback = require("../callback/retrieveAccessToken");
 
 const { exit } = process,
       { DEPRECATE_URI } = uris,

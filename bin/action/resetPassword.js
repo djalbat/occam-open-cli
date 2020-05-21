@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const uris = require('../uris'),
-      action = require('../action'),
-      messages = require('../messages'),
-      usernamePromptCallback = require('../callback/prompt/username');
+const uris = require("../uris"),
+      action = require("../action"),
+      messages = require("../messages"),
+      usernamePromptCallback = require("../callback/prompt/username");
 
 const { exit } = process,
       { RESET_PASSWORD_URI } = uris,

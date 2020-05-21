@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 
-const uris = require('../uris'),
-      action = require('../action'),
-      messages = require('../messages'),
-      usernamePromptCallback = require('../callback/prompt/username'),
-      passwordPromptCallback = require('../callback/prompt/password'),
-      emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
-      confirmPasswordPromptCallback = require('../callback/prompt/confirmPassword');
+const uris = require("../uris"),
+      action = require("../action"),
+      messages = require("../messages"),
+      usernamePromptCallback = require("../callback/prompt/username"),
+      passwordPromptCallback = require("../callback/prompt/password"),
+      emailAddressPromptCallback = require("../callback/prompt/emailAddress"),
+      confirmPasswordPromptCallback = require("../callback/prompt/confirmPassword");
 
 const { exit } = process,
       { REGISTER_URI } = uris,

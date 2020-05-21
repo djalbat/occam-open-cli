@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const versions = require('../versions'),
-      constants = require('../constants');
+const versions = require("../versions"),
+      constants = require("../constants");
 
 const { VERSION_1_5 } = versions,
       { DEFAULT_GITHUB_HOST_NAME, DEFAULT_HOST_URL } = constants;

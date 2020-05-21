@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
-const uris = require('../uris'),
-      action = require('../action'),
-      messages = require('../messages'),
-      emailAddressPromptCallback = require('../callback/prompt/emailAddress'),
-      retrieveAccessTokenCallback = require('../callback/retrieveAccessToken'),
-      confirmationCodePromptCallback = require('../callback/prompt/confirmationCode');
+const uris = require("../uris"),
+      action = require("../action"),
+      messages = require("../messages"),
+      emailAddressPromptCallback = require("../callback/prompt/emailAddress"),
+      retrieveAccessTokenCallback = require("../callback/retrieveAccessToken"),
+      confirmationCodePromptCallback = require("../callback/prompt/confirmationCode");
 
 const { exit } = process,
       { CONFIRM_EMAIL_ADDRESS_URI } = uris,

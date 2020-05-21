@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const necessary = require('necessary');
+const necessary = require("necessary");
 
-const messages = require('../../messages'),
-      validateUtilities = require('../../utilities/validate');
+const messages = require("../../messages"),
+      validateUtilities = require("../../utilities/validate");
 
 const { miscellaneousUtilities } = necessary,
       { prompt } = miscellaneousUtilities,
@@ -12,7 +12,7 @@ const { miscellaneousUtilities } = necessary,
 
 function newEmailAddressPromptCallback(proceed, abort, context) {
   const hidden = false,
-        description = 'New email address: ',
+        description = "New email address: ",
         errorMessage = INVALID_EMAIL_ADDRESS_MESSAGE,
         validationFunction = validateEmailAddress,  ///
         options = {
