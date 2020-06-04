@@ -1,7 +1,7 @@
 "use strict";
 
 const messages = require("../messages"),
-      Release = require("../../lib/release");
+      Release = require("../../lib/release").default; ///
 
 const { UNABLE_TO_CREATE_RELEASE_MESSAGE } = messages;
 
