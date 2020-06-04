@@ -1,9 +1,10 @@
 "use strict";
 
-const messages = require("../messages"),
-      Release = require("../../lib/release").default; ///
+const open = require("../../lib/index"),  ///
+      messages = require("../messages");
 
-const { UNABLE_TO_CREATE_RELEASE_MESSAGE } = messages;
+const { Release } = open,
+      { UNABLE_TO_CREATE_RELEASE_MESSAGE } = messages;
 
 function createReleaseCallback(proceed, abort, context) {
   const { releaseName } = context,
