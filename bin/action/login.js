@@ -4,8 +4,8 @@ const uris = require("../uris"),
       action = require("../action"),
       messages = require("../messages"),
       configuration = require("../configuration"),
-      usernamePromptCallback = require("../callback/prompt/username"),
-      passwordPromptCallback = require("../callback/prompt/password");
+      passwordPromptCallback = require("../callback/prompt/password"),
+      emailAddressPromptCallback = require("../callback/prompt/emailAddress");
 
 const { exit } = process,
       { LOGIN_URI } = uris,
@@ -13,15 +13,15 @@ const { exit } = process,
       { FAILED_LOGIN_MESSAGE, SUCCESSFUL_LOGIN_MESSAGE } = messages;
 
 function login(argument) {
-  const username = argument,  ///
+  const emailAddress = argument,  ///
         password = null,
         uri = LOGIN_URI,
         callbacks = [
-          usernamePromptCallback,
+          emailAddressPromptCallback,
           passwordPromptCallback
         ],
         context = {
-          username,
+          emailAddress,
           password
         };
 

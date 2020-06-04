@@ -21,9 +21,9 @@ Commands:
 
   deprecate <package_name>                       Deprecate a package
 
-  register [<username>]                          Register
+  register [<email_address>]                     Register
    
-  login [<username>]                             Log in 
+  login [<email_address>]                        Log in 
 
   logout                                         Log out 
 

@@ -13,15 +13,15 @@ const { exit } = process,
       { FAILED_REGISTER_MESSAGE, SUCCESSFUL_REGISTER_MESSAGE } = messages;
 
 function register(argument) {
-  const username = argument,  ///
+  const emailAddress = argument,  ///
+        username = null,
         password = null,
-        emailAddress = null,
         uri = REGISTER_URI,
         callbacks = [
+          emailAddressPromptCallback,
           usernamePromptCallback,
           passwordPromptCallback,
-          confirmPasswordPromptCallback,
-          emailAddressPromptCallback
+          confirmPasswordPromptCallback
         ],
         context = {
           username,
