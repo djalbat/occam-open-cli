@@ -9,7 +9,6 @@
 - [Usage](#usage)
 - [Versioning](#versioning)
 - [Signatures](#signatures)
-- [Resources](#resources)
 - [Contact](#contact)
 
 ## Introduction
@@ -79,10 +78,6 @@ Note that for the moment there is no concept of a signature, see below, thus onl
 ### Signatures
 
 Roughly speaking, the signature of a package would be the union of the signatures of all the rules, axioms, definitions, theorems, etc that it contains. The signature of any of these elements would completely characterise it from the outside. If two rules shared identical premises and conclusion, for example, regardless of the details of their proofs, they would have the same signature. A precise definition is less than straightforward because grammars play a role in exactly how statements, which make up premises and conclusions, can be considered to be the same. Changing an element's label would also change its signature.
-
-## Resources
-
-* [Version SAT by Russ Cox](https://research.swtch.com/version-sat)
 
 ## Contact
 
