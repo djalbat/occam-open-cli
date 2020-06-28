@@ -4,8 +4,6 @@ import { pathUtilities, fileSystemUtilities } from "necessary";
 
 import mkdirp from "mkdirp";
 
-import { removeMasterDirectoryNameFromPath } from "./utilities/name";
-
 const { readFile, writeFile, isEntryFile } = fileSystemUtilities,
       { concatenatePaths, topmostDirectoryPathFromPath } = pathUtilities;
 
@@ -122,35 +120,6 @@ export default class File {
     const file = new File(path, content);
 
     return file;
-  }
-
-  static fromJSZipEntry(jsZipEntry, callback) {
-    let file = null;
-    
-    const { dir } = jsZipEntry,
-          jsZipEntryDirectory = dir,  ///
-          jsZipEntryFile = !jsZipEntryDirectory;  ///
-
-    if (!jsZipEntryFile) {
-      callback(file);
-
-      return;
-    }
-
-    const jsZipFile = jsZipEntry,  ///
-          { name } = jsZipFile;
-
-    let path = name; ///
-
-    path = removeMasterDirectoryNameFromPath(path);
-
-    jsZipEntry.async("string").then((content) => {
-      content = convertContentTabsToWhitespace(content);  ///
-
-      file = new File(path, content);
-
-      callback(file);
-    });
   }
 
   static fromPathAndContent(path, content) {

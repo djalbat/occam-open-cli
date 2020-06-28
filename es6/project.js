@@ -1,8 +1,5 @@
 "use strict";
 
-import JSZip from "jszip";
-import request from "request";
-
 import Entries from "./entries";
 
 import { isFilePathFlorenceFilePath, isFilePathMetaJSONFilePath, isFilePathCustomGrammarBNFFilePath, isFilePathCustomGrammarLexicalPatternFilePath } from "./utilities/filePath";
@@ -116,53 +113,6 @@ export default class Project {
           project = new Project(name, entries);
 
     return project;
-  }
-
-  static fromURL(url, callback) {
-    const method = "GET",
-          encoding = null,
-          options = {
-            url,
-            method,
-            encoding
-          };
-
-    request(options, (error, response) => {
-      const { statusCode } = response;
-
-      error = error || (statusCode !== 200);  ///
-
-      if (error) {
-        const project = null;
-
-        callback(project);
-
-        return;
-      }
-
-      const { body } = response;
-
-      JSZip.loadAsync(body)
-        .then((jsZip) => {
-          Project.fromJSZip(jsZip, callback);
-        });
-    });
-  }
-
-  static fromJSZip(jsZip, callback) {
-    Entries.fromJSZip(jsZip, (entries) => {
-      let project = null;
-
-      const topmostDirectoryName = entries.getTopmostDirectoryName();
-
-      if (topmostDirectoryName !== null) {
-        const name = topmostDirectoryName;  ///
-        
-        project = new Project(name, entries);
-      }
-
-      callback(project);
-    });
   }
 
   static fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {

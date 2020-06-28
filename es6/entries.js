@@ -11,8 +11,7 @@ import { ENTRIES_MAXIMUM_ARRAY_LENGTH } from "./constants";
 import { isFilePathRecognisedFilePath } from "./utilities/filePath";
 import { ENTRIES_MAXIMUM_ARRAY_LENGTH_EXCEEDED_MESSAGE } from "./messages";
 
-const { forEach } = asynchronousUtilities,
-      { first, filter } = arrayUtilities,
+const { first, filter } = arrayUtilities,
       { readDirectory } = fileSystemUtilities,
       { concatenatePaths, topmostDirectoryNameFromPath } = pathUtilities;
 
@@ -144,43 +143,6 @@ export default class Entries {
           entries = new Entries(array);
 
     return entries;
-  }
-
-  static fromJSZip(jsZip, callback) {
-    const array = [],
-          { files } =jsZip,
-          jsZipEntries = files, ///
-          jsZipEntryNames = Object.keys(jsZipEntries);
-
-    forEach(jsZipEntryNames, (jsZipEntryName, next) => {
-      const jsZipEntry = jsZipEntries[jsZipEntryName];
-
-      Directory.fromJSZipEntry(jsZipEntry, (directory) => {
-        if (directory !== null) {
-          const entry = directory;  ///
-
-          array.push(entry);  ///
-
-          next();
-        } else {
-          File.fromJSZipEntry(jsZipEntry, (file) => {
-            if (file !== null) {
-              const entry = file;
-
-              array.push(entry);  ///
-            }
-
-            next();
-          });
-        }
-      });
-    }, done);
-
-    function done() {
-      const entries = new Entries(array);
-
-      callback(entries);
-    }
   }
 
   static fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {

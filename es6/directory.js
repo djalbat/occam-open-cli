@@ -2,8 +2,6 @@
 
 import { pathUtilities, fileSystemUtilities } from "necessary";
 
-import { removeMasterDirectoryNameFromPath } from "./utilities/name";
-
 const { concatenatePaths } = pathUtilities,
       { isEntryDirectory } = fileSystemUtilities;
 
@@ -75,36 +73,4 @@ export default class Directory {
 
     return directory;
   }
-
-  static fromJSZipEntry(jsZipEntry, callback) {
-    let directory = null;
-    
-    const { dir } = jsZipEntry,
-          jsZipEntryDirectory = dir; ///
-
-    if (!jsZipEntryDirectory) {
-      callback(directory);
-
-      return;
-    }
-
-    const jsZipDirectory = jsZipEntry,  ///
-          { name } = jsZipDirectory;
-
-    let path = name;  ///
-
-    path = pathWithoutTrailingSlashFromPath(path);  ///
-
-    path = removeMasterDirectoryNameFromPath(path); ///
-
-    directory = new Directory(path);
-
-    callback(directory);
-  }
-}
-
-function pathWithoutTrailingSlashFromPath(path) {
-  const pathWithoutTrailingSlash = path.replace(/\/$/, "");
-
-  return pathWithoutTrailingSlash;
 }
