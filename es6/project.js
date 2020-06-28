@@ -116,8 +116,9 @@ export default class Project {
   }
 
   static fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
-    const entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories),
-          project = new Project(topmostDirectoryName, entries);
+    const name = topmostDirectoryName,  ///
+          entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories),
+          project = new Project(name, entries);
 
     return project;
   }
