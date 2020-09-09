@@ -68,15 +68,23 @@ export default class Projects {
   }
 
   static fromProjectsDirectoryPath(projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
-    const array = [],
-          projects = new Projects(array),
-          topmostDirectoryNames = topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
+    let projects;
 
-    topmostDirectoryNames.forEach((topmostDirectoryName) => {
-      const project = Project.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories);
+    try {
+      const array = [];
 
-      projects.addProject(project);
-    });
+      projects = new Projects(array);
+
+      const topmostDirectoryNames = topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
+
+      topmostDirectoryNames.forEach((topmostDirectoryName) => {
+        const project = Project.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories);
+
+        projects.addProject(project);
+      });
+    } catch (error) {
+      projects = null;
+    }
 
     return projects;
   }
