@@ -34,8 +34,9 @@ function usernamePromptCallback(proceed, abort, context) {
           validationFunction
         };
 
-  prompt(options, (username) => {
-    const valid = (username !== null);
+  prompt(options, (answer) => {
+    const username = answer,  ///
+          valid = (username !== null);
 
     if (valid) {
       Object.assign(context, {

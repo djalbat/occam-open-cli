@@ -22,8 +22,9 @@ function newEmailAddressPromptCallback(proceed, abort, context) {
           validationFunction
         };
 
-  prompt(options, (newEmailAddress) => {
-    const valid = (newEmailAddress !== null);
+  prompt(options, (answer) => {
+    const newEmailAddress = answer, ///
+          valid = (newEmailAddress !== null);
 
     if (valid) {
       Object.assign(context, {

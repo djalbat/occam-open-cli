@@ -22,8 +22,9 @@ function confirmationCodePromptCallback(proceed, abort, context) {
           validationFunction
         };
 
-  prompt(options, (confirmationCode) => {
-    const valid = (confirmationCode !== null);
+  prompt(options, (answer) => {
+    const confirmationCode = answer,  ///
+          valid = (confirmationCode !== null);
 
     if (valid) {
       Object.assign(context, {
