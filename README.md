@@ -1,6 +1,6 @@
 # Open-CLI
 
-[Occam](https://github.com/jecs-imperial/occam)'s c**o**mmand line **p**ackag**e** manageme**n**t tool.
+[Occam](https://github.com/djalbat/occam)'s c**o**mmand line **p**ackag**e** manageme**n**t tool.
 
 ### Contents
 
@@ -21,7 +21,7 @@ If you are an end user, you can install `open` via `npm`. Instructions for doing
 
 If you would like to contribute or would simply like to have a look at the code, you can clone the repository with [Git](https://git-scm.com/)...
 
-    git clone https://github.com/jecs-imperial/occam-open-cli.git
+    git clone https://github.com/djalbat/occam-open-cli.git
 
 ...and then install the dependencies with [npm](https://www.npmjs.com/) from within the project's root directory:
 
@@ -82,4 +82,3 @@ Roughly speaking, the signature of a package would be the union of the signature
 ## Contact
 
 * james.smith@openmathematics.org
-* http://djalbat.com
