@@ -50,7 +50,7 @@ Further information:
 
 Please see the readme file on GitHub:
 
-  https://github.com/jecs-imperial/occam-open-cli
+  https://github.com/djalbat/occam-open-cli
 `);
 }
 
