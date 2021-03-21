@@ -1,4 +1,4 @@
-# Open-CLI
+# Occam Open-CLI
 
 [Occam](https://github.com/djalbat/occam)'s c**o**mmand line **p**ackag**e** manageme**n**t tool.
 
