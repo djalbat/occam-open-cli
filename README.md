@@ -13,7 +13,7 @@
 
 ## Introduction
 
-The `open` command line tool provides similar functionality to [`npm`](https://www.npmjs.com/), but for [Occam](http://djalbat.com/occam) packages. Published packages appear on the [Open Mathematics](https://openmathematics.org) website and can be utilised in Occam.
+The `open` command line tool provides similar functionality to [`npm`](https://www.npmjs.com/), but for [Occam](http://occam.science) packages. Published packages appear on the [Open Mathematics](https://openmathematics.org) website and can be utilised in Occam.
 
 ## Installation
 
