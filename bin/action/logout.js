@@ -1,15 +1,11 @@
 "use strict";
 
-const uris = require("../uris"),
-      action = require("../action"),
-      messages = require("../messages"),
-      configuration = require("../configuration"),
+const action = require("../action"),
       retrieveAccessTokenCallback = require("../callback/retrieveAccessToken");
 
-const { exit } = process,
-      { LOGOUT_URI } = uris,
-      { removeAccessToken } = configuration,
-      { LOGGED_OUT_MESSAGE } = messages;
+const { LOGOUT_URI } = require("../uris"),
+      { removeAccessToken } = require("../configuration"),
+      { LOGGED_OUT_MESSAGE } = require("../messages");
 
 function logout() {
   const uri = LOGOUT_URI,
@@ -23,7 +19,7 @@ function logout() {
 
     console.log(LOGGED_OUT_MESSAGE);
 
-    exit();
+    process.exit();
   }, context);
 }
 

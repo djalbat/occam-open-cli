@@ -1,26 +1,20 @@
 "use strict";
 
-const os = require("os");
+const os = require("os"),
+      request = require("request");
 
-const request = require("request"),
-      necessary = require("necessary");
+const { shellUtilities } = require("necessary");
 
-const messages = require("./messages"),
-      constants = require("./constants"),
-      configuration = require("./configuration"),
-      packageJSONUtilities = require("./utilities/packageJSON");
+const { retrieveHostURL } = require("./configuration"),
+      { getPackageVersion } = require("./utilities/packageJSON"),
+      { OCCAM_OPEN_CLI, TIMEOUT, POST_METHOD, UTF8_ENCODING } = require("./constants"),
+      { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages");
 
-const { miscellaneousUtilities } = necessary,
-      { exit } = process,
-      { onETX } = miscellaneousUtilities,
-      { retrieveHostURL } = configuration,
-      { getPackageVersion } = packageJSONUtilities,
-      { OCCAM_OPEN_CLI, TIMEOUT, POST_METHOD, UTF8_ENCODING } = constants,
-      { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = messages;
+const { onETX } = shellUtilities;
 
 function post(uri, data, callback) {
   const options = optionsFromURIAndData(uri, data),
-				offETX = onETX(exit);
+				offETX = onETX(process.exit);
 
   request(options, (error, response) => {
     offETX && offETX(); ///
@@ -28,7 +22,7 @@ function post(uri, data, callback) {
     if (error) {
       console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
 
-      exit(1);
+      process.exit(1);
     }
 
     const { body } = response,
@@ -44,7 +38,7 @@ function post(uri, data, callback) {
     if (error) {
       console.log(SERVER_ERROR_MESSAGE);
 
-      exit(1);
+      process.exit(1);
     }
 
     callback(json);

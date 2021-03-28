@@ -1,14 +1,11 @@
 "use strict";
 
-const necessary = require("necessary");
+const { shellUtilities } = require("necessary");
 
-const messages = require("../../messages"),
-      validateUtilities = require("../../utilities/validate");
+const { validateConfirmationCode } = require("../../utilities/validate"),
+      { INVALID_CONFIRMATION_CODE_MESSAGE } = require("../../messages");
 
-const { miscellaneousUtilities } = necessary,
-      { prompt } = miscellaneousUtilities,
-      { validateConfirmationCode } = validateUtilities,
-      { INVALID_CONFIRMATION_CODE_MESSAGE } = messages;
+const { prompt } = shellUtilities;
 
 function confirmationCodePromptCallback(proceed, abort, context) {
   const hidden = true,

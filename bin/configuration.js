@@ -1,21 +1,14 @@
 "use strict";
 
-const necessary = require("necessary");
+const { loggingUtilities } = require("necessary");
 
-const versions = require("./versions"),
-      messages = require("./messages"),
-      constants = require("./constants"),
-      configurationVersion_1_5 = require("./configuration/version_1_5"),
-      configurationVersion_2_0 = require("./configuration/version_2_0");
+const { RC_BASE_EXTENSION } = require("./constants"),
+      { CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE } = require("./messages"),
+      { UNVERSIONED, VERSION_1_5, CURRENT_VERSION } = require("./versions"),
+      { migrateConfigurationToVersion_1_5 } = require("./configuration/version_1_5"),
+      { migrateConfigurationToVersion_2_0, createConfiguration } = require("./configuration/version_2_0");
 
-const { miscellaneousUtilities } = necessary,
-      { rc } = miscellaneousUtilities,
-      { exit } = process,
-      { RC_BASE_EXTENSION } = constants,
-      { CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE } = messages,
-      { UNVERSIONED, VERSION_1_5, CURRENT_VERSION } = versions,
-      { migrateConfigurationToVersion_1_5 } = configurationVersion_1_5,
-      { migrateConfigurationToVersion_2_0, createConfiguration } = configurationVersion_2_0,
+const { rc } = loggingUtilities,
       { setRCBaseExtension, checkRCFileExists, updateRCFile, writeRCFile, readRCFile } = rc;
 
 setRCBaseExtension(RC_BASE_EXTENSION);
@@ -143,6 +136,6 @@ function assertConfigurationFileExists() {
   if (!configurationFileExists) {
     console.log(CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE);
 
-    exit(1);
+    process.exit(1);
   }
 }

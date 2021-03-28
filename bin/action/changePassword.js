@@ -1,17 +1,14 @@
 "use strict";
 
-const uris = require("../uris"),
-      action = require("../action"),
-      messages = require("../messages"),
+const action = require("../action"),
       usernamePromptCallback = require("../callback/prompt/username"),
       passwordPromptCallback = require("../callback/prompt/password"),
       newPasswordPromptCallback = require("../callback/prompt/newPassword"),
       retrieveAccessTokenCallback = require("../callback/retrieveAccessToken"),
       confirmNewPasswordPromptCallback = require("../callback/prompt/confirmNewPassword");
 
-const { exit } = process,
-      { CHANGE_PASSWORD_URI } = uris,
-      { FAILED_CHANGE_PASSWORD_MESSAGE, SUCCESSFUL_CHANGE_PASSWORD_MESSAGE } = messages;
+const { CHANGE_PASSWORD_URI } = require("../uris"),
+      { FAILED_CHANGE_PASSWORD_MESSAGE, SUCCESSFUL_CHANGE_PASSWORD_MESSAGE } = require("../messages");
 
 function changePassword(argument) {
   const username = argument,  ///
@@ -38,7 +35,7 @@ function changePassword(argument) {
       console.log(SUCCESSFUL_CHANGE_PASSWORD_MESSAGE) :
         console.log(FAILED_CHANGE_PASSWORD_MESSAGE);
 
-    exit();
+    process.exit();
   }, context);
 }
 

@@ -1,16 +1,12 @@
 "use strict";
 
-const uris = require("../uris"),
-      action = require("../action"),
-      messages = require("../messages"),
-      configuration = require("../configuration"),
+const action = require("../action"),
       passwordPromptCallback = require("../callback/prompt/password"),
       emailAddressPromptCallback = require("../callback/prompt/emailAddress");
 
-const { exit } = process,
-      { LOGIN_URI } = uris,
-      { addAccessToken } = configuration,
-      { FAILED_LOGIN_MESSAGE, SUCCESSFUL_LOGIN_MESSAGE } = messages;
+const { LOGIN_URI } = require("../uris"),
+      { addAccessToken } = require("../configuration"),
+      { FAILED_LOGIN_MESSAGE, SUCCESSFUL_LOGIN_MESSAGE } = require("../messages");
 
 function login(argument) {
   const emailAddress = argument,  ///
@@ -38,7 +34,7 @@ function login(argument) {
       addAccessToken(accessToken);
     }
 
-    exit();
+    process.exit();
   }, context);
 }
 

@@ -1,16 +1,12 @@
 "use strict";
 
-const necessary = require("necessary");
+const { shellUtilities } = require("necessary");
 
-const messages = require("../../messages"),
-      constants = require("../../constants"),
-      validateUtilities = require("../../utilities/validate");
+const { validateGitHubHostName } = require("../../utilities/validate"),
+      { DEFAULT_GITHUB_HOST_NAME } = require("../../constants"),
+      { INVALID_GITHUB_HOST_NAME_MESSAGE } = require("../../messages");
 
-const { miscellaneousUtilities } = necessary,
-      { prompt } = miscellaneousUtilities,
-      { validateGitHubHostName } = validateUtilities,
-      { DEFAULT_GITHUB_HOST_NAME } = constants,
-      { INVALID_GITHUB_HOST_NAME_MESSAGE } = messages;
+const { prompt } = shellUtilities;
 
 function gitHubHostNamePromptCallback(proceed, abort, context) {
   const { useSSH } = context;

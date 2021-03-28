@@ -1,11 +1,8 @@
 "use strict";
 
-const zlib = require("zlib");
+const { deflate } = require("zlib");
 
-const constants = require("../constants");
-
-const { deflate } = zlib,
-      { BASE64_ENCODING } = constants;
+const { BASE64_ENCODING } = require("../constants");
 
 function deflateRelease(proceed, abort, context) {
   const { release } = context,

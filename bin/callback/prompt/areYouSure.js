@@ -1,16 +1,12 @@
 "use strict";
 
-const necessary = require("necessary");
+const { shellUtilities } = require("necessary");
 
-const messages = require("../../messages"),
-      promptUtilities = require("../../utilities/prompt"),
-      validateUtilities = require("../../utilities/validate");
+const { validateAnswer } = require("../../utilities/validate"),
+      { isAnswerAffirmative } = require("../../utilities/prompt"),
+      { INVALID_ANSWER_MESSAGE } = require("../../messages");
 
-const { miscellaneousUtilities } = necessary,
-      { prompt } = miscellaneousUtilities,
-      { validateAnswer } = validateUtilities,
-      { isAnswerAffirmative } = promptUtilities,
-      { INVALID_ANSWER_MESSAGE } = messages;
+const { prompt } = shellUtilities;
 
 function areYouSurePromptCallback(proceed, abort, context) {
   const description = "Are you sure? (y)es (n)o: ",

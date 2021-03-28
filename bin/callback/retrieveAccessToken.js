@@ -1,10 +1,7 @@
 "use strict";
 
-const messages = require("../messages"),
-      configuration = require("../configuration");
-
-const { retrieveAccessToken } = configuration,
-      { NOT_LOGGED_IN_MESSAGE } = messages;
+const { retrieveAccessToken } = require("../configuration"),
+      { NOT_LOGGED_IN_MESSAGE } = require("../messages");
 
 function retrieveAccessTokenCallback(proceed, abort, context) {
   const accessToken = retrieveAccessToken();

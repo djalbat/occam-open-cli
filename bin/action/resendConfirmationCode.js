@@ -1,14 +1,11 @@
 "use strict";
 
-const uris = require("../uris"),
-      action = require("../action"),
-      messages = require("../messages"),
+const action = require("../action"),
       emailAddressPromptCallback = require("../callback/prompt/emailAddress"),
       retrieveAccessTokenCallback = require("../callback/retrieveAccessToken");
 
-const { exit } = process,
-      { RESEND_CONFIRMATION_CODE_URI } = uris,
-      { SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE, FAILED_RESEND_CONFIRMATION_CODE_MESSAGE } = messages;
+const { RESEND_CONFIRMATION_CODE_URI } = require("../uris"),
+      { SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE, FAILED_RESEND_CONFIRMATION_CODE_MESSAGE } = require("../messages");
 
 function resendConfirmationCode(argument) {
   const emailAddress = argument,  ///
@@ -28,7 +25,7 @@ function resendConfirmationCode(argument) {
       console.log(SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE) :
         console.log(FAILED_RESEND_CONFIRMATION_CODE_MESSAGE);
 
-    exit();
+    process.exit();
   }, context);
 }
 

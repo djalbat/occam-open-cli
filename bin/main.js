@@ -1,25 +1,22 @@
 "use strict";
 
-const necessary = require("necessary");
+const { pathUtilities } = require("necessary");
 
-const actions = require("./actions"),
-      commands = require("./commands"),
-      configuration = require("./configuration");
+const actions = require("./actions");
 
-const { cwd, chdir } = process,
-      { pathUtilities } = necessary,
-      { PUBLISH_COMMAND } = commands,
-      { bottommostNameFromPath } = pathUtilities,
-      { checkConfigurationFileExists, migrateConfigurationFile } = configuration;
+const { PUBLISH_COMMAND } = require("./commands"),
+      { checkConfigurationFileExists, migrateConfigurationFile } = require("./configuration");
+
+const { bottommostNameFromPath } = pathUtilities;
 
 function main(command, argument, options) {
   let configurationFileExists = checkConfigurationFileExists();
 
   if (command === PUBLISH_COMMAND) {
     if (!configurationFileExists) {
-      const currentWorkingDirectoryPath = cwd(); ///
+      const currentWorkingDirectoryPath = process.cwd(); ///
 
-      chdir("..");
+      process.chdir("..");
 
       const oldCurrentWorkingDirectoryPath = currentWorkingDirectoryPath; ///
 

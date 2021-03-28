@@ -1,14 +1,11 @@
 "use strict";
 
-const necessary = require("necessary");
+const { shellUtilities } = require("necessary");
 
-const messages = require("../../messages"),
-      validateUtilities = require("../../utilities/validate");
+const { validateEmailAddress } = require("../../utilities/validate"),
+      { INVALID_EMAIL_ADDRESS_MESSAGE } = require("../../messages");
 
-const { miscellaneousUtilities } = necessary,
-      { prompt } = miscellaneousUtilities,
-      { validateEmailAddress } = validateUtilities,
-      { INVALID_EMAIL_ADDRESS_MESSAGE } = messages;
+const { prompt } = shellUtilities;
 
 function emailAddressPromptCallback(proceed, abort, context) {
   const { emailAddress } = context,

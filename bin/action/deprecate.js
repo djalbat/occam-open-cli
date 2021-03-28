@@ -1,16 +1,13 @@
 "use strict";
 
-const uris = require("../uris"),
-      action = require("../action"),
-      messages = require("../messages"),
+const action = require("../action"),
       passwordPromptCallback = require("../callback/prompt/password"),
       areYouSurePromptCallback = require("../callback/prompt/areYouSure"),
       releaseNamePromptCallback = require("../callback/prompt/releaseName"),
       retrieveAccessTokenCallback = require("../callback/retrieveAccessToken");
 
-const { exit } = process,
-      { DEPRECATE_URI } = uris,
-      { FAILED_DEPRECATE_MESSAGE, SUCCESSFUL_DEPRECATE_MESSAGE } = messages;
+const { DEPRECATE_URI } = require("../uris"),
+      { FAILED_DEPRECATE_MESSAGE, SUCCESSFUL_DEPRECATE_MESSAGE } = require("../messages");
 
 function deprecate(argument) {
   const releaseName = argument,  ///
@@ -34,7 +31,7 @@ function deprecate(argument) {
       console.log(SUCCESSFUL_DEPRECATE_MESSAGE) :
         console.log(FAILED_DEPRECATE_MESSAGE);
 
-    exit();
+    process.exit();
   }, context);
 }
 

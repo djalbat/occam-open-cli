@@ -1,8 +1,6 @@
 "use strict";
 
-const messages = require("../messages");
-
-const { META_JSON_FILE_DOES_NOT_EXIST_MESSAGE } = messages;
+const { META_JSON_FILE_DOES_NOT_EXIST_MESSAGE } = require("../messages");
 
 function checkMetaJSONFileExistsCallback(proceed, abort, context) {
   const { release } = context,

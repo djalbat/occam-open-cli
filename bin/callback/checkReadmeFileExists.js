@@ -1,8 +1,6 @@
 "use strict";
 
-const messages = require("../messages");
-
-const { README_FILE_DOES_NOT_EXIST_MESSAGE } = messages;
+const { README_FILE_DOES_NOT_EXIST_MESSAGE } = require("../messages");
 
 function checkReadmeFileExistsCallback(proceed, abort, context) {
   const { release } = context,

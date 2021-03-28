@@ -1,15 +1,12 @@
 "use strict";
 
-const uris = require("../uris"),
-      action = require("../action"),
-      messages = require("../messages"),
+const action = require("../action"),
       emailAddressPromptCallback = require("../callback/prompt/emailAddress"),
       retrieveAccessTokenCallback = require("../callback/retrieveAccessToken"),
       confirmationCodePromptCallback = require("../callback/prompt/confirmationCode");
 
-const { exit } = process,
-      { CONFIRM_EMAIL_ADDRESS_URI } = uris,
-      { FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE, SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE } = messages;
+const { CONFIRM_EMAIL_ADDRESS_URI } = require("../uris"),
+      { FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE, SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE } = require("../messages");
 
 function confirmEmailAddress(argument) {
   const emailAddress = argument,  ///
@@ -32,7 +29,7 @@ function confirmEmailAddress(argument) {
       console.log(SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE) :
         console.log(FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE);
 
-    exit();
+    process.exit();
   }, context);
 }
 

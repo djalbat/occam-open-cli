@@ -1,14 +1,11 @@
 "use strict";
 
-const uris = require("../uris"),
-      action = require("../action"),
-      messages = require("../messages"),
+const action = require("../action"),
       cloneRepository = require("../cloneRepository"),
       releaseNamePromptCallback = require("../callback/prompt/releaseName");
 
-const { exit } = process,
-      { CLONE_URI } = uris,
-      { FAILED_CLONE_MESSAGE, SUCCESSFUL_CLONE_MESSAGE } = messages;
+const { CLONE_URI } = require("../uris"),
+      { FAILED_CLONE_MESSAGE, SUCCESSFUL_CLONE_MESSAGE } = require("../messages");
 
 function clone(argument) {
   const releaseName = argument,  ///
@@ -27,7 +24,7 @@ function clone(argument) {
     if (!exists) {
       console.log(FAILED_CLONE_MESSAGE);
 
-      exit(1);
+      process.exit(1);
     }
 
     const { repository } = json;
@@ -37,7 +34,7 @@ function clone(argument) {
         console.log(SUCCESSFUL_CLONE_MESSAGE) :
           console.log(FAILED_CLONE_MESSAGE);
 
-      exit();
+      process.exit();
     });
   }, context);
 }

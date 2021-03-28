@@ -1,14 +1,11 @@
 "use strict";
 
-const necessary = require("necessary");
+const { shellUtilities } = require("necessary");
 
-const messages = require("../../messages"),
-      validateUtilities = require("../../utilities/validate");
+const { validateUsername } = require("../../utilities/validate"),
+      { INVALID_USERNAME_MESSAGE } = require("../../messages");
 
-const { miscellaneousUtilities } = necessary,
-      { prompt } = miscellaneousUtilities,
-      { validateUsername } = validateUtilities,
-      { INVALID_USERNAME_MESSAGE } = messages;
+const { prompt } = shellUtilities;
 
 function usernamePromptCallback(proceed, abort, context) {
   const { username } = context,

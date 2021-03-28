@@ -1,8 +1,6 @@
 "use strict";
 
-const commands = require("./commands"),
-      options = require("./options"),
-      help = require("./action/help"),
+const help = require("./action/help"),
       clone = require("./action/clone"),
       login = require("./action/login"),
       logout = require("./action/logout"),
@@ -20,7 +18,7 @@ const commands = require("./commands"),
       confirmEmailAddress = require("./action/confirmEmailAddress"),
       resendConfirmationCode = require("./action/resendConfirmationCode");
 
-const { HELP_OPTION, VERSION_OPTION } = options,
+const { HELP_OPTION, VERSION_OPTION } = require("./options"),
       { HELP_COMMAND,
         CLONE_COMMAND,
         LOGIN_COMMAND,
@@ -37,7 +35,7 @@ const { HELP_OPTION, VERSION_OPTION } = options,
         CHANGE_PASSWORD_COMMAND,
         CHANGE_EMAIL_ADDRESS_COMMAND,
         CONFIRM_EMAIL_ADDRESS_COMMAND,
-        RESEND_CONFIRMATION_CODE_COMMAND } = commands;
+        RESEND_CONFIRMATION_CODE_COMMAND } = require("./commands");
 
 function actions(command, argument, options) {
   const commandMissing = (command === null),

@@ -1,8 +1,6 @@
 "use strict";
 
-const uris = require("../uris"),
-      action = require("../action"),
-      messages = require("../messages"),
+const action = require("../action"),
       createReleaseCallback = require("../callback/createRelease"),
       deflateReleaseCallback = require("../callback/deflateRelease"),
       releaseNamePromptCallback = require("../callback/prompt/releaseName"),
@@ -10,9 +8,8 @@ const uris = require("../uris"),
       checkReadmeFileExistsCallback = require("../callback/checkReadmeFileExists"),
       checkMetaJSONFileExistsCallback = require("../callback/checkMetaJSONFileExists");
 
-const { exit } = process,
-      { PUBLISH_URI } = uris,
-      { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = messages;
+const { PUBLISH_URI } = require("../uris"),
+      { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = require("../messages");
 
 function publish(argument) {
   const releaseName = argument, ///
@@ -36,7 +33,7 @@ function publish(argument) {
       console.log(SUCCESSFUL_PUBLISH_MESSAGE) :
         console.log(FAILED_PUBLISH_MESSAGE);
 
-    exit();
+    process.exit();
   }, context);
 }
 

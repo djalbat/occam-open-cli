@@ -1,8 +1,8 @@
 "use strict";
 
-import { pathUtilities, fileSystemUtilities } from "necessary";
-
 import mkdirp from "mkdirp";
+
+import { pathUtilities, fileSystemUtilities } from "necessary";
 
 const { readFile, writeFile, isEntryFile } = fileSystemUtilities,
       { concatenatePaths, topmostDirectoryPathFromPath } = pathUtilities;

@@ -1,10 +1,7 @@
 "use strict";
 
-const constants = require("../constants"),
-      packageJSONUtilities = require("../utilities/packageJSON");
-
-const { OCCAM_OPEN_CLI } = constants,
-      { getPackageVersion } = packageJSONUtilities;
+const { OCCAM_OPEN_CLI } = require("../constants"),
+      { getPackageVersion } = require("../utilities/packageJSON");
 
 function version() {
   const packageVersion = getPackageVersion(),

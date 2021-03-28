@@ -9,25 +9,20 @@
     "type": "git",
     "url": "https://github.com/djalbat/occam-open-cli"
   },
-  "bin": {
-    "open": "./open.js"
-  },
   "dependencies": {
-    "argumentative": "^2.0.14",
+    "argumentative": "^2.0.15",
     "mkdirp": "^0.5.1",
-    "necessary": "^4.1.12",
-    "occam-parsers": "^14.0.3",
+    "necessary": "^7.1.10",
+    "occam-parsers": "^14.0.22",
     "request": "^2.81.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.6",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.11.5",
-    "watchful-cli": "^1.6.12"
+    "@swc/core": "^1.2.51",
+    "watchful-cli": "^1.6.15"
   },
   "scripts": {
     "clean": "rm -rf ./lib",
-    "watchful": "watchful --source-directory=./es6 --lib-directory=./lib --pause=100",
+    "watchful": "watchful -m --transpiler=swc --source-directory=./src --lib-directory=./lib --pause=100",
     "batch": "npm run watchful batch --",
     "batch-debug": "npm run watchful batch -- --debug",
     "incremental": "npm run watchful incremental --",
@@ -37,5 +32,9 @@
     "watch": "npm run clean && npm run batch && npm run incremental",
     "watch-debug": "npm run clean && npm run batch-debug && npm run incremental-debug"
   },
-  "main": "./lib/index"
+  "browser": "./lib/browser",
+  "main": "./lib/main",
+  "bin": {
+    "open": "./open.js"
+  }
 }

@@ -1,15 +1,13 @@
 "use strict";
 
-const post = require("./post"),
-      callbackUtilities = require("./utilities/callback");
+const post = require("./post");
 
-const { exit } = process,
-      { executeCallbacks } = callbackUtilities;
+const { executeCallbacks } = require("./utilities/callback");
 
 function action(callbacks, uri, callback, context) {
   executeCallbacks(callbacks, (completed) => {
     if (!completed) {
-      exit(1);
+      process.exit(1);
     }
 
     const data = context; ///

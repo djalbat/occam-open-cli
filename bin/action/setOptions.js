@@ -1,15 +1,11 @@
 "use strict";
 
-const messages = require("../messages"),
-      configuration = require("../configuration"),
-      callbackUtilities = require("../utilities/callback"),
-      useSSHPromptCallback = require("../callback/prompt/useSSH"),
+const useSSHPromptCallback = require("../callback/prompt/useSSH"),
       gitHubHostNamePromptCallback = require("../callback/prompt/gitHubHostName");
 
-const { exit } = process,
-      { updateOptions } = configuration,
-      { executeCallbacks } = callbackUtilities,
-      { FAILED_SET_OPTIONS_MESSAGE, SUCCESSFUL_SET_OPTIONS_MESSAGE } = messages;
+const { updateOptions } = require("../configuration"),
+      { executeCallbacks } = require("../utilities/callback"),
+      { FAILED_SET_OPTIONS_MESSAGE, SUCCESSFUL_SET_OPTIONS_MESSAGE } = require("../messages");
 
 function setOptions() {
   const callbacks = [
@@ -22,7 +18,7 @@ function setOptions() {
     if (!completed) {
       console.log(FAILED_SET_OPTIONS_MESSAGE);
 
-      exit(1);
+      process.exit(1);
     }
 
     const { useSSH } = context,
@@ -43,7 +39,7 @@ function setOptions() {
 
     console.log(SUCCESSFUL_SET_OPTIONS_MESSAGE);
 
-    exit();
+    process.exit();
   }, context);
 }
 

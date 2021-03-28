@@ -1,13 +1,9 @@
 "use strict";
 
-const childProcess = require("child_process");
+const { exec } = require("child_process");
 
-const constants = require("./constants"),
-      configuration = require("./configuration");
-
-const { exec } = childProcess,
-      { retrieveOptions } = configuration,
-      { DEFAULT_GITHUB_HOST_NAME } = constants;
+const { retrieveOptions } = require("./configuration"),
+      { DEFAULT_GITHUB_HOST_NAME } = require("./constants");
 
 function cloneRepository(repository, callback) {
   const options = retrieveOptions(),
