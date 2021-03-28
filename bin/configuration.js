@@ -1,6 +1,6 @@
 "use strict";
 
-const { loggingUtilities } = require("necessary");
+const { configurationUtilities } = require("necessary");
 
 const { RC_BASE_EXTENSION } = require("./constants"),
       { CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE } = require("./messages"),
@@ -8,7 +8,7 @@ const { RC_BASE_EXTENSION } = require("./constants"),
       { migrateConfigurationToVersion_1_5 } = require("./configuration/version_1_5"),
       { migrateConfigurationToVersion_2_0, createConfiguration } = require("./configuration/version_2_0");
 
-const { rc } = loggingUtilities,
+const { rc } = configurationUtilities,
       { setRCBaseExtension, checkRCFileExists, updateRCFile, writeRCFile, readRCFile } = rc;
 
 setRCBaseExtension(RC_BASE_EXTENSION);

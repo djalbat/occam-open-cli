@@ -1,6 +1,6 @@
 "use strict";
 
-const { Release } = require("../../lib/index"), ///
+const { Release } = require("../../lib/main"), ///
       { UNABLE_TO_CREATE_RELEASE_MESSAGE } = require("../messages");
 
 function createReleaseCallback(proceed, abort, context) {
