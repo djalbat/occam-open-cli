@@ -1,12 +1,5 @@
 "use strict";
 
-import mkdirp from "mkdirp";
-
-import { pathUtilities, fileSystemUtilities } from "necessary";
-
-const { readFile, writeFile, isEntryFile } = fileSystemUtilities,
-      { concatenatePaths, topmostDirectoryPathFromPath } = pathUtilities;
-
 export default class File {
   constructor(path, content) {
     this.path = path;
@@ -39,15 +32,6 @@ export default class File {
 
   setContent(content) {
     this.content = content;
-  }
-
-  save(projectsDirectoryPath) {
-    const absolutePath = concatenatePaths(projectsDirectoryPath, this.path),  ///
-          topmostAbsoluteDirectoryPath = topmostDirectoryPathFromPath(absolutePath);
-
-    mkdirp.sync(topmostAbsoluteDirectoryPath);
-
-    writeFile(absolutePath, this.content);
   }
 
   toJSON() {
@@ -88,27 +72,6 @@ export default class File {
     return file;
   }
 
-  static fromPath(path, projectsDirectoryPath) {
-    let file = null;
-
-    try {
-      const absolutePath = concatenatePaths(projectsDirectoryPath, path),
-            entryFile = isEntryFile(absolutePath);
-
-      if (entryFile) {
-        let content = readFile(absolutePath);
-
-        content = convertContentTabsToWhitespace(content);  ///
-
-        file = new File(path, content);
-      }
-    } catch (error) {
-      ///
-    }
-
-    return file;
-  }
-
   static fromDocument(document) {
     const filePath = document.getFilePath(),
           path = filePath;  ///
@@ -131,4 +94,4 @@ export default class File {
   }
 }
 
-function convertContentTabsToWhitespace(content) { return content.replace(/\t/g, "  "); } ///
+export function convertContentTabsToWhitespace(content) { return content.replace(/\t/g, "  "); } ///

@@ -1,10 +1,5 @@
 "use strict";
 
-import { pathUtilities, fileSystemUtilities } from "necessary";
-
-const { concatenatePaths } = pathUtilities,
-      { isEntryDirectory } = fileSystemUtilities;
-
 export default class Directory {
   constructor(path) {
     this.path = path;
@@ -52,23 +47,6 @@ export default class Directory {
 
         directory = new Directory(path);
       }
-    }
-
-    return directory;
-  }
-
-  static fromPath(path, projectsDirectoryPath) {
-    let directory = null;
-
-    try {
-      const absolutePath = concatenatePaths(projectsDirectoryPath, path),
-            entryDirectory = isEntryDirectory(absolutePath);
-
-      if (entryDirectory) {
-        directory = new Directory(path);
-      }
-    } catch (error) {
-      ///
     }
 
     return directory;

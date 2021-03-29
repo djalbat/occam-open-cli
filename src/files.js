@@ -41,12 +41,6 @@ export default class Files {
     return this.array.find(callback) || null; ///
   }
 
-  save(projectsDirectoryPath) {
-    this.array.forEach((file) => {
-      file.save(projectsDirectoryPath);
-    });
-  }
-
   toJSON() {
     const filesJSON = this.array.map((file) => {
             const fileJSON = (file !== null) ?
@@ -78,19 +72,6 @@ export default class Files {
   static fromNothing() {
     const array = [],
           files = new Files(array);
-
-    return files;
-  }
-
-  static fromPaths(paths, projectsDirectoryPath) {
-    const array = [],
-          files = new Files(array);
-
-    paths.forEach((path) => {
-      const file = File.fromPath(path, projectsDirectoryPath);
-
-      files.addFile(file);
-    });
 
     return files;
   }

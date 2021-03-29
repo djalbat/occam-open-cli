@@ -88,16 +88,4 @@ export default class Release {
 
     return release;
   }
-
-  static fromName(name) {
-    const topmostDirectoryName = name, ///
-          projectsDirectoryPath = ".",
-          loadOnlyRecognisedFiles = true,
-          doNotLoadHiddenFilesAndDirectories = true,
-          entries = Entries.fromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories),
-          versionNumber = null, ///
-          release = new Release(name, entries, versionNumber);
-
-    return release;
-  }
 }
