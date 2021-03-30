@@ -34,7 +34,7 @@ export function saveFile(file, projectsDirectoryPath) {
 
 export function saveFiles(files, projectsDirectoryPath) {
   files.forEachFile((file) => {
-    file.save(projectsDirectoryPath);
+    saveFile(file, projectsDirectoryPath);
   });
 }
 
@@ -168,7 +168,7 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
       let entry;
 
       const path = concatenatePaths(relativeDirectoryPath, subEntryName),
-            directory = Directory.fromPath(path, projectsDirectoryPath);
+            directory = directoryFromPath(path, projectsDirectoryPath);
 
       if (directory !== null) {
         const directoryPath = path; ///
@@ -187,7 +187,7 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
 
         entriesFromRelativeDirectoryPath(array, directoryPath, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories); ///
       } else {
-        const file = File.fromPath(path, projectsDirectoryPath);
+        const file = fileFromPath(path, projectsDirectoryPath);
 
         if (file !== null) {
           const filePath = file.getPath(),
