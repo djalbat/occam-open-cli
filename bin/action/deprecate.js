@@ -6,13 +6,13 @@ const action = require("../action"),
       releaseNamePromptCallback = require("../callback/prompt/releaseName"),
       retrieveAccessTokenCallback = require("../callback/retrieveAccessToken");
 
-const { DEPRECATE_URI } = require("../uris"),
+const { DEPRECATE_API_URI } = require("../uris"),
       { FAILED_DEPRECATE_MESSAGE, SUCCESSFUL_DEPRECATE_MESSAGE } = require("../messages");
 
 function deprecate(argument) {
   const releaseName = argument,  ///
         password = null,
-        uri = DEPRECATE_URI,
+        uri = DEPRECATE_API_URI,
         callbacks = [
           retrieveAccessTokenCallback,
           releaseNamePromptCallback,

@@ -5,13 +5,13 @@ const action = require("../action"),
       retrieveAccessTokenCallback = require("../callback/retrieveAccessToken"),
       confirmationCodePromptCallback = require("../callback/prompt/confirmationCode");
 
-const { CONFIRM_EMAIL_ADDRESS_URI } = require("../uris"),
+const { CONFIRM_EMAIL_ADDRESS_API_URI } = require("../uris"),
       { FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE, SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE } = require("../messages");
 
 function confirmEmailAddress(argument) {
   const emailAddress = argument,  ///
         confirmationCode = null,
-        uri = CONFIRM_EMAIL_ADDRESS_URI,
+        uri = CONFIRM_EMAIL_ADDRESS_API_URI,
         callbacks = [
           retrieveAccessTokenCallback,
           emailAddressPromptCallback,

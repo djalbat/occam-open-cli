@@ -1,27 +1,27 @@
 "use strict";
 
-const CLONE_URI = "/clone",
-      LOGIN_URI = "/login",
-      LOGOUT_URI = "/logout",
-      PUBLISH_URI = "/publish",
-      REGISTER_URI = "/register",
-      DEPRECATE_URI = "/deprecate",
-      RESET_PASSWORD_URI = "/resetPassword",
-      CHANGE_PASSWORD_URI = "/changePassword",
-      CHANGE_EMAIL_ADDRESS_URI = "/changeEmailAddress",
-      CONFIRM_EMAIL_ADDRESS_URI = "/confirmEmailAddress",
-      RESEND_CONFIRMATION_CODE_URI = "/resendConfirmationCode";
+const CLONE_API_URI = "/api/clone",
+      LOGIN_API_URI = "/api/login",
+      LOGOUT_API_URI = "/api/logout",
+      PUBLISH_API_URI = "/api/publish",
+      REGISTER_API_URI = "/api/register",
+      DEPRECATE_API_URI = "/api/deprecate",
+      RESET_PASSWORD_API_URI = "/api/resetPassword",
+      CHANGE_PASSWORD_API_URI = "/api/changePassword",
+      CHANGE_EMAIL_ADDRESS_API_URI = "/api/changeEmailAddress",
+      CONFIRM_EMAIL_ADDRESS_API_URI = "/api/confirmEmailAddress",
+      RESEND_CONFIRMATION_CODE_API_URI = "/api/resendConfirmationCode";
 
 module.exports = {
-  CLONE_URI,
-  LOGIN_URI,
-  LOGOUT_URI,
-  PUBLISH_URI,
-  REGISTER_URI,
-  DEPRECATE_URI,
-  RESET_PASSWORD_URI,
-  CHANGE_PASSWORD_URI,
-  CHANGE_EMAIL_ADDRESS_URI,
-  CONFIRM_EMAIL_ADDRESS_URI,
-  RESEND_CONFIRMATION_CODE_URI
+  CLONE_API_URI,
+  LOGIN_API_URI,
+  LOGOUT_API_URI,
+  PUBLISH_API_URI,
+  REGISTER_API_URI,
+  DEPRECATE_API_URI,
+  RESET_PASSWORD_API_URI,
+  CHANGE_PASSWORD_API_URI,
+  CHANGE_EMAIL_ADDRESS_API_URI,
+  CONFIRM_EMAIL_ADDRESS_API_URI,
+  RESEND_CONFIRMATION_CODE_API_URI
 };

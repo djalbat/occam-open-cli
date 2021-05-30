@@ -3,12 +3,12 @@
 const action = require("../action"),
       usernamePromptCallback = require("../callback/prompt/username");
 
-const { RESET_PASSWORD_URI } = require("../uris"),
+const { RESET_PASSWORD_API_URI } = require("../uris"),
       { FAILED_RESET_PASSWORD_MESSAGE, SUCCESSFUL_RESET_PASSWORD_MESSAGE } = require("../messages");
 
 function resetPassword(argument) {
   const username = argument,  ///
-        uri = RESET_PASSWORD_URI,
+        uri = RESET_PASSWORD_API_URI,
         callbacks = [
           usernamePromptCallback
         ],

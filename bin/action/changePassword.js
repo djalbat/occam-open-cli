@@ -7,14 +7,14 @@ const action = require("../action"),
       retrieveAccessTokenCallback = require("../callback/retrieveAccessToken"),
       confirmNewPasswordPromptCallback = require("../callback/prompt/confirmNewPassword");
 
-const { CHANGE_PASSWORD_URI } = require("../uris"),
+const { CHANGE_PASSWORD_API_URI } = require("../uris"),
       { FAILED_CHANGE_PASSWORD_MESSAGE, SUCCESSFUL_CHANGE_PASSWORD_MESSAGE } = require("../messages");
 
 function changePassword(argument) {
   const username = argument,  ///
         oldPassword = null,
         newPassword = null,
-        uri = CHANGE_PASSWORD_URI,
+        uri = CHANGE_PASSWORD_API_URI,
         callbacks = [
           retrieveAccessTokenCallback,
           usernamePromptCallback,

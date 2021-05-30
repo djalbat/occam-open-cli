@@ -4,14 +4,14 @@ const action = require("../action"),
       passwordPromptCallback = require("../callback/prompt/password"),
       emailAddressPromptCallback = require("../callback/prompt/emailAddress");
 
-const { LOGIN_URI } = require("../uris"),
+const { LOGIN_API_URI } = require("../uris"),
       { addAccessToken } = require("../configuration"),
       { FAILED_LOGIN_MESSAGE, SUCCESSFUL_LOGIN_MESSAGE } = require("../messages");
 
 function login(argument) {
   const emailAddress = argument,  ///
         password = null,
-        uri = LOGIN_URI,
+        uri = LOGIN_API_URI,
         callbacks = [
           emailAddressPromptCallback,
           passwordPromptCallback

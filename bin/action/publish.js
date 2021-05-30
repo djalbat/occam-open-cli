@@ -8,12 +8,12 @@ const action = require("../action"),
       checkReadmeFileExistsCallback = require("../callback/checkReadmeFileExists"),
       checkMetaJSONFileExistsCallback = require("../callback/checkMetaJSONFileExists");
 
-const { PUBLISH_URI } = require("../uris"),
+const { PUBLISH_API_URI } = require("../uris"),
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = require("../messages");
 
 function publish(argument) {
   const releaseName = argument, ///
-        uri = PUBLISH_URI,
+        uri = PUBLISH_API_URI,
         callbacks = [
           retrieveAccessTokenCallback,
           releaseNamePromptCallback,

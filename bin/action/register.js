@@ -6,14 +6,14 @@ const action = require("../action"),
       emailAddressPromptCallback = require("../callback/prompt/emailAddress"),
       confirmPasswordPromptCallback = require("../callback/prompt/confirmPassword");
 
-const { REGISTER_URI } = require("../uris"),
+const { REGISTER_API_URI } = require("../uris"),
       { FAILED_REGISTER_MESSAGE, SUCCESSFUL_REGISTER_MESSAGE } = require("../messages");
 
 function register(argument) {
   const emailAddress = argument,  ///
         username = null,
         password = null,
-        uri = REGISTER_URI,
+        uri = REGISTER_API_URI,
         callbacks = [
           emailAddressPromptCallback,
           usernamePromptCallback,

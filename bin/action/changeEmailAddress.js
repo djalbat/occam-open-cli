@@ -6,13 +6,13 @@ const action = require("../action"),
       retrieveAccessTokenCallback = require("../callback/retrieveAccessToken"),
       newEmailAddressPromptCallback = require("../callback/prompt/newEmailAddress");
 
-const { CHANGE_EMAIL_ADDRESS_URI } = require("../uris"),
+const { CHANGE_EMAIL_ADDRESS_API_URI } = require("../uris"),
       { FAILED_CHANGE_EMAIL_ADDRESS_MESSAGE, SUCCESSFUL_CHANGE_EMAIL_ADDRESS_MESSAGE } = require("../messages");
 
 function changeEmailAddress(argument) {
   const username = argument,  ///
         emailAddress = null,
-        uri = CHANGE_EMAIL_ADDRESS_URI,
+        uri = CHANGE_EMAIL_ADDRESS_API_URI,
         callbacks = [
           retrieveAccessTokenCallback,
           usernamePromptCallback,

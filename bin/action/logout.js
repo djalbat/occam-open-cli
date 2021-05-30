@@ -3,12 +3,12 @@
 const action = require("../action"),
       retrieveAccessTokenCallback = require("../callback/retrieveAccessToken");
 
-const { LOGOUT_URI } = require("../uris"),
+const { LOGOUT_API_URI } = require("../uris"),
       { removeAccessToken } = require("../configuration"),
       { LOGGED_OUT_MESSAGE } = require("../messages");
 
 function logout() {
-  const uri = LOGOUT_URI,
+  const uri = LOGOUT_API_URI,
         callbacks = [
           retrieveAccessTokenCallback
         ],

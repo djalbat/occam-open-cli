@@ -4,13 +4,13 @@ const action = require("../action"),
       cloneRepository = require("../cloneRepository"),
       releaseNamePromptCallback = require("../callback/prompt/releaseName");
 
-const { CLONE_URI } = require("../uris"),
+const { CLONE_API_URI } = require("../uris"),
       { FAILED_CLONE_MESSAGE, SUCCESSFUL_CLONE_MESSAGE } = require("../messages");
 
 function clone(argument) {
   const releaseName = argument,  ///
         name = releaseName, ///
-        uri = CLONE_URI,
+        uri = CLONE_API_URI,
         callbacks = [
           releaseNamePromptCallback
         ],
