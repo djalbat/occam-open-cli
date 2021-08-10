@@ -15,18 +15,13 @@ const { post: postEx } = requestUtilities;
 
 function post(uri, data, callback) {
   const host = getHost(),
-        userAgent = getUserAgent(),
+        headers = getHeaders(),
         versionString = getVersionString(),
         json = Object.assign(data, {  ///
           versionString
         }),
-        headers = {},
         content = JSON.stringify(json),
         parameters = {};
-
-  headers[USER_AGENT] = userAgent;
-
-  headers[CONTENT_TYPE] = APPLICATION_JSON_CHARSET_UTF_8;
 
   const request = postEx(host, uri, parameters, headers, (error, response) => {
           if (error) {
@@ -77,6 +72,17 @@ function getHost() {
         host = hostURL; ///
 
   return host;
+}
+
+function getHeaders() {
+  const headers = {},
+        userAgent = getUserAgent();
+
+  headers[USER_AGENT] = userAgent;
+
+  headers[CONTENT_TYPE] = APPLICATION_JSON_CHARSET_UTF_8;
+
+  return headers;
 }
 
 function getUserAgent() {
