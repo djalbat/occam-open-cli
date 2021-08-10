@@ -3,7 +3,7 @@
 const os = require("os");
 
 const { Readable } = require("stream");
-const { shellUtilities, requestUtilities } = require("necessary");
+const { requestUtilities } = require("necessary");
 
 const { retrieveHostURL } = require("./configuration"),
       { bodyFromResponse } = require("./utilities/response"),
@@ -11,8 +11,7 @@ const { retrieveHostURL } = require("./configuration"),
       { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages"),
       { USER_AGENT, CONTENT_TYPE, OCCAM_OPEN_CLI, APPLICATION_JSON_CHARSET_UTF_8 } = require("./constants");
 
-const { onETX } = shellUtilities,
-      { post: postEx } = requestUtilities;
+const { post: postEx } = requestUtilities;
 
 function post(uri, data, callback) {
   const host = getHost(),
@@ -29,10 +28,7 @@ function post(uri, data, callback) {
 
   headers[CONTENT_TYPE] = APPLICATION_JSON_CHARSET_UTF_8;
 
-  const offETX = onETX(process.exit),
-        request = postEx(host, uri, parameters, headers, (error, response) => {
-          offETX && offETX(); ///
-
+  const request = postEx(host, uri, parameters, headers, (error, response) => {
           if (error) {
             console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
 
