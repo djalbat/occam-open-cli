@@ -1,79 +1,99 @@
 "use strict";
 
-const os = require("os"),
-      request = require("request");
+const os = require("os");
 
-const { shellUtilities } = require("necessary");
+const { Readable } = require("stream");
+const { shellUtilities, requestUtilities } = require("necessary");
 
 const { retrieveHostURL } = require("./configuration"),
+      { bodyFromResponse } = require("./utilities/response"),
       { getPackageVersion } = require("./utilities/packageJSON"),
-      { OCCAM_OPEN_CLI, TIMEOUT, POST_METHOD, UTF8_ENCODING } = require("./constants"),
-      { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages");
+      { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages"),
+      { USER_AGENT, CONTENT_TYPE, OCCAM_OPEN_CLI, APPLICATION_JSON_CHARSET_UTF_8 } = require("./constants");
 
-const { onETX } = shellUtilities;
+const { onETX } = shellUtilities,
+      { post: postEx } = requestUtilities;
 
 function post(uri, data, callback) {
-  const options = optionsFromURIAndData(uri, data),
-				offETX = onETX(process.exit);
+  const host = getHost(),
+        userAgent = getUserAgent(),
+        versionString = getVersionString(),
+        json = Object.assign(data, {  ///
+          versionString
+        }),
+        headers = {},
+        content = JSON.stringify(json),
+        parameters = {};
 
-  request(options, (error, response) => {
-    offETX && offETX(); ///
+  headers[USER_AGENT] = userAgent;
 
-    if (error) {
-      console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
+  headers[CONTENT_TYPE] = APPLICATION_JSON_CHARSET_UTF_8;
 
-      process.exit(1);
-    }
+  const offETX = onETX(process.exit),
+        request = postEx(host, uri, parameters, headers, (error, response) => {
+          offETX && offETX(); ///
 
-    const { body } = response,
-          json = body,  ///
-          { message } = json;
+          if (error) {
+            console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
 
-    if (message) {  ///
-      console.log(message);
-    }
+            process.exit(1);
+          }
 
-    ({ error } = json); ///
+          bodyFromResponse(response, (body) => {
+            let json;
 
-    if (error) {
-      console.log(SERVER_ERROR_MESSAGE);
+            try {
+              json = JSON.parse(body);
+            } catch (error) {
+              if (error) {
+                console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
 
-      process.exit(1);
-    }
+                process.exit(1);
+              }
+            }
 
-    callback(json);
-  });
+            const { message } = json;
+
+            if (message) {  ///
+              console.log(message);
+            }
+
+            ({ error } = json); ///
+
+            if (error) {
+              console.log(SERVER_ERROR_MESSAGE);
+
+              process.exit(1);
+            }
+
+            callback(json);
+          });
+        }),
+        readable = Readable.from(content);
+
+  readable.pipe(request);
 }
 
 module.exports = post;
 
-function optionsFromURIAndData(uri, data) {
+function getHost() {
   const hostURL = retrieveHostURL(),
-        url = `${hostURL}${uri}`,
-        packageVersion = getPackageVersion(),
-        versionString = packageVersion, ///
-        body = Object.assign(data, {
-          versionString
-        }),
-        json = true,
-        timeout = TIMEOUT,
-        method = POST_METHOD,
-        encoding = UTF8_ENCODING,
-        osType = os.type(),
-        operatingSystem = osType, ///
-        userAgent = `${OCCAM_OPEN_CLI}/${operatingSystem}`,
-        headers = {
-          "User-Agent" : userAgent
-        },
-        options = {	///
-          url,
-          body,
-          json,
-          method,
-          timeout,
-          encoding,
-          headers
-        };
+        host = hostURL; ///
 
-  return options;
+  return host;
+}
+
+function getUserAgent() {
+  const osType = os.type(),
+        operatingSystem = osType, ///
+        userAgent = `${OCCAM_OPEN_CLI}/${operatingSystem}`;
+
+  return userAgent;
+}
+
+function getVersionString() {
+  const packageVersion = getPackageVersion(),
+        versionString = packageVersion; ///
+
+  return versionString;
 }
