@@ -3,6 +3,7 @@
 const { shellUtilities } = require("necessary");
 
 const { validateEmailAddress } = require("../../utilities/validate"),
+      { EMAIL_ADDRESS_DESCRIPTION } = require("../../descriptions"),
       { INVALID_EMAIL_ADDRESS_MESSAGE } = require("../../messages");
 
 const { prompt } = shellUtilities;
@@ -23,7 +24,7 @@ function emailAddressPromptCallback(proceed, abort, context) {
     }
   }
 
-  const description = "Email address: ",
+  const description = EMAIL_ADDRESS_DESCRIPTION,
         validationFunction = validateEmailAddress,  ///
         options = {
           description,

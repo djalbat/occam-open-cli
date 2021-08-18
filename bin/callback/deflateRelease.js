@@ -2,7 +2,7 @@
 
 const { deflate } = require("zlib");
 
-const { BASE64_ENCODING } = require("../constants");
+const { BASE64 } = require("../constants");
 
 function deflateRelease(proceed, abort, context) {
   const { release } = context,
@@ -16,7 +16,7 @@ function deflateRelease(proceed, abort, context) {
       return;
     }
 
-    const encoding = BASE64_ENCODING,
+    const encoding = BASE64,
           deflatedReleaseJSONString = buffer.toString(encoding),
           deflatedRelease = deflatedReleaseJSONString;  ///
 

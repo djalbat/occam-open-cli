@@ -3,6 +3,7 @@
 const { shellUtilities } = require("necessary");
 
 const { validateReleaseName } = require("../../utilities/validate"),
+      { RELEASE_NAME_DESCRIPTION } = require("../../descriptions"),
       { INVALID_RELEASE_NAME_MESSAGE } = require("../../messages");
 
 const { prompt } = shellUtilities;
@@ -23,7 +24,7 @@ function releaseNamePromptCallback(proceed, abort, context) {
     }
   }
 
-  const description = "Package name: ",
+  const description = RELEASE_NAME_DESCRIPTION,
         validationFunction = validateReleaseName, ///
         options = {
           description,

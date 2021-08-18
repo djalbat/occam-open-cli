@@ -1,7 +1,7 @@
 "use strict";
 
 const { VERSION_1_5 } = require("../versions"),
-      { DEFAULT_GITHUB_HOST_NAME, DEFAULT_HOST_URL } = require("../constants");
+      { DEFAULT_GITHUB_HOST_NAME, DEFAULT_HOST_URL } = require("../defaults");
 
 function createConfiguration() {
   const version = VERSION_1_5,  ///

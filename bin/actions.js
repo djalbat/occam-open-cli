@@ -73,6 +73,7 @@ function actions(command, argument, options) {
       argument = command;  ///
 
       install(argument);
+
       break;
   }
 }

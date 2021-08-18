@@ -3,6 +3,7 @@
 const { shellUtilities } = require("necessary");
 
 const { validateUsername } = require("../../utilities/validate"),
+      { USERNAME_DESCRIPTION } = require("../../descriptions"),
       { INVALID_USERNAME_MESSAGE } = require("../../messages");
 
 const { prompt } = shellUtilities;
@@ -23,7 +24,7 @@ function usernamePromptCallback(proceed, abort, context) {
     }
   }
 
-  const description = "Username: ",
+  const description = USERNAME_DESCRIPTION,
         validationFunction = validateUsername,  ///
         options = {
           description,

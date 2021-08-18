@@ -8,8 +8,9 @@ const { requestUtilities } = require("necessary");
 const { retrieveHostURL } = require("./configuration"),
       { bodyFromResponse } = require("./utilities/response"),
       { getPackageVersion } = require("./utilities/packageJSON"),
-      { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages"),
-      { USER_AGENT, CONTENT_TYPE, OCCAM_OPEN_CLI, APPLICATION_JSON_CHARSET_UTF_8 } = require("./constants");
+      { USER_AGENT, CONTENT_TYPE, OPEN_CLI } = require("./constants"),
+      { APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE } = require("./contentTypes"),
+      { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages");
 
 const { post: postEx } = requestUtilities;
 
@@ -80,7 +81,7 @@ function getHeaders() {
 
   headers[USER_AGENT] = userAgent;
 
-  headers[CONTENT_TYPE] = APPLICATION_JSON_CHARSET_UTF_8;
+  headers[CONTENT_TYPE] = APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE;
 
   return headers;
 }
@@ -88,7 +89,7 @@ function getHeaders() {
 function getUserAgent() {
   const osType = os.type(),
         operatingSystem = osType, ///
-        userAgent = `${OCCAM_OPEN_CLI}/${operatingSystem}`;
+        userAgent = `${OPEN_CLI}/${operatingSystem}`;
 
   return userAgent;
 }

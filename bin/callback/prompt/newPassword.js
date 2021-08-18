@@ -3,13 +3,14 @@
 const { shellUtilities } = require("necessary");
 
 const { validatePassword } = require("../../utilities/validate"),
-      { INVALID_PASSWORD_MESSAGE } = require("../../messages");
+      { INVALID_PASSWORD_MESSAGE } = require("../../messages"),
+      { NEW_PASSWORD_DESCRIPTION } = require("../../descriptions");
 
 const { prompt } = shellUtilities;
 
 function newPasswordPromptCallback(proceed, abort, context) {
   const hidden = true,
-        description = "New password: ",
+        description = NEW_PASSWORD_DESCRIPTION,
         errorMessage = INVALID_PASSWORD_MESSAGE,
         validationFunction = validatePassword,  ///
         options = {

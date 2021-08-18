@@ -2,14 +2,15 @@
 
 const { shellUtilities } = require("necessary");
 
-const { PASSWORDS_DO_NOT_MATCH_MESSAGE } = require("../../messages");
+const { CONFIRM_PASSWORD_DESCRIPTION } = require("../../descriptions"),
+      { PASSWORDS_DO_NOT_MATCH_MESSAGE } = require("../../messages");
 
 const { prompt } = shellUtilities;
 
 function confirmPasswordPromptCallback(proceed, abort, context) {
   const { password } = context,
         hidden = true,
-        description = "Confirm password: ",
+        description = CONFIRM_PASSWORD_DESCRIPTION,
         errorMessage = PASSWORDS_DO_NOT_MATCH_MESSAGE,
         options = {
           hidden,

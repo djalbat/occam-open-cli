@@ -1,7 +1,7 @@
 "use strict";
 
 const { VERSION_2_0 } = require("../versions"),
-      { DEFAULT_HOST_URL } = require("../constants");
+      { DEFAULT_HOST_URL } = require("../defaults");
 
 function createConfiguration() {
   const version = VERSION_2_0,  ///

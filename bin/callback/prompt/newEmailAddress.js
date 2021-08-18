@@ -3,13 +3,14 @@
 const { shellUtilities } = require("necessary");
 
 const { validateEmailAddress } = require("../../utilities/validate"),
-      { INVALID_EMAIL_ADDRESS_MESSAGE } = require("../../messages");
+      { INVALID_EMAIL_ADDRESS_MESSAGE } = require("../../messages"),
+      { NEW_EMAIL_ADDRESS_DESCRIPTION } = require("../../descriptions");
 
 const { prompt } = shellUtilities;
 
 function newEmailAddressPromptCallback(proceed, abort, context) {
   const hidden = false,
-        description = "New email address: ",
+        description = NEW_EMAIL_ADDRESS_DESCRIPTION,
         errorMessage = INVALID_EMAIL_ADDRESS_MESSAGE,
         validationFunction = validateEmailAddress,  ///
         options = {

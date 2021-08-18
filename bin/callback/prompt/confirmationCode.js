@@ -3,13 +3,14 @@
 const { shellUtilities } = require("necessary");
 
 const { validateConfirmationCode } = require("../../utilities/validate"),
+      { CONFIRMATION_CODE_DESCRIPTION } = require("../../descriptions"),
       { INVALID_CONFIRMATION_CODE_MESSAGE } = require("../../messages");
 
 const { prompt } = shellUtilities;
 
 function confirmationCodePromptCallback(proceed, abort, context) {
   const hidden = true,
-        description = "Confirmation code: ",
+        description = CONFIRMATION_CODE_DESCRIPTION,
         errorMessage = INVALID_CONFIRMATION_CODE_MESSAGE,
         validationFunction = validateConfirmationCode,  ///
         options = {

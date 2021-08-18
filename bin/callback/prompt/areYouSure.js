@@ -4,12 +4,13 @@ const { shellUtilities } = require("necessary");
 
 const { validateAnswer } = require("../../utilities/validate"),
       { isAnswerAffirmative } = require("../../utilities/prompt"),
-      { INVALID_ANSWER_MESSAGE } = require("../../messages");
+      { INVALID_ANSWER_MESSAGE } = require("../../messages"),
+      { ARE_YOU_SURE_DESCRIPTION } = require("../../descriptions");
 
 const { prompt } = shellUtilities;
 
 function areYouSurePromptCallback(proceed, abort, context) {
-  const description = "Are you sure? (y)es (n)o: ",
+  const description = ARE_YOU_SURE_DESCRIPTION,
         errorMessage = INVALID_ANSWER_MESSAGE,
         validationFunction = validateAnswer,  ///
         options = {

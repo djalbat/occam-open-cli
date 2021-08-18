@@ -2,32 +2,24 @@
 
 const END = "end",
       DATA = "data",
+      OPEN = "open",
+      BASE64 = "base64",
+      OPEN_CLI = "Open-CLI",
       USER_AGENT = "user-agent",
+      DOUBLE_DOTS = "..",
       EMPTY_STRING = "",
       CONTENT_TYPE = "content-type",
-      OCCAM_OPEN_CLI = "Open-CLI",
-      DEFAULT_USE_SSH = false,
-      BASE64_ENCODING = "base64",
-      DEFAULT_HOST_URL = "https://openmathematics.org",
-      RC_BASE_EXTENSION = "open",
-      PACKAGE_JSON_FILE_NAME = "package.json",
-      DEFAULT_HOST_NAME_SUFFIX = "",
-      DEFAULT_GITHUB_HOST_NAME = "github.com",
-      APPLICATION_JSON_CHARSET_UTF_8 = "application/json; charset=utf-8";
+      PACKAGE_JSON = "package.json";
 
 module.exports = {
   END,
   DATA,
+  OPEN,
+  BASE64,
+  OPEN_CLI,
   USER_AGENT,
+  DOUBLE_DOTS,
   EMPTY_STRING,
   CONTENT_TYPE,
-  OCCAM_OPEN_CLI,
-  DEFAULT_USE_SSH,
-  BASE64_ENCODING,
-  DEFAULT_HOST_URL,
-  RC_BASE_EXTENSION,
-  PACKAGE_JSON_FILE_NAME,
-  DEFAULT_HOST_NAME_SUFFIX,
-  DEFAULT_GITHUB_HOST_NAME,
-  APPLICATION_JSON_CHARSET_UTF_8
+  PACKAGE_JSON
 };

@@ -3,7 +3,7 @@
 const { exec } = require("child_process");
 
 const { retrieveOptions } = require("./configuration"),
-      { DEFAULT_GITHUB_HOST_NAME } = require("./constants");
+      { DEFAULT_GITHUB_HOST_NAME } = require("./defaults");
 
 function cloneRepository(repository, callback) {
   const options = retrieveOptions(),

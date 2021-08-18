@@ -2,7 +2,7 @@
 
 const { configurationUtilities } = require("necessary");
 
-const { RC_BASE_EXTENSION } = require("./constants"),
+const { OPEN } = require("./constants"),
       { CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE } = require("./messages"),
       { UNVERSIONED, VERSION_1_5, CURRENT_VERSION } = require("./versions"),
       { migrateConfigurationToVersion_1_5 } = require("./configuration/version_1_5"),
@@ -11,7 +11,9 @@ const { RC_BASE_EXTENSION } = require("./constants"),
 const { rc } = configurationUtilities,
       { setRCBaseExtension, checkRCFileExists, updateRCFile, writeRCFile, readRCFile } = rc;
 
-setRCBaseExtension(RC_BASE_EXTENSION);
+const rcBaseExtension = OPEN;
+
+setRCBaseExtension(rcBaseExtension);
 
 function retrieveHostURL() {
   const configuration = readConfigurationFile(),
