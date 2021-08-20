@@ -12,6 +12,7 @@ import Release from "../release";
 import Projects from "../projects";
 import Directory from "../directory";
 
+import { DOT } from "../constants";
 import { isNameHiddenName } from "../utilities/name";
 import { ENTRIES_MAXIMUM_ARRAY_LENGTH } from "../constants";
 import { isFilePathRecognisedFilePath } from "../utilities/filePath";
@@ -132,7 +133,7 @@ export function projectsFromProjectsDirectoryPath(projectsDirectoryPath, loadOnl
 
 export function releaseFromName(name) {
   const topmostDirectoryName = name, ///
-        projectsDirectoryPath = ".",
+        projectsDirectoryPath = DOT,
         loadOnlyRecognisedFiles = true,
         doNotLoadHiddenFilesAndDirectories = true,
         entries = entriesFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories),

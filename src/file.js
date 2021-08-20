@@ -1,5 +1,7 @@
 "use strict";
 
+import { DOUBLE_SPACE } from "./constants";
+
 export default class File {
   constructor(path, content) {
     this.path = path;
@@ -94,4 +96,4 @@ export default class File {
   }
 }
 
-export function convertContentTabsToWhitespace(content) { return content.replace(/\t/g, "  "); } ///
+export function convertContentTabsToWhitespace(content) { return content.replace(/\t/g, DOUBLE_SPACE); } ///
