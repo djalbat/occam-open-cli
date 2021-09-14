@@ -73,35 +73,7 @@ export function saveFiles(files, projectsDirectoryPath) {
   });
 }
 
-export function directoryFromPath(path, projectsDirectoryPath) {
-  let directory = null;
-
-  try {
-    const absolutePath = concatenatePaths(projectsDirectoryPath, path),
-          entryDirectory = isEntryDirectory(absolutePath);
-
-    if (entryDirectory) {
-      directory = new Directory(path);
-    }
-  } catch (error) {
-    ///
-  }
-
-  return directory;
-}
-
-export function entriesFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
-  const array = [],
-        relativeDirectoryPath = topmostDirectoryName;  ///
-
-  entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories);
-
-  const entries = new Entries(array);
-
-  return entries;
-}
-
-export function projectFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
+export function loadProject(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
   const name = topmostDirectoryName,  ///
         entries = entriesFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories),
         project = new Project(name, entries);
@@ -109,7 +81,7 @@ export function projectFromTopmostDirectoryName(topmostDirectoryName, projectsDi
   return project;
 }
 
-export function projectsFromProjectsDirectoryPath(projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
+export function loadProjects(projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
   let projects;
 
   try {
@@ -120,7 +92,7 @@ export function projectsFromProjectsDirectoryPath(projectsDirectoryPath, loadOnl
     const topmostDirectoryNames = topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
 
     topmostDirectoryNames.forEach((topmostDirectoryName) => {
-      const project = projectFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories);
+      const project = loadProject(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories);
 
       projects.addProject(project);
     });
@@ -148,12 +120,38 @@ export default {
   saveFile,
   loadFiles,
   saveFiles,
-  directoryFromPath,
-  entriesFromTopmostDirectoryName,
-  projectFromTopmostDirectoryName,
-  projectsFromProjectsDirectoryPath,
+  loadProject,
+  loadProjects,
   releaseFromName
 };
+
+function directoryFromPath(path, projectsDirectoryPath) {
+  let directory = null;
+
+  try {
+    const absolutePath = concatenatePaths(projectsDirectoryPath, path),
+          entryDirectory = isEntryDirectory(absolutePath);
+
+    if (entryDirectory) {
+      directory = new Directory(path);
+    }
+  } catch (error) {
+    ///
+  }
+
+  return directory;
+}
+
+function entriesFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
+  const array = [],
+        relativeDirectoryPath = topmostDirectoryName;  ///
+
+  entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories);
+
+  const entries = new Entries(array);
+
+  return entries;
+}
 
 function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
   const absoluteDirectoryPath = concatenatePaths(projectsDirectoryPath, relativeDirectoryPath),
