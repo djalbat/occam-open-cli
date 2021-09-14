@@ -22,24 +22,7 @@ import { ENTRIES_MAXIMUM_ARRAY_LENGTH_EXCEEDED_MESSAGE } from "../messages";
 const { concatenatePaths, topmostDirectoryPathFromPath } = pathUtilities,
       { readFile, writeFile, isEntryFile, readDirectory, isEntryDirectory } = fileSystemUtilities;
 
-export function saveFile(file, projectsDirectoryPath) {
-  const path = file.getPath(),
-        content = file.getContent(),
-        absolutePath = concatenatePaths(projectsDirectoryPath, path),
-        topmostAbsoluteDirectoryPath = topmostDirectoryPathFromPath(absolutePath);
-
-  mkdirp.sync(topmostAbsoluteDirectoryPath);
-
-  writeFile(absolutePath, content);
-}
-
-export function saveFiles(files, projectsDirectoryPath) {
-  files.forEachFile((file) => {
-    saveFile(file, projectsDirectoryPath);
-  });
-}
-
-export function fileFromPath(path, projectsDirectoryPath) {
+export function loadFile(path, projectsDirectoryPath) {
   let file = null;
 
   try {
@@ -60,17 +43,34 @@ export function fileFromPath(path, projectsDirectoryPath) {
   return file;
 }
 
-export function filesFromPaths(paths, projectsDirectoryPath) {
+export function saveFile(file, projectsDirectoryPath) {
+  const path = file.getPath(),
+        content = file.getContent(),
+        absolutePath = concatenatePaths(projectsDirectoryPath, path),
+        topmostAbsoluteDirectoryPath = topmostDirectoryPathFromPath(absolutePath);
+
+  mkdirp.sync(topmostAbsoluteDirectoryPath);
+
+  writeFile(absolutePath, content);
+}
+
+export function loadFiles(paths, projectsDirectoryPath) {
   const array = [],
         files = new Files(array);
 
   paths.forEach((path) => {
-    const file = fileFromPath(path, projectsDirectoryPath);
+    const file = loadFile(path, projectsDirectoryPath);
 
     files.addFile(file);
   });
 
   return files;
+}
+
+export function saveFiles(files, projectsDirectoryPath) {
+  files.forEachFile((file) => {
+    saveFile(file, projectsDirectoryPath);
+  });
 }
 
 export function directoryFromPath(path, projectsDirectoryPath) {
@@ -144,10 +144,10 @@ export function releaseFromName(name) {
 }
 
 export default {
+  loadFile,
   saveFile,
+  loadFiles,
   saveFiles,
-  fileFromPath,
-  filesFromPaths,
   directoryFromPath,
   entriesFromTopmostDirectoryName,
   projectFromTopmostDirectoryName,
@@ -188,7 +188,7 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
 
         entriesFromRelativeDirectoryPath(array, directoryPath, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories); ///
       } else {
-        const file = fileFromPath(path, projectsDirectoryPath);
+        const file = loadFile(path, projectsDirectoryPath);
 
         if (file !== null) {
           const filePath = file.getPath(),
