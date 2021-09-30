@@ -6,7 +6,7 @@ import Entries from "./entries";
 
 import { isFilePathFlorenceFilePath, isFilePathMetaJSONFilePath, isFilePathCustomGrammarBNFFilePath, isFilePathCustomGrammarLexicalPatternFilePath } from "./utilities/filePath";
 
-const { topmostPathFromPath } = pathUtilities;
+const { topmostDirectoryNameFromPath } = pathUtilities;
 
 export default class Project {
   constructor(name, entries) {
@@ -121,8 +121,8 @@ export default class Project {
 
   static fromMetaJSONFile(metaJSONFile) {
     const path = metaJSONFile.getPath(),
-          topmostPath = topmostPathFromPath(path),
-          name = topmostPath, ///
+          topmostDirectoryName = topmostDirectoryNameFromPath(path),
+          name = topmostDirectoryName, ///
           entry = metaJSONFile, ///
           entries = [
             entry
