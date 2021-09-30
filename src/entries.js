@@ -138,5 +138,14 @@ export default class Entries {
 
     return entries;
   }
+
+  static fromEntry(entry) {
+    const array = [
+            entry
+          ],
+          entries = new Entries(array);
+
+    return entries;
+  }
 }
 

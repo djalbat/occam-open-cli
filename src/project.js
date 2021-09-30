@@ -124,12 +124,9 @@ export default class Project {
           topmostDirectoryName = topmostDirectoryNameFromPath(path),
           name = topmostDirectoryName, ///
           entry = metaJSONFile, ///
-          entries = [
-            entry
-          ],
+          entries = Entries.fromEntry(entry),
           project = new Project(name, entries);
 
     return project;
   }
 }
-
