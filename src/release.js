@@ -78,12 +78,11 @@ export default class Release {
   }
 
   static fromJSON(json) {
-    const nameJSON = json["name"],
-          entriesJSON = json["entries"],
-          versionNumberJSON = json["versionNumber"],
-          name = nameJSON,  ///
-          entries = Entries.fromJSON(entriesJSON),
-          versionNumber = versionNumberJSON,  ///
+    const { name, versionNumber, entries: entriesJSON } = json;
+
+    json = entriesJSON; ///
+
+    const entries = Entries.fromJSON(json),
           release = new Release(name, entries, versionNumber);
 
     return release;

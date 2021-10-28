@@ -1,5 +1,6 @@
 "use strict";
 
+import { FILE_TYPE } from "./types";
 import { DOUBLE_SPACE } from "./constants";
 
 export default class File {
@@ -41,29 +42,26 @@ export default class File {
           path = this.path,
           content = this.content,
           json = {
-            "type": type,
-            "path": path,
-            "content": content
+            type,
+            path,
+            content
           };
 
     return json;
   }
 
-  static type = "File";
+  static type = FILE_TYPE;
 
   static fromJSON(json) {
     let file = null;
 
     if (json !== null) {
-      const { type } = File,
-            typeJSON = json["type"];
+      const { type } = json;
 
-      if (typeJSON === type) {  ///
-        const pathJSON = json["path"],
-              contentJSON = json["content"],
-              path = pathJSON;  ///
+      if (type === FILE_TYPE) {
+        let { content } = json;
 
-        let content = contentJSON;  ///
+        const { path } = json;
 
         content = convertContentTabsToWhitespace(content);  ///
 

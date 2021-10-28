@@ -1,5 +1,7 @@
 "use strict";
 
+import { DIRECTORY_TYPE } from "./types";
+
 export default class Directory {
   constructor(path) {
     this.path = path;
@@ -25,25 +27,23 @@ export default class Directory {
     const { type } = Directory,
           path = this.path,
           json = {
-            "type": type,
-            "path": path
+            type,
+            path
           };
 
     return json;
   }
 
-  static type = "Directory";
+  static type = DIRECTORY_TYPE;
 
   static fromJSON(json) {
     let directory = null;
 
     if (json !== null) {
-      const { type } = Directory,
-            typeJSON = json["type"];
+      const { type } = json;
 
-      if (typeJSON === type) {  ///
-        const pathJSON = json["path"],
-              path = pathJSON;  ///
+      if (type === DIRECTORY_TYPE) {
+        const { path } = json;
 
         directory = new Directory(path);
       }

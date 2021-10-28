@@ -99,21 +99,19 @@ export default class Project {
           entriesJSON = this.entries.toJSON(),
           entries = entriesJSON,  ///
           json = {
-            "name": name,
-            "entries": entries
+            name,
+            entries
           };
 
     return json;
   }
 
   static fromJSON(json) {
-    const nameJSON = json["name"],
-          entriesJSON = json["entries"];
+    const { name, entries: entriesJSON } = json;
 
     json = entriesJSON; ///
 
-    const name = nameJSON,  ///
-          entries = Entries.fromJSON(json),
+    const entries = Entries.fromJSON(json),
           project = new Project(name, entries);
 
     return project;

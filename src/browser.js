@@ -2,6 +2,7 @@
 
 export { default as File } from "./file";
 export { default as Files } from "./files";
+export { default as types } from "./types";
 export { default as Version } from "./version";
 export { default as Release } from "./release";
 export { default as Entries } from "./entries";
