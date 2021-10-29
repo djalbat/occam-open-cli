@@ -1,12 +1,8 @@
 "use strict";
 
-import { pathUtilities } from "necessary";
-
 import Entries from "./entries";
 
 import { isFilePathFlorenceFilePath, isFilePathMetaJSONFilePath, isFilePathCustomGrammarBNFFilePath, isFilePathCustomGrammarLexicalPatternFilePath } from "./utilities/filePath";
-
-const { topmostDirectoryNameFromPath } = pathUtilities;
 
 export default class Project {
   constructor(name, entries) {
@@ -117,12 +113,8 @@ export default class Project {
     return project;
   }
 
-  static fromMetaJSONFile(metaJSONFile) {
-    const path = metaJSONFile.getPath(),
-          topmostDirectoryName = topmostDirectoryNameFromPath(path),
-          name = topmostDirectoryName, ///
-          entry = metaJSONFile, ///
-          entries = Entries.fromEntry(entry),
+  static fromName(name) {
+    const entries = Entries.fromNothing(),
           project = new Project(name, entries);
 
     return project;

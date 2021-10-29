@@ -147,5 +147,11 @@ export default class Entries {
 
     return entries;
   }
-}
 
+  static fromNothing() {
+    const array = [],
+          entries = new Entries(array);
+
+    return entries;
+  }
+}
