@@ -49,7 +49,7 @@ export default class Files {
   
             return fileJSON;
           }),
-          json = filesJSON;
+          json = filesJSON; ///
 
     return json;
   }
