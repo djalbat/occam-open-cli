@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-const necessary = require("necessary"),
-      argumentative = require("argumentative");
+const necessary = require("necessary");
+
+const { parseArgv } = require("argumentative");
 
 const main = require("./bin/main"),
       abbreviations = require("./bin/abbreviations");
 
 const { argv } = process,
-      { parseArgv } = argumentative,
       { arrayUtilities } = necessary,
       { first, second } = arrayUtilities;
 
