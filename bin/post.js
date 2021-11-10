@@ -22,9 +22,9 @@ function post(uri, data, callback) {
           versionString
         }),
         content = JSON.stringify(json),
-        parameters = {};
+        query = {};
 
-  const request = postEx(host, uri, parameters, headers, (error, response) => {
+  const request = postEx(host, uri, query, headers, (error, response) => {
           if (error) {
             console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
 
