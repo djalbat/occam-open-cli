@@ -2,18 +2,18 @@
 
 const { END, DATA, EMPTY_STRING } = require("../constants");
 
-function bodyFromResponse(response, callback) {
-  let body = EMPTY_STRING;
+function contentFromResponse(response, callback) {
+  let content = EMPTY_STRING;
 
   response.on(DATA, (data) => {
-    body += data;
+    content += data;
   });
 
   response.on(END, () => {
-    callback(body);
+    callback(content);
   });
 }
 
 module.exports = {
-  bodyFromResponse
+  contentFromResponse
 };

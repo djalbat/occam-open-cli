@@ -6,8 +6,8 @@ const { Readable } = require("stream");
 const { requestUtilities } = require("necessary");
 
 const { retrieveHostURL } = require("./configuration"),
-      { bodyFromResponse } = require("./utilities/response"),
       { getPackageVersion } = require("./utilities/packageJSON"),
+      { contentFromResponse } = require("./utilities/response"),
       { USER_AGENT, CONTENT_TYPE, OPEN_CLI } = require("./constants"),
       { APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE } = require("./contentTypes"),
       { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages");
@@ -31,11 +31,13 @@ function post(uri, data, callback) {
             process.exit(1);
           }
 
-          bodyFromResponse(response, (body) => {
+          contentFromResponse(response, (content) => {
             let json;
 
             try {
-              json = JSON.parse(body);
+              const jsonString = content; ///
+
+              json = JSON.parse(jsonString);
             } catch (error) {
               if (error) {
                 console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
