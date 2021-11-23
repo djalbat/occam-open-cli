@@ -12,7 +12,7 @@ const { retrieveHostURL } = require("./configuration"),
       { APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE } = require("./contentTypes"),
       { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages");
 
-const { post: postEx } = requestUtilities;
+const { createPostRequest } = requestUtilities;
 
 function post(uri, data, callback) {
   const host = getHost(),
@@ -22,9 +22,8 @@ function post(uri, data, callback) {
           versionString
         }),
         content = JSON.stringify(json),
-        query = {};
-
-  const request = postEx(host, uri, query, headers, (error, response) => {
+        query = {},
+        postRequest = createPostRequest(host, uri, query, headers, (error, response) => {
           if (error) {
             console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
 
@@ -65,7 +64,7 @@ function post(uri, data, callback) {
         }),
         readable = Readable.from(content);
 
-  readable.pipe(request);
+  readable.pipe(postRequest);
 }
 
 module.exports = post;
