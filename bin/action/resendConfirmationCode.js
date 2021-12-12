@@ -1,8 +1,8 @@
 "use strict";
 
 const action = require("../action"),
-      emailAddressPromptCallback = require("../callback/prompt/emailAddress"),
-      retrieveAccessTokenCallback = require("../callback/retrieveAccessToken");
+      emailAddressPromptOperation = require("../operation/prompt/emailAddress"),
+      retrieveAccessTokenOperation = require("../operation/retrieveAccessToken");
 
 const { RESEND_CONFIRMATION_CODE_API_URI } = require("../uris"),
       { SUCCESSFUL_RESEND_CONFIRMATION_CODE_MESSAGE, FAILED_RESEND_CONFIRMATION_CODE_MESSAGE } = require("../messages");
@@ -10,15 +10,15 @@ const { RESEND_CONFIRMATION_CODE_API_URI } = require("../uris"),
 function resendConfirmationCode(argument) {
   const emailAddress = argument,  ///
         uri = RESEND_CONFIRMATION_CODE_API_URI,
-        callbacks = [
-          retrieveAccessTokenCallback,
-          emailAddressPromptCallback
+        operations = [
+          retrieveAccessTokenOperation,
+          emailAddressPromptOperation
         ],
         context = {
           emailAddress
         };
 
-  action(callbacks, uri, (json) => {
+  action(operations, uri, (json) => {
     const { success } = json;
 
     success ?

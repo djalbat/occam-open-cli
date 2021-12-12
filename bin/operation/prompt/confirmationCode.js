@@ -8,7 +8,7 @@ const { validateConfirmationCode } = require("../../utilities/validate"),
 
 const { prompt } = shellUtilities;
 
-function confirmationCodePromptCallback(proceed, abort, context) {
+function confirmationCodePromptOperation(proceed, abort, context) {
   const hidden = true,
         description = CONFIRMATION_CODE_DESCRIPTION,
         errorMessage = INVALID_CONFIRMATION_CODE_MESSAGE,
@@ -38,4 +38,4 @@ function confirmationCodePromptCallback(proceed, abort, context) {
   });
 }
 
-module.exports = confirmationCodePromptCallback;
+module.exports = confirmationCodePromptOperation;

@@ -2,7 +2,7 @@
 
 const { META_JSON_FILE_DOES_NOT_EXIST_MESSAGE } = require("../messages");
 
-function checkMetaJSONFileExistsCallback(proceed, abort, context) {
+function checkMetaJSONFileExistsOperation(proceed, abort, context) {
   const { release } = context,
         metaJSONFile = release.getMetaJSONFile(),
         metaJSONFileExists = (metaJSONFile !== null);
@@ -18,4 +18,4 @@ function checkMetaJSONFileExistsCallback(proceed, abort, context) {
   proceed();
 }
 
-module.exports = checkMetaJSONFileExistsCallback;
+module.exports = checkMetaJSONFileExistsOperation;

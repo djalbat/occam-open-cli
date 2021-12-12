@@ -1,8 +1,8 @@
 "use strict";
 
 const action = require("../action"),
-      passwordPromptCallback = require("../callback/prompt/password"),
-      emailAddressPromptCallback = require("../callback/prompt/emailAddress");
+      passwordPromptOperation = require("../operation/prompt/password"),
+      emailAddressPromptOperation = require("../operation/prompt/emailAddress");
 
 const { LOGIN_API_URI } = require("../uris"),
       { addAccessToken } = require("../configuration"),
@@ -12,16 +12,16 @@ function login(argument) {
   const emailAddress = argument,  ///
         password = null,
         uri = LOGIN_API_URI,
-        callbacks = [
-          emailAddressPromptCallback,
-          passwordPromptCallback
+        operations = [
+          emailAddressPromptOperation,
+          passwordPromptOperation
         ],
         context = {
           emailAddress,
           password
         };
 
-  action(callbacks, uri, (json) => {
+  action(operations, uri, (json) => {
     const { success } = json;
 
     success ?

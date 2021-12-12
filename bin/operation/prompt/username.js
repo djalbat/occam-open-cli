@@ -8,7 +8,7 @@ const { validateUsername } = require("../../utilities/validate"),
 
 const { prompt } = shellUtilities;
 
-function usernamePromptCallback(proceed, abort, context) {
+function usernamePromptOperation(proceed, abort, context) {
   const { username } = context,
         errorMessage = INVALID_USERNAME_MESSAGE;
 
@@ -50,4 +50,4 @@ function usernamePromptCallback(proceed, abort, context) {
   });
 }
 
-module.exports = usernamePromptCallback;
+module.exports = usernamePromptOperation;

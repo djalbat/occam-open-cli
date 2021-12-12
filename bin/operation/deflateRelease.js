@@ -4,7 +4,7 @@ const { deflate } = require("zlib");
 
 const { BASE64 } = require("../constants");
 
-function deflateRelease(proceed, abort, context) {
+function deflateReleaseOperation(proceed, abort, context) {
   const { release } = context,
         releaseJSON = release.toJSON(),
         releaseJSONString = JSON.stringify(releaseJSON);
@@ -28,4 +28,4 @@ function deflateRelease(proceed, abort, context) {
   });
 }
 
-module.exports = deflateRelease;
+module.exports = deflateReleaseOperation;

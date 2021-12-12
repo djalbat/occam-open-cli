@@ -1,7 +1,7 @@
 "use strict";
 
 const action = require("../action"),
-      usernamePromptCallback = require("../callback/prompt/username");
+      usernamePromptOperation = require("../operation/prompt/username");
 
 const { RESET_PASSWORD_API_URI } = require("../uris"),
       { FAILED_RESET_PASSWORD_MESSAGE, SUCCESSFUL_RESET_PASSWORD_MESSAGE } = require("../messages");
@@ -9,14 +9,14 @@ const { RESET_PASSWORD_API_URI } = require("../uris"),
 function resetPassword(argument) {
   const username = argument,  ///
         uri = RESET_PASSWORD_API_URI,
-        callbacks = [
-          usernamePromptCallback
+        operations = [
+          usernamePromptOperation
         ],
         context = {
           username
         };
 
-  action(callbacks, uri, (json) => {
+  action(operations, uri, (json) => {
     const { success } = json;
 
     success ?

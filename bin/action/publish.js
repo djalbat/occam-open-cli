@@ -1,12 +1,12 @@
 "use strict";
 
 const action = require("../action"),
-      createReleaseCallback = require("../callback/createRelease"),
-      deflateReleaseCallback = require("../callback/deflateRelease"),
-      releaseNamePromptCallback = require("../callback/prompt/releaseName"),
-      retrieveAccessTokenCallback = require("../callback/retrieveAccessToken"),
-      checkReadmeFileExistsCallback = require("../callback/checkReadmeFileExists"),
-      checkMetaJSONFileExistsCallback = require("../callback/checkMetaJSONFileExists");
+      createReleaseOperation = require("../operation/createRelease"),
+      deflateReleaseOperation = require("../operation/deflateRelease"),
+      releaseNamePromptOperation = require("../operation/prompt/releaseName"),
+      retrieveAccessTokenOperation = require("../operation/retrieveAccessToken"),
+      checkReadmeFileExistsOperation = require("../operation/checkReadmeFileExists"),
+      checkMetaJSONFileExistsOperation = require("../operation/checkMetaJSONFileExists");
 
 const { PUBLISH_API_URI } = require("../uris"),
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = require("../messages");
@@ -14,19 +14,19 @@ const { PUBLISH_API_URI } = require("../uris"),
 function publish(argument) {
   const releaseName = argument, ///
         uri = PUBLISH_API_URI,
-        callbacks = [
-          retrieveAccessTokenCallback,
-          releaseNamePromptCallback,
-          createReleaseCallback,
-          checkReadmeFileExistsCallback,
-          checkMetaJSONFileExistsCallback,
-          deflateReleaseCallback
+        operations = [
+          retrieveAccessTokenOperation,
+          releaseNamePromptOperation,
+          createReleaseOperation,
+          checkReadmeFileExistsOperation,
+          checkMetaJSONFileExistsOperation,
+          deflateReleaseOperation
         ],
         context = {
           releaseName
         };
 
-  action(callbacks, uri, (json) => {
+  action(operations, uri, (json) => {
     const { success } = json;
 
     success ?

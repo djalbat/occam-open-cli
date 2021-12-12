@@ -3,14 +3,14 @@
 const { shellUtilities } = require("necessary");
 
 const { validatePassword } = require("../../utilities/validate"),
-      { INVALID_PASSWORD_MESSAGE } = require("../../messages"),
-      { NEW_PASSWORD_DESCRIPTION } = require("../../descriptions");
+      { PASSWORD_DESCRIPTION } = require("../../descriptions"),
+      { INVALID_PASSWORD_MESSAGE } = require("../../messages");
 
 const { prompt } = shellUtilities;
 
-function newPasswordPromptCallback(proceed, abort, context) {
+function passwordPromptOperation(proceed, abort, context) {
   const hidden = true,
-        description = NEW_PASSWORD_DESCRIPTION,
+        description = PASSWORD_DESCRIPTION,
         errorMessage = INVALID_PASSWORD_MESSAGE,
         validationFunction = validatePassword,  ///
         options = {
@@ -21,12 +21,12 @@ function newPasswordPromptCallback(proceed, abort, context) {
         };
 
   prompt(options, (answer) => {
-    const newPassword = answer, ///
-          valid = (newPassword !== null);
+    const password = answer,  ///
+          valid = (password !== null);
 
     if (valid) {
       Object.assign(context, {
-        newPassword
+        password
       });
 
       proceed();
@@ -38,4 +38,4 @@ function newPasswordPromptCallback(proceed, abort, context) {
   });
 }
 
-module.exports = newPasswordPromptCallback;
+module.exports = passwordPromptOperation;

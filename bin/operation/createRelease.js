@@ -5,7 +5,7 @@ const { fileSystemUtilities } = require("../../lib/main"), ///
 
 const { releaseFromName } = fileSystemUtilities;
 
-function createReleaseCallback(proceed, abort, context) {
+function createReleaseOperation(proceed, abort, context) {
   const { releaseName } = context,
         name = releaseName, ///
         release = releaseFromName(name);
@@ -25,4 +25,4 @@ function createReleaseCallback(proceed, abort, context) {
   proceed();
 }
 
-module.exports = createReleaseCallback;
+module.exports = createReleaseOperation;

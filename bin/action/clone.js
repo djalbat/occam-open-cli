@@ -2,7 +2,7 @@
 
 const action = require("../action"),
       cloneRepository = require("../cloneRepository"),
-      releaseNamePromptCallback = require("../callback/prompt/releaseName");
+      releaseNamePromptOperation = require("../operation/prompt/releaseName");
 
 const { CLONE_API_URI } = require("../uris"),
       { FAILED_CLONE_MESSAGE, SUCCESSFUL_CLONE_MESSAGE } = require("../messages");
@@ -11,14 +11,14 @@ function clone(argument) {
   const releaseName = argument,  ///
         name = releaseName, ///
         uri = CLONE_API_URI,
-        callbacks = [
-          releaseNamePromptCallback
+        operations = [
+          releaseNamePromptOperation
         ],
         context = {
           name
         };
 
-  action(callbacks, uri, (json) => {
+  action(operations, uri, (json) => {
     const { exists } = json;
 
     if (!exists) {

@@ -3,7 +3,7 @@
 const { retrieveAccessToken } = require("../configuration"),
       { NOT_LOGGED_IN_MESSAGE } = require("../messages");
 
-function retrieveAccessTokenCallback(proceed, abort, context) {
+function retrieveAccessTokenOperation(proceed, abort, context) {
   const accessToken = retrieveAccessToken();
 
   if (!accessToken) {
@@ -21,4 +21,4 @@ function retrieveAccessTokenCallback(proceed, abort, context) {
   proceed();
 }
 
-module.exports = retrieveAccessTokenCallback;
+module.exports = retrieveAccessTokenOperation;

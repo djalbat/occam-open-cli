@@ -2,10 +2,10 @@
 
 const post = require("./post");
 
-const { executeCallbacks } = require("./utilities/callback");
+const { executeOperations } = require("./utilities/operation");
 
-function action(callbacks, uri, callback, context) {
-  executeCallbacks(callbacks, (completed) => {
+function action(operations, uri, callback, context) {
+  executeOperations(operations, (completed) => {
     if (!completed) {
       process.exit(1);
     }

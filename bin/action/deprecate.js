@@ -1,10 +1,10 @@
 "use strict";
 
 const action = require("../action"),
-      passwordPromptCallback = require("../callback/prompt/password"),
-      areYouSurePromptCallback = require("../callback/prompt/areYouSure"),
-      releaseNamePromptCallback = require("../callback/prompt/releaseName"),
-      retrieveAccessTokenCallback = require("../callback/retrieveAccessToken");
+      passwordPromptOperation = require("../operation/prompt/password"),
+      areYouSurePromptOperation = require("../operation/prompt/areYouSure"),
+      releaseNamePromptOperation = require("../operation/prompt/releaseName"),
+      retrieveAccessTokenOperation = require("../operation/retrieveAccessToken");
 
 const { DEPRECATE_API_URI } = require("../uris"),
       { FAILED_DEPRECATE_MESSAGE, SUCCESSFUL_DEPRECATE_MESSAGE } = require("../messages");
@@ -13,18 +13,18 @@ function deprecate(argument) {
   const releaseName = argument,  ///
         password = null,
         uri = DEPRECATE_API_URI,
-        callbacks = [
-          retrieveAccessTokenCallback,
-          releaseNamePromptCallback,
-          passwordPromptCallback,
-          areYouSurePromptCallback
+        operations = [
+          retrieveAccessTokenOperation,
+          releaseNamePromptOperation,
+          passwordPromptOperation,
+          areYouSurePromptOperation
         ],
         context = {
           password,
           releaseName
         };
 
-  action(callbacks, uri, (json) => {
+  action(operations, uri, (json) => {
     const { success } = json;
 
     success ?

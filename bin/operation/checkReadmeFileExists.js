@@ -2,7 +2,7 @@
 
 const { README_FILE_DOES_NOT_EXIST_MESSAGE } = require("../messages");
 
-function checkReadmeFileExistsCallback(proceed, abort, context) {
+function checkReadmeFileExistsOperation(proceed, abort, context) {
   const { release } = context,
         readmeFile = release.getReadmeFile(),
         readmeFileExists = (readmeFile !== null);
@@ -18,4 +18,4 @@ function checkReadmeFileExistsCallback(proceed, abort, context) {
   proceed();
 }
 
-module.exports = checkReadmeFileExistsCallback;
+module.exports = checkReadmeFileExistsOperation;

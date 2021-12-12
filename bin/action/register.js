@@ -1,10 +1,10 @@
 "use strict";
 
 const action = require("../action"),
-      usernamePromptCallback = require("../callback/prompt/username"),
-      passwordPromptCallback = require("../callback/prompt/password"),
-      emailAddressPromptCallback = require("../callback/prompt/emailAddress"),
-      confirmPasswordPromptCallback = require("../callback/prompt/confirmPassword");
+      usernamePromptOperation = require("../operation/prompt/username"),
+      passwordPromptOperation = require("../operation/prompt/password"),
+      emailAddressPromptOperation = require("../operation/prompt/emailAddress"),
+      confirmPasswordPromptOperation = require("../operation/prompt/confirmPassword");
 
 const { REGISTER_API_URI } = require("../uris"),
       { FAILED_REGISTER_MESSAGE, SUCCESSFUL_REGISTER_MESSAGE } = require("../messages");
@@ -14,11 +14,11 @@ function register(argument) {
         username = null,
         password = null,
         uri = REGISTER_API_URI,
-        callbacks = [
-          emailAddressPromptCallback,
-          usernamePromptCallback,
-          passwordPromptCallback,
-          confirmPasswordPromptCallback
+        operations = [
+          emailAddressPromptOperation,
+          usernamePromptOperation,
+          passwordPromptOperation,
+          confirmPasswordPromptOperation
         ],
         context = {
           username,
@@ -26,7 +26,7 @@ function register(argument) {
           emailAddress
         };
 
-  action(callbacks, uri, (json) => {
+  action(operations, uri, (json) => {
     const { success } = json;
 
     success ?

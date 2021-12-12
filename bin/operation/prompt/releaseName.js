@@ -8,7 +8,7 @@ const { validateReleaseName } = require("../../utilities/validate"),
 
 const { prompt } = shellUtilities;
 
-function releaseNamePromptCallback(proceed, abort, context) {
+function releaseNamePromptOperation(proceed, abort, context) {
   const { releaseName } = context,
 				errorMessage = INVALID_RELEASE_NAME_MESSAGE;
 
@@ -50,4 +50,4 @@ function releaseNamePromptCallback(proceed, abort, context) {
   });
 }
 
-module.exports = releaseNamePromptCallback;
+module.exports = releaseNamePromptOperation;

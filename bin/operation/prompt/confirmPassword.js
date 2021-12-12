@@ -7,7 +7,7 @@ const { CONFIRM_PASSWORD_DESCRIPTION } = require("../../descriptions"),
 
 const { prompt } = shellUtilities;
 
-function confirmPasswordPromptCallback(proceed, abort, context) {
+function confirmPasswordPromptOperation(proceed, abort, context) {
   const { password } = context,
         hidden = true,
         description = CONFIRM_PASSWORD_DESCRIPTION,
@@ -39,4 +39,4 @@ function confirmPasswordPromptCallback(proceed, abort, context) {
   }
 }
 
-module.exports = confirmPasswordPromptCallback;
+module.exports = confirmPasswordPromptOperation;

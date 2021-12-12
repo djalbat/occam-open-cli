@@ -10,7 +10,7 @@ const { validateGitHubHostName } = require("../../utilities/validate"),
 
 const { prompt } = shellUtilities;
 
-function gitHubHostNamePromptCallback(proceed, abort, context) {
+function gitHubHostNamePromptOperation(proceed, abort, context) {
   const { useSSH } = context;
 
   if (!useSSH) {
@@ -51,4 +51,4 @@ function gitHubHostNamePromptCallback(proceed, abort, context) {
   });
 }
 
-module.exports = gitHubHostNamePromptCallback;
+module.exports = gitHubHostNamePromptOperation;

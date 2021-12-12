@@ -1,9 +1,9 @@
 "use strict";
 
 const action = require("../action"),
-      emailAddressPromptCallback = require("../callback/prompt/emailAddress"),
-      retrieveAccessTokenCallback = require("../callback/retrieveAccessToken"),
-      confirmationCodePromptCallback = require("../callback/prompt/confirmationCode");
+      emailAddressPromptOperation = require("../operation/prompt/emailAddress"),
+      retrieveAccessTokenOperation = require("../operation/retrieveAccessToken"),
+      confirmationCodePromptOperation = require("../operation/prompt/confirmationCode");
 
 const { CONFIRM_EMAIL_ADDRESS_API_URI } = require("../uris"),
       { FAILED_CONFIRM_EMAIL_ADDRESS_MESSAGE, SUCCESSFUL_CONFIRM_EMAIL_ADDRESS_MESSAGE } = require("../messages");
@@ -12,17 +12,17 @@ function confirmEmailAddress(argument) {
   const emailAddress = argument,  ///
         confirmationCode = null,
         uri = CONFIRM_EMAIL_ADDRESS_API_URI,
-        callbacks = [
-          retrieveAccessTokenCallback,
-          emailAddressPromptCallback,
-          confirmationCodePromptCallback
+        operations = [
+          retrieveAccessTokenOperation,
+          emailAddressPromptOperation,
+          confirmationCodePromptOperation
         ],
         context = {
           emailAddress,
           confirmationCode
         };
 
-  action(callbacks, uri, (json) => {
+  action(operations, uri, (json) => {
     const { success } = json;
 
     success ?

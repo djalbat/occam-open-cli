@@ -4,13 +4,13 @@ const { shellUtilities } = require("necessary");
 
 const { validateAnswer } = require("../../utilities/validate"),
       { isAnswerAffirmative } = require("../../utilities/prompt"),
-      { INVALID_ANSWER_MESSAGE } = require("../../messages"),
-      { ARE_YOU_SURE_DESCRIPTION } = require("../../descriptions");
+      { USE_SSH_DESCRIPTION } = require("../../descriptions"),
+      { INVALID_ANSWER_MESSAGE } = require("../../messages");
 
 const { prompt } = shellUtilities;
 
-function areYouSurePromptCallback(proceed, abort, context) {
-  const description = ARE_YOU_SURE_DESCRIPTION,
+function useSSHPromptOperation(proceed, abort, context) {
+  const description = USE_SSH_DESCRIPTION,
         errorMessage = INVALID_ANSWER_MESSAGE,
         validationFunction = validateAnswer,  ///
         options = {
@@ -23,17 +23,20 @@ function areYouSurePromptCallback(proceed, abort, context) {
     const valid = (answer !== null);
 
     if (valid) {
-      const affirmative = isAnswerAffirmative(answer);
+      const affirmative = isAnswerAffirmative(answer),
+            useSSH = affirmative; ///
 
-      if (affirmative) {
-        proceed();
+      Object.assign(context, {
+        useSSH
+      });
 
-        return;
-      }
+      proceed();
+
+      return;
     }
 
     abort();
   });
 }
 
-module.exports = areYouSurePromptCallback;
+module.exports = useSSHPromptOperation;

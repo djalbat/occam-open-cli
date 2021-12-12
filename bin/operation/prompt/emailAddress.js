@@ -8,7 +8,7 @@ const { validateEmailAddress } = require("../../utilities/validate"),
 
 const { prompt } = shellUtilities;
 
-function emailAddressPromptCallback(proceed, abort, context) {
+function emailAddressPromptOperation(proceed, abort, context) {
   const { emailAddress } = context,
         errorMessage = INVALID_EMAIL_ADDRESS_MESSAGE;
   
@@ -50,4 +50,4 @@ function emailAddressPromptCallback(proceed, abort, context) {
   });
 }
 
-module.exports = emailAddressPromptCallback;
+module.exports = emailAddressPromptOperation;

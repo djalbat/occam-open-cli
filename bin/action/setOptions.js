@@ -1,20 +1,20 @@
 "use strict";
 
-const useSSHPromptCallback = require("../callback/prompt/useSSH"),
-      gitHubHostNamePromptCallback = require("../callback/prompt/gitHubHostName");
+const useSSHPromptOperation = require("../operation/prompt/useSSH"),
+      gitHubHostNamePromptOperation = require("../operation/prompt/gitHubHostName");
 
 const { updateOptions } = require("../configuration"),
-      { executeCallbacks } = require("../utilities/callback"),
+      { executeOperations } = require("../utilities/operation"),
       { FAILED_SET_OPTIONS_MESSAGE, SUCCESSFUL_SET_OPTIONS_MESSAGE } = require("../messages");
 
 function setOptions() {
-  const callbacks = [
-          useSSHPromptCallback,
-          gitHubHostNamePromptCallback
+  const operations = [
+          useSSHPromptOperation,
+          gitHubHostNamePromptOperation
         ],
         context = {};
 
-  executeCallbacks(callbacks, (completed) => {
+  executeOperations(operations, (completed) => {
     if (!completed) {
       console.log(FAILED_SET_OPTIONS_MESSAGE);
 
