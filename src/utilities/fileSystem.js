@@ -2,7 +2,7 @@
 
 import mkdirp from "mkdirp";
 
-import { pathUtilities, fileSystemUtilities } from "necessary";
+import { characters, pathUtilities, fileSystemUtilities } from "necessary";
 
 import File from "../file";
 import Files from "../files";
@@ -12,14 +12,14 @@ import Release from "../release";
 import Projects from "../projects";
 import Directory from "../directory";
 
-import { DOT } from "../constants";
 import { isNameHiddenName } from "../utilities/name";
 import { ENTRIES_MAXIMUM_ARRAY_LENGTH } from "../constants";
 import { isFilePathRecognisedFilePath } from "../utilities/filePath";
 import { convertContentTabsToWhitespace } from "../file";
 import { ENTRIES_MAXIMUM_ARRAY_LENGTH_EXCEEDED_MESSAGE } from "../messages";
 
-const { concatenatePaths, topmostDirectoryPathFromPath } = pathUtilities,
+const { PERIOD_CHARACTER } = characters,
+      { concatenatePaths, topmostDirectoryPathFromPath } = pathUtilities,
       { readFile, writeFile, isEntryFile, readDirectory, isEntryDirectory } = fileSystemUtilities;
 
 export function loadFile(path, projectsDirectoryPath) {
@@ -105,7 +105,7 @@ export function loadProjects(projectsDirectoryPath, loadOnlyRecognisedFiles, doN
 
 export function releaseFromName(name) {
   const topmostDirectoryName = name, ///
-        projectsDirectoryPath = DOT,
+        projectsDirectoryPath = PERIOD_CHARACTER,
         loadOnlyRecognisedFiles = true,
         doNotLoadHiddenFilesAndDirectories = true,
         entries = entriesFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories),

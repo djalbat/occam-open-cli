@@ -3,16 +3,17 @@
 const os = require("os");
 
 const { Readable } = require("stream");
-const { requestUtilities } = require("necessary");
+const { headers, contentTypes, requestUtilities } = require("necessary");
 
-const { retrieveHostURL } = require("./configuration"),
+const { OPEN_CLI } = require("./constants"),
+      { retrieveHostURL } = require("./configuration"),
       { getPackageVersion } = require("./utilities/packageJSON"),
       { contentFromResponse } = require("./utilities/response"),
-      { USER_AGENT, CONTENT_TYPE, OPEN_CLI } = require("./constants"),
-      { APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE } = require("./contentTypes"),
       { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages");
 
-const { createPostRequest } = requestUtilities;
+const { createPostRequest } = requestUtilities,
+      { USER_AGENT_HEADER, CONTENT_TYPE_HEADER } = headers,
+      { APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE } = contentTypes;
 
 function post(uri, data, callback) {
   const host = getHost(),
@@ -80,9 +81,9 @@ function getHeaders() {
   const headers = {},
         userAgent = getUserAgent();
 
-  headers[USER_AGENT] = userAgent;
+  headers[USER_AGENT_HEADER] = userAgent;
 
-  headers[CONTENT_TYPE] = APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE;
+  headers[CONTENT_TYPE_HEADER] = APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE;
 
   return headers;
 }
