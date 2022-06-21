@@ -1,26 +1,16 @@
 "use strict";
 
-const action = require("../action"),
-      retrieveAccessTokenOperation = require("../operation/retrieveAccessToken");
-
-const { SIGN_OUT_API_URI } = require("../uris"),
-      { removeAccessToken } = require("../configuration"),
-      { SIGNED_OUT_MESSAGE } = require("../messages");
+const { SIGN_OUT_MESSAGE } = require("../messages"),
+      { removeIdentityToken } = require("../configuration");
 
 function signOut() {
-  const uri = SIGN_OUT_API_URI,
-        operations = [
-          retrieveAccessTokenOperation
-        ],
-        context = {};
+  const message = SIGN_OUT_MESSAGE;
 
-  action(operations, uri, (json) => {
-    removeAccessToken();
+  removeIdentityToken();
 
-    console.log(SIGNED_OUT_MESSAGE);
+  console.log(message);
 
-    process.exit();
-  }, context);
+  process.exit(0);
 }
 
 module.exports = signOut;

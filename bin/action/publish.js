@@ -1,39 +1,40 @@
 "use strict";
 
-const action = require("../action"),
+const publishOperation = require("../operation/publish"),
       createReleaseOperation = require("../operation/createRelease"),
       deflateReleaseOperation = require("../operation/deflateRelease"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName"),
-      retrieveAccessTokenOperation = require("../operation/retrieveAccessToken"),
+      retrieveIdentityTokenOperation = require("../operation/retrieveIdentityToken"),
       checkReadmeFileExistsOperation = require("../operation/checkReadmeFileExists"),
       checkMetaJSONFileExistsOperation = require("../operation/checkMetaJSONFileExists");
 
-const { PUBLISH_API_URI } = require("../uris"),
+const { executeOperations } = require("../utilities/operation"),
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = require("../messages");
 
 function publish(argument) {
   const releaseName = argument, ///
-        uri = PUBLISH_API_URI,
         operations = [
-          retrieveAccessTokenOperation,
+          retrieveIdentityTokenOperation,
           releaseNamePromptOperation,
           createReleaseOperation,
           checkReadmeFileExistsOperation,
           checkMetaJSONFileExistsOperation,
-          deflateReleaseOperation
+          deflateReleaseOperation,
+          publishOperation
         ],
         context = {
           releaseName
         };
 
-  action(operations, uri, (json) => {
-    const { success } = json;
+  executeOperations(operations, (completed) => {
+    const success = completed,  ///
+          message = success ?
+                      SUCCESSFUL_PUBLISH_MESSAGE :
+                        FAILED_PUBLISH_MESSAGE;
 
-    success ?
-      console.log(SUCCESSFUL_PUBLISH_MESSAGE) :
-        console.log(FAILED_PUBLISH_MESSAGE);
+    console.log(message);
 
-    process.exit();
+    process.exit(0);
   }, context);
 }
 

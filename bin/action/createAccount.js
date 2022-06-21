@@ -1,24 +1,24 @@
 "use strict";
 
-const action = require("../action"),
+const createAccountOperation = require("../operation/createAccount"),
       usernamePromptOperation = require("../operation/prompt/username"),
       passwordPromptOperation = require("../operation/prompt/password"),
       emailAddressPromptOperation = require("../operation/prompt/emailAddress"),
       confirmPasswordPromptOperation = require("../operation/prompt/confirmPassword");
 
-const { CREATE_ACCOUNT_API_URI } = require("../uris"),
+const { executeOperations } = require("../utilities/operation"),
       { SUCCESSFUL_CREATE_ACCOUNT_MESSAGE, FAILED_CREATE_ACCOUNT_MESSAGE } = require("../messages");
 
 function createAccount(argument) {
   const emailAddress = argument,  ///
         username = null,
         password = null,
-        uri = CREATE_ACCOUNT_API_URI,
         operations = [
           emailAddressPromptOperation,
           usernamePromptOperation,
           passwordPromptOperation,
-          confirmPasswordPromptOperation
+          confirmPasswordPromptOperation,
+          createAccountOperation
         ],
         context = {
           username,
@@ -26,14 +26,15 @@ function createAccount(argument) {
           emailAddress
         };
 
-  action(operations, uri, (json) => {
-    const { success } = json;
+  executeOperations(operations, (completed) => {
+    const success = completed,  ///
+          message = success ?
+                       SUCCESSFUL_CREATE_ACCOUNT_MESSAGE :
+                         FAILED_CREATE_ACCOUNT_MESSAGE;
 
-    success ?
-      console.log(SUCCESSFUL_CREATE_ACCOUNT_MESSAGE) :
-        console.log(FAILED_CREATE_ACCOUNT_MESSAGE);
+    console.log(message);
 
-    process.exit();
+    process.exit(0);
   }, context);
 }
 

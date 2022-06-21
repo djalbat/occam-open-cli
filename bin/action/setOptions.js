@@ -1,45 +1,29 @@
 "use strict";
 
-const useSSHPromptOperation = require("../operation/prompt/useSSH"),
+const setOptionsOperation = require("../operation/setOptions"),
+      useSSHPromptOperation = require("../operation/prompt/useSSH"),
       gitHubHostNamePromptOperation = require("../operation/prompt/gitHubHostName");
 
-const { updateOptions } = require("../configuration"),
-      { executeOperations } = require("../utilities/operation"),
+const { executeOperations } = require("../utilities/operation"),
       { FAILED_SET_OPTIONS_MESSAGE, SUCCESSFUL_SET_OPTIONS_MESSAGE } = require("../messages");
 
 function setOptions() {
   const operations = [
           useSSHPromptOperation,
-          gitHubHostNamePromptOperation
+          gitHubHostNamePromptOperation,
+          setOptionsOperation
         ],
         context = {};
 
   executeOperations(operations, (completed) => {
-    if (!completed) {
-      console.log(FAILED_SET_OPTIONS_MESSAGE);
+    const success = completed,  ///
+          message = success ?
+                      SUCCESSFUL_SET_OPTIONS_MESSAGE :
+                        FAILED_SET_OPTIONS_MESSAGE;
 
-      process.exit(1);
-    }
+    console.log(message);
 
-    const { useSSH } = context,
-          options = {};
-
-    if (useSSH) {
-      const { gitHubHostName } = context,
-            ssh = {
-              gitHubHostName
-            };
-
-      Object.assign(options, {
-        ssh
-      });
-    }
-
-    updateOptions(options);
-
-    console.log(SUCCESSFUL_SET_OPTIONS_MESSAGE);
-
-    process.exit();
+    process.exit(0);
   }, context);
 }
 

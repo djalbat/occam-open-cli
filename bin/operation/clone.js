@@ -2,10 +2,12 @@
 
 const { exec } = require("child_process");
 
-const { retrieveOptions } = require("./configuration"),
-      { DEFAULT_GITHUB_HOST_NAME } = require("./defaults");
+const { retrieveOptions } = require("../configuration"),
+      { DEFAULT_GITHUB_HOST_NAME } = require("../defaults");
 
-function cloneRepository(repository, callback) {
+function cloneOperation(proceed, abort, context) {
+  let { repository } = context;
+
   const options = retrieveOptions(),
         { ssh } = options;
 
@@ -18,14 +20,16 @@ function cloneRepository(repository, callback) {
   const command = `git clone ${repository}.git`;
 
   exec(command, (error) => {
-    const success = !error;
-
     if (error) {
       console.log(`An error occurred: ${error}`);
+
+      abort();
+
+      return;
     }
 
-    callback(success);
+    proceed();
   })
 }
 
-module.exports = cloneRepository;
+module.exports = cloneOperation;

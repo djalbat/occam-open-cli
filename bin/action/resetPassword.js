@@ -1,29 +1,27 @@
 "use strict";
 
-const action = require("../action"),
+const resetPasswordOperation = require("../operation/resetPassword"),
       usernamePromptOperation = require("../operation/prompt/username");
 
-const { RESET_PASSWORD_API_URI } = require("../uris"),
-      { FAILED_RESET_PASSWORD_MESSAGE, SUCCESSFUL_RESET_PASSWORD_MESSAGE } = require("../messages");
+const { executeOperations } = require("../utilities/operation"),
+      { RESET_PASSWORD_MESSAGE } = require("../messages");
 
 function resetPassword(argument) {
-  const username = argument,  ///
-        uri = RESET_PASSWORD_API_URI,
+  const username = argument, ///
         operations = [
-          usernamePromptOperation
+          usernamePromptOperation,
+          resetPasswordOperation
         ],
         context = {
           username
         };
 
-  action(operations, uri, (json) => {
-    const { success } = json;
+  executeOperations(operations, (completed) => {
+    const message = RESET_PASSWORD_MESSAGE;
 
-    success ?
-      console.log(SUCCESSFUL_RESET_PASSWORD_MESSAGE) :
-        console.log(FAILED_RESET_PASSWORD_MESSAGE);
+    console.log(message);
 
-    process.exit();
+    process.exit(0);
   }, context);
 }
 

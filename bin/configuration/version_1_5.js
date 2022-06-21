@@ -20,7 +20,6 @@ function migrateConfigurationToVersion_1_5(configuration) {
   let { options } = configuration;
 
   const version = VERSION_1_5,  ///
-        { accessToken } = json,
         { useSSH, hostURL, hostNameSuffix } = options;
 
   options = {};
@@ -41,12 +40,6 @@ function migrateConfigurationToVersion_1_5(configuration) {
     options,
     hostURL
   };
-
-  if (accessToken) {
-    Object.assign(configuration, {
-      accessToken
-    });
-  }
 
   return configuration;
 }

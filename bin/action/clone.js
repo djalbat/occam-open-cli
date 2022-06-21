@@ -1,41 +1,33 @@
 "use strict";
 
-const action = require("../action"),
-      cloneRepository = require("../cloneRepository"),
+const cloneOperation = require("../operation/clone"),
+      repositoryOperation = require("../operation/repository"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName");
 
-const { CLONE_API_URI } = require("../uris"),
-      { FAILED_CLONE_MESSAGE, SUCCESSFUL_CLONE_MESSAGE } = require("../messages");
+const { executeOperations } = require("../utilities/operation"),
+      { SUCCESSFUL_CLONE_MESSAGE, FAILED_CLONE_MESSAGE } = require("../messages");
 
 function clone(argument) {
   const releaseName = argument,  ///
         name = releaseName, ///
-        uri = CLONE_API_URI,
         operations = [
-          releaseNamePromptOperation
+          releaseNamePromptOperation,
+          repositoryOperation,
+          cloneOperation
         ],
         context = {
           name
         };
 
-  action(operations, uri, (json) => {
-    const { exists } = json;
+  executeOperations(operations, (completed) => {
+    const success = completed,  ///
+          message = success ?
+                      SUCCESSFUL_CLONE_MESSAGE :
+                        FAILED_CLONE_MESSAGE;
 
-    if (!exists) {
-      console.log(FAILED_CLONE_MESSAGE);
+    console.log(message);
 
-      process.exit(1);
-    }
-
-    const { repository } = json;
-
-    cloneRepository(repository, (success) => {
-      success ?
-        console.log(SUCCESSFUL_CLONE_MESSAGE) :
-          console.log(FAILED_CLONE_MESSAGE);
-
-      process.exit();
-    });
+    process.exit(0);
   }, context);
 }
 

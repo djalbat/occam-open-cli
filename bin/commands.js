@@ -2,7 +2,6 @@
 
 const HELP_COMMAND = "help",
       CLONE_COMMAND = "clone",
-      REMOVE_COMMAND = "remove",
       VERSION_COMMAND = "version",
       INSTALL_COMMAND = "install",
       PUBLISH_COMMAND = "publish",
@@ -17,7 +16,6 @@ const HELP_COMMAND = "help",
 module.exports = {
   HELP_COMMAND,
   CLONE_COMMAND,
-  REMOVE_COMMAND,
   VERSION_COMMAND,
   INSTALL_COMMAND,
   PUBLISH_COMMAND,

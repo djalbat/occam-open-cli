@@ -1,37 +1,38 @@
 "use strict";
 
-const action = require("../action"),
+const deprecateOperation = require("../operation/deprecate"),
       passwordPromptOperation = require("../operation/prompt/password"),
       areYouSurePromptOperation = require("../operation/prompt/areYouSure"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName"),
-      retrieveAccessTokenOperation = require("../operation/retrieveAccessToken");
+      retrieveIdentityTokenOperation = require("../operation/retrieveIdentityToken");
 
-const { DEPRECATE_API_URI } = require("../uris"),
+const { executeOperations } = require("../utilities/operation"),
       { FAILED_DEPRECATE_MESSAGE, SUCCESSFUL_DEPRECATE_MESSAGE } = require("../messages");
 
 function deprecate(argument) {
   const releaseName = argument,  ///
         password = null,
-        uri = DEPRECATE_API_URI,
         operations = [
-          retrieveAccessTokenOperation,
+          retrieveIdentityTokenOperation,
           releaseNamePromptOperation,
           passwordPromptOperation,
-          areYouSurePromptOperation
+          areYouSurePromptOperation,
+          deprecateOperation
         ],
         context = {
           password,
           releaseName
         };
 
-  action(operations, uri, (json) => {
-    const { success } = json;
+  executeOperations(operations, (completed) => {
+    const success = completed,  ///
+          message = success ?
+                      SUCCESSFUL_DEPRECATE_MESSAGE :
+                        FAILED_DEPRECATE_MESSAGE;
 
-    success ?
-      console.log(SUCCESSFUL_DEPRECATE_MESSAGE) :
-        console.log(FAILED_DEPRECATE_MESSAGE);
+    console.log(message);
 
-    process.exit();
+    process.exit(0);
   }, context);
 }
 

@@ -13,11 +13,30 @@ function validateEmailAddress(emailAddress) { return /^[a-z0-9._%+-]+@[a-z0-9.-]
 
 function validateGitHubHostName(gitHubHostName) { return /^[a-zA-Z0-9.\-]*$/.test(gitHubHostName); }
 
+function validateEmailAddressOrUsername(emailAddressOrUsername) {
+  let valid = false;
+
+  if (!valid) {
+    const emailAddress = emailAddressOrUsername;  ///
+
+    valid = validateEmailAddress(emailAddress);
+  }
+
+  if (!valid) {
+    const username = emailAddressOrUsername;  ///
+
+    valid = validateUsername(username);
+  }
+
+  return valid;
+}
+
 module.exports = {
   validateUsername,
   validatePassword,
   validateAffirmation,
   validateReleaseName,
   validateEmailAddress,
-  validateGitHubHostName
+  validateGitHubHostName,
+  validateEmailAddressOrUsername
 };

@@ -7,7 +7,8 @@ const USE_SSH_DESCRIPTION = "Use SSH when cloning: ",
       ARE_YOU_SURE_DESCRIPTION = "Are you sure? (y)es (n)o: ",
       EMAIL_ADDRESS_DESCRIPTION = "Email address: ",
       CONFIRM_PASSWORD_DESCRIPTION = "Confirm password: ",
-      GITHUB_HOST_NAME_DESCRIPTION = "GitHub host name (leave blank for default): ";
+      GITHUB_HOST_NAME_DESCRIPTION = "GitHub host name (leave blank for default): ",
+      EMAIL_ADDRESS_OR_USERNAME_DESCRIPTION = "Email address or username: ";
 
 module.exports = {
   USE_SSH_DESCRIPTION,
@@ -17,5 +18,6 @@ module.exports = {
   ARE_YOU_SURE_DESCRIPTION,
   EMAIL_ADDRESS_DESCRIPTION,
   CONFIRM_PASSWORD_DESCRIPTION,
-  GITHUB_HOST_NAME_DESCRIPTION
+  GITHUB_HOST_NAME_DESCRIPTION,
+  EMAIL_ADDRESS_OR_USERNAME_DESCRIPTION
 };

@@ -1,18 +1,15 @@
 "use strict";
 
-const os = require("os");
-
 const { Readable } = require("stream");
 const { headers, contentTypes, requestUtilities } = require("necessary");
 
-const { OPEN_CLI } = require("./constants"),
-      { retrieveHostURL } = require("./configuration"),
+const { retrieveHostURL } = require("./configuration"),
       { getPackageVersion } = require("./utilities/packageJSON"),
       { contentFromResponse } = require("./utilities/response"),
-      { SERVER_ERROR_MESSAGE, SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages");
+      { SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages");
 
 const { createPostRequest } = requestUtilities,
-      { USER_AGENT_HEADER, CONTENT_TYPE_HEADER } = headers,
+      { CONTENT_TYPE_HEADER } = headers,
       { APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE } = contentTypes;
 
 function post(uri, data, callback) {
@@ -46,20 +43,6 @@ function post(uri, data, callback) {
               }
             }
 
-            const { message } = json;
-
-            if (message) {  ///
-              console.log(message);
-            }
-
-            ({ error } = json); ///
-
-            if (error) {
-              console.log(SERVER_ERROR_MESSAGE);
-
-              process.exit(1);
-            }
-
             callback(json);
           });
         }),
@@ -78,22 +61,11 @@ function getHost() {
 }
 
 function getHeaders() {
-  const headers = {},
-        userAgent = getUserAgent();
-
-  headers[USER_AGENT_HEADER] = userAgent;
+  const headers = {};
 
   headers[CONTENT_TYPE_HEADER] = APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE;
 
   return headers;
-}
-
-function getUserAgent() {
-  const osType = os.type(),
-        operatingSystem = osType, ///
-        userAgent = `${OPEN_CLI}/${operatingSystem}`;
-
-  return userAgent;
 }
 
 function getVersionString() {

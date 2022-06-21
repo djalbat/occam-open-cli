@@ -15,8 +15,6 @@ Commands:
 
   clone <package_name>                           Clone a package with Git
 
-  remove <package_name>                          Remove a package
-
   publish <package_name>                         Publish a package
 
   deprecate <package_name>                       Deprecate a package

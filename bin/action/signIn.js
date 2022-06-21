@@ -1,40 +1,34 @@
 "use strict";
 
-const action = require("../action"),
+const signInOperation = require("../operation/signIn"),
       passwordPromptOperation = require("../operation/prompt/password"),
-      emailAddressPromptOperation = require("../operation/prompt/emailAddress");
+      emailAddressOrUsernamePromptOperation = require("../operation/prompt/emailAddressOrUsername");
 
-const { SIGN_IN_API_URI } = require("../uris"),
-      { addAccessToken } = require("../configuration"),
+const { executeOperations } = require("../utilities/operation"),
       { FAILED_SIGN_IN_MESSAGE, SUCCESSFUL_SIGN_IN_MESSAGE } = require("../messages");
 
 function signIn(argument) {
-  const emailAddress = argument,  ///
+  const emailAddressOrUsername = argument,  ///
         password = null,
-        uri = SIGN_IN_API_URI,
         operations = [
-          emailAddressPromptOperation,
-          passwordPromptOperation
+          emailAddressOrUsernamePromptOperation,
+          passwordPromptOperation,
+          signInOperation
         ],
         context = {
-          emailAddress,
+          emailAddressOrUsername,
           password
         };
 
-  action(operations, uri, (json) => {
-    const { success } = json;
+  executeOperations(operations, (completed) => {
+    const success = completed,  ///
+          message = success ?
+                      SUCCESSFUL_SIGN_IN_MESSAGE :
+                        FAILED_SIGN_IN_MESSAGE;
 
-    success ?
-      console.log(SUCCESSFUL_SIGN_IN_MESSAGE) :
-        console.log(FAILED_SIGN_IN_MESSAGE);
+    console.log(message);
 
-    if (success) {
-      const { accessToken } = json;
-
-      addAccessToken(accessToken);
-    }
-
-    process.exit();
+    process.exit(0);
   }, context);
 }
 

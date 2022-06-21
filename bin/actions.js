@@ -2,7 +2,6 @@
 
 const help = require("./action/help"),
       clone = require("./action/clone"),
-      remove = require("./action/remove"),
       signIn = require("./action/signIn"),
       signOut = require("./action/signOut"),
       version = require("./action/version"),
@@ -17,7 +16,6 @@ const help = require("./action/help"),
 const { HELP_OPTION, VERSION_OPTION } = require("./options"),
       { HELP_COMMAND,
         CLONE_COMMAND,
-        REMOVE_COMMAND,
         VERSION_COMMAND,
         INSTALL_COMMAND,
         PUBLISH_COMMAND,
@@ -45,7 +43,6 @@ function actions(command, argument, options) {
   switch (command) {
     case HELP_COMMAND : help(); break;
     case CLONE_COMMAND : clone(argument); break;
-    case REMOVE_COMMAND : remove(argument); break;
     case VERSION_COMMAND : version(); break;
     case INSTALL_COMMAND : install(argument); break;
     case PUBLISH_COMMAND : publish(argument); break;

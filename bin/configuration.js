@@ -30,27 +30,27 @@ function retrieveOptions() {
   return options;
 }
 
-function retrieveAccessToken() {
+function retrieveIdentityToken() {
   const configuration = readConfigurationFile(),
-        { accessToken } = configuration;
+        { identityToken } = configuration;
 
-  return accessToken || null; ///
+  return identityToken || null; ///
 }
 
-function updateOptions(options) {
+function setOptions(options) {
   updateConfigurationFile({
     options
   });
 }
 
-function addAccessToken(accessToken) {
+function addIdentityToken(identityToken) {
   updateConfigurationFile({
-    accessToken
+    identityToken
   });
 }
 
-function removeAccessToken() {
-  updateConfigurationFile(null, "accessToken");
+function removeIdentityToken() {
+  updateConfigurationFile(null, "identityToken");
 }
 
 function createConfigurationFile() {
@@ -102,10 +102,10 @@ function checkConfigurationFileExists() {
 module.exports = {
   retrieveHostURL,
   retrieveOptions,
-  updateOptions,
-  addAccessToken,
-  removeAccessToken,
-  retrieveAccessToken,
+  setOptions,
+  addIdentityToken,
+  removeIdentityToken,
+  retrieveIdentityToken,
   createConfigurationFile,
   migrateConfigurationFile,
   checkConfigurationFileExists

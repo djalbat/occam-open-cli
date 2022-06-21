@@ -1,13 +1,13 @@
 "use strict";
 
-function install(argument) {
-  if (argument === null) {
-    console.log("You need to specify a package name.")
-  } else {
-    const releaseName = argument; ///
+const { INSTALL_MESSAGE } = require("../messages");
 
-    console.log("This functionality is not implemented yet.");
-  }
+function install(argument) {
+  const message = INSTALL_MESSAGE;
+
+  console.log(message);
+
+  process.exit(0);
 }
 
 module.exports = install;
