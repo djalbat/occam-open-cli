@@ -3,8 +3,8 @@
 const publishOperation = require("../operation/publish"),
       createReleaseOperation = require("../operation/createRelease"),
       deflateReleaseOperation = require("../operation/deflateRelease"),
+      getIdentityTokenOperation = require("../operation/getIdentityToken"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName"),
-      retrieveIdentityTokenOperation = require("../operation/retrieveIdentityToken"),
       checkReadmeFileExistsOperation = require("../operation/checkReadmeFileExists"),
       checkMetaJSONFileExistsOperation = require("../operation/checkMetaJSONFileExists");
 
@@ -14,7 +14,7 @@ const { executeOperations } = require("../utilities/operation"),
 function publish(argument) {
   const releaseName = argument, ///
         operations = [
-          retrieveIdentityTokenOperation,
+          getIdentityTokenOperation,
           releaseNamePromptOperation,
           createReleaseOperation,
           checkReadmeFileExistsOperation,

@@ -2,13 +2,13 @@
 
 const { exec } = require("child_process");
 
-const { retrieveOptions } = require("../configuration"),
+const { getOptions } = require("../configuration"),
       { DEFAULT_GITHUB_HOST_NAME } = require("../defaults");
 
 function cloneOperation(proceed, abort, context) {
   let { repository } = context;
 
-  const options = retrieveOptions(),
+  const options = getOptions(),
         { ssh } = options;
 
   if (ssh) {

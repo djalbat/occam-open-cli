@@ -3,8 +3,8 @@
 const deprecateOperation = require("../operation/deprecate"),
       passwordPromptOperation = require("../operation/prompt/password"),
       areYouSurePromptOperation = require("../operation/prompt/areYouSure"),
-      releaseNamePromptOperation = require("../operation/prompt/releaseName"),
-      retrieveIdentityTokenOperation = require("../operation/retrieveIdentityToken");
+      getIdentityTokenOperation = require("../operation/getIdentityToken"),
+      releaseNamePromptOperation = require("../operation/prompt/releaseName");
 
 const { executeOperations } = require("../utilities/operation"),
       { FAILED_DEPRECATE_MESSAGE, SUCCESSFUL_DEPRECATE_MESSAGE } = require("../messages");
@@ -13,7 +13,7 @@ function deprecate(argument) {
   const releaseName = argument,  ///
         password = null,
         operations = [
-          retrieveIdentityTokenOperation,
+          getIdentityTokenOperation,
           releaseNamePromptOperation,
           passwordPromptOperation,
           areYouSurePromptOperation,

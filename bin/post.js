@@ -3,7 +3,7 @@
 const { Readable } = require("stream");
 const { headers, contentTypes, requestUtilities } = require("necessary");
 
-const { retrieveHostURL } = require("./configuration"),
+const { getHostURL } = require("./configuration"),
       { getPackageVersion } = require("./utilities/packageJSON"),
       { contentFromResponse } = require("./utilities/response"),
       { SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages");
@@ -54,7 +54,7 @@ function post(uri, data, callback) {
 module.exports = post;
 
 function getHost() {
-  const hostURL = retrieveHostURL(),
+  const hostURL = getHostURL(),
         host = hostURL; ///
 
   return host;

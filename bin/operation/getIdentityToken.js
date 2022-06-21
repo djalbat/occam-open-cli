@@ -1,10 +1,10 @@
 "use strict";
 
 const { NOT_SIGNED_IN_MESSAGE } = require("../messages"),
-      { retrieveIdentityToken } = require("../configuration");
+      { getIdentityToken } = require("../configuration");
 
-function retrieveIdentityTokenOperation(proceed, abort, context) {
-  const identityToken = retrieveIdentityToken();
+function getIdentityTokenOperation(proceed, abort, context) {
+  const identityToken = getIdentityToken();
 
   if (!identityToken) {
     console.log(NOT_SIGNED_IN_MESSAGE);
@@ -21,4 +21,4 @@ function retrieveIdentityTokenOperation(proceed, abort, context) {
   proceed();
 }
 
-module.exports = retrieveIdentityTokenOperation;
+module.exports = getIdentityTokenOperation;
