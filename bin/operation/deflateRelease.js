@@ -1,6 +1,6 @@
 "use strict";
 
-import { encodings } from "necessary";
+const { encodings } = require("necessary");
 
 const { deflate } = require("zlib");
 

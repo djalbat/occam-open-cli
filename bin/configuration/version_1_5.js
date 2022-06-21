@@ -52,6 +52,5 @@ function migrateConfigurationToVersion_1_5(configuration) {
 }
 
 module.exports = {
-  createConfiguration,
   migrateConfigurationToVersion_1_5
 };
