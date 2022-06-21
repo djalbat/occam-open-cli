@@ -5,13 +5,9 @@ const USE_SSH_DESCRIPTION = "Use SSH when cloning: ",
       USERNAME_DESCRIPTION = "Username: ",
       RELEASE_NAME_DESCRIPTION = "Package name: ",  ///
       ARE_YOU_SURE_DESCRIPTION = "Are you sure? (y)es (n)o: ",
-      NEW_PASSWORD_DESCRIPTION = "New password: ",
       EMAIL_ADDRESS_DESCRIPTION = "Email address: ",
       CONFIRM_PASSWORD_DESCRIPTION = "Confirm password: ",
-      GITHUB_HOST_NAME_DESCRIPTION = "GitHub host name (leave blank for default): ",
-      NEW_EMAIL_ADDRESS_DESCRIPTION = "New email address: ",
-      CONFIRMATION_CODE_DESCRIPTION = "Confirmation code: ",
-      CONFIRM_NEW_PASSWORD_DESCRIPTION = "Confirm new password: ";
+      GITHUB_HOST_NAME_DESCRIPTION = "GitHub host name (leave blank for default): ";
 
 module.exports = {
   USE_SSH_DESCRIPTION,
@@ -19,11 +15,7 @@ module.exports = {
   USERNAME_DESCRIPTION,
   RELEASE_NAME_DESCRIPTION,
   ARE_YOU_SURE_DESCRIPTION,
-  NEW_PASSWORD_DESCRIPTION,
   EMAIL_ADDRESS_DESCRIPTION,
   CONFIRM_PASSWORD_DESCRIPTION,
-  GITHUB_HOST_NAME_DESCRIPTION,
-  NEW_EMAIL_ADDRESS_DESCRIPTION,
-  CONFIRMATION_CODE_DESCRIPTION,
-  CONFIRM_NEW_PASSWORD_DESCRIPTION
+  GITHUB_HOST_NAME_DESCRIPTION
 };

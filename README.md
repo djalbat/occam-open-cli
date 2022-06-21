@@ -37,7 +37,7 @@ These are the commands and options:
 Commands:
 
   [help]                                         Show this help
-
+  
   [install] <package_name>                       Install a package
 
   initialise                                     Create a configuration file
@@ -50,23 +50,15 @@ Commands:
 
   deprecate <package_name>                       Deprecate a package
 
-  register [<email_address>]                     Register
+  create-account [<email_address>]               Create an account
+   
+  sign-in [<email_address_or_username>]          Sign in 
 
-  login [<email_address>]                        Log in
+  sign-out                                       Sign out 
 
-  logout                                         Log out
+  set-options                                    Set options 
 
-  set-options                                    Set options
-
-  reset-password [<username>]                    Reset your password
-
-  change-password [<username>]                   Change your password
-
-  change-email-address [<username>]              Change your email address
-
-  confirm-email-address [<email_address>]        Confirm your email address
-
-  resend-confirmation-code [<email_address>]     Resend a confirmation code
+  reset-password [<username>]                    Reset your password 
 
 Options:
 

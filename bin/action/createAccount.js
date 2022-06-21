@@ -6,14 +6,14 @@ const action = require("../action"),
       emailAddressPromptOperation = require("../operation/prompt/emailAddress"),
       confirmPasswordPromptOperation = require("../operation/prompt/confirmPassword");
 
-const { REGISTER_API_URI } = require("../uris"),
-      { FAILED_REGISTER_MESSAGE, SUCCESSFUL_REGISTER_MESSAGE } = require("../messages");
+const { CREATE_ACCOUNT_API_URI } = require("../uris"),
+      { SUCCESSFUL_CREATE_ACCOUNT_MESSAGE, FAILED_CREATE_ACCOUNT_MESSAGE } = require("../messages");
 
-function register(argument) {
+function createAccount(argument) {
   const emailAddress = argument,  ///
         username = null,
         password = null,
-        uri = REGISTER_API_URI,
+        uri = CREATE_ACCOUNT_API_URI,
         operations = [
           emailAddressPromptOperation,
           usernamePromptOperation,
@@ -30,11 +30,11 @@ function register(argument) {
     const { success } = json;
 
     success ?
-      console.log(SUCCESSFUL_REGISTER_MESSAGE) :
-        console.log(FAILED_REGISTER_MESSAGE);
+      console.log(SUCCESSFUL_CREATE_ACCOUNT_MESSAGE) :
+        console.log(FAILED_CREATE_ACCOUNT_MESSAGE);
 
     process.exit();
   }, context);
 }
 
-module.exports = register;
+module.exports = createAccount;

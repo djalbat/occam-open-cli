@@ -2,17 +2,17 @@
 
 const { shellUtilities } = require("necessary");
 
-const { validateAnswer } = require("../../utilities/validate"),
+const { validateAffirmation } = require("../../utilities/validate"),
       { isAnswerAffirmative } = require("../../utilities/prompt"),
       { USE_SSH_DESCRIPTION } = require("../../descriptions"),
-      { INVALID_ANSWER_MESSAGE } = require("../../messages");
+      { INVALID_AFFIRMATION_MESSAGE } = require("../../messages");
 
 const { prompt } = shellUtilities;
 
 function useSSHPromptOperation(proceed, abort, context) {
   const description = USE_SSH_DESCRIPTION,
-        errorMessage = INVALID_ANSWER_MESSAGE,
-        validationFunction = validateAnswer,  ///
+        errorMessage = INVALID_AFFIRMATION_MESSAGE,
+        validationFunction = validateAffirmation,  ///
         options = {
           description,
           errorMessage,

@@ -2,17 +2,17 @@
 
 const { shellUtilities } = require("necessary");
 
-const { validateAnswer } = require("../../utilities/validate"),
+const { validateAffirmation } = require("../../utilities/validate"),
       { isAnswerAffirmative } = require("../../utilities/prompt"),
-      { INVALID_ANSWER_MESSAGE } = require("../../messages"),
-      { ARE_YOU_SURE_DESCRIPTION } = require("../../descriptions");
+      { ARE_YOU_SURE_DESCRIPTION } = require("../../descriptions"),
+      { INVALID_AFFIRMATION_MESSAGE } = require("../../messages");
 
 const { prompt } = shellUtilities;
 
 function areYouSurePromptOperation(proceed, abort, context) {
   const description = ARE_YOU_SURE_DESCRIPTION,
-        errorMessage = INVALID_ANSWER_MESSAGE,
-        validationFunction = validateAnswer,  ///
+        errorMessage = INVALID_AFFIRMATION_MESSAGE,
+        validationFunction = validateAffirmation,  ///
         options = {
           description,
           errorMessage,

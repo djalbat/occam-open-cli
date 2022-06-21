@@ -2,38 +2,30 @@
 
 const HELP_COMMAND = "help",
       CLONE_COMMAND = "clone",
-      LOGIN_COMMAND = "login",
-      LOGOUT_COMMAND = "logout",
       REMOVE_COMMAND = "remove",
       VERSION_COMMAND = "version",
       INSTALL_COMMAND = "install",
       PUBLISH_COMMAND = "publish",
-      REGISTER_COMMAND = "register",
+      SIGN_IN_COMMAND = "sign-in",
+      SIGN_OUT_COMMAND = "sign-out",
       DEPRECATE_COMMAND = "deprecate",
       INITIALISE_COMMAND = "initialise",
       SET_OPTIONS_COMMAND = "set-options",
-      RESET_PASSWORD_COMMAND = "reset-password",
-      CHANGE_PASSWORD_COMMAND = "change-password",
-      CHANGE_EMAIL_ADDRESS_COMMAND = "change-email-address",
-      CONFIRM_EMAIL_ADDRESS_COMMAND = "confirm-email-address",
-      RESEND_CONFIRMATION_CODE_COMMAND = "resend-confirmation-code";
+      CREATE_ACCOUNT_COMMAND = "create-account",
+      RESET_PASSWORD_COMMAND = "reset-password";
 
 module.exports = {
   HELP_COMMAND,
   CLONE_COMMAND,
-  LOGIN_COMMAND,
-  LOGOUT_COMMAND,
   REMOVE_COMMAND,
   VERSION_COMMAND,
   INSTALL_COMMAND,
   PUBLISH_COMMAND,
-  REGISTER_COMMAND,
+  SIGN_IN_COMMAND,
+  SIGN_OUT_COMMAND,
   DEPRECATE_COMMAND,
   INITIALISE_COMMAND,
   SET_OPTIONS_COMMAND,
-  RESET_PASSWORD_COMMAND,
-  CHANGE_PASSWORD_COMMAND,
-  CHANGE_EMAIL_ADDRESS_COMMAND,
-  CONFIRM_EMAIL_ADDRESS_COMMAND,
-  RESEND_CONFIRMATION_CODE_COMMAND
+  CREATE_ACCOUNT_COMMAND,
+  RESET_PASSWORD_COMMAND
 };

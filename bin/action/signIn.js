@@ -4,14 +4,14 @@ const action = require("../action"),
       passwordPromptOperation = require("../operation/prompt/password"),
       emailAddressPromptOperation = require("../operation/prompt/emailAddress");
 
-const { LOGIN_API_URI } = require("../uris"),
+const { SIGN_IN_API_URI } = require("../uris"),
       { addAccessToken } = require("../configuration"),
-      { FAILED_LOGIN_MESSAGE, SUCCESSFUL_LOGIN_MESSAGE } = require("../messages");
+      { FAILED_SIGN_IN_MESSAGE, SUCCESSFUL_SIGN_IN_MESSAGE } = require("../messages");
 
-function login(argument) {
+function signIn(argument) {
   const emailAddress = argument,  ///
         password = null,
-        uri = LOGIN_API_URI,
+        uri = SIGN_IN_API_URI,
         operations = [
           emailAddressPromptOperation,
           passwordPromptOperation
@@ -25,8 +25,8 @@ function login(argument) {
     const { success } = json;
 
     success ?
-      console.log(SUCCESSFUL_LOGIN_MESSAGE) :
-        console.log(FAILED_LOGIN_MESSAGE);
+      console.log(SUCCESSFUL_SIGN_IN_MESSAGE) :
+        console.log(FAILED_SIGN_IN_MESSAGE);
 
     if (success) {
       const { accessToken } = json;
@@ -38,4 +38,4 @@ function login(argument) {
   }, context);
 }
 
-module.exports = login;
+module.exports = signIn;

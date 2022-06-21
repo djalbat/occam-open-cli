@@ -21,24 +21,16 @@ Commands:
 
   deprecate <package_name>                       Deprecate a package
 
-  register [<email_address>]                     Register
+  create-account [<email_address>]               Create an account
    
-  login [<email_address>]                        Log in 
+  sign-in [<email_address_or_username>]          Sign in 
 
-  logout                                         Log out 
+  sign-out                                       Sign out 
 
   set-options                                    Set options 
 
   reset-password [<username>]                    Reset your password 
 
-  change-password [<username>]                   Change your password 
- 
-  change-email-address [<username>]              Change your email address
- 
-  confirm-email-address [<email_address>]        Confirm your email address
-
-  resend-confirmation-code [<email_address>]     Resend a confirmation code
-  
 Options:
 
   --version|-v                                   Show the version

@@ -1,13 +1,13 @@
 "use strict";
 
 const { retrieveAccessToken } = require("../configuration"),
-      { NOT_LOGGED_IN_MESSAGE } = require("../messages");
+      { NOT_SIGNED_IN_MESSAGE } = require("../messages");
 
 function retrieveAccessTokenOperation(proceed, abort, context) {
   const accessToken = retrieveAccessToken();
 
   if (!accessToken) {
-    console.log(NOT_LOGGED_IN_MESSAGE);
+    console.log(NOT_SIGNED_IN_MESSAGE);
 
     abort();
 
