@@ -9,14 +9,13 @@ const { executeOperations } = require("../utilities/operation"),
 
 function clone(argument) {
   const releaseName = argument,  ///
-        name = releaseName, ///
         operations = [
           releaseNamePromptOperation,
           repositoryOperation,
           cloneOperation
         ],
         context = {
-          name
+          releaseName
         };
 
   executeOperations(operations, (completed) => {
@@ -27,7 +26,7 @@ function clone(argument) {
 
     console.log(message);
 
-    process.exit(0);
+    process.exit();
   }, context);
 }
 

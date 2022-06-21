@@ -28,7 +28,7 @@ function signIn(argument) {
 
     console.log(message);
 
-    process.exit(0);
+    process.exit();
   }, context);
 }
 

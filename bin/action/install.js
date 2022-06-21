@@ -7,7 +7,7 @@ function install(argument) {
 
   console.log(message);
 
-  process.exit(0);
+  process.exit();
 }
 
 module.exports = install;

@@ -10,7 +10,7 @@ function signOut() {
 
   console.log(message);
 
-  process.exit(0);
+  process.exit();
 }
 
 module.exports = signOut;

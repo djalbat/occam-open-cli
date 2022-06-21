@@ -22,7 +22,7 @@ function initialise() {
 
   console.log(message);
 
-  process.exit(0);
+  process.exit();
 }
 
 module.exports = initialise;

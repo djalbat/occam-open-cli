@@ -143,6 +143,6 @@ function assertConfigurationFileExists() {
   if (!configurationFileExists) {
     console.log(CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE);
 
-    process.exit(1);
+    process.exit();
   }
 }

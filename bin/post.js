@@ -1,7 +1,7 @@
 "use strict";
 
 const { Readable } = require("stream");
-const { headers, contentTypes, requestUtilities } = require("necessary");
+const { headers, statusCodes, contentTypes, requestUtilities } = require("necessary");
 
 const { getHostURL } = require("./configuration"),
       { getPackageVersion } = require("./utilities/packageJSON"),
@@ -9,23 +9,26 @@ const { getHostURL } = require("./configuration"),
       { SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages");
 
 const { createPostRequest } = requestUtilities,
+      { OK_200_STATUS_CODE } = statusCodes,
       { CONTENT_TYPE_HEADER } = headers,
       { APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE } = contentTypes;
 
-function post(uri, data, callback) {
+function post(uri, json, callback) {
   const host = getHost(),
         headers = getHeaders(),
-        versionString = getVersionString(),
-        json = Object.assign(data, {  ///
+        versionString = getVersionString();
+
+        Object.assign(json, {
           versionString
-        }),
-        content = JSON.stringify(json),
+        });
+
+  const content = JSON.stringify(json), ///
         query = {},
         postRequest = createPostRequest(host, uri, query, headers, (error, response) => {
           if (error) {
             console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
 
-            process.exit(1);
+            process.exit();
           }
 
           contentFromResponse(response, (content) => {
@@ -39,7 +42,7 @@ function post(uri, data, callback) {
               if (error) {
                 console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
 
-                process.exit(1);
+                process.exit();
               }
             }
 
