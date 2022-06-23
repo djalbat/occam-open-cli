@@ -1,20 +1,7 @@
 "use strict";
 
 const { VERSION_1_5 } = require("../versions"),
-      { DEFAULT_GITHUB_HOST_NAME, DEFAULT_HOST_URL } = require("../defaults");
-
-function createConfiguration() {
-  const version = VERSION_1_5,  ///
-        options = {},
-        hostURL = DEFAULT_HOST_URL, ///
-        configuration = {
-          version,
-          options,
-          hostURL
-        } ;
-
-  return configuration;
-}
+      { DEFAULT_GITHUB_HOST_NAME } = require("../defaults");
 
 function migrateConfigurationToVersion_1_5(configuration) {
   let { options } = configuration;

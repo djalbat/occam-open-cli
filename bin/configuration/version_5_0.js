@@ -1,26 +1,36 @@
 "use strict";
 
-const { VERSION_5_0 } = require("../versions"),
-      { DEFAULT_HOST_URL } = require("../defaults");
+const { HOST_URL } = require("../constants"),
+      { VERSION_5_0 } = require("../versions"),
+      { DEFAULT_HOST } = require("../defaults");
 
 function createConfiguration() {
   const version = VERSION_5_0,
+        host = DEFAULT_HOST,
         options = {},
-        hostURL = DEFAULT_HOST_URL,
+        identityToken = null,
         configuration = {
           version,
+          host,
           options,
-          hostURL
+          identityToken
         };
 
   return configuration;
 }
 
 function migrateConfigurationToVersion_5_0(configuration) {
-  const version = VERSION_5_0;
+  const { hostURL } = configuration,
+        version = VERSION_5_0,
+        host = hostURL, ///
+        identityToken = null;
+
+  delete configuration[HOST_URL];
 
   Object.assign(configuration, {
-    version
+    version,
+    host,
+    identityToken
   });
 
   return configuration;

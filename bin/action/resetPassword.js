@@ -1,19 +1,19 @@
 "use strict";
 
 const resetPasswordOperation = require("../operation/resetPassword"),
-      usernamePromptOperation = require("../operation/prompt/username");
+      emailAddressPromptOperation = require("../operation/prompt/emailAddress");
 
 const { executeOperations } = require("../utilities/operation"),
       { RESET_PASSWORD_MESSAGE } = require("../messages");
 
 function resetPassword(argument) {
-  const username = argument, ///
+  const emailAddress = argument, ///
         operations = [
-          usernamePromptOperation,
+          emailAddressPromptOperation,
           resetPasswordOperation
         ],
         context = {
-          username
+          emailAddress
         };
 
   executeOperations(operations, (completed) => {

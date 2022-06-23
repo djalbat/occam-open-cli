@@ -16,11 +16,11 @@ const rcBaseExtension = OPEN;
 
 setRCBaseExtension(rcBaseExtension);
 
-function getHostURL() {
+function getHost() {
   const configuration = readConfigurationFile(),
-        { hostURL } = configuration;
+        { host } = configuration;
 
-  return hostURL;
+  return host;
 }
 
 function getOptions() {
@@ -32,9 +32,9 @@ function getOptions() {
 
 function getIdentityToken() {
   const configuration = readConfigurationFile(),
-      { identityToken } = configuration;
+        { identityToken } = configuration;
 
-  return identityToken || null; ///
+  return identityToken;
 }
 
 function setOptions(options) {
@@ -43,7 +43,7 @@ function setOptions(options) {
   });
 }
 
-function addIdentityToken(identityToken) {
+function setIdentityToken(identityToken) {
   updateConfigurationFile({
     identityToken
   });
@@ -100,11 +100,11 @@ function checkConfigurationFileExists() {
 }
 
 module.exports = {
-  getHostURL,
+  getHost,
   getOptions,
   getIdentityToken,
   setOptions,
-  addIdentityToken,
+  setIdentityToken,
   removeIdentityToken,
   createConfigurationFile,
   migrateConfigurationFile,

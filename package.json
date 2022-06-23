@@ -12,7 +12,7 @@
   "dependencies": {
     "argumentative": "^2.0.15",
     "mkdirp": "^0.5.1",
-    "necessary": "^11.0.40",
+    "necessary": "^11.1.4",
     "occam-parsers": "^16.0.51"
   },
   "devDependencies": {

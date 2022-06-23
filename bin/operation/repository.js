@@ -6,22 +6,20 @@ const { CLONE_API_URI } = require("../uris");
 
 function repositoryOperation(proceed, abort, context) {
   const { releaseName } = context,
-        uri = CLONE_API_URI,
-        json = {
-          releaseName
-        };
+        uri = `${CLONE_API_URI}/${releaseName}`,
+        json = {};
 
   post(uri, json, (json) => {
-    const { dependency = null } = json;
+    const { repository = null } = json;
 
-    if (dependency === null) {
+    if (repository === null) {
       abort();
 
       return;
     }
 
     Object.assign(context, {
-      dependency
+      repository
     });
 
     proceed();

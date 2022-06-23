@@ -1,9 +1,23 @@
 "use strict";
 
-function deprecateOperation(proceed, abort, context) {
-  ///
+const post = require("../post");
 
-  proceed();
+const { DEPRECATE_API_URI } = require("../uris");
+
+function deprecateOperation(proceed, abort, context) {
+  const { releaseName, identityToken } = context,
+        uri = `${DEPRECATE_API_URI}/${releaseName}`,
+        json = {
+          identityToken
+        };
+
+  post(uri, json, (json) => {
+    const { success } = json;
+
+    success ?
+      proceed() :
+        abort();
+  });
 }
 
 module.exports = deprecateOperation;

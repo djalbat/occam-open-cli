@@ -1,7 +1,6 @@
 "use strict";
 
 const deprecateOperation = require("../operation/deprecate"),
-      passwordPromptOperation = require("../operation/prompt/password"),
       areYouSurePromptOperation = require("../operation/prompt/areYouSure"),
       getIdentityTokenOperation = require("../operation/getIdentityToken"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName");
@@ -15,7 +14,6 @@ function deprecate(argument) {
         operations = [
           getIdentityTokenOperation,
           releaseNamePromptOperation,
-          passwordPromptOperation,
           areYouSurePromptOperation,
           deprecateOperation
         ],
