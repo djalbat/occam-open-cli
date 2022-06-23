@@ -1,7 +1,6 @@
 "use strict";
 
-const { fileSystemUtilities } = require("../../lib/main"), ///
-      { UNABLE_TO_CREATE_RELEASE_MESSAGE } = require("../messages");
+const { fileSystemUtilities } = require("../../lib/main"); ///
 
 const { releaseFromName } = fileSystemUtilities;
 
@@ -11,8 +10,6 @@ function createReleaseOperation(proceed, abort, context) {
         release = releaseFromName(name);
 
   if (release === null) {
-    console.log(UNABLE_TO_CREATE_RELEASE_MESSAGE);
-
     abort();
 
     return;
