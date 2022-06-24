@@ -56,7 +56,7 @@ Commands:
 
   set-options                                    Set options 
 
-  reset-password [<username>]                    Reset your password 
+  reset-password [<email_address>]               Reset your password 
 
 Options:
 
