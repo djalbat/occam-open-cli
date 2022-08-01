@@ -2,7 +2,7 @@
 
 import Entries from "./entries";
 
-import { isFilePathFlorenceFilePath, isFilePathMetaJSONFilePath, isFilePathCustomGrammarBNFFilePath, isFilePathCustomGrammarLexicalPatternFilePath } from "./utilities/filePath";
+import { isFilePathFlorenceFilePath, isFilePathMetaJSONFilePath, isFilePathCustomGrammarBNFFilePath, isFilePathCustomGrammarPatternFilePath } from "./utilities/filePath";
 
 export default class Project {
   constructor(name, entries) {
@@ -76,18 +76,23 @@ export default class Project {
     return customGrammarBNFFiles;
   }
 
-  getCustomGrammarLexicalPatternFile() {
+  getCustomGrammarPatternFiles() {
     const files = this.getFiles(),
-          customGrammarLexicalPatternFile = files.findFile((file) => {
+          customGrammarPatternFiles = files.reduceFile((customGrammarPatternFiles, file) => {
             const filePath = file.getPath(),
-                  filePatCustomGrammarLexicalPatternFilePath = isFilePathCustomGrammarLexicalPatternFilePath(filePath);
+                  filePathCustomGrammarPatternFilePath = isFilePathCustomGrammarPatternFilePath(filePath),
+                  fileCustomGrammarPatternFile = filePathCustomGrammarPatternFilePath;  ///
 
-            if (filePatCustomGrammarLexicalPatternFilePath) {
-              return true;
+            if (fileCustomGrammarPatternFile) {
+              const customGrammarPatternFile = file;  ///
+
+              customGrammarPatternFiles.push(customGrammarPatternFile);
             }
-          });
 
-    return customGrammarLexicalPatternFile;
+            return customGrammarPatternFiles;
+          }, []);
+
+    return customGrammarPatternFiles;
   }
 
   toJSON() {
