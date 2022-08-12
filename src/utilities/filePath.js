@@ -3,7 +3,7 @@
 const readmeFilePathPattern = "^(?:[^\\/]+\\/){1}README\\.md$",
       florenceFilePathPattern = "^(?:[^\\/]+\\/){1,}[^\\.]+\\.fls$",
       metaJSONFilePathPattern = "^(?:[^\\/]+\\/){1}meta\\.json$",
-      customGrammarBNFFilePathPattern = "^(?:[^\\/]+\\/){1}(term|expression|statement|metastatement)\\.bnf$",
+      customGrammarBNFFilePathPattern = "^(?:[^\\/]+\\/){1}(term|statement|metastatement)\\.bnf$",
       customGrammarPatternFilePathPattern = "^(?:[^\\/]+\\/){1}(type|operator)\\.ptn$",
       recognisedFilePathPattern = `${readmeFilePathPattern}|${florenceFilePathPattern}|${metaJSONFilePathPattern}|${customGrammarBNFFilePathPattern}|${customGrammarPatternFilePathPattern}`;
 
