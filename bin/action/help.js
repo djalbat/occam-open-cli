@@ -34,7 +34,6 @@ Options:
   --version|-v                                   Show the version
 
   --help|-h                                      Show this help
-  
 
 Further information:
 
