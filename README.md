@@ -7,6 +7,7 @@
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Building](#building)
 - [Contact](#contact)
 
 ## Introduction
@@ -84,6 +85,13 @@ In these cases `open` will recover the underlying GitHub repository from the pac
     open natural-numbers
 
 Both Occam and the Open Mathematics site are works in progress, as indeed is `open`. The remainder of this readme file gives some of the current thinking on versioning and so forth that has yet to be implemented.
+
+## Building
+
+Automation is thanks to [npm scripts](https://docs.npmjs.com/misc/scripts), have a look at the `package.json` file. The pertinent commands are:
+
+    npm run build-debug
+    npm run watch-debug
 
 ## Contact
 
