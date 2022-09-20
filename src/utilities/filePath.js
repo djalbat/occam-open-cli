@@ -4,7 +4,7 @@ const readmeFilePathPattern = "^(?:[^\\/]+\\/){1}README\\.md$",
       florenceFilePathPattern = "^(?:[^\\/]+\\/){1,}[^\\.]+\\.fls$",
       metaJSONFilePathPattern = "^(?:[^\\/]+\\/){1}meta\\.json$",
       customGrammarBNFFilePathPattern = "^(?:[^\\/]+\\/){1}(term|statement|metastatement)\\.bnf$",
-      customGrammarPatternFilePathPattern = "^(?:[^\\/]+\\/){1}(type|operator)\\.ptn$",
+      customGrammarPatternFilePathPattern = "^(?:[^\\/]+\\/){1}(type|symbol|operator)\\.ptn$",
       recognisedFilePathPattern = `${readmeFilePathPattern}|${florenceFilePathPattern}|${metaJSONFilePathPattern}|${customGrammarBNFFilePathPattern}|${customGrammarPatternFilePathPattern}`;
 
 const readmeFilePathRegularExpression = new RegExp(readmeFilePathPattern),
