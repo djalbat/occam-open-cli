@@ -8,12 +8,6 @@ import { findTerminalNodes } from "../utilities/node";
 const { third } = arrayUtilities;
 
 export default class RepositoryNode extends NonTerminalNode {
-  constructor(ruleName, childNodes) {
-    super(ruleName, childNodes);
-
-    this.repository = null;
-  }
-
   getRepository() {
     const node = this,  ///
           terminalNodes = findTerminalNodes(node),
@@ -24,6 +18,8 @@ export default class RepositoryNode extends NonTerminalNode {
 
     return repository;
   }
+
+  clone() { return super.clone(RepositoryNode); }
 
   static fromNodesAndRuleName(nodes, ruleName) {
     const childNodes = nodes, ///
