@@ -38,4 +38,3 @@ function releaseFromReleaseName(releaseName) {
 
   return release;
 }
-
