@@ -1,11 +1,11 @@
 "use strict";
 
-import { characters } from "necessary";
+const { characters } = require("necessary");
 
-const { Release, entriesUUtilities } = require("../../lib/main"); ///
+const { Release, entriesUtilities } = require("../../lib/main"); ///
 
 const { PERIOD_CHARACTER } = characters,
-      { entriesFromTopmostDirectoryName } = entriesUUtilities;
+      { entriesFromTopmostDirectoryName } = entriesUtilities;
 
 function createReleaseOperation(proceed, abort, context) {
   const { releaseName } = context,
