@@ -2,16 +2,18 @@
 
 import { pathUtilities, fileSystemUtilities } from "necessary";
 
+import File from "../file";
 import Entries from "../entries";
 import Directory from "../directory";
 
 import { isNameHiddenName } from "../utilities/name";
 import { ENTRIES_MAXIMUM_ARRAY_LENGTH } from "../constants";
 import { isFilePathRecognisedFilePath } from "../utilities/filePath";
+import { convertContentTabsToWhitespace } from "../utilities/content";
 import { ENTRIES_MAXIMUM_ARRAY_LENGTH_EXCEEDED_MESSAGE } from "../messages";
 
 const { concatenatePaths } = pathUtilities,
-      { readDirectory, isEntryDirectory } = fileSystemUtilities;
+      { readFile, readDirectory, isEntryFile, isEntryDirectory } = fileSystemUtilities;
 
 export function entriesFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
   const array = [],
@@ -27,6 +29,27 @@ export function entriesFromTopmostDirectoryName(topmostDirectoryName, projectsDi
 export default {
   entriesFromTopmostDirectoryName
 };
+
+function fileFromPath(path, projectsDirectoryPath) {
+  let file = null;
+
+  try {
+    const absolutePath = concatenatePaths(projectsDirectoryPath, path),
+          entryFile = isEntryFile(absolutePath);
+
+    if (entryFile) {
+      let content = readFile(absolutePath);
+
+      content = convertContentTabsToWhitespace(content);  ///
+
+      file = new File(path, content);
+    }
+  } catch (error) {
+    ///
+  }
+
+  return file;
+}
 
 function directoryFromPath(path, projectsDirectoryPath) {
   let directory = null;
@@ -78,7 +101,7 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
 
         entriesFromRelativeDirectoryPath(array, directoryPath, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories); ///
       } else {
-        const file = loadFile(path, projectsDirectoryPath);
+        const file = fileFromPath(path, projectsDirectoryPath);
 
         if (file !== null) {
           const filePath = file.getPath(),
