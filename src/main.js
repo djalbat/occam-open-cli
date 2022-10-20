@@ -10,5 +10,5 @@ export { default as Project } from "./project";
 export { default as Projects } from "./projects";
 export { default as nameUtilities } from "./utilities/name";
 export { default as contentUtilities } from "./utilities/content";
+export { default as entriesUtilities } from "./utilities/entries";
 export { default as filePathUtilities } from "./utilities/filePath";
-export { default as fileSystemUtilities } from "./utilities/fileSystem";

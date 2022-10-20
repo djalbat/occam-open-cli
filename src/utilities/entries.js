@@ -1,9 +1,8 @@
 "use strict";
 
-import { characters, pathUtilities, fileSystemUtilities } from "necessary";
+import { pathUtilities, fileSystemUtilities } from "necessary";
 
 import Entries from "../entries";
-import Release from "../release";
 import Directory from "../directory";
 
 import { isNameHiddenName } from "../utilities/name";
@@ -11,25 +10,22 @@ import { ENTRIES_MAXIMUM_ARRAY_LENGTH } from "../constants";
 import { isFilePathRecognisedFilePath } from "../utilities/filePath";
 import { ENTRIES_MAXIMUM_ARRAY_LENGTH_EXCEEDED_MESSAGE } from "../messages";
 
-const { PERIOD_CHARACTER } = characters,
-      { concatenatePaths } = pathUtilities,
+const { concatenatePaths } = pathUtilities,
       { readDirectory, isEntryDirectory } = fileSystemUtilities;
 
-export function releaseFromReleaseName(releaseName) {
-  const topmostDirectoryName = releaseName, ///
-        projectsDirectoryPath = PERIOD_CHARACTER,
-        loadOnlyRecognisedFiles = true,
-        doNotLoadHiddenFilesAndDirectories = true,
-        name = releaseName, ///
-        entries = entriesFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories),
-        versionNumber = null, ///
-        release = new Release(name, entries, versionNumber);
+export function entriesFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
+  const array = [],
+        relativeDirectoryPath = topmostDirectoryName;  ///
 
-  return release;
+  entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories);
+
+  const entries = new Entries(array);
+
+  return entries;
 }
 
 export default {
-  releaseFromReleaseName
+  entriesFromTopmostDirectoryName
 };
 
 function directoryFromPath(path, projectsDirectoryPath) {
@@ -47,17 +43,6 @@ function directoryFromPath(path, projectsDirectoryPath) {
   }
 
   return directory;
-}
-
-function entriesFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
-  const array = [],
-        relativeDirectoryPath = topmostDirectoryName;  ///
-
-  entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories);
-
-  const entries = new Entries(array);
-
-  return entries;
 }
 
 function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {

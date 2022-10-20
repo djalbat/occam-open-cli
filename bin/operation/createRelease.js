@@ -1,8 +1,11 @@
 "use strict";
 
-const { fileSystemUtilities } = require("../../lib/main"); ///
+import { characters } from "necessary";
 
-const { releaseFromReleaseName } = fileSystemUtilities;
+const { Release, entriesUUtilities } = require("../../lib/main"); ///
+
+const { PERIOD_CHARACTER } = characters,
+      { entriesFromTopmostDirectoryName } = entriesUUtilities;
 
 function createReleaseOperation(proceed, abort, context) {
   const { releaseName } = context,
@@ -22,3 +25,17 @@ function createReleaseOperation(proceed, abort, context) {
 }
 
 module.exports = createReleaseOperation;
+
+function releaseFromReleaseName(releaseName) {
+  const topmostDirectoryName = releaseName, ///
+        projectsDirectoryPath = PERIOD_CHARACTER,
+        loadOnlyRecognisedFiles = true,
+        doNotLoadHiddenFilesAndDirectories = true,
+        name = releaseName, ///
+        entries = entriesFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories),
+        versionNumber = null, ///
+        release = new Release(name, entries, versionNumber);
+
+  return release;
+}
+
