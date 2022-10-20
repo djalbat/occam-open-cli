@@ -1,113 +1,26 @@
 "use strict";
 
-import mkdirp from "mkdirp";
-
 import { characters, pathUtilities, fileSystemUtilities } from "necessary";
 
-import File from "../file";
-import Files from "../files";
 import Entries from "../entries";
-import Project from "../project";
 import Release from "../release";
-import Projects from "../projects";
 import Directory from "../directory";
 
 import { isNameHiddenName } from "../utilities/name";
 import { ENTRIES_MAXIMUM_ARRAY_LENGTH } from "../constants";
 import { isFilePathRecognisedFilePath } from "../utilities/filePath";
-import { convertContentTabsToWhitespace } from "../file";
 import { ENTRIES_MAXIMUM_ARRAY_LENGTH_EXCEEDED_MESSAGE } from "../messages";
 
 const { PERIOD_CHARACTER } = characters,
-      { concatenatePaths, topmostDirectoryPathFromPath } = pathUtilities,
-      { readFile, writeFile, isEntryFile, readDirectory, isEntryDirectory } = fileSystemUtilities;
+      { concatenatePaths } = pathUtilities,
+      { readDirectory, isEntryDirectory } = fileSystemUtilities;
 
-export function loadFile(path, projectsDirectoryPath) {
-  let file = null;
-
-  try {
-    const absolutePath = concatenatePaths(projectsDirectoryPath, path),
-          entryFile = isEntryFile(absolutePath);
-
-    if (entryFile) {
-      let content = readFile(absolutePath);
-
-      content = convertContentTabsToWhitespace(content);  ///
-
-      file = new File(path, content);
-    }
-  } catch (error) {
-    ///
-  }
-
-  return file;
-}
-
-export function saveFile(file, projectsDirectoryPath) {
-  const path = file.getPath(),
-        content = file.getContent(),
-        absolutePath = concatenatePaths(projectsDirectoryPath, path),
-        topmostAbsoluteDirectoryPath = topmostDirectoryPathFromPath(absolutePath);
-
-  mkdirp.sync(topmostAbsoluteDirectoryPath);
-
-  writeFile(absolutePath, content);
-}
-
-export function loadFiles(paths, projectsDirectoryPath) {
-  const array = [],
-        files = new Files(array);
-
-  paths.forEach((path) => {
-    const file = loadFile(path, projectsDirectoryPath);
-
-    files.addFile(file);
-  });
-
-  return files;
-}
-
-export function saveFiles(files, projectsDirectoryPath) {
-  files.forEachFile((file) => {
-    saveFile(file, projectsDirectoryPath);
-  });
-}
-
-export function loadProject(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
-  const name = topmostDirectoryName,  ///
-        entries = entriesFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories),
-        project = new Project(name, entries);
-
-  return project;
-}
-
-export function loadProjects(projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories) {
-  let projects;
-
-  try {
-    const array = [];
-
-    projects = new Projects(array);
-
-    const topmostDirectoryNames = topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories);
-
-    topmostDirectoryNames.forEach((topmostDirectoryName) => {
-      const project = loadProject(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories);
-
-      projects.addProject(project);
-    });
-  } catch (error) {
-    projects = null;
-  }
-
-  return projects;
-}
-
-export function releaseFromName(name) {
-  const topmostDirectoryName = name, ///
+export function releaseFromReleaseName(releaseName) {
+  const topmostDirectoryName = releaseName, ///
         projectsDirectoryPath = PERIOD_CHARACTER,
         loadOnlyRecognisedFiles = true,
         doNotLoadHiddenFilesAndDirectories = true,
+        name = releaseName, ///
         entries = entriesFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories),
         versionNumber = null, ///
         release = new Release(name, entries, versionNumber);
@@ -116,13 +29,7 @@ export function releaseFromName(name) {
 }
 
 export default {
-  loadFile,
-  saveFile,
-  loadFiles,
-  saveFiles,
-  loadProject,
-  loadProjects,
-  releaseFromName
+  releaseFromReleaseName
 };
 
 function directoryFromPath(path, projectsDirectoryPath) {
@@ -208,31 +115,4 @@ function entriesFromRelativeDirectoryPath(array, relativeDirectoryPath, projects
       }
     }
   });
-}
-
-function topmostDirectoryNamesFromProjectsDirectoryPath(projectsDirectoryPath, doNotLoadHiddenFilesAndDirectories) {
-  let topmostDirectoryNames;
-
-  const subEntryNames = readDirectory(projectsDirectoryPath);
-
-  topmostDirectoryNames = subEntryNames.reduce((topmostDirectoryNames, subEntryName) => {
-    const absoluteSubEntryPath = concatenatePaths(projectsDirectoryPath, subEntryName),
-          subEntryNameHiddenName = isNameHiddenName(subEntryName),
-          subEntryNameNotHiddenName = !subEntryNameHiddenName,
-          loadHiddenFilesAndDirectories = !doNotLoadHiddenFilesAndDirectories;
-
-    if (subEntryNameNotHiddenName || loadHiddenFilesAndDirectories) {
-      const subEntryDirectory = isEntryDirectory(absoluteSubEntryPath);
-
-      if (subEntryDirectory) {
-        const topmostDirectoryName = subEntryName;  ///
-
-        topmostDirectoryNames.push(topmostDirectoryName)
-      }
-    }
-
-    return topmostDirectoryNames;
-  }, []);
-
-  return topmostDirectoryNames;
 }

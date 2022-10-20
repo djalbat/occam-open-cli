@@ -2,12 +2,11 @@
 
 const { fileSystemUtilities } = require("../../lib/main"); ///
 
-const { releaseFromName } = fileSystemUtilities;
+const { releaseFromReleaseName } = fileSystemUtilities;
 
 function createReleaseOperation(proceed, abort, context) {
   const { releaseName } = context,
-        name = releaseName, ///
-        release = releaseFromName(name);
+        release = releaseFromReleaseName(releaseName);
 
   if (release === null) {
     abort();

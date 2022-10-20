@@ -7,3 +7,7 @@ export function isNameHiddenName(name) {
 
   return nameHiddenName;
 }
+
+export default {
+  isNameHiddenName
+};

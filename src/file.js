@@ -1,7 +1,7 @@
 "use strict";
 
 import { FILE_TYPE } from "./types";
-import { DOUBLE_SPACE } from "./constants";
+import { convertContentTabsToWhitespace } from "./utilities/content"
 
 export default class File {
   constructor(path, content) {
@@ -93,5 +93,3 @@ export default class File {
     return file;
   }
 }
-
-export function convertContentTabsToWhitespace(content) { return content.replace(/\t/g, DOUBLE_SPACE); } ///
