@@ -49,6 +49,19 @@ export default class Entries {
     });
   }
 
+  getFile(filePath) {
+    const files = this.getFiles(),
+          file = files.find((file) => {
+            const path = file.getPath();
+
+            if (path === filePath) {
+              return true;
+            }
+          }) || null;
+
+    return file;
+  }
+
   getFiles() {
     const files = Files.fromNothing();
 

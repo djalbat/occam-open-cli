@@ -1,0 +1,17 @@
+"use strict";
+
+const TERM_BNF_FILE_NAME = "term.bnf",
+      STATEMENT_BNF_FILE_NAME = "statement.bnf",
+      METASTATEMENT_BNF_FILE_NAME = "metastatement.bnf",
+      TYPE_PATTERN_FILE_NAME = "type.ptn",
+      SYMBOL_PATTERN_FILE_NAME = "symbol.ptn",
+      OPERATOR_PATTERN_FILE_NAME = "operator.ptn";
+
+module.exports = {
+  TERM_BNF_FILE_NAME,
+  STATEMENT_BNF_FILE_NAME,
+  METASTATEMENT_BNF_FILE_NAME,
+  TYPE_PATTERN_FILE_NAME,
+  SYMBOL_PATTERN_FILE_NAME,
+  OPERATOR_PATTERN_FILE_NAME
+};

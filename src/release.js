@@ -2,7 +2,11 @@
 
 import Entries from "./entries";
 
-import { isFilePathReadmeFilePath, isFilePathMetaJSONFilePath } from "./utilities/filePath";
+import { isFilePathReadmeFilePath,
+         isFilePathFlorenceFilePath,
+         isFilePathMetaJSONFilePath,
+         isFilePathCustomGrammarBNFFilePath,
+         isFilePathCustomGrammarPatternFilePath } from "./utilities/filePath";
 
 export default class Release {
   constructor(name, entries, versionNumber) {
@@ -23,7 +27,11 @@ export default class Release {
     return this.versionNumber;
   }
 
+  getFile(filePath) { return this.entries.getFile(filePath); }
+
   getFiles() { return this.entries.getFiles(); }
+
+  getFilePaths() { return this.entries.getFilePaths(); }
 
   getReadmeFile() {
     let readmeFile = null;
@@ -61,6 +69,63 @@ export default class Release {
     });
 
     return metaJSONFile;
+  }
+
+  getFlorenceFiles() {
+    const files = this.getFiles(),
+        florenceFiles = files.reduceFile((florenceFiles, file) => {
+          const filePath = file.getPath(),
+              filePathFlorenceFilePath = isFilePathFlorenceFilePath(filePath),
+              fileFlorenceFile = filePathFlorenceFilePath;  ///
+
+          if (fileFlorenceFile) {
+            const florenceFile = file;  ///
+
+            florenceFiles.push(florenceFile);
+          }
+
+          return florenceFiles;
+        }, []);
+
+    return florenceFiles;
+  }
+
+  getCustomGrammarBNFFiles() {
+    const files = this.getFiles(),
+          customGrammarBNFFiles = files.reduceFile((customGrammarBNFFiles, file) => {
+          const filePath = file.getPath(),
+                filePathCustomGrammarBNFFilePath = isFilePathCustomGrammarBNFFilePath(filePath),
+                fileCustomGrammarBNFFile = filePathCustomGrammarBNFFilePath;  ///
+
+          if (fileCustomGrammarBNFFile) {
+            const customGrammarBNFFile = file;  ///
+
+            customGrammarBNFFiles.push(customGrammarBNFFile);
+          }
+
+          return customGrammarBNFFiles;
+        }, []);
+
+    return customGrammarBNFFiles;
+  }
+
+  getCustomGrammarPatternFiles() {
+    const files = this.getFiles(),
+          customGrammarPatternFiles = files.reduceFile((customGrammarPatternFiles, file) => {
+            const filePath = file.getPath(),
+                filePathCustomGrammarPatternFilePath = isFilePathCustomGrammarPatternFilePath(filePath),
+                fileCustomGrammarPatternFile = filePathCustomGrammarPatternFilePath;  ///
+
+            if (fileCustomGrammarPatternFile) {
+              const customGrammarPatternFile = file;  ///
+
+              customGrammarPatternFiles.push(customGrammarPatternFile);
+            }
+
+            return customGrammarPatternFiles;
+          }, []);
+
+    return customGrammarPatternFiles;
   }
 
   toJSON() {

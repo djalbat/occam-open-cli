@@ -8,6 +8,7 @@ export { default as Release } from "./release";
 export { default as Entries } from "./entries";
 export { default as Project } from "./project";
 export { default as Projects } from "./projects";
+export { default as fileNames } from "./fileNames";
 export { default as nameUtilities } from "./utilities/name";
 export { default as contentUtilities } from "./utilities/content";
 export { default as entriesUtilities } from "./utilities/entries";

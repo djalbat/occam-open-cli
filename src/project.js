@@ -2,7 +2,10 @@
 
 import Entries from "./entries";
 
-import { isFilePathFlorenceFilePath, isFilePathMetaJSONFilePath, isFilePathCustomGrammarBNFFilePath, isFilePathCustomGrammarPatternFilePath } from "./utilities/filePath";
+import { isFilePathFlorenceFilePath,
+         isFilePathMetaJSONFilePath,
+         isFilePathCustomGrammarBNFFilePath,
+         isFilePathCustomGrammarPatternFilePath } from "./utilities/filePath";
 
 export default class Project {
   constructor(name, entries) {
@@ -24,18 +27,7 @@ export default class Project {
 
   getDirectoryPaths() { return this.entries.getDirectoryPaths(); }
 
-  getFile(filePath) {
-    const files = this.getFiles(),
-          file = files.find((file) => {
-            const path = file.getPath();
-
-            if (path === filePath) {
-              return true;
-            }
-          }) || null;
-
-    return file;
-  }
+  getFile(filePath) { return this.entries.getFile(filePath); }
 
   getMetaJSONFile() {
     const files = this.getFiles(),
