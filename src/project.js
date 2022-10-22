@@ -24,6 +24,19 @@ export default class Project {
 
   getDirectoryPaths() { return this.entries.getDirectoryPaths(); }
 
+  getFile(filePath) {
+    const files = this.getFiles(),
+          file = files.find((file) => {
+            const path = file.getPath();
+
+            if (path === filePath) {
+              return true;
+            }
+          }) || null;
+
+    return file;
+  }
+
   getMetaJSONFile() {
     const files = this.getFiles(),
           metaJSONFile = files.findFile((file) => {

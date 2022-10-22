@@ -87,4 +87,10 @@ export default class Release {
 
     return release;
   }
+
+  static fromNameEntriesAndVersionNumber(name, entries, versionNumber) {
+    const release = new Release(name, entries, versionNumber);
+
+    return release;
+  }
 }

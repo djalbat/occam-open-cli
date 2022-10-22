@@ -11,8 +11,7 @@
   },
   "dependencies": {
     "argumentative": "^2.0.15",
-    "necessary": "^11.1.4",
-    "occam-parsers": "^16.0.122"
+    "necessary": "^11.1.4"
   },
   "devDependencies": {
     "@swc/core": "^1.2.51",

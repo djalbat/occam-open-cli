@@ -34,7 +34,7 @@ function releaseFromReleaseName(releaseName) {
         name = releaseName, ///
         entries = entriesFromTopmostDirectoryName(topmostDirectoryName, projectsDirectoryPath, loadOnlyRecognisedFiles, doNotLoadHiddenFilesAndDirectories),
         versionNumber = null, ///
-        release = new Release(name, entries, versionNumber);
+        release = Release.fromNameEntriesAndVersionNumber(name, entries, versionNumber);
 
   return release;
 }
