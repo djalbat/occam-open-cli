@@ -51,7 +51,7 @@ export default class Entries {
 
   getFile(filePath) {
     const files = this.getFiles(),
-          file = files.find((file) => {
+          file = files.findFile((file) => {
             const path = file.getPath();
 
             if (path === filePath) {

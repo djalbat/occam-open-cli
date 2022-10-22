@@ -143,12 +143,16 @@ export default class Release {
   }
 
   static fromJSON(json) {
-    const { name, versionNumber, entries: entriesJSON } = json;
+    let { entries } = json;
+
+    const { name, versionNumber } = json,
+          entriesJSON = entries;  ///
 
     json = entriesJSON; ///
 
-    const entries = Entries.fromJSON(json),
-          release = new Release(name, entries, versionNumber);
+    entries = Entries.fromJSON(json); ///
+
+    const release = new Release(name, entries, versionNumber);
 
     return release;
   }
