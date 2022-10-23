@@ -5,8 +5,7 @@ const signInOperation = require("../operation/signIn"),
       setIdentityTokenOperation = require("../operation/setIdentityToken"),
       emailAddressOrUsernamePromptOperation = require("../operation/prompt/emailAddressOrUsername");
 
-const { executeOperations } = require("../utilities/operation"),
-      { FAILED_SIGN_IN_MESSAGE, SUCCESSFUL_SIGN_IN_MESSAGE } = require("../messages");
+const { executeOperations } = require("../utilities/operation");
 
 function signIn(argument) {
   const emailAddressOrUsername = argument,  ///
@@ -23,10 +22,7 @@ function signIn(argument) {
         };
 
   executeOperations(operations, (completed) => {
-    const success = completed,  ///
-          message = success ?
-                      SUCCESSFUL_SIGN_IN_MESSAGE :
-                        FAILED_SIGN_IN_MESSAGE;
+    const { message } = context;
 
     console.log(message);
 

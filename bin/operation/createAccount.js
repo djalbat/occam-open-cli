@@ -14,15 +14,10 @@ function createAccountOperation(proceed, abort, context) {
         };
 
   post(uri, json, (json) => {
-    const { identityToken = null } = json;
-
-    if (identityToken === null) {
-      abort();
-
-      return;
-    }
+    const { message = null, identityToken = null } = json;
 
     Object.assign(context, {
+      message,
       identityToken
     });
 

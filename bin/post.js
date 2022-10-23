@@ -1,7 +1,7 @@
 "use strict";
 
-const { Readable } = require("stream");
-const { headers, contentTypes, requestUtilities } = require("necessary");
+const { Readable } = require("stream"),
+      { headers, contentTypes, statusCodes, statusMessages, requestUtilities } = require("necessary");
 
 const { getHost } = require("./configuration"),
       { getPackageVersion } = require("./utilities/packageJSON"),
@@ -10,7 +10,9 @@ const { getHost } = require("./configuration"),
 
 const { createPostRequest } = requestUtilities,
       { CONTENT_TYPE_HEADER } = headers,
-      { APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE } = contentTypes;
+      { APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE } = contentTypes,
+      { BAD_GATEWAY_502_STATUS_CODE, INTERNAL_SERVER_ERROR_500_STATUS_CODE } = statusCodes,
+      { BAD_GATEWAY_502_STATUS_MESSAGE, INTERNAL_SERVER_ERROR_500_STATUS_MESSAGE } = statusMessages;
 
 function post(uri, json, callback) {
   const host = getHost(),
@@ -24,31 +26,46 @@ function post(uri, json, callback) {
   });
 
   const postRequest = createPostRequest(host, uri, query, headers, (error, response) => {
-          if (error) {
-            console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
+    if (error) {
+      console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
 
-            process.exit();
-          }
+      process.exit();
+    }
 
-          contentFromResponse(response, (content) => {
-            let json;
+    const { statusCode } = response;
 
-            try {
-              const jsonString = content; ///
+    if (statusCode === BAD_GATEWAY_502_STATUS_CODE) {
+      console.log(`The server responded with '${BAD_GATEWAY_502_STATUS_MESSAGE}'.`);
 
-              json = JSON.parse(jsonString);
-            } catch (error) {
-              if (error) {
-                console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
+      process.exit();
+    }
 
-                process.exit();
-              }
-            }
+    if (statusCode === INTERNAL_SERVER_ERROR_500_STATUS_CODE) {
+      console.log(`The server responded with '${INTERNAL_SERVER_ERROR_500_STATUS_MESSAGE}'.`);
 
-            callback(json);
-          });
-        }),
-        readable = Readable.from(content);
+      process.exit();
+    }
+
+    contentFromResponse(response, (content) => {
+      let json;
+
+      try {
+        const jsonString = content; ///
+
+        json = JSON.parse(jsonString);
+      } catch (error) {
+        if (error) {
+          console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
+
+          process.exit();
+        }
+      }
+
+      callback(json);
+    });
+  });
+
+  const readable = Readable.from(content);
 
   readable.pipe(postRequest);
 }

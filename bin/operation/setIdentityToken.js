@@ -5,7 +5,9 @@ const { setIdentityToken } = require("../configuration");
 function setIdentityTokenOperation(proceed, abort, context) {
   const { identityToken } = context;
 
-  setIdentityToken(identityToken);
+  if (identityToken !== null) {
+    setIdentityToken(identityToken);
+  }
 
   proceed();
 }

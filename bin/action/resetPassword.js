@@ -3,8 +3,7 @@
 const resetPasswordOperation = require("../operation/resetPassword"),
       emailAddressPromptOperation = require("../operation/prompt/emailAddress");
 
-const { executeOperations } = require("../utilities/operation"),
-      { RESET_PASSWORD_MESSAGE } = require("../messages");
+const { executeOperations } = require("../utilities/operation");
 
 function resetPassword(argument) {
   const emailAddress = argument, ///
@@ -17,7 +16,7 @@ function resetPassword(argument) {
         };
 
   executeOperations(operations, (completed) => {
-    const message = RESET_PASSWORD_MESSAGE;
+    const { message } = context;
 
     console.log(message);
 

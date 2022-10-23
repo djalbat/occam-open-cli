@@ -12,6 +12,12 @@ function resetPasswordOperation(proceed, abort, context) {
         };
 
   post(uri, json, (json) => {
+    const { message = null } = json;
+
+    Object.assign(context, {
+      message
+    });
+
     proceed();
   });
 }

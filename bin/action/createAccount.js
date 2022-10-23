@@ -6,8 +6,7 @@ const createAccountOperation = require("../operation/createAccount"),
       setIdentityTokenOperation = require("../operation/setIdentityToken"),
       emailAddressPromptOperation = require("../operation/prompt/emailAddress");
 
-const { executeOperations } = require("../utilities/operation"),
-      { FAILED_CREATE_ACCOUNT_MESSAGE, SUCCESSFUL_CREATE_ACCOUNT_MESSAGE } = require("../messages");
+const { executeOperations } = require("../utilities/operation");
 
 function createAccount(argument) {
   const emailAddress = argument,  ///
@@ -27,10 +26,7 @@ function createAccount(argument) {
         };
 
   executeOperations(operations, (completed) => {
-    const success = completed,  ///
-          message = success ?
-                      SUCCESSFUL_CREATE_ACCOUNT_MESSAGE :
-                        FAILED_CREATE_ACCOUNT_MESSAGE;
+    const { message } = context;
 
     console.log(message);
 
