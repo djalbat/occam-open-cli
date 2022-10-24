@@ -8,8 +8,15 @@ const { PERIOD_CHARACTER } = characters,
       { entriesFromTopmostDirectoryName } = entriesUtilities;
 
 function createReleaseOperation(proceed, abort, context) {
-  const { releaseName } = context,
-        release = releaseFromReleaseName(releaseName);
+  const { releaseName } = context;
+
+  let release = null;
+
+  try {
+    release = releaseFromReleaseName(releaseName);
+  } catch (error) {
+    ///
+  }
 
   if (release === null) {
     abort();

@@ -12,11 +12,7 @@ function deprecateOperation(proceed, abort, context) {
         };
 
   post(uri, json, (json) => {
-    const { success } = json;
-
-    success ?
-      proceed() :
-        abort();
+    proceed();
   });
 }
 

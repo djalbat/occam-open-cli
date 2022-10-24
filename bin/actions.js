@@ -1,11 +1,11 @@
 "use strict";
 
 const help = require("./action/help"),
+      open = require("./action/open"),
       clone = require("./action/clone"),
       signIn = require("./action/signIn"),
       signOut = require("./action/signOut"),
       version = require("./action/version"),
-      install = require("./action/install"),
       publish = require("./action/publish"),
       deprecate = require("./action/deprecate"),
       initialise = require("./action/initialise"),
@@ -44,7 +44,7 @@ function actions(command, argument, options) {
     case HELP_COMMAND : help(); break;
     case CLONE_COMMAND : clone(argument); break;
     case VERSION_COMMAND : version(); break;
-    case INSTALL_COMMAND : install(argument); break;
+    case INSTALL_COMMAND : open(argument); break;
     case PUBLISH_COMMAND : publish(argument); break;
     case SIGN_IN_COMMAND : signIn(argument); break;
     case SIGN_OUT_COMMAND : signOut(); break;
@@ -57,7 +57,7 @@ function actions(command, argument, options) {
     default :
       argument = command;  ///
 
-      install(argument);
+      open(argument);
 
       break;
   }

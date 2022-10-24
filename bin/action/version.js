@@ -8,6 +8,8 @@ function version() {
         version = packageVersion; ///
 
   console.log(`${OPEN_CLI} version ${version}`);
+
+  process.exit();
 }
 
 module.exports = version;

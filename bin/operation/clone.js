@@ -21,8 +21,6 @@ function cloneOperation(proceed, abort, context) {
 
   exec(command, (error) => {
     if (error) {
-      console.log(`An error occurred: ${error}`);
-
       abort();
 
       return;

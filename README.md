@@ -41,6 +41,8 @@ Commands:
 
   initialise                                     Create a configuration file
 
+  set-options                                    Set options 
+
   clone <package_name>                           Clone a package with Git
 
   publish <package_name>                         Publish a package
@@ -53,9 +55,7 @@ Commands:
 
   sign-out                                       Sign out 
 
-  set-options                                    Set options 
-
-  reset-password [<email_address>]               Reset your password 
+  reset-password [<email_address>]               Reset password 
 
 Options:
 
