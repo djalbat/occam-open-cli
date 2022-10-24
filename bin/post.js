@@ -1,18 +1,18 @@
 "use strict";
 
 const { Readable } = require("stream"),
-      { headers, contentTypes, statusCodes, statusMessages, requestUtilities } = require("necessary");
+      { headers, contentTypes, statusCodes, requestUtilities } = require("necessary");
 
 const { getHost } = require("./configuration"),
       { getPackageVersion } = require("./utilities/packageJSON"),
       { contentFromResponse } = require("./utilities/response"),
+      { statusMessageFromStatusCode } = require("./utilities/status"),
       { SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages");
 
 const { createPostRequest } = requestUtilities,
+      { OK_200_STATUS_CODE } = statusCodes,
       { CONTENT_TYPE_HEADER } = headers,
-      { APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE } = contentTypes,
-      { BAD_GATEWAY_502_STATUS_CODE, INTERNAL_SERVER_ERROR_500_STATUS_CODE } = statusCodes,
-      { BAD_GATEWAY_502_STATUS_MESSAGE, INTERNAL_SERVER_ERROR_500_STATUS_MESSAGE } = statusMessages;
+      { APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE } = contentTypes;
 
 function post(uri, json, callback) {
   const host = getHost(),
@@ -34,14 +34,10 @@ function post(uri, json, callback) {
 
     const { statusCode } = response;
 
-    if (statusCode === BAD_GATEWAY_502_STATUS_CODE) {
-      console.log(`The server responded with '${BAD_GATEWAY_502_STATUS_MESSAGE}'.`);
+    if (statusCode !== OK_200_STATUS_CODE) {
+      const statusMessage = statusMessageFromStatusCode(statusCode);
 
-      process.exit();
-    }
-
-    if (statusCode === INTERNAL_SERVER_ERROR_500_STATUS_CODE) {
-      console.log(`The server responded with '${INTERNAL_SERVER_ERROR_500_STATUS_MESSAGE}'.`);
+      console.log(`The server responded with '${statusMessage}'.`);
 
       process.exit();
     }
