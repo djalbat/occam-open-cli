@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "argumentative": "^2.0.15",
-    "necessary": "^11.1.4"
+    "necessary": "^11.1.4",
+    "occam-dom": "^3.0.255",
+    "occam-grammars": "^1.0.323"
   },
   "devDependencies": {
     "@swc/core": "^1.2.51",

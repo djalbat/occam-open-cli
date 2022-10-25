@@ -8,12 +8,11 @@ export { default as Entries } from "./entries";
 export { default as Project } from "./project";
 export { default as Projects } from "./projects";
 export { default as Dependency } from "./dependency";
+export { default as Dependencies } from "./dependencies";
 export { default as ShortenedVersion } from "./shortenedVersion";
-
-export { default as types } from "./types";
-export { default as fileNames } from "./fileNames";
 
 export { default as nameUtilities } from "./utilities/name";
 export { default as contentUtilities } from "./utilities/content";
 export { default as entriesUtilities } from "./utilities/entries";
 export { default as filePathUtilities } from "./utilities/filePath";
+export { default as metaJSONUtilities } from "./utilities/metaJSON";

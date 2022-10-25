@@ -1,18 +1,20 @@
 "use strict";
 
 import Entries from "./entries";
+import Version from "./version";
+import bnfMixin from "./mixin/bnf";
+import filesMixin from "./mixin/files";
+import Dependencies from "./dependencies";
+import entriesMixin from "./mixin/entries";
+import patternMixin from "./mixin/pattern";
 
-import { isFilePathReadmeFilePath,
-         isFilePathFlorenceFilePath,
-         isFilePathMetaJSONFilePath,
-         isFilePathCustomGrammarBNFFilePath,
-         isFilePathCustomGrammarPatternFilePath } from "./utilities/filePath";
-
-export default class Release {
-  constructor(name, entries, versionNumber) {
+class Release {
+  constructor(name, entries, version, repository, dependencies) {
     this.name = name;
     this.entries = entries;
-    this.versionNumber = versionNumber;
+    this.version = version;
+    this.repository = repository;
+    this.dependendies = dependencies;
   }
 
   getName() {
@@ -23,143 +25,75 @@ export default class Release {
     return this.entries;
   }
 
-  getVersionNumber() {
-    return this.versionNumber;
+  getVersion() {
+    return this.version;
   }
 
-  getFile(filePath) { return this.entries.getFile(filePath); }
-
-  getFiles() { return this.entries.getFiles(); }
-
-  getFilePaths() { return this.entries.getFilePaths(); }
-
-  getReadmeFile() {
-    let readmeFile = null;
-
-    const files = this.getFiles();
-
-    files.someFile((file) => {
-      const filePath = file.getPath(),
-            filePathReadmeFilePath = isFilePathReadmeFilePath(filePath);
-
-      if (filePathReadmeFilePath) {
-        readmeFile = file;  ///
-
-        return true;
-      }
-    });
-
-    return readmeFile;
+  getRepository() {
+    return this.repository;
   }
 
-  getMetaJSONFile() {
-    let metaJSONFile = null;
-
-    const files = this.getFiles();
-
-    files.someFile((file) => {
-      const filePath = file.getPath(),
-            filePathMetaJSONFilePath = isFilePathMetaJSONFilePath(filePath);
-
-      if (filePathMetaJSONFilePath) {
-        metaJSONFile = file;  ///
-
-        return true;
-      }
-    });
-
-    return metaJSONFile;
-  }
-
-  getFlorenceFiles() {
-    const files = this.getFiles(),
-        florenceFiles = files.reduceFile((florenceFiles, file) => {
-          const filePath = file.getPath(),
-              filePathFlorenceFilePath = isFilePathFlorenceFilePath(filePath),
-              fileFlorenceFile = filePathFlorenceFilePath;  ///
-
-          if (fileFlorenceFile) {
-            const florenceFile = file;  ///
-
-            florenceFiles.push(florenceFile);
-          }
-
-          return florenceFiles;
-        }, []);
-
-    return florenceFiles;
-  }
-
-  getCustomGrammarBNFFiles() {
-    const files = this.getFiles(),
-          customGrammarBNFFiles = files.reduceFile((customGrammarBNFFiles, file) => {
-          const filePath = file.getPath(),
-                filePathCustomGrammarBNFFilePath = isFilePathCustomGrammarBNFFilePath(filePath),
-                fileCustomGrammarBNFFile = filePathCustomGrammarBNFFilePath;  ///
-
-          if (fileCustomGrammarBNFFile) {
-            const customGrammarBNFFile = file;  ///
-
-            customGrammarBNFFiles.push(customGrammarBNFFile);
-          }
-
-          return customGrammarBNFFiles;
-        }, []);
-
-    return customGrammarBNFFiles;
-  }
-
-  getCustomGrammarPatternFiles() {
-    const files = this.getFiles(),
-          customGrammarPatternFiles = files.reduceFile((customGrammarPatternFiles, file) => {
-            const filePath = file.getPath(),
-                filePathCustomGrammarPatternFilePath = isFilePathCustomGrammarPatternFilePath(filePath),
-                fileCustomGrammarPatternFile = filePathCustomGrammarPatternFilePath;  ///
-
-            if (fileCustomGrammarPatternFile) {
-              const customGrammarPatternFile = file;  ///
-
-              customGrammarPatternFiles.push(customGrammarPatternFile);
-            }
-
-            return customGrammarPatternFiles;
-          }, []);
-
-    return customGrammarPatternFiles;
+  getDependencies() {
+    return this.dependendies;
   }
 
   toJSON() {
     const entriesJSON = this.entries.toJSON(),
+          versionJSON = this.version.toJSON(),
+          dependenciesJSON = this.dependendies.toJSON(),
           name = this.name,
           entries = entriesJSON,  ///
-          versionNumber = this.versionNumber,
+          version = versionJSON,  ///
+          repository = this.repository,
+          dependencies = dependenciesJSON,  ///
           json = {
             name,
             entries,
-            versionNumber
+            version,
+            repository,
+            dependencies
           };
 
     return json;
   }
 
   static fromJSON(json) {
-    let { entries } = json;
+    let { entries, version, dependencies } = json;
 
-    const { name, versionNumber } = json,
-          entriesJSON = entries;  ///
+    const { name, repository } = json,
+          entriesJSON = entries,  ///
+          versionJSOM = version,  ///
+          dependenciesJSON = dependencies; ///
 
     json = entriesJSON; ///
 
     entries = Entries.fromJSON(json); ///
 
-    const release = new Release(name, entries, versionNumber);
+    json = versionJSOM; ///
+
+    version = Version.fromJSON(json);
+
+    json = dependenciesJSON; ///
+
+    dependencies = Dependencies.fromJSON(json);
+
+    const release = new Release(name, entries, version, repository, dependencies);
 
     return release;
   }
 
-  static fromNameEntriesAndVersionNumber(name, entries, versionNumber) {
-    const release = new Release(name, entries, versionNumber);
+  static fromNameEntriesAndVersion(name, entries, version) {
+    const repository = repository,
+          dependencies = Dependencies.fromNothing(),
+          release = new Release(name, entries, version, repository, dependencies);
 
     return release;
   }
 }
+
+Objecct.assign(Release.prototype, bnfMixin);
+Objecct.assign(Release.prototype, filesMixin);
+Objecct.assign(Release.prototype, entriesMixin);
+Objecct.assign(Release.prototype, patternMixin);
+
+export default Release;

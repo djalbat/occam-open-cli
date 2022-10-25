@@ -1,16 +1,26 @@
 "use strict";
 
+import { MetaJSONLexer, MetaJSONParser } from "occam-grammars";
+
 import Entries from "./entries";
+import bnfMixin from "./mixin/bnf";
+import filesMixin from "./mixin/files";
+import Dependencies from "./dependencies";
+import entriesMixin from "./mixin/entries";
+import patternMixin from "./mixin/pattern";
 
-import { isFilePathFlorenceFilePath,
-         isFilePathMetaJSONFilePath,
-         isFilePathCustomGrammarBNFFilePath,
-         isFilePathCustomGrammarPatternFilePath } from "./utilities/filePath";
+import { metaJSONFIleFromFiles } from "./utilities/files";
+import { repositoryFromNode, dependenciesFromNode } from "./utilities/metaJSON";
 
-export default class Project {
-  constructor(name, entries) {
+const metaJSONLexer = MetaJSONLexer.fromNothing(),
+      metaJSONParser = MetaJSONParser.fromNothing();
+
+class Project {
+  constructor(name, entries, repository, dependencies) {
     this.name = name;
     this.entries = entries;
+    this.repository = repository;
+    this.dependendies = dependencies;
   }
 
   getName() {
@@ -21,112 +31,117 @@ export default class Project {
     return this.entries;
   }
 
-  getFiles() { return this.entries.getFiles(); }
-
-  getFilePaths() { return this.entries.getFilePaths(); }
-
-  getDirectoryPaths() { return this.entries.getDirectoryPaths(); }
-
-  getFile(filePath) { return this.entries.getFile(filePath); }
-
-  getMetaJSONFile() {
-    const files = this.getFiles(),
-          metaJSONFile = files.findFile((file) => {
-          const filePath = file.getPath(),
-                filePathMetaJSONFilePath = isFilePathMetaJSONFilePath(filePath);
-
-          if (filePathMetaJSONFilePath) {
-            return true;
-          }
-        });
-
-    return metaJSONFile;
+  getRepository() {
+    return this.repository;
   }
 
-  getFlorenceFiles() {
-    const files = this.getFiles(),
-          florenceFiles = files.reduceFile((florenceFiles, file) => {
-            const filePath = file.getPath(),
-                  filePathFlorenceFilePath = isFilePathFlorenceFilePath(filePath),
-                  fileFlorenceFile = filePathFlorenceFilePath;  ///
-
-            if (fileFlorenceFile) {
-              const florenceFile = file;  ///
-
-              florenceFiles.push(florenceFile);
-            }
-
-            return florenceFiles;
-          }, []);
-
-    return florenceFiles;
-  }
-
-  getCustomGrammarBNFFiles() {
-    const files = this.getFiles(),
-          customGrammarBNFFiles = files.reduceFile((customGrammarBNFFiles, file) => {
-            const filePath = file.getPath(),
-                  filePathCustomGrammarBNFFilePath = isFilePathCustomGrammarBNFFilePath(filePath),
-                  fileCustomGrammarBNFFile = filePathCustomGrammarBNFFilePath;  ///
-
-            if (fileCustomGrammarBNFFile) {
-              const customGrammarBNFFile = file;  ///
-
-              customGrammarBNFFiles.push(customGrammarBNFFile);
-            }
-
-            return customGrammarBNFFiles;
-          }, []);
-
-    return customGrammarBNFFiles;
-  }
-
-  getCustomGrammarPatternFiles() {
-    const files = this.getFiles(),
-          customGrammarPatternFiles = files.reduceFile((customGrammarPatternFiles, file) => {
-            const filePath = file.getPath(),
-                  filePathCustomGrammarPatternFilePath = isFilePathCustomGrammarPatternFilePath(filePath),
-                  fileCustomGrammarPatternFile = filePathCustomGrammarPatternFilePath;  ///
-
-            if (fileCustomGrammarPatternFile) {
-              const customGrammarPatternFile = file;  ///
-
-              customGrammarPatternFiles.push(customGrammarPatternFile);
-            }
-
-            return customGrammarPatternFiles;
-          }, []);
-
-    return customGrammarPatternFiles;
+  getDependencies() {
+    return this.dependendies;
   }
 
   toJSON() {
-    const name = this.name,
-          entriesJSON = this.entries.toJSON(),
+    const entriesJSON = this.entries.toJSON(),
+          dependenciesJSON = this.dependendies.toJSON(),
+          name = this.name,
           entries = entriesJSON,  ///
+          repository = this.repository,
+          dependencies = dependenciesJSON,  ///
           json = {
             name,
-            entries
+            entries,
+            repository,
+            dependencies
           };
 
     return json;
   }
 
   static fromJSON(json) {
-    const { name, entries: entriesJSON } = json;
+    let { entries, dependencies } = json;
+
+    const { name, repository } = json,
+          entriesJSON = entries,  ///
+          dependenciesJSON = dependencies; ///
 
     json = entriesJSON; ///
 
-    const entries = Entries.fromJSON(json),
-          project = new Project(name, entries);
+    entries = Entries.fromJSON(json); ///
 
-    return project;
+    json = dependenciesJSON; ///
+
+    dependencies = Dependencies.fromJSON(json);
+
+    const release = new Release(name, entries, repository, dependencies);
+
+    return release;
   }
 
   static fromName(name) {
     const entries = Entries.fromNothing(),
-          project = new Project(name, entries);
+          repository = null,  ///
+          dependencies = Dependencies.fromNothing(),
+          project = new Project(name, entries, repository, dependencies);
 
     return project;
   }
+
+  static fromNameAndEntries(name, entries) {
+    const repository = repositoryFromEntries(entries),
+          dependencies = dependenciesFromEntries(entries),
+          project = new Project(name, entries, repository, dependencies);
+
+    return project;
+  }
+}
+
+Object.assign(Project.prototype, bnfMixin);
+Object.assign(Project.prototype, filesMixin);
+Object.assign(Project.prototype, entriesMixin);
+Object.assign(Project.prototype, patternMixin);
+
+export default Project;
+
+function repositoryFromEntries(entries) {
+  let repository = null;
+
+  const metaJSONFileNode = metaJSONFileNodeFromEntries(entries)
+
+  if (metaJSONFileNode !== null) {
+    const node = metaJSONFileNode;///
+
+    repository = repositoryFromNode(node);
+  }
+
+  return repository;
+}
+
+function dependenciesFromEntries(entries) {
+  let dependencies = [];
+
+  const metaJSONFileNode = metaJSONFileNodeFromEntries(entries)
+
+  if (metaJSONFileNode !== null) {
+    const node = metaJSONFileNode;///
+
+    dependencies = dependenciesFromNode(node);
+  }
+
+  return dependencies;
+}
+
+function metaJSONFileNodeFromEntries(entries) {
+  let metaJSONFileNode = null;
+
+  const files = entries.getFiles(),
+        metaJSONFile = metaJSONFIleFromFiles(files);
+
+  if (metaJSONFile !== null) {
+    const content = metaJSONFile.getContent(),
+        tokens = metaJSONLexer.tokenise(content),
+        node = metaJSONParser.parse(tokens);
+
+    metaJSONFileNode = node;  ///
+  }
+
+  return metaJSONFileNode;
 }
