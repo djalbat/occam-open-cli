@@ -3,11 +3,11 @@
 import { MetaJSONLexer, MetaJSONParser } from "occam-grammars";
 
 import Entries from "./entries";
-import bnfMixin from "./mixin/bnf";
-import filesMixin from "./mixin/files";
+import bnfMixins from "./mixins/bnf";
+import filesMixins from "./mixins/files";
 import Dependencies from "./dependencies";
-import entriesMixin from "./mixin/entries";
-import patternMixin from "./mixin/pattern";
+import entriesMixins from "./mixins/entries";
+import patternMixins from "./mixins/pattern";
 
 import { metaJSONFIleFromFiles } from "./utilities/files";
 import { repositoryFromNode, dependenciesFromNode } from "./utilities/metaJSON";
@@ -94,10 +94,10 @@ class Project {
   }
 }
 
-Object.assign(Project.prototype, bnfMixin);
-Object.assign(Project.prototype, filesMixin);
-Object.assign(Project.prototype, entriesMixin);
-Object.assign(Project.prototype, patternMixin);
+Object.assign(Project.prototype, bnfMixins);
+Object.assign(Project.prototype, filesMixins);
+Object.assign(Project.prototype, entriesMixins);
+Object.assign(Project.prototype, patternMixins);
 
 export default Project;
 

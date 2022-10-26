@@ -41,10 +41,12 @@ function getCustomGrammarPatternFiles() {
   return customGrammarPatternFiles;
 }
 
-export default {
+const filesMixins = {
   getReadmeFile,
   getMetaJSONFile,
   getFlorenceFiles,
   getCustomGrammarBNFFiles,
   getCustomGrammarPatternFiles
 };
+
+export default filesMixins;

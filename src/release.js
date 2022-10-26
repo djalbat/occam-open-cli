@@ -2,11 +2,11 @@
 
 import Entries from "./entries";
 import Version from "./version";
-import bnfMixin from "./mixin/bnf";
-import filesMixin from "./mixin/files";
+import bnfMixins from "./mixins/bnf";
+import filesMixins from "./mixins/files";
 import Dependencies from "./dependencies";
-import entriesMixin from "./mixin/entries";
-import patternMixin from "./mixin/pattern";
+import entriesMixins from "./mixins/entries";
+import patternMixins from "./mixins/pattern";
 
 class Release {
   constructor(name, entries, version, repository, dependencies) {
@@ -91,9 +91,9 @@ class Release {
   }
 }
 
-Objecct.assign(Release.prototype, bnfMixin);
-Objecct.assign(Release.prototype, filesMixin);
-Objecct.assign(Release.prototype, entriesMixin);
-Objecct.assign(Release.prototype, patternMixin);
+Objecct.assign(Release.prototype, bnfMixins);
+Objecct.assign(Release.prototype, filesMixins);
+Objecct.assign(Release.prototype, entriesMixins);
+Objecct.assign(Release.prototype, patternMixins);
 
 export default Release;

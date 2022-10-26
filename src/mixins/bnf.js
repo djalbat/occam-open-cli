@@ -49,9 +49,11 @@ function getMetastatementBNF() {
   return metastatementBNF;
 }
 
-export default {
+const bnfMixins = {
   getBNF,
   getTermBNF,
   getStatementBNF,
   getMetastatementBNF
 };
+
+export default bnfMixins;

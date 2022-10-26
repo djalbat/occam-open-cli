@@ -8,9 +8,11 @@ function getFilePaths() { return this.entries.getFilePaths(); }
 
 function getDirectoryPaths() { return this.entries.getDirectoryPaths(); }
 
-export default {
+const entriesMixins = {
   getFile,
   getFiles,
   getFilePaths,
   getDirectoryPaths
 };
+
+export default entriesMixins;

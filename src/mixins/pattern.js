@@ -49,9 +49,11 @@ function getOperatorPattern() {
   return operatorPattern;
 }
 
-export default  {
+const patternMixins =  {
   getPattern,
   getTypePattern,
   getSymbolPattern,
   getOperatorPattern
 };
+
+export default patternMixins;
