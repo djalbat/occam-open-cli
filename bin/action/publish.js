@@ -1,7 +1,7 @@
 "use strict";
 
 const publishOperation = require("../operation/publish"),
-      createReleaseOperation = require("../operation/createRelease"),
+      loadReleaseOperation = require("../operation/loadRelease"),
       deflateReleaseOperation = require("../operation/deflateRelease"),
       getIdentityTokenOperation = require("../operation/getIdentityToken"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName"),
@@ -16,7 +16,7 @@ function publish(argument) {
         operations = [
           getIdentityTokenOperation,
           releaseNamePromptOperation,
-          createReleaseOperation,
+          loadReleaseOperation,
           checkReadmeFileExistsOperation,
           checkMetaJSONFileExistsOperation,
           deflateReleaseOperation,
