@@ -91,9 +91,9 @@ class Release {
   }
 }
 
-Objecct.assign(Release.prototype, bnfMixins);
-Objecct.assign(Release.prototype, filesMixins);
-Objecct.assign(Release.prototype, entriesMixins);
-Objecct.assign(Release.prototype, patternMixins);
+Object.assign(Release.prototype, bnfMixins);
+Object.assign(Release.prototype, filesMixins);
+Object.assign(Release.prototype, entriesMixins);
+Object.assign(Release.prototype, patternMixins);
 
 export default Release;
