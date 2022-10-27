@@ -9,7 +9,7 @@ const { loadRelease } = fileSystemUtilities;
 function loadReleaseOperation(proceed, abort, context) {
   const { releaseName } = context,
         projectsDirectoryPath = PERIOD, ///
-        release = loadRelease(releaseName);
+        release = loadRelease(releaseName ,projectsDirectoryPath);
 
   if (release === null) {
     abort();
