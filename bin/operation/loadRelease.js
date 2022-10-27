@@ -1,17 +1,15 @@
 "use strict";
 
-const { loadRelease } = require("occam-file-system");
+const { fileSystemUtilities } = require("occam-file-system");
+
+const { PERIOD } = require("../constants");
+
+const { loadRelease } = fileSystemUtilities;
 
 function loadReleaseOperation(proceed, abort, context) {
-  const { releaseName } = context;
-
-  let release = null;
-
-  try {
-    release = loadRelease(releaseName);
-  } catch (error) {
-    ///
-  }
+  const { releaseName } = context,
+        projectsDirectoryPath = PERIOD, ///
+        release = loadRelease(releaseName);
 
   if (release === null) {
     abort();
