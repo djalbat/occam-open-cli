@@ -4,9 +4,7 @@ const publishOperation = require("../operation/publish"),
       loadReleaseOperation = require("../operation/loadRelease"),
       deflateReleaseOperation = require("../operation/deflateRelease"),
       getIdentityTokenOperation = require("../operation/getIdentityToken"),
-      releaseNamePromptOperation = require("../operation/prompt/releaseName"),
-      checkReadmeFileExistsOperation = require("../operation/checkReadmeFileExists"),
-      checkMetaJSONFileExistsOperation = require("../operation/checkMetaJSONFileExists");
+      releaseNamePromptOperation = require("../operation/prompt/releaseName");
 
 const { executeOperations } = require("../utilities/operation"),
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = require("../messages");
@@ -17,8 +15,6 @@ function publish(argument) {
           getIdentityTokenOperation,
           releaseNamePromptOperation,
           loadReleaseOperation,
-          checkReadmeFileExistsOperation,
-          checkMetaJSONFileExistsOperation,
           deflateReleaseOperation,
           publishOperation
         ],
