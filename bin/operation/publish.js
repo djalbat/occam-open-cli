@@ -5,9 +5,10 @@ const post = require("../post");
 const { PUBLISH_API_URI } = require("../uris");
 
 function deprecateOperation(proceed, abort, context) {
-  const { releaseName, identityToken, deflatedRelease } = context,
+  const { logLevel, releaseName, identityToken, deflatedRelease } = context,
         uri = `${PUBLISH_API_URI}/${releaseName}`,
         json = {
+          logLevel,
           identityToken,
           deflatedRelease
         };

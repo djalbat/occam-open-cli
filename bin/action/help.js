@@ -31,9 +31,11 @@ Commands:
 
 Options:
 
+  --help|-h                                      Show this help
+
   --version|-v                                   Show the version
 
-  --help|-h                                      Show this help
+  --log-level|-l                                 Set the log level when publishing
 
 Further information:
 

@@ -45,7 +45,7 @@ function actions(command, argument, options) {
     case CLONE_COMMAND : clone(argument); break;
     case VERSION_COMMAND : version(); break;
     case INSTALL_COMMAND : open(argument); break;
-    case PUBLISH_COMMAND : publish(argument); break;
+    case PUBLISH_COMMAND : publish(argument, options); break;
     case SIGN_IN_COMMAND : signIn(argument); break;
     case SIGN_OUT_COMMAND : signOut(); break;
     case DEPRECATE_COMMAND : deprecate(argument); break;

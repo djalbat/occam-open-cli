@@ -6,11 +6,13 @@ const publishOperation = require("../operation/publish"),
       getIdentityTokenOperation = require("../operation/getIdentityToken"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName");
 
-const { executeOperations } = require("../utilities/operation"),
+const { DEFAULT_LOG_LEVEL } = require("../defaults"),
+      { executeOperations } = require("../utilities/operation"),
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = require("../messages");
 
-function publish(argument) {
-  const releaseName = argument, ///
+function publish(argument, options) {
+  const { logLevel = DEFAULT_LOG_LEVEL } = options,
+        releaseName = argument, ///
         operations = [
           getIdentityTokenOperation,
           releaseNamePromptOperation,
@@ -19,6 +21,7 @@ function publish(argument) {
           publishOperation
         ],
         context = {
+          logLevel,
           releaseName
         };
 

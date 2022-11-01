@@ -59,9 +59,11 @@ Commands:
 
 Options:
 
+  --help|-h                                      Show this help
+
   --version|-v                                   Show the version
 
-  --help|-h                                      Show this help
+  --log-level|-l                                 Set the log level when publishing
 ```
 
 This is slightly different from `npm` in that `open` is usually executed from the parent directory of a project rather than from within the project sub-directory itself. Projects might reside in a `~/Mathematics/` directory, for example, in which case you should initialise `open` in there:
