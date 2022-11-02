@@ -2,13 +2,11 @@
 
 const { fileSystemUtilities } = require("occam-file-system");
 
-const { PERIOD } = require("../constants");
-
 const { loadRelease } = fileSystemUtilities;
 
 function loadReleaseOperation(proceed, abort, context) {
   const { releaseName } = context,
-        projectsDirectoryPath = PERIOD, ///
+        projectsDirectoryPath = process.cwd(), ///
         release = loadRelease(releaseName ,projectsDirectoryPath);
 
   if (release === null) {
