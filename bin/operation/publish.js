@@ -4,7 +4,7 @@ const post = require("../post");
 
 const { PUBLISH_API_URI } = require("../uris");
 
-function deprecateOperation(proceed, abort, context) {
+function publishOperation(proceed, abort, context) {
   const { logLevel, releaseName, identityToken, deflatedRelease } = context,
         uri = `${PUBLISH_API_URI}/${releaseName}`,
         json = {
@@ -14,12 +14,16 @@ function deprecateOperation(proceed, abort, context) {
         };
 
   post(uri, json, (json) => {
-    const { success } = json;
+    const { success, version, messages } = json;
 
-    success ?
-      proceed() :
-        abort();
+    Object.assign(context, {
+      success,
+      version,
+      messages
+    });
+
+    proceed();
   });
 }
 
-module.exports = deprecateOperation;
+module.exports = publishOperation;

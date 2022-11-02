@@ -7,6 +7,7 @@ const END = "end",
       HOST_URL = "hostURL",
       OPEN_CLI = "Open-CLI",
       DOUBLE_DOTS = "..",
+      DOUBLE_DASH = "--",
       EMPTY_STRING = "",
       PACKAGE_JSON = "package.json";
 
@@ -18,6 +19,7 @@ module.exports = {
   HOST_URL,
   OPEN_CLI,
   DOUBLE_DOTS,
+  DOUBLE_DASH,
   EMPTY_STRING,
   PACKAGE_JSON
 };
