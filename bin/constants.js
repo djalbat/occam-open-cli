@@ -7,7 +7,6 @@ const END = "end",
       OPEN_CLI = "Open-CLI",
       DOUBLE_DOTS = "..",
       DOUBLE_DASH = "--",
-      DOUBLE_SPACE = "  ",
       EMPTY_STRING = "",
       RELEASE_JSON = "release.json",
       PACKAGE_JSON = "package.json";
@@ -20,7 +19,6 @@ module.exports = {
   OPEN_CLI,
   DOUBLE_DOTS,
   DOUBLE_DASH,
-  DOUBLE_SPACE,
   EMPTY_STRING,
   RELEASE_JSON,
   PACKAGE_JSON

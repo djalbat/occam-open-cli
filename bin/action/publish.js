@@ -3,9 +3,9 @@
 const publishOperation = require("../operation/publish"),
       zipReleaseOperation = require("../operation/zipRelease"),
       loadReleaseOperation = require("../operation/loadRelease"),
-      updateVersionOperation = require("../operation/updateVersion"),
       getIdentityTokenOperation = require("../operation/getIdentityToken"),
-      releaseNamePromptOperation = require("../operation/prompt/releaseName");
+      releaseNamePromptOperation = require("../operation/prompt/releaseName"),
+      updateMetaJSONFileVersionOperation = require("../operation/updateMetaJSONFileVersion");
 
 const { DOUBLE_DASH } = require("../constants"),
       { executeOperations } = require("../utilities/operation"),
@@ -19,7 +19,7 @@ function publishAction(argument, dryRun, logLevel) {
           loadReleaseOperation,
           zipReleaseOperation,
           publishOperation,
-          updateVersionOperation
+          updateMetaJSONFileVersionOperation
         ],
         context = {
           dryRun,

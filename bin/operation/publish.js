@@ -1,5 +1,7 @@
 "use strict";
 
+const { Version } = require("occam-file-system");
+
 const post = require("../post");
 
 const { PUBLISH_API_URI } = require("../uris");
@@ -15,7 +17,12 @@ function publishOperation(proceed, abort, context) {
         };
 
   post(uri, json, (json) => {
-    const { success, version, messages } = json;
+    let { version } = json;
+
+    const { success, messages } = json,
+          string = version;  ///
+
+    version = Version.fromString(string);
 
     Object.assign(context, {
       success,
