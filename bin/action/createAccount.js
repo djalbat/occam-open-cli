@@ -8,7 +8,7 @@ const createAccountOperation = require("../operation/createAccount"),
 
 const { executeOperations } = require("../utilities/operation");
 
-function createAccount(argument) {
+function createAccountAction(argument) {
   const emailAddress = argument,  ///
         username = null,
         password = null,
@@ -34,4 +34,4 @@ function createAccount(argument) {
   }, context);
 }
 
-module.exports = createAccount;
+module.exports = createAccountAction;

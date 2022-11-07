@@ -7,7 +7,7 @@ const signInOperation = require("../operation/signIn"),
 
 const { executeOperations } = require("../utilities/operation");
 
-function signIn(argument) {
+function signInAction(argument) {
   const emailAddressOrUsername = argument,  ///
         password = null,
         operations = [
@@ -30,4 +30,4 @@ function signIn(argument) {
   }, context);
 }
 
-module.exports = signIn;
+module.exports = signInAction;

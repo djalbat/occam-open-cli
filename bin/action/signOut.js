@@ -3,7 +3,7 @@
 const { SIGN_OUT_MESSAGE } = require("../messages"),
       { removeIdentityToken } = require("../configuration");
 
-function signOut() {
+function signOutAction() {
   const message = SIGN_OUT_MESSAGE;
 
   removeIdentityToken();
@@ -13,4 +13,4 @@ function signOut() {
   process.exit();
 }
 
-module.exports = signOut;
+module.exports = signOutAction;

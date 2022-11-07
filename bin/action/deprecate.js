@@ -8,7 +8,7 @@ const deprecateOperation = require("../operation/deprecate"),
 const { executeOperations } = require("../utilities/operation"),
       { FAILED_DEPRECATE_MESSAGE, SUCCESSFUL_DEPRECATE_MESSAGE } = require("../messages");
 
-function deprecate(argument) {
+function deprecateAction(argument) {
   const releaseName = argument,  ///
         password = null,
         operations = [
@@ -34,4 +34,4 @@ function deprecate(argument) {
   }, context);
 }
 
-module.exports = deprecate;
+module.exports = deprecateAction;

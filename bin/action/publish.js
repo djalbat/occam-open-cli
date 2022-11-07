@@ -8,13 +8,11 @@ const publishOperation = require("../operation/publish"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName");
 
 const { DOUBLE_DASH } = require("../constants"),
-      { DEFAULT_LOG_LEVEL } = require("../defaults"),
       { executeOperations } = require("../utilities/operation"),
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = require("../messages");
 
-function publish(argument, options) {
-  const { logLevel = DEFAULT_LOG_LEVEL } = options,
-        releaseName = argument, ///
+function publishAction(argument, dryRun, logLevel) {
+  const releaseName = argument, ///
         operations = [
           getIdentityTokenOperation,
           releaseNamePromptOperation,
@@ -24,6 +22,7 @@ function publish(argument, options) {
           updateVersionOperation
         ],
         context = {
+          dryRun,
           logLevel,
           releaseName
         };
@@ -57,4 +56,4 @@ function publish(argument, options) {
   }, context);
 }
 
-module.exports = publish;
+module.exports = publishAction;

@@ -3,7 +3,7 @@
 const { checkConfigurationFileExists, createConfigurationFile } = require("../configuration"),
       { FAILED_INITIALISE_MESSAGE, SUCCESSFUL_INITIALISE_MESSAGE } = require("../messages");
 
-function initialise() {
+function initialiseAction() {
   let success;
 
   const configurationFileExists = checkConfigurationFileExists();
@@ -25,4 +25,4 @@ function initialise() {
   process.exit();
 }
 
-module.exports = initialise;
+module.exports = initialiseAction;

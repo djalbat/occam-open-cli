@@ -2,7 +2,7 @@
 
 const { OPEN_MESSAGE } = require("../messages");
 
-function open(argument) {
+function openAction(argument) {
   const message = OPEN_MESSAGE;
 
   console.log(message);
@@ -10,4 +10,4 @@ function open(argument) {
   process.exit();
 }
 
-module.exports = open;
+module.exports = openAction;

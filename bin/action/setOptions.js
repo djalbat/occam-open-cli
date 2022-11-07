@@ -7,7 +7,7 @@ const setOptionsOperation = require("../operation/setOptions"),
 const { executeOperations } = require("../utilities/operation"),
       { FAILED_SET_OPTIONS_MESSAGE, SUCCESSFUL_SET_OPTIONS_MESSAGE } = require("../messages");
 
-function setOptions() {
+function setOptionsAction() {
   const operations = [
           useSSHPromptOperation,
           gitHubHostNamePromptOperation,
@@ -27,4 +27,4 @@ function setOptions() {
   }, context);
 }
 
-module.exports = setOptions;
+module.exports = setOptionsAction;

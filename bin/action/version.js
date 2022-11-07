@@ -3,7 +3,7 @@
 const { OPEN_CLI } = require("../constants"),
       { getPackageVersion } = require("../utilities/packageJSON");
 
-function version() {
+function versionAction() {
   const packageVersion = getPackageVersion(),
         version = packageVersion; ///
 
@@ -12,4 +12,4 @@ function version() {
   process.exit();
 }
 
-module.exports = version;
+module.exports = versionAction;

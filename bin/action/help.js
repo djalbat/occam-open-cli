@@ -1,6 +1,6 @@
 "use strict";
 
-function help() {
+function helpAction() {
   console.log(`Usage: 
   
   open [<command>] [<argument>]
@@ -47,4 +47,4 @@ Please see the readme file on GitHub:
   process.exit();
 }
 
-module.exports = help;
+module.exports = helpAction;

@@ -1,19 +1,19 @@
 "use strict";
 
-const help = require("./action/help"),
-      open = require("./action/open"),
-      clone = require("./action/clone"),
-      signIn = require("./action/signIn"),
-      signOut = require("./action/signOut"),
-      version = require("./action/version"),
-      publish = require("./action/publish"),
-      deprecate = require("./action/deprecate"),
-      initialise = require("./action/initialise"),
-      setOptions = require("./action/setOptions"),
-      createAccount = require("./action/createAccount"),
-      resetPassword = require("./action/resetPassword");
+const helpAction = require("./action/help"),
+      openAction = require("./action/open"),
+      cloneAction = require("./action/clone"),
+      signInAction = require("./action/signIn"),
+      signOutAction = require("./action/signOut"),
+      versionAction = require("./action/version"),
+      publishAction = require("./action/publish"),
+      deprecateAction = require("./action/deprecate"),
+      initialiseAction = require("./action/initialise"),
+      setOptionsAction = require("./action/setOptions"),
+      createAccountAction = require("./action/createAccount"),
+      resetPasswordAction = require("./action/resetPassword");
 
-const { HELP_OPTION, VERSION_OPTION } = require("./options"),
+const { DEFAULT_HELP, DEFAULT_DRY_RUN, DEFAULT_VERSION, DEFAULT_LOG_LEVEL } = require("./defaults"),
       { HELP_COMMAND,
         CLONE_COMMAND,
         VERSION_COMMAND,
@@ -29,30 +29,32 @@ const { HELP_OPTION, VERSION_OPTION } = require("./options"),
 
 function actions(command, argument, options) {
   const commandMissing = (command === null),
-        helpOptionPresent = options.hasOwnProperty(HELP_OPTION),
-        versionOptionPresent = options.hasOwnProperty(VERSION_OPTION);
+        { help = DEFAULT_HELP,
+          dryRun = DEFAULT_DRY_RUN,
+          version = DEFAULT_VERSION,
+          logLevel = DEFAULT_LOG_LEVEL } = options;
 
   if (false) {
     ///
-  } else if (versionOptionPresent) {
-    command = VERSION_COMMAND;
-  } else if (commandMissing || helpOptionPresent) {
+  } else if (help || commandMissing) {
     command = HELP_COMMAND;
+  } else if (version) {
+    command = VERSION_COMMAND;
   }
 
   switch (command) {
-    case HELP_COMMAND : help(); break;
-    case CLONE_COMMAND : clone(argument); break;
-    case VERSION_COMMAND : version(); break;
-    case INSTALL_COMMAND : open(argument); break;
-    case PUBLISH_COMMAND : publish(argument, options); break;
-    case SIGN_IN_COMMAND : signIn(argument); break;
-    case SIGN_OUT_COMMAND : signOut(); break;
-    case DEPRECATE_COMMAND : deprecate(argument); break;
-    case INITIALISE_COMMAND : initialise(); break;
-    case SET_OPTIONS_COMMAND : setOptions(); break;
-    case CREATE_ACCOUNT_COMMAND : createAccount(argument); break;
-    case RESET_PASSWORD_COMMAND : resetPassword(argument); break;
+    case HELP_COMMAND : helpAction(); break;
+    case CLONE_COMMAND : cloneAction(argument); break;
+    case VERSION_COMMAND : versionAction(); break;
+    case INSTALL_COMMAND : openAction(argument); break;
+    case PUBLISH_COMMAND : publishAction(argument, dryRun, logLevel); break;
+    case SIGN_IN_COMMAND : signInAction(argument); break;
+    case SIGN_OUT_COMMAND : signOutAction(); break;
+    case DEPRECATE_COMMAND : deprecateAction(argument); break;
+    case INITIALISE_COMMAND : initialiseAction(); break;
+    case SET_OPTIONS_COMMAND : setOptionsAction(); break;
+    case CREATE_ACCOUNT_COMMAND : createAccountAction(argument); break;
+    case RESET_PASSWORD_COMMAND : resetPasswordAction(argument); break;
 
     default :
       argument = command;  ///
