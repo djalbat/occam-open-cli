@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "argumentative": "^2.0.21",
+    "jszip": "^3.10.1",
     "necessary": "^11.1.4",
     "occam-file-system": "^5.0.72"
   },

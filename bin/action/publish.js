@@ -1,9 +1,9 @@
 "use strict";
 
 const publishOperation = require("../operation/publish"),
+      zipReleaseOperation = require("../operation/zipRelease"),
       loadReleaseOperation = require("../operation/loadRelease"),
       updateVersionOperation = require("../operation/updateVersion"),
-      deflateReleaseOperation = require("../operation/deflateRelease"),
       getIdentityTokenOperation = require("../operation/getIdentityToken"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName");
 
@@ -17,7 +17,7 @@ function publishAction(argument, dryRun, logLevel) {
           getIdentityTokenOperation,
           releaseNamePromptOperation,
           loadReleaseOperation,
-          deflateReleaseOperation,
+          zipReleaseOperation,
           publishOperation,
           updateVersionOperation
         ],
@@ -30,8 +30,8 @@ function publishAction(argument, dryRun, logLevel) {
   executeOperations(operations, (completed) => {
     const { success, version, messages } = context,
           message = success ?
-            SUCCESSFUL_PUBLISH_MESSAGE :
-              FAILED_PUBLISH_MESSAGE,
+                      SUCCESSFUL_PUBLISH_MESSAGE :
+                        FAILED_PUBLISH_MESSAGE,
           messagesLength = messages.length;
 
     if (messagesLength > 0) {

@@ -9,6 +9,7 @@ const END = "end",
       DOUBLE_DASH = "--",
       DOUBLE_SPACE = "  ",
       EMPTY_STRING = "",
+      RELEASE_JSON = "release.json",
       PACKAGE_JSON = "package.json";
 
 module.exports = {
@@ -21,5 +22,6 @@ module.exports = {
   DOUBLE_DASH,
   DOUBLE_SPACE,
   EMPTY_STRING,
+  RELEASE_JSON,
   PACKAGE_JSON
 };
