@@ -1,11 +1,10 @@
 "use strict";
 
-const { fileNames, metaJSONUtilities } = require("occam-file-system");
-
-const { updateMetaJSONFileVersion } = metaJSONUtilities;
+const { fileNames, metaJSONUtilities, fileSystemUtilities } = require("occam-file-system");
 
 const { loadFile, saveFile } = fileSystemUtilities,
-      { META_JSON_FILE_NAME } = fileNames;
+      { META_JSON_FILE_NAME } = fileNames,
+      { updateMetaJSONFileVersion } = metaJSONUtilities
 
 function updateMetaJSONFileVersionOperation(proceed, abort, context) {
   const { success } = context;
