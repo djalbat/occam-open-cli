@@ -1,13 +1,31 @@
 "use strict";
 
-const { OPEN_MESSAGE } = require("../messages");
+const openOperation = require("../operation/open"),
+      releaseNamePromptOperation = require("../operation/prompt/releaseName");
+
+const { executeOperations } = require("../utilities/operation"),
+      { SUCCESSFUL_OPEN_MESSAGE, FAILED_OPEN_MESSAGE } = require("../messages");
 
 function openAction(argument) {
-  const message = OPEN_MESSAGE;
+  const releaseName = argument,  ///
+        operations = [
+          releaseNamePromptOperation,
+          openOperation
+        ],
+        context = {
+          releaseName
+        };
 
-  console.log(message);
+  executeOperations(operations, (completed) => {
+    const success = completed,  ///
+          message = success ?
+                      SUCCESSFUL_OPEN_MESSAGE :
+                        FAILED_OPEN_MESSAGE;
 
-  process.exit();
+    console.log(message);
+
+    process.exit();
+  }, context);
 }
 
 module.exports = openAction;

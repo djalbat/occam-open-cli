@@ -1,6 +1,7 @@
 "use strict";
 
-const CLONE_API_URI = "/api/clone",
+const OPEN_API_URI = "/api/open",
+      CLONE_API_URI = "/api/clone",
       PUBLISH_API_URI = "/api/publish",
       SIGN_IN_API_URI = "/api/sign-in",
       DEPRECATE_API_URI = "/api/deprecate",
@@ -8,6 +9,7 @@ const CLONE_API_URI = "/api/clone",
       CREATE_ACCOUNT_API_URI = "/api/create-account";
 
 module.exports = {
+  OPEN_API_URI,
   CLONE_API_URI,
   PUBLISH_API_URI,
   SIGN_IN_API_URI,

@@ -59,7 +59,7 @@ function actions(command, argument, options) {
     default :
       argument = command;  ///
 
-      open(argument);
+      openAction(argument);
 
       break;
   }
