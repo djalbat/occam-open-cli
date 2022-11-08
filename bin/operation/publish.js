@@ -7,13 +7,13 @@ const post = require("../post");
 const { PUBLISH_API_URI } = require("../uris");
 
 function publishOperation(proceed, abort, context) {
-  const { dryRun, logLevel, releaseName, identityToken, zippedRelease } = context,
+  const { dryRun, release, logLevel, releaseName, identityToken } = context,
         uri = `${PUBLISH_API_URI}/${releaseName}`,
         json = {
           dryRun,
+          release,
           logLevel,
-          identityToken,
-          zippedRelease
+          identityToken
         };
 
   post(uri, json, (json) => {

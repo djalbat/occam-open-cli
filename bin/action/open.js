@@ -1,6 +1,7 @@
 "use strict";
 
 const openOperation = require("../operation/open"),
+      unpackReleasesOperation = require("../operation/unpackReleases"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName");
 
 const { executeOperations } = require("../utilities/operation"),
@@ -10,7 +11,8 @@ function openAction(argument) {
   const releaseName = argument,  ///
         operations = [
           releaseNamePromptOperation,
-          openOperation
+          openOperation,
+          unpackReleasesOperation
         ],
         context = {
           releaseName

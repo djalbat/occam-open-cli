@@ -10,10 +10,11 @@ function openOperation(proceed, abort, context) {
         json = {};
 
   post(uri, json, (json) => {
-    const { success } = json;
+    const { success, releases = null } = json;
 
     Object.assign(context, {
-      success
+      success,
+      releases
     });
 
     proceed();

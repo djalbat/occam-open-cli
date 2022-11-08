@@ -10,8 +10,7 @@ function updateMetaJSONFileVersionOperation(proceed, abort, context) {
   const { success } = context;
 
   if (success) {
-    const { release, version } = context,
-          releaseName = release.getName(),
+    const { version, releaseName } = context,
           metaJSONFilePath = `${releaseName}/${META_JSON_FILE_NAME}`,
           projectsDirectoryPath = process.cwd(), ///
           metaJSONFile = loadFile(metaJSONFilePath, projectsDirectoryPath);
