@@ -63,6 +63,8 @@ Options:
 
   --version|-v                                   Show the version
 
+  --quietly|-q                                   Run with almost no console logging
+
   --log-level|-l                                 Set the log level when publishing
 ```
 

@@ -13,7 +13,7 @@ const helpAction = require("./action/help"),
       createAccountAction = require("./action/createAccount"),
       resetPasswordAction = require("./action/resetPassword");
 
-const { DEFAULT_HELP, DEFAULT_DRY_RUN, DEFAULT_VERSION, DEFAULT_LOG_LEVEL } = require("./defaults"),
+const { DEFAULT_HELP, DEFAULT_DRY_RUN, DEFAULT_VERSION, DEFAULT_QUIETLY, DEFAULT_LOG_LEVEL } = require("./defaults"),
       { HELP_COMMAND,
         CLONE_COMMAND,
         VERSION_COMMAND,
@@ -32,6 +32,7 @@ function actions(command, argument, options) {
         { help = DEFAULT_HELP,
           dryRun = DEFAULT_DRY_RUN,
           version = DEFAULT_VERSION,
+          quietly = DEFAULT_QUIETLY,
           logLevel = DEFAULT_LOG_LEVEL } = options;
 
   if (false) {
@@ -59,7 +60,7 @@ function actions(command, argument, options) {
     default :
       argument = command;  ///
 
-      openAction(argument);
+      openAction(argument, quietly);
 
       break;
   }

@@ -13,18 +13,17 @@ function unpackReleasesOperation(proceed, abort, context) {
     return;
   }
 
-  let error = false;
+  const { quietly } = context;
 
-  const releaseNames = Object.keys(releases); ///
-
-  releaseNames.forEach((releaseName) => {
-    const releaseJSON = releases[releaseName],
-          releaseJSONString = JSON.stringify(releaseJSON),
-          path = releaseName, ///
-          entryExists = checkEntryExists;
+  releases.forEach((release) => {
+    const { name } = release,
+          path = name, ///
+          entryExists = checkEntryExists(path);
 
     if (!entryExists) {
       const filePath = path,  ///
+            releaseJSON = release,  ///
+            releaseJSONString = JSON.stringify(releaseJSON),
             content = releaseJSONString; ///
 
       writeFile(filePath, content);
@@ -32,14 +31,12 @@ function unpackReleasesOperation(proceed, abort, context) {
       return;
     }
 
-    console.log(`Cannot write the '${releaseName}' package to disk because an entry of that name already exists.`);
-
-    error = true;
+    if (!quietly) {
+      console.log(`Cannot write the '${name}' package to disk because an entry of that name already exists.`);
+    }
   });
 
-  error ?
-    abort() :
-      proceed();
+  proceed();
 }
 
 module.exports = unpackReleasesOperation;
