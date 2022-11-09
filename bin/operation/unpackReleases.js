@@ -13,27 +13,27 @@ function unpackReleasesOperation(proceed, abort, context) {
     return;
   }
 
-  const { quietly } = context;
-
   releases.forEach((release) => {
     const { name } = release,
           path = name, ///
           entryExists = checkEntryExists(path);
 
-    if (!entryExists) {
-      const filePath = path,  ///
-            releaseJSON = release,  ///
-            releaseJSONString = JSON.stringify(releaseJSON),
-            content = releaseJSONString; ///
+    if (entryExists) {
+      const { quietly } = context;
 
-      writeFile(filePath, content);
+      if (!quietly) {
+        console.log(`Cannot write the '${name}' package to disk because an entry of that name already exists.`);
+      }
 
       return;
     }
 
-    if (!quietly) {
-      console.log(`Cannot write the '${name}' package to disk because an entry of that name already exists.`);
-    }
+    const filePath = path,  ///
+          releaseJSON = release,  ///
+          releaseJSONString = JSON.stringify(releaseJSON),
+          content = releaseJSONString; ///
+
+    writeFile(filePath, content);
   });
 
   proceed();

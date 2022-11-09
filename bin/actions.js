@@ -45,7 +45,7 @@ function actions(command, argument, options) {
 
   switch (command) {
     case HELP_COMMAND : helpAction(); break;
-    case CLONE_COMMAND : cloneAction(argument); break;
+    case CLONE_COMMAND : cloneAction(argument, quietly); break;
     case VERSION_COMMAND : versionAction(); break;
     case INSTALL_COMMAND : openAction(argument); break;
     case PUBLISH_COMMAND : publishAction(argument, dryRun, logLevel); break;

@@ -7,7 +7,7 @@ const cloneOperation = require("../operation/clone"),
 const { executeOperations } = require("../utilities/operation"),
       { SUCCESSFUL_CLONE_MESSAGE, FAILED_CLONE_MESSAGE } = require("../messages");
 
-function cloneAction(argument) {
+function cloneAction(argument, quietly) {
   const releaseName = argument,  ///
         operations = [
           releaseNamePromptOperation,
@@ -15,6 +15,7 @@ function cloneAction(argument) {
           cloneOperation
         ],
         context = {
+          quietly,
           releaseName
         };
 
