@@ -17,12 +17,15 @@ function publishOperation(proceed, abort, context) {
         };
 
   post(uri, json, (json) => {
+    const { success, messages } = json
+
     let { version } = json;
 
-    const { success, messages } = json,
-          string = version;  ///
+    if (version !== null) {
+      const string = version;  ///
 
-    version = Version.fromString(string);
+      version = Version.fromString(string);
+    }
 
     Object.assign(context, {
       success,

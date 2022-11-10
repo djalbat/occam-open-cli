@@ -28,7 +28,7 @@ function publishAction(argument, dryRun, logLevel) {
         };
 
   executeOperations(operations, (completed) => {
-    const { success, version, messages } = context,
+    const { success, version = null, messages } = context,
           message = success ?
                       SUCCESSFUL_PUBLISH_MESSAGE :
                         FAILED_PUBLISH_MESSAGE,
