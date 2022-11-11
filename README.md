@@ -35,7 +35,9 @@ These are the commands and options:
 
 Commands:
 
-  [help]                                         Show this help
+  version                                        Show the version
+
+  help                                           Show this help
   
   [install] <package_name>                       Install a package
 

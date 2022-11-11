@@ -7,7 +7,9 @@ function helpAction() {
 
 Commands:
 
-  [help]                                         Show this help
+  version                                        Show the version
+
+  help                                           Show this help
   
   [install] <package_name>                       Install a package
 
