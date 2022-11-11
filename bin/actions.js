@@ -15,9 +15,9 @@ const helpAction = require("./action/help"),
 
 const { DEFAULT_HELP, DEFAULT_DRY_RUN, DEFAULT_VERSION, DEFAULT_QUIETLY, DEFAULT_LOG_LEVEL } = require("./defaults"),
       { HELP_COMMAND,
+        OPEN__COMMAND,
         CLONE_COMMAND,
         VERSION_COMMAND,
-        INSTALL_COMMAND,
         PUBLISH_COMMAND,
         SIGN_IN_COMMAND,
         SIGN_OUT_COMMAND,
@@ -37,17 +37,19 @@ function actions(command, argument, options) {
 
   if (false) {
     ///
-  } else if (help || commandMissing) {
+  } else if (help) {
     command = HELP_COMMAND;
   } else if (version) {
     command = VERSION_COMMAND;
+  } else if (commandMissing) {
+    command = OPEN__COMMAND;
   }
 
   switch (command) {
     case HELP_COMMAND : helpAction(); break;
+    case OPEN__COMMAND : openAction(argument, quietly); break;
     case CLONE_COMMAND : cloneAction(argument, quietly); break;
     case VERSION_COMMAND : versionAction(); break;
-    case INSTALL_COMMAND : openAction(argument); break;
     case PUBLISH_COMMAND : publishAction(argument, dryRun, logLevel); break;
     case SIGN_IN_COMMAND : signInAction(argument); break;
     case SIGN_OUT_COMMAND : signOutAction(); break;
@@ -56,13 +58,6 @@ function actions(command, argument, options) {
     case SET_OPTIONS_COMMAND : setOptionsAction(); break;
     case CREATE_ACCOUNT_COMMAND : createAccountAction(argument); break;
     case RESET_PASSWORD_COMMAND : resetPasswordAction(argument); break;
-
-    default :
-      argument = command;  ///
-
-      openAction(argument, quietly);
-
-      break;
   }
 }
 

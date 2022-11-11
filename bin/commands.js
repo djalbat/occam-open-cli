@@ -1,6 +1,7 @@
 "use strict";
 
 const HELP_COMMAND = "help",
+      OPEN_COMMAND = "install", ///
       CLONE_COMMAND = "clone",
       VERSION_COMMAND = "version",
       PUBLISH_COMMAND = "publish",
@@ -14,6 +15,7 @@ const HELP_COMMAND = "help",
 
 module.exports = {
   HELP_COMMAND,
+  OPEN_COMMAND,
   CLONE_COMMAND,
   VERSION_COMMAND,
   PUBLISH_COMMAND,
