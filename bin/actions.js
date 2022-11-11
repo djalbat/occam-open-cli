@@ -15,7 +15,7 @@ const helpAction = require("./action/help"),
 
 const { DEFAULT_HELP, DEFAULT_DRY_RUN, DEFAULT_VERSION, DEFAULT_QUIETLY, DEFAULT_LOG_LEVEL } = require("./defaults"),
       { HELP_COMMAND,
-        OPEN__COMMAND,
+        OPEN_COMMAND,
         CLONE_COMMAND,
         VERSION_COMMAND,
         PUBLISH_COMMAND,
@@ -42,12 +42,12 @@ function actions(command, argument, options) {
   } else if (version) {
     command = VERSION_COMMAND;
   } else if (commandMissing) {
-    command = OPEN__COMMAND;
+    command = HELP_COMMAND;
   }
 
   switch (command) {
     case HELP_COMMAND : helpAction(); break;
-    case OPEN__COMMAND : openAction(argument, quietly); break;
+    case OPEN_COMMAND : openAction(argument, quietly); break;
     case CLONE_COMMAND : cloneAction(argument, quietly); break;
     case VERSION_COMMAND : versionAction(); break;
     case PUBLISH_COMMAND : publishAction(argument, dryRun, logLevel); break;
