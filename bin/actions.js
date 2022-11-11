@@ -58,6 +58,11 @@ function actions(command, argument, options) {
     case SET_OPTIONS_COMMAND : setOptionsAction(); break;
     case CREATE_ACCOUNT_COMMAND : createAccountAction(argument); break;
     case RESET_PASSWORD_COMMAND : resetPasswordAction(argument); break;
+
+    default:
+      argument = command; ///
+
+      openAction(argument, quietly);
   }
 }
 
