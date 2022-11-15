@@ -29,9 +29,6 @@ function publishAction(argument, dryRun, logLevel) {
 
   executeOperations(operations, (completed) => {
     const { success, version = null, messages } = context,
-          message = success ?
-                      SUCCESSFUL_PUBLISH_MESSAGE :
-                        FAILED_PUBLISH_MESSAGE,
           messagesLength = messages.length;
 
     if (messagesLength > 0) {
@@ -46,7 +43,17 @@ function publishAction(argument, dryRun, logLevel) {
       messages.push(message);
     }
 
-    messages.push(message);
+    if (success) {
+      if (!dryRun) {
+        const message = SUCCESSFUL_PUBLISH_MESSAGE;
+
+        messages.push(message);
+      }
+    } else {
+      const message = FAILED_PUBLISH_MESSAGE;
+
+      messages.push(message);
+    }
 
     messages.forEach((message) => {
       console.log(message);
