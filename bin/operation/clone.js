@@ -1,51 +1,25 @@
 "use strict";
 
-const { exec } = require("child_process"),
-      { fileSystemUtilities } = require("necessary");
+const post = require("../post");
 
-const { checkEntryExists } = fileSystemUtilities;
-
-const { getOptions } = require("../configuration"),
-      { DEFAULT_GITHUB_HOST_NAME } = require("../defaults");
+const { CLONE_API_URI } = require("../uris");
 
 function cloneOperation(proceed, abort, context) {
   const { releaseName } = context,
-        path = releaseName, ///
-        entryExists = checkEntryExists(path);
+        uri = `${CLONE_API_URI}/${releaseName}`,
+        json = {};
 
-  if (entryExists) {
-    const { quietly } = context;
+  post(uri, json, (json) => {
+    const { success, releases = null } = json;
 
-    if (!quietly) {
-      console.log(`Cannot clone the '${releaseName}' package because an entry of that name already exists.`);
-    }
+    Object.assign(context, {
+      success,
+      releases
+    });
 
-    proceed();
-
-    return;
-  }
-
-  let { repository } = context;
-
-  const options = getOptions(),
-        { ssh } = options;
-
-  if (ssh) {
-    const { gitHubHostName } = ssh;
-
-    repository = repository.replace(`https://${DEFAULT_GITHUB_HOST_NAME}/`, `git@${gitHubHostName}:`)
-  }
-
-  const command = `git clone ${repository}.git`;
-
-  exec(command, (error) => {
-    if (error) {
-      abort();
-
-      return;
-    }
-
-    proceed();
+    success ?
+      proceed() :
+        abort();
   });
 }
 

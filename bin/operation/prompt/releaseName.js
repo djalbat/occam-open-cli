@@ -19,9 +19,9 @@ function releaseNamePromptOperation(proceed, abort, context) {
       proceed();
       
       return;
-    } else {
-      console.log(errorMessage);
     }
+
+    console.log(errorMessage);
   }
 
   const description = RELEASE_NAME_DESCRIPTION,

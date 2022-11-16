@@ -12,29 +12,22 @@ const { writeFile, removeEntry, checkEntryExists, isEntryDirectory } = fileSyste
 const { prompt } = shellUtilities,
       { forEach } = asynchronousUtilities;
 
-function unpackReleasesOperation(proceed, abort, context) {
-  const { releases } = context;
+function openReleasesOperation(proceed, abort, context) {
+  const { releases } = context,
+        done = proceed; ///
 
-  if (releases === null) {
-    abort();
-
-    return;
-  }
-
-  const done = proceed; ///
-
-  forEach(releases, unpackReleasePromptOperation, done, context);
+  forEach(releases, openReleasePromptOperation, done, context);
 }
 
-module.exports = unpackReleasesOperation;
+module.exports = openReleasesOperation;
 
-function unpackReleasePromptOperation(release, next, done, context) {
+function openReleasePromptOperation(release, next, done, context) {
   const { name } = release,
         entryPath = name, ///
         entryExists = checkEntryExists(entryPath);
 
   if (!entryExists) {
-    unpackRelease(release);
+    openRelease(release);
 
     next();
 
@@ -47,7 +40,7 @@ function unpackReleasePromptOperation(release, next, done, context) {
     const { quietly } = context;
 
     if (!quietly) {
-      console.log(`Cannot write the '${name}' package to disk because a directory of that name already exists.`);
+      console.log(`Cannot open the '${name}' package because a directory of that name already exists.`);
     }
 
     next();
@@ -78,7 +71,7 @@ function unpackReleasePromptOperation(release, next, done, context) {
       if (affirmative) {
         removeEntry(entryPath);
 
-        unpackRelease(release);
+        openRelease(release);
       }
 
       next();
@@ -86,7 +79,7 @@ function unpackReleasePromptOperation(release, next, done, context) {
   });
 }
 
-function unpackRelease(release) {
+function openRelease(release) {
   const { name } = release,
         filePath = name,  ///
         releaseJSON = release,  ///

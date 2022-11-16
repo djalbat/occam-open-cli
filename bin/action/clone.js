@@ -1,20 +1,23 @@
 "use strict";
 
 const cloneOperation = require("../operation/clone"),
-      repositoryOperation = require("../operation/repository"),
-      releaseNamePromptOperation = require("../operation/prompt/releaseName");
+      cloneReleasesOperation = require("../operation/cloneReleases"),
+      releaseNamePromptOperation = require("../operation/prompt/releaseName"),
+      cloneDependenciesPromptOperation = require("../operation/prompt/cloneDependencies");
 
 const { executeOperations } = require("../utilities/operation"),
       { SUCCESSFUL_CLONE_MESSAGE, FAILED_CLONE_MESSAGE } = require("../messages");
 
-function cloneAction(argument, quietly) {
+function cloneAction(argument, quietly, yes) {
   const releaseName = argument,  ///
         operations = [
           releaseNamePromptOperation,
-          repositoryOperation,
-          cloneOperation
+          cloneDependenciesPromptOperation,
+          cloneOperation,
+          cloneReleasesOperation
         ],
         context = {
+          yes,
           quietly,
           releaseName
         };

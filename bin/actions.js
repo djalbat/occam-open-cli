@@ -49,7 +49,7 @@ function actions(command, argument, options) {
   switch (command) {
     case HELP_COMMAND : helpAction(); break;
     case OPEN_COMMAND : openAction(argument, quietly, yes); break;
-    case CLONE_COMMAND : cloneAction(argument, quietly); break;
+    case CLONE_COMMAND : cloneAction(argument, quietly, yes); break;
     case VERSION_COMMAND : versionAction(); break;
     case PUBLISH_COMMAND : publishAction(argument, dryRun, logLevel); break;
     case SIGN_IN_COMMAND : signInAction(argument); break;

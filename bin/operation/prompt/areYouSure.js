@@ -2,8 +2,8 @@
 
 const { shellUtilities } = require("necessary");
 
-const { validateAffirmation } = require("../../utilities/validate"),
-      { isAnswerAffirmative } = require("../../utilities/prompt"),
+const { isAnswerAffirmative } = require("../../utilities/prompt"),
+      { validateAffirmation } = require("../../utilities/validate"),
       { ARE_YOU_SURE_DESCRIPTION } = require("../../descriptions"),
       { INVALID_AFFIRMATION_MESSAGE } = require("../../messages");
 
