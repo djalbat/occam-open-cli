@@ -28,7 +28,7 @@ function publishAction(argument, dryRun, logLevel) {
         };
 
   executeOperations(operations, (completed) => {
-    const { success, version = null, messages } = context,
+    const { success, version = null, messages = [] } = context,
           messagesLength = messages.length;
 
     if (messagesLength > 0) {
