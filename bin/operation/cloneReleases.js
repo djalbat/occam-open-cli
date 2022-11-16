@@ -1,6 +1,7 @@
 "use strict";
 
 const { exec } = require("child_process"),
+      { Entries } = require("occam-file-system"),
       { fileSystemUtilities, asynchronousUtilities } = require("necessary");
 
 const { getOptions } = require("../configuration"),
@@ -52,7 +53,7 @@ function cloneReleasePromptOperation(release, next, done, context, index) {
 }
 
 function cloneRelease(release, done) {
-  let repository = release.getRepository();
+  let repository = repositoryFromRelease(release)
 
   const options = getOptions(),
         { ssh } = options;
@@ -72,4 +73,16 @@ function cloneRelease(release, done) {
 
     done();
   });
+}
+
+function repositoryFromRelease(release) {
+  let { entries } = release;
+
+  const json = entries; ///
+
+  entries = Entries.fromJSON(json);
+
+  const repository = entries.getRepository();
+
+  return repository;
 }
