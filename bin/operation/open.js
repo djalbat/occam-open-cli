@@ -17,7 +17,9 @@ function openOperation(proceed, abort, context) {
       releases
     });
 
-    proceed();
+    success ?
+      proceed() :
+        abort();
   });
 }
 

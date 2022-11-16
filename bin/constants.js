@@ -1,6 +1,7 @@
 "use strict";
 
-const END = "end",
+const YES = "yes",
+      END = "end",
       DATA = "data",
       OPEN = "open",
       HOST_URL = "hostURL",
@@ -12,6 +13,7 @@ const END = "end",
       PACKAGE_JSON = "package.json";
 
 module.exports = {
+  YES,
   END,
   DATA,
   OPEN,

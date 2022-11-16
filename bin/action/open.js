@@ -7,7 +7,7 @@ const openOperation = require("../operation/open"),
 const { executeOperations } = require("../utilities/operation"),
       { SUCCESSFUL_OPEN_MESSAGE, FAILED_OPEN_MESSAGE } = require("../messages");
 
-function openAction(argument, quietly) {
+function openAction(argument, quietly, yes) {
   const releaseName = argument,  ///
         operations = [
           releaseNamePromptOperation,
@@ -15,6 +15,7 @@ function openAction(argument, quietly) {
           unpackReleasesOperation
         ],
         context = {
+          yes,
           quietly,
           releaseName
         };

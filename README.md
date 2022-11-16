@@ -35,10 +35,10 @@ These are the commands and options:
 
 Commands:
 
-  version                                        Show the version
-
   help                                           Show this help
   
+  version                                        Show the version
+
   [install] <package_name>                       Install a package
 
   initialise                                     Create a configuration file
@@ -68,6 +68,8 @@ Options:
   --quietly|-q                                   Run with almost no console logging
 
   --log-level|-l                                 Set the log level when publishing
+  
+  --yes|-y                                       Initially answer yes to prompts
 ```
 
 This is slightly different from `npm` in that `open` is usually executed from the parent directory of a project rather than from within the project sub-directory itself. Projects might reside in a `~/Mathematics/` directory, for example, in which case you should initialise `open` in there:

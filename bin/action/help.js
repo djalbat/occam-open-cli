@@ -7,10 +7,10 @@ function helpAction() {
 
 Commands:
 
-  version                                        Show the version
-
   help                                           Show this help
   
+  version                                        Show the version
+
   [install] <package_name>                       Install a package
 
   initialise                                     Create a configuration file
@@ -40,6 +40,8 @@ Options:
   --quietly|-q                                   Run with almost no console logging
 
   --log-level|-l                                 Set the log level when publishing
+  
+  --yes|-y                                       Initially answer yes to prompts
 
 Further information:
 

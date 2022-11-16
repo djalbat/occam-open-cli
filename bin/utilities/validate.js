@@ -1,5 +1,6 @@
 "use strict";
 
+function validateAnswer(answer) { return  /^(:?yes|no|y|n)$/i.test(answer); }
 
 function validateUsername(username) { return /^[a-z0-9]{2,16}(?:-[a-z0-9]{2,16}){0,4}$/.test(username); }
 
@@ -32,6 +33,7 @@ function validateEmailAddressOrUsername(emailAddressOrUsername) {
 }
 
 module.exports = {
+  validateAnswer,
   validateUsername,
   validatePassword,
   validateAffirmation,
