@@ -2,6 +2,10 @@
 
 [Occam](https://github.com/djalbat/occam)'s c**o**mmand line **p**ackag**e** manageme**n**t tool.
 
+*This readme file mostly covers informatiaon for developers. For instructions tailored to end users, see the following:*
+
+https://openmathematics.org/how-to-contribute
+
 ### Contents
 
 - [Introduction](#introduction)
