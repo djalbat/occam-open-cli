@@ -31,13 +31,11 @@ function cloneReleasePromptOperation(release, next, done, context, index) {
     }
   }
 
-  const { name } = release,
+  const { name, quietly } = release,
         entryPath = name, ///
         entryExists = checkEntryExists(entryPath);
 
   if (entryExists) {
-    const { quietly } = context;
-
     if (!quietly) {
       console.log(`Cannot clone the '${name}' package because a directory of that name already exists.`);
     }
@@ -49,10 +47,10 @@ function cloneReleasePromptOperation(release, next, done, context, index) {
 
   done = next;  ///
 
-  cloneRelease(release, done);
+  cloneRelease(release, quietly, done);
 }
 
-function cloneRelease(release, done) {
+function cloneRelease(release, quietly, done) {
   let repository = repositoryFromRelease(release)
 
   const options = getOptions(),
@@ -69,6 +67,12 @@ function cloneRelease(release, done) {
   exec(command, (error) => {
     if (error) {
       console.log(error);
+    }
+
+    if (!quietly) {
+      const { name } = release;
+
+      console.log(name);
     }
 
     done();

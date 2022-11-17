@@ -22,12 +22,12 @@ function openReleasesOperation(proceed, abort, context) {
 module.exports = openReleasesOperation;
 
 function openReleasePromptOperation(release, next, done, context) {
-  const { name } = release,
+  const { name, quietly } = release,
         entryPath = name, ///
         entryExists = checkEntryExists(entryPath);
 
   if (!entryExists) {
-    openRelease(release);
+    openRelease(release, quietly);
 
     next();
 
@@ -37,8 +37,6 @@ function openReleasePromptOperation(release, next, done, context) {
   const entryDirectory = isEntryDirectory(entryPath);
 
   if (entryDirectory) {
-    const { quietly } = context;
-
     if (!quietly) {
       console.log(`Cannot open the '${name}' package because a directory of that name already exists.`);
     }
@@ -71,7 +69,7 @@ function openReleasePromptOperation(release, next, done, context) {
       if (affirmative) {
         removeEntry(entryPath);
 
-        openRelease(release);
+        openRelease(release, quietly);
       }
 
       next();
@@ -79,7 +77,7 @@ function openReleasePromptOperation(release, next, done, context) {
   });
 }
 
-function openRelease(release) {
+function openRelease(release, quietly) {
   const { name } = release,
         filePath = name,  ///
         releaseJSON = release,  ///
@@ -87,4 +85,8 @@ function openRelease(release) {
         content = releaseJSONString; ///
 
   writeFile(filePath, content);
+
+  if (!quietly) {
+    console.log(name);
+  }
 }
