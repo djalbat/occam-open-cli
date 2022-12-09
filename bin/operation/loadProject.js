@@ -2,24 +2,24 @@
 
 const { fileSystemUtilities } = require("occam-file-system");
 
-const { loadRelease } = fileSystemUtilities;
+const { loadProject } = fileSystemUtilities;
 
-function loadReleaseOperation(proceed, abort, context) {
+function loadProjectOperation(proceed, abort, context) {
   const { releaseName } = context,
         projectsDirectoryPath = process.cwd(), ///
-        release = loadRelease(releaseName ,projectsDirectoryPath);
+        project = loadProject(releaseName ,projectsDirectoryPath);
 
-  if (release === null) {
+  if (project === null) {
     abort();
 
     return;
   }
 
   Object.assign(context, {
-    release
+    project
   });
 
   proceed();
 }
 
-module.exports = loadReleaseOperation;
+module.exports = loadProjectOperation;

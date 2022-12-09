@@ -1,7 +1,13 @@
 "use strict";
 
+import { Release } from "occam-file-system";
+
 function packReleaseOperation(proceed, abort, context) {
-  let { release } = context;
+  let release;
+
+  const { project } = context;
+
+  release = Release.fromProject(project);
 
   const releaseJSON = release.toJSON();
 

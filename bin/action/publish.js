@@ -1,7 +1,7 @@
 "use strict";
 
 const publishOperation = require("../operation/publish"),
-      loadReleaseOperation = require("../operation/loadRelease"),
+      loadProjectOperation = require("../operation/loadProject"),
       packReleaseOperation = require("../operation/packRelease"),
       getIdentityTokenOperation = require("../operation/getIdentityToken"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName"),
@@ -16,7 +16,7 @@ function publishAction(argument, dryRun, logLevel) {
         operations = [
           getIdentityTokenOperation,
           releaseNamePromptOperation,
-          loadReleaseOperation,
+          loadProjectOperation,
           packReleaseOperation,
           publishOperation,
           updateMetaJSONFileVersionOperation
