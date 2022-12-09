@@ -1,6 +1,6 @@
 "use strict";
 
-import { Release } from "occam-file-system";
+const { Release } = require("occam-file-system");
 
 function packReleaseOperation(proceed, abort, context) {
   let release;
