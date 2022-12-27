@@ -1,6 +1,8 @@
 "use strict";
 
-const PASSWORDS_DO_NOT_MATCH_MESSAGE = "The passwords do not match.",
+const MISSING_README_FILE_MESSAGE = "The readme file is missing.",
+      MISSING_META_JSON_FILE_MESSAGE = "The 'meta.json' file is missing.",
+      PASSWORDS_DO_NOT_MATCH_MESSAGE = "The passwords do not match.",
       SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE = "The server did not respond in a timely or intelligible fashion. If this problem persists then please be kind enough to report it.",
       CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE = "The action cannot be performed because the configuration file is missing. Run 'open initialise' to create one.",
       SIGN_OUT_MESSAGE = "You have been signed out.",
@@ -26,6 +28,8 @@ const PASSWORDS_DO_NOT_MATCH_MESSAGE = "The passwords do not match.",
       SUCCESSFUL_SET_OPTIONS_MESSAGE = "The options have been set successfully.";
 
 module.exports = {
+  MISSING_README_FILE_MESSAGE,
+  MISSING_META_JSON_FILE_MESSAGE,
   PASSWORDS_DO_NOT_MATCH_MESSAGE,
   SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE,
   CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE,
