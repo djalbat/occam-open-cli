@@ -21,8 +21,10 @@ function publishAction(argument, dryRun, logLevel) {
           publishOperation,
           updateMetaJSONFileVersionOperation
         ],
+        success = false,
         context = {
           dryRun,
+          success,
           logLevel,
           releaseName
         };

@@ -9,6 +9,12 @@ function packReleaseOperation(proceed, abort, context) {
 
   release = Release.fromProject(project);
 
+  if (release === null) {
+    abort();
+
+    return;
+  }
+
   const releaseJSON = release.toJSON();
 
   release = releaseJSON;  ///
