@@ -8,11 +8,12 @@ const publishOperation = require("../operation/publish"),
       updateMetaJSONFileVersionOperation = require("../operation/updateMetaJSONFileVersion");
 
 const { DOUBLE_DASH } = require("../constants"),
+      { trimTrailingSlash } = require("../utilities/string"),
       { executeOperations } = require("../utilities/operation"),
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = require("../messages");
 
 function publishAction(argument, dryRun, logLevel) {
-  const releaseName = argument, ///
+  const releaseName = trimTrailingSlash(argument), ///
         operations = [
           getIdentityTokenOperation,
           releaseNamePromptOperation,
