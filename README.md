@@ -91,7 +91,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ### Terms
 
-* The Open-CLI tool is **not** free software.
+* This is **not** free software.
 * It can be used *only for personal use and if not for profit*, otherwise you must contact the author.
 * You cannot re-use the source code for any reason, even if only for personal use and if not for profit; or even if you have paid to use it otherwise.
 
