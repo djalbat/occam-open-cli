@@ -11,8 +11,10 @@ function execute(shellCommands) {
   let output;
 
   try {
-    const encoding = UTF_8_ENCODING,  ///
+    const stdio = [],
+          encoding = UTF_8_ENCODING,  ///
           options = {
+            stdio,
             encoding
           };
 
