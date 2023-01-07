@@ -8,6 +8,13 @@ function trimTrailingSlash(string) {
   return string;
 }
 
+function trimTrailingCarriageReturn(string) {
+  string = string.replace(/\n$/, EMPTY_STRING); ///
+
+  return string;
+}
+
 module.exports = {
-  trimTrailingSlash
+  trimTrailingSlash,
+  trimTrailingCarriageReturn
 };
