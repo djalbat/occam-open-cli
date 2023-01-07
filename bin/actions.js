@@ -64,7 +64,7 @@ function actions(command, argument, options) {
     default:
       argument = command; ///
 
-      openAction(argument, quietly);
+      openAction(argument, quietly, yes, no);
   }
 }
 
