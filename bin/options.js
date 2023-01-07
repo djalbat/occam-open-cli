@@ -1,6 +1,7 @@
 "use strict";
 
-const YES_OPTION = "yes",
+const NO_OPTION = "no",
+      YES_OPTION = "yes",
       HELP_OPTION = "help",
       VERSION_OPTION = "version",
       QUIETLY_OPTION = "quietly",
@@ -8,6 +9,7 @@ const YES_OPTION = "yes",
       LOG_LEVEL_OPTION = "log-level";
 
 module.exports = {
+  NO_OPTION,
   YES_OPTION,
   HELP_OPTION,
   VERSION_OPTION,

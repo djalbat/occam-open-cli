@@ -4,7 +4,8 @@ const { levels } = require("necessary");
 
 const { INFO_LEVEL } = levels;
 
-const DEFAULT_YES = false,
+const DEFAULT_NO = false,
+      DEFAULT_YES = false,
       DEFAULT_HELP = false,
       DEFAULT_HOST = "https://openmathematics.org",
       DEFAULT_DRY_RUN = false,
@@ -14,6 +15,7 @@ const DEFAULT_YES = false,
       DEFAULT_GITHUB_HOST_NAME = "github.com";
 
 module.exports = {
+  DEFAULT_NO,
   DEFAULT_YES,
   DEFAULT_HELP,
   DEFAULT_HOST,

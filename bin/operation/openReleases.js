@@ -2,7 +2,7 @@
 
 const { shellUtilities, fileSystemUtilities, asynchronousUtilities } = require("necessary");
 
-const { YES } = require("../constants"),
+const { YES, NO} = require("../constants"),
       { validateAnswer } = require("../utilities/validate"),
       { isAnswerAffirmative } = require("../utilities/prompt"),
       { INVALID_ANSWER_MESSAGE } = require("../messages");
@@ -46,11 +46,19 @@ function openReleasePromptOperation(release, next, done, context) {
     return;
   }
 
-  const { yes } = context,
-        answer = yes ?
-                   YES :
-                     null,
-        description = `Overwrite the existing '${name}' package? (y)es (n)o: `,
+  let answer = null;
+
+  const { yes, no } = context;
+
+  if (yes) {
+    answer = YES;
+  }
+
+  if (no) {
+    answer = NO;
+  }
+
+  const description = `Overwrite the existing '${name}' package? (y)es (n)o: `,
         errorMessage = INVALID_ANSWER_MESSAGE,
         validationFunction = validateAnswer,  ///
         options = {

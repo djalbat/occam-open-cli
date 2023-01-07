@@ -13,7 +13,7 @@ const helpAction = require("./action/help"),
       createAccountAction = require("./action/createAccount"),
       resetPasswordAction = require("./action/resetPassword");
 
-const { DEFAULT_YES, DEFAULT_HELP, DEFAULT_DRY_RUN, DEFAULT_VERSION, DEFAULT_QUIETLY, DEFAULT_LOG_LEVEL } = require("./defaults"),
+const { DEFAULT_NO, DEFAULT_YES, DEFAULT_HELP, DEFAULT_DRY_RUN, DEFAULT_VERSION, DEFAULT_QUIETLY, DEFAULT_LOG_LEVEL } = require("./defaults"),
       { HELP_COMMAND,
         OPEN_COMMAND,
         CLONE_COMMAND,
@@ -29,7 +29,8 @@ const { DEFAULT_YES, DEFAULT_HELP, DEFAULT_DRY_RUN, DEFAULT_VERSION, DEFAULT_QUI
 
 function actions(command, argument, options) {
   const commandMissing = (command === null),
-        { yes = DEFAULT_YES,
+        { no = DEFAULT_NO,
+          yes = DEFAULT_YES,
           help = DEFAULT_HELP,
           dryRun = DEFAULT_DRY_RUN,
           version = DEFAULT_VERSION,
@@ -48,8 +49,8 @@ function actions(command, argument, options) {
 
   switch (command) {
     case HELP_COMMAND : helpAction(); break;
-    case OPEN_COMMAND : openAction(argument, quietly, yes); break;
-    case CLONE_COMMAND : cloneAction(argument, quietly, yes); break;
+    case OPEN_COMMAND : openAction(argument, quietly, yes, no); break;
+    case CLONE_COMMAND : cloneAction(argument, quietly, yes, no); break;
     case VERSION_COMMAND : versionAction(); break;
     case PUBLISH_COMMAND : publishAction(argument, dryRun, logLevel); break;
     case SIGN_IN_COMMAND : signInAction(argument); break;

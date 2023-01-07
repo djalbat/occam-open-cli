@@ -1,6 +1,7 @@
 "use strict";
 
-const YES = "yes",
+const NO = "no",
+      YES = "yes",
       END = "end",
       DATA = "data",
       OPEN = "open",
@@ -13,6 +14,7 @@ const YES = "yes",
       PACKAGE_JSON = "package.json";
 
 module.exports = {
+  NO,
   YES,
   END,
   DATA,
