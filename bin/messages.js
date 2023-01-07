@@ -18,12 +18,14 @@ const PASSWORDS_DO_NOT_MATCH_MESSAGE = "The passwords do not match.",
       FAILED_DEPRECATE_MESSAGE = "Failed to deprecate the package.",
       FAILED_INITIALISE_MESSAGE = "Failed to create a configuration file because one is already present.",
       FAILED_SET_OPTIONS_MESSAGE = "Failed to set the options.",
+      FAILED_SET_SHELL_COMMANDS_MESSAGE = "Failed to set the shell commands.",
       SUCCESSFUL_OPEN_MESSAGE = "The package has been opened successfully.",
       SUCCESSFUL_CLONE_MESSAGE = "The package has been cloned successfully.",
       SUCCESSFUL_PUBLISH_MESSAGE = "The package has been published successfully.",
       SUCCESSFUL_DEPRECATE_MESSAGE = "The package has been deprecated successfully.",
       SUCCESSFUL_INITIALISE_MESSAGE = "The configuration file has been created successfully.",
-      SUCCESSFUL_SET_OPTIONS_MESSAGE = "The options have been set successfully.";
+      SUCCESSFUL_SET_OPTIONS_MESSAGE = "The options have been set successfully.",
+      SUCCESSFUL_SET_SHELL_COMMANDS_MESSAGE = "The shell commands have been set successfully.";
 
 module.exports = {
   PASSWORDS_DO_NOT_MATCH_MESSAGE,
@@ -44,10 +46,12 @@ module.exports = {
   FAILED_DEPRECATE_MESSAGE,
   FAILED_INITIALISE_MESSAGE,
   FAILED_SET_OPTIONS_MESSAGE,
+  FAILED_SET_SHELL_COMMANDS_MESSAGE,
   SUCCESSFUL_OPEN_MESSAGE,
   SUCCESSFUL_CLONE_MESSAGE,
   SUCCESSFUL_PUBLISH_MESSAGE,
   SUCCESSFUL_DEPRECATE_MESSAGE,
   SUCCESSFUL_INITIALISE_MESSAGE,
-  SUCCESSFUL_SET_OPTIONS_MESSAGE
+  SUCCESSFUL_SET_OPTIONS_MESSAGE,
+  SUCCESSFUL_SET_SHELL_COMMANDS_MESSAGE
 };

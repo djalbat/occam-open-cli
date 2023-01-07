@@ -5,6 +5,7 @@ const publishOperation = require("../operation/publish"),
       packReleaseOperation = require("../operation/packRelease"),
       getIdentityTokenOperation = require("../operation/getIdentityToken"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName"),
+      executeShellCommandsOperation = require("../operation/executeShallCommands"),
       updateMetaJSONFileVersionOperation = require("../operation/updateMetaJSONFileVersion");
 
 const { DOUBLE_DASH } = require("../constants"),
@@ -20,7 +21,8 @@ function publishAction(argument, dryRun, logLevel) {
           loadProjectOperation,
           packReleaseOperation,
           publishOperation,
-          updateMetaJSONFileVersionOperation
+          updateMetaJSONFileVersionOperation,
+          executeShellCommandsOperation
         ],
         success = false,
         context = {

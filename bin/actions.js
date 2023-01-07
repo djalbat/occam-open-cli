@@ -11,7 +11,8 @@ const helpAction = require("./action/help"),
       initialiseAction = require("./action/initialise"),
       setOptionsAction = require("./action/setOptions"),
       createAccountAction = require("./action/createAccount"),
-      resetPasswordAction = require("./action/resetPassword");
+      resetPasswordAction = require("./action/resetPassword"),
+      setShellCommandsAction = require("./action/setShellCommands");
 
 const { DEFAULT_NO, DEFAULT_YES, DEFAULT_HELP, DEFAULT_DRY_RUN, DEFAULT_VERSION, DEFAULT_QUIETLY, DEFAULT_LOG_LEVEL } = require("./defaults"),
       { HELP_COMMAND,
@@ -25,7 +26,8 @@ const { DEFAULT_NO, DEFAULT_YES, DEFAULT_HELP, DEFAULT_DRY_RUN, DEFAULT_VERSION,
         INITIALISE_COMMAND,
         SET_OPTIONS_COMMAND,
         CREATE_ACCOUNT_COMMAND,
-        RESET_PASSWORD_COMMAND } = require("./commands");
+        RESET_PASSWORD_COMMAND,
+        SET_SHELL_COMMANDS_COMMAND } = require("./commands");
 
 function actions(command, argument, options) {
   const commandMissing = (command === null),
@@ -60,6 +62,7 @@ function actions(command, argument, options) {
     case SET_OPTIONS_COMMAND : setOptionsAction(); break;
     case CREATE_ACCOUNT_COMMAND : createAccountAction(argument); break;
     case RESET_PASSWORD_COMMAND : resetPasswordAction(argument); break;
+    case SET_SHELL_COMMANDS_COMMAND : setShellCommandsAction(); break;
 
     default:
       argument = command; ///

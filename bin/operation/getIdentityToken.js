@@ -1,9 +1,9 @@
 "use strict";
 
-const { getIdentityToken } = require("../configuration");
+const { retrieveIdentityToken } = require("../configuration");
 
 function getIdentityTokenOperation(proceed, abort, context) {
-  const identityToken = getIdentityToken();
+  const identityToken = retrieveIdentityToken();
 
   if (!identityToken) {
     abort();

@@ -1,6 +1,6 @@
 "use strict";
 
-const { setOptions } = require("../configuration");
+const { updateOptions } = require("../configuration");
 
 function setOptionsOperation(proceed, abort, context) {
   const { useSSH } = context,
@@ -17,7 +17,7 @@ function setOptionsOperation(proceed, abort, context) {
     });
   }
 
-  setOptions(options);
+  updateOptions(options);
 
   proceed();
 }

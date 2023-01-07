@@ -11,7 +11,8 @@ const HELP_COMMAND = "help",
       INITIALISE_COMMAND = "initialise",
       SET_OPTIONS_COMMAND = "set-options",
       CREATE_ACCOUNT_COMMAND = "create-account",
-      RESET_PASSWORD_COMMAND = "reset-password";
+      RESET_PASSWORD_COMMAND = "reset-password",
+      SET_SHELL_COMMANDS_COMMAND = "set-shell-commands";
 
 module.exports = {
   HELP_COMMAND,
@@ -25,5 +26,6 @@ module.exports = {
   INITIALISE_COMMAND,
   SET_OPTIONS_COMMAND,
   CREATE_ACCOUNT_COMMAND,
-  RESET_PASSWORD_COMMAND
+  RESET_PASSWORD_COMMAND,
+  SET_SHELL_COMMANDS_COMMAND
 };

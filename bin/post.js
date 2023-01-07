@@ -3,7 +3,7 @@
 const { Readable } = require("stream"),
       { headers, contentTypes, statusCodes, requestUtilities } = require("necessary");
 
-const { getHost } = require("./configuration"),
+const { retrieveHost } = require("./configuration"),
       { getPackageVersion } = require("./utilities/packageJSON"),
       { contentFromResponse } = require("./utilities/response"),
       { statusMessageFromStatusCode } = require("./utilities/status"),
@@ -15,7 +15,7 @@ const { createPostRequest } = requestUtilities,
       { APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE } = contentTypes;
 
 function post(uri, json, callback) {
-  const host = getHost(),
+  const host = retrieveHost(),
         query = {},
         headers = getHeaders(),
         content = JSON.stringify(json), ///

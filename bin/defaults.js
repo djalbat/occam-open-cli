@@ -2,6 +2,8 @@
 
 const { levels } = require("necessary");
 
+const { EMPTY_STRING } = require("./constants");
+
 const { INFO_LEVEL } = levels;
 
 const DEFAULT_NO = false,
@@ -12,6 +14,7 @@ const DEFAULT_NO = false,
       DEFAULT_VERSION = false,
       DEFAULT_QUIETLY = false,
       DEFAULT_LOG_LEVEL = INFO_LEVEL,
+      DEFAULT_SHELL_COMMANDS = EMPTY_STRING,
       DEFAULT_GITHUB_HOST_NAME = "github.com";
 
 module.exports = {
@@ -23,5 +26,6 @@ module.exports = {
   DEFAULT_VERSION,
   DEFAULT_QUIETLY,
   DEFAULT_LOG_LEVEL,
+  DEFAULT_SHELL_COMMANDS,
   DEFAULT_GITHUB_HOST_NAME
 };

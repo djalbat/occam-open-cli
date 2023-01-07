@@ -3,11 +3,12 @@
 const { configurationUtilities } = require("necessary");
 
 const { OPEN } = require("./constants"),
-      { CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE } = require("./messages"),
       { migrateConfigurationToVersion_1_5 } = require("./configuration/version_1_5"),
       { migrateConfigurationToVersion_2_0 } = require("./configuration/version_2_0"),
-      { UNVERSIONED, VERSION_1_5, VERSION_2_0, CURRENT_VERSION } = require("./versions"),
-      { migrateConfigurationToVersion_5_0, createConfiguration } = require("./configuration/version_5_0");
+      { migrateConfigurationToVersion_5_0 } = require("./configuration/version_5_0"),
+      { CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE } = require("./messages"),
+      { migrateConfigurationToVersion_5_1, createConfiguration } = require("./configuration/version_5_1"),
+      { UNVERSIONED, VERSION_1_5, VERSION_2_0, VERSION_5_0, CURRENT_VERSION } = require("./versions");
 
 const { rc } = configurationUtilities,
       { setRCBaseExtension, checkRCFileExists, updateRCFile, writeRCFile, readRCFile } = rc;
@@ -16,34 +17,47 @@ const rcBaseExtension = OPEN;
 
 setRCBaseExtension(rcBaseExtension);
 
-function getHost() {
+function retrieveHost() {
   const configuration = readConfigurationFile(),
         { host } = configuration;
 
   return host;
 }
 
-function getOptions() {
+function retrieveOptions() {
   const configuration = readConfigurationFile(),
         { options } = configuration;
 
   return options;
 }
 
-function getIdentityToken() {
+function retrieveShellCommands() {
+  const configuration = readConfigurationFile(),
+        { shellCommands } = configuration;
+
+  return shellCommands;
+}
+
+function retrieveIdentityToken() {
   const configuration = readConfigurationFile(),
         { identityToken } = configuration;
 
   return identityToken;
 }
 
-function setOptions(options) {
+function updateOptions(options) {
   updateConfigurationFile({
     options
   });
 }
 
-function setIdentityToken(identityToken) {
+function updateShellCommands(shellCommands) {
+  updateConfigurationFile({
+    shellCommands
+  });
+}
+
+function updateIdentityToken(identityToken) {
   updateConfigurationFile({
     identityToken
   });
@@ -61,30 +75,34 @@ function createConfigurationFile() {
 }
 
 function migrateConfigurationFile() {
-  let version;
-
-  let json = readRCFile();
-
-  let configuration = json; ///
-
-  version = configuration.version || UNVERSIONED; ///
+  let json = readRCFile(),
+      configuration = json, ///
+      { version = UNVERSIONED } = configuration;
 
   while (version !== CURRENT_VERSION) {
     switch (version) {
       case UNVERSIONED :
         configuration = migrateConfigurationToVersion_1_5(configuration);
+
         break;
 
       case VERSION_1_5 :
         configuration = migrateConfigurationToVersion_2_0(configuration);
+
         break;
 
       case VERSION_2_0 :
         configuration = migrateConfigurationToVersion_5_0(configuration);
+
+        break;
+
+      case VERSION_5_0 :
+        configuration = migrateConfigurationToVersion_5_1(configuration);
+
         break;
     }
 
-    version = configuration.version || UNVERSIONED; ///
+    ({ version } = configuration);
   }
 
   json = configuration; ///
@@ -100,11 +118,13 @@ function checkConfigurationFileExists() {
 }
 
 module.exports = {
-  getHost,
-  getOptions,
-  getIdentityToken,
-  setOptions,
-  setIdentityToken,
+  retrieveHost,
+  retrieveOptions,
+  retrieveShellCommands,
+  retrieveIdentityToken,
+  updateOptions,
+  updateShellCommands,
+  updateIdentityToken,
   removeIdentityToken,
   createConfigurationFile,
   migrateConfigurationFile,

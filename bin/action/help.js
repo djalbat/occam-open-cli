@@ -31,6 +31,8 @@ Commands:
 
   reset-password [<email_address>]               Reset password 
 
+  set-shell-commands                             Set shell commands 
+
 Options:
 
   --help|-h                                      Show this help

@@ -4,7 +4,7 @@ const { exec } = require("child_process"),
       { Entries } = require("occam-file-system"),
       { fileSystemUtilities, asynchronousUtilities } = require("necessary");
 
-const { getOptions } = require("../configuration"),
+const { retrieveOptions } = require("../configuration"),
       { DEFAULT_GITHUB_HOST_NAME } = require("../defaults");
 
 const { checkEntryExists } = fileSystemUtilities;
@@ -53,7 +53,7 @@ function cloneReleasePromptOperation(release, next, done, context, index) {
 function cloneRelease(release, quietly, done) {
   let repository = repositoryFromRelease(release)
 
-  const options = getOptions(),
+  const options = retrieveOptions(),
         { ssh } = options;
 
   if (ssh) {
