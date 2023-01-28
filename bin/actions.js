@@ -50,19 +50,19 @@ function actions(command, argument, options) {
   }
 
   switch (command) {
-    case HELP_COMMAND : helpAction(); break;
-    case OPEN_COMMAND : openAction(argument, quietly, yes, no); break;
-    case CLONE_COMMAND : cloneAction(argument, quietly, yes, no); break;
-    case VERSION_COMMAND : versionAction(); break;
-    case PUBLISH_COMMAND : publishAction(argument, dryRun, logLevel); break;
-    case SIGN_IN_COMMAND : signInAction(argument); break;
-    case SIGN_OUT_COMMAND : signOutAction(); break;
-    case DEPRECATE_COMMAND : deprecateAction(argument); break;
-    case INITIALISE_COMMAND : initialiseAction(); break;
-    case SET_OPTIONS_COMMAND : setOptionsAction(); break;
-    case CREATE_ACCOUNT_COMMAND : createAccountAction(argument); break;
-    case RESET_PASSWORD_COMMAND : resetPasswordAction(argument); break;
-    case SET_SHELL_COMMANDS_COMMAND : setShellCommandsAction(); break;
+    case HELP_COMMAND: helpAction(); break;
+    case OPEN_COMMAND: openAction(argument, quietly, yes, no); break;
+    case CLONE_COMMAND: cloneAction(argument, quietly, yes, no); break;
+    case VERSION_COMMAND: versionAction(); break;
+    case PUBLISH_COMMAND: publishAction(argument, dryRun, logLevel); break;
+    case SIGN_IN_COMMAND: signInAction(argument); break;
+    case SIGN_OUT_COMMAND: signOutAction(); break;
+    case DEPRECATE_COMMAND: deprecateAction(argument); break;
+    case INITIALISE_COMMAND: initialiseAction(); break;
+    case SET_OPTIONS_COMMAND: setOptionsAction(); break;
+    case CREATE_ACCOUNT_COMMAND: createAccountAction(argument); break;
+    case RESET_PASSWORD_COMMAND: resetPasswordAction(argument); break;
+    case SET_SHELL_COMMANDS_COMMAND: setShellCommandsAction(); break;
 
     default:
       argument = command; ///
