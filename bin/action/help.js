@@ -45,6 +45,10 @@ Options:
   
   --yes|-y                                       Initially answer yes to prompts
 
+  --tail|-t                                      Sets the size of the tail of the log messages when publishing. The default is ten. 
+
+  --follow|-f                                    Show all of the log messages when publishing. The default is false.
+
 Further information:
 
 Please see the readme file on GitHub:

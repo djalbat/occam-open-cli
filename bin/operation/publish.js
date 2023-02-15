@@ -7,9 +7,11 @@ const post = require("../post");
 const { PUBLISH_API_URI } = require("../uris");
 
 function publishOperation(proceed, abort, context) {
-  const { dryRun, release, logLevel, releaseName, identityToken } = context,
+  const { tail, follow, dryRun, release, logLevel, releaseName, identityToken } = context,
         uri = `${PUBLISH_API_URI}/${releaseName}`,
         json = {
+          tail,
+          follow,
           dryRun,
           release,
           logLevel,

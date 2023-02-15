@@ -14,7 +14,7 @@ const helpAction = require("./action/help"),
       resetPasswordAction = require("./action/resetPassword"),
       setShellCommandsAction = require("./action/setShellCommands");
 
-const { DEFAULT_NO, DEFAULT_YES, DEFAULT_HELP, DEFAULT_DRY_RUN, DEFAULT_VERSION, DEFAULT_QUIETLY, DEFAULT_LOG_LEVEL } = require("./defaults"),
+const { DEFAULT_NO, DEFAULT_YES, DEFAULT_HELP, DEFAULT_TAIL, DEFAULT_FOLLOW, DEFAULT_DRY_RUN, DEFAULT_VERSION, DEFAULT_QUIETLY, DEFAULT_LOG_LEVEL } = require("./defaults"),
       { HELP_COMMAND,
         OPEN_COMMAND,
         CLONE_COMMAND,
@@ -34,6 +34,8 @@ function actions(command, argument, options) {
         { no = DEFAULT_NO,
           yes = DEFAULT_YES,
           help = DEFAULT_HELP,
+          tail = DEFAULT_TAIL,
+          follow = DEFAULT_FOLLOW,
           dryRun = DEFAULT_DRY_RUN,
           version = DEFAULT_VERSION,
           quietly = DEFAULT_QUIETLY,
@@ -54,7 +56,7 @@ function actions(command, argument, options) {
     case OPEN_COMMAND: openAction(argument, quietly, yes, no); break;
     case CLONE_COMMAND: cloneAction(argument, quietly, yes, no); break;
     case VERSION_COMMAND: versionAction(); break;
-    case PUBLISH_COMMAND: publishAction(argument, dryRun, logLevel); break;
+    case PUBLISH_COMMAND: publishAction(argument, tail, follow, dryRun, logLevel); break;
     case SIGN_IN_COMMAND: signInAction(argument); break;
     case SIGN_OUT_COMMAND: signOutAction(); break;
     case DEPRECATE_COMMAND: deprecateAction(argument); break;

@@ -70,6 +70,10 @@ Options:
   --log-level|-l                                 Set the log level when publishing
   
   --yes|-y                                       Initially answer yes to prompts
+
+  --tail|-t                                      Sets the size of the tail of the log messages when publishing. The default is ten. 
+
+  --follow|-f                                    Show all of the log messages when publishing. The default is false.
 ```
 
 This is slightly different from `npm` in that `open` is usually executed from the parent directory of a project rather than from within the project sub-directory itself.
