@@ -17,21 +17,39 @@ function executeShellCommandsOperation(proceed, abort, context) {
     if (shellCommands !== EMPTY_STRING) {
       shellCommands = shellCommands.replace(/{packageName}/, releaseName);  ///
 
-      const output = execute(shellCommands),
-            outputs = output.split(/\n/),
-            outputsLength = outputs.length;
+      let message;
 
-      if (outputsLength > 0) {
-        const { messages } = context,
-              message = DASH_CHARACTER; //
+      const output = execute(shellCommands),
+            { messages } = context,
+            { stderr = null } = output;
+
+      if (stderr !== null) {
+        message = DASH_CHARACTER; //
 
         messages.push(message);
 
-        outputs.forEach((output) => {
-          const message = output; ///
+        message = stderr; ///
+
+        messages.push(message);
+      } else {
+        const outputs = output.split(/\n/),
+              outputsLength = outputs.length;
+
+        if (outputsLength > 0) {
+          let message;
+
+          const { messages } = context;
+
+          message = DASH_CHARACTER; //
 
           messages.push(message);
-        });
+
+          outputs.forEach((output) => {
+            message = output; ///
+
+            messages.push(message);
+          });
+        }
       }
     }
   }
