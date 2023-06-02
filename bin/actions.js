@@ -7,7 +7,7 @@ const helpAction = require("./action/help"),
       signOutAction = require("./action/signOut"),
       versionAction = require("./action/version"),
       publishAction = require("./action/publish"),
-      deprecateAction = require("./action/deprecate"),
+      withdrawAction = require("./action/withdraw"),
       initialiseAction = require("./action/initialise"),
       setOptionsAction = require("./action/setOptions"),
       createAccountAction = require("./action/createAccount"),
@@ -22,7 +22,7 @@ const { DEFAULT_NO, DEFAULT_YES, DEFAULT_HELP, DEFAULT_TAIL, DEFAULT_FOLLOW, DEF
         PUBLISH_COMMAND,
         SIGN_IN_COMMAND,
         SIGN_OUT_COMMAND,
-        DEPRECATE_COMMAND,
+        WITHDRAW_COMMAND,
         INITIALISE_COMMAND,
         SET_OPTIONS_COMMAND,
         CREATE_ACCOUNT_COMMAND,
@@ -59,7 +59,7 @@ function actions(command, argument, options) {
     case PUBLISH_COMMAND: publishAction(argument, tail, follow, dryRun, logLevel); break;
     case SIGN_IN_COMMAND: signInAction(argument); break;
     case SIGN_OUT_COMMAND: signOutAction(); break;
-    case DEPRECATE_COMMAND: deprecateAction(argument); break;
+    case WITHDRAW_COMMAND: withdrawAction(argument); break;
     case INITIALISE_COMMAND: initialiseAction(); break;
     case SET_OPTIONS_COMMAND: setOptionsAction(); break;
     case CREATE_ACCOUNT_COMMAND: createAccountAction(argument); break;

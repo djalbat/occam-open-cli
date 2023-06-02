@@ -2,11 +2,11 @@
 
 const post = require("../post");
 
-const { DEPRECATE_API_URI } = require("../uris");
+const { WITHDRAW_API_URI } = require("../uris");
 
-function deprecateOperation(proceed, abort, context) {
+function withdrawOperation(proceed, abort, context) {
   const { releaseName, identityToken } = context,
-        uri = `${DEPRECATE_API_URI}/${releaseName}`,
+        uri = `${WITHDRAW_API_URI}/${releaseName}`,
         json = {
           identityToken
         };
@@ -16,4 +16,4 @@ function deprecateOperation(proceed, abort, context) {
   });
 }
 
-module.exports = deprecateOperation;
+module.exports = withdrawOperation;
