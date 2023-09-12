@@ -11,7 +11,7 @@ const NO = "no",
       EMPTY_STRING = "",
       RELEASE_JSON = "release.json",
       PACKAGE_JSON = "package.json",
-      OCCAM_OPEN_CLI = "Occam Open CLI";
+      OCCAM_OPEN_CLI = "Occam Open-CLI";
 
 module.exports = {
   NO,

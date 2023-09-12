@@ -1,15 +1,15 @@
 "use strict";
 
-const { OCCAM_OPEN_CLI } = require("../constants"),
-      { getPackageVersion } = require("../utilities/packageJSON");
+const { packageUtilities } = require("necessary");
+
+const { OCCAM_OPEN_CLI } = require("../constants");
+
+const { getVersion } = packageUtilities;
 
 function versionAction() {
-  const packageVersion = getPackageVersion(),
-        version = packageVersion; ///
+  const version = getVersion(); ///
 
   console.log(`${OCCAM_OPEN_CLI} version ${version}`);
-
-  process.exit();
 }
 
 module.exports = versionAction;
