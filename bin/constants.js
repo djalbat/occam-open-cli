@@ -10,7 +10,6 @@ const NO = "no",
       DOUBLE_DASH = "--",
       EMPTY_STRING = "",
       RELEASE_JSON = "release.json",
-      PACKAGE_JSON = "package.json",
       OCCAM_OPEN_CLI = "Occam Open-CLI";
 
 module.exports = {
@@ -24,6 +23,5 @@ module.exports = {
   DOUBLE_DASH,
   EMPTY_STRING,
   RELEASE_JSON,
-  PACKAGE_JSON,
   OCCAM_OPEN_CLI
 };
