@@ -1,15 +1,15 @@
 "use strict";
 
 const { Readable } = require("stream"),
-      { headers, contentTypes, statusCodes, requestUtilities } = require("necessary");
+      { headers, contentTypes, statusCodes, requestUtilities, packageUtilities } = require("necessary");
 
 const { retrieveHost } = require("./configuration"),
-      { getPackageVersion } = require("./utilities/packageJSON"),
       { contentFromResponse } = require("./utilities/response"),
       { statusMessageFromStatusCode } = require("./utilities/status"),
       { SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE } = require("./messages");
 
-const { createPostRequest } = requestUtilities,
+const { getVersion } = packageUtilities,
+      { createPostRequest } = requestUtilities,
       { OK_200_STATUS_CODE } = statusCodes,
       { CONTENT_TYPE_HEADER } = headers,
       { APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE } = contentTypes;
@@ -17,9 +17,12 @@ const { createPostRequest } = requestUtilities,
 function post(uri, json, callback) {
   const host = retrieveHost(),
         query = {},
-        headers = getHeaders(),
+        headers = {
+          [ CONTENT_TYPE_HEADER ]: APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE
+        },
+        version = getVersion(),
         content = JSON.stringify(json), ///
-        versionString = getVersionString();
+        versionString = version;  ///
 
   Object.assign(json, {
     versionString
@@ -67,18 +70,3 @@ function post(uri, json, callback) {
 }
 
 module.exports = post;
-
-function getHeaders() {
-  const headers = {};
-
-  headers[CONTENT_TYPE_HEADER] = APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE;
-
-  return headers;
-}
-
-function getVersionString() {
-  const packageVersion = getPackageVersion(),
-        versionString = packageVersion; ///
-
-  return versionString;
-}

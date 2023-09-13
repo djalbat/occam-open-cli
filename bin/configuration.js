@@ -1,16 +1,17 @@
 "use strict";
 
-const { configurationUtilities } = require("necessary");
+const { versionUtilities, configurationUtilities } = require("necessary");
 
 const { OPEN } = require("./constants"),
-      { migrateConfigurationToVersion_1_5 } = require("./configuration/version_1_5"),
+      { createConfiguration } = require("./configuration/version_5_1"),
       { migrateConfigurationToVersion_2_0 } = require("./configuration/version_2_0"),
       { migrateConfigurationToVersion_5_0 } = require("./configuration/version_5_0"),
+      { migrateConfigurationToVersion_5_1 } = require("./configuration/version_5_1"),
       { CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE } = require("./messages"),
-      { migrateConfigurationToVersion_5_1, createConfiguration } = require("./configuration/version_5_1"),
-      { UNVERSIONED, VERSION_1_5, VERSION_2_0, VERSION_5_0, CURRENT_VERSION } = require("./versions");
+      { VERSION_1_5, VERSION_2_0, VERSION_5_0, VERSION_5_1 } = require("./versions");
 
 const { rc } = configurationUtilities,
+      { migrate } = versionUtilities,
       { setRCBaseExtension, checkRCFileExists, updateRCFile, writeRCFile, readRCFile } = rc;
 
 const rcBaseExtension = OPEN;
@@ -75,37 +76,16 @@ function createConfigurationFile() {
 }
 
 function migrateConfigurationFile() {
-  let json = readRCFile(),
-      configuration = json, ///
-      { version = UNVERSIONED } = configuration;
+  let json = readRCFile();
 
-  while (version !== CURRENT_VERSION) {
-    switch (version) {
-      case UNVERSIONED :
-        configuration = migrateConfigurationToVersion_1_5(configuration);
+  const migrationMap = {
+          [ VERSION_1_5 ]: migrateConfigurationToVersion_2_0,
+          [ VERSION_2_0 ]: migrateConfigurationToVersion_5_0,
+          [ VERSION_5_0 ] :migrateConfigurationToVersion_5_1
+        },
+        latestVersion = VERSION_5_1;
 
-        break;
-
-      case VERSION_1_5 :
-        configuration = migrateConfigurationToVersion_2_0(configuration);
-
-        break;
-
-      case VERSION_2_0 :
-        configuration = migrateConfigurationToVersion_5_0(configuration);
-
-        break;
-
-      case VERSION_5_0 :
-        configuration = migrateConfigurationToVersion_5_1(configuration);
-
-        break;
-    }
-
-    ({ version } = configuration);
-  }
-
-  json = configuration; ///
+  json = migrate(json, migrationMap, latestVersion);
 
   writeRCFile(json);
 }
