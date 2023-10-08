@@ -1,7 +1,7 @@
 "use strict";
 
 const { exec } = require("child_process"),
-      { Entries } = require("occam-file-system"),
+      { Entries } = require("occam-entities"),
       { fileSystemUtilities, asynchronousUtilities } = require("necessary");
 
 const { retrieveOptions } = require("../configuration"),

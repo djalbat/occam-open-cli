@@ -1,6 +1,7 @@
 "use strict";
 
-const { fileNames, metaJSONUtilities, fileSystemUtilities } = require("occam-file-system");
+const { fileSystemUtilities } = require("occam-file-system"),
+      { fileNames, metaJSONUtilities } = require("occam-entities");
 
 const { loadFile, saveFile } = fileSystemUtilities,
       { META_JSON_FILE_NAME } = fileNames,

@@ -1,6 +1,6 @@
 "use strict";
 
-const { Version } = require("occam-file-system");
+const { Version } = require("occam-entities");
 
 const post = require("../post");
 

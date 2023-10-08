@@ -12,6 +12,7 @@
   "dependencies": {
     "argumentative": "^2.0.21",
     "necessary": "^11.9.3",
+    "occam-entities": "^1.0.2",
     "occam-file-system": "^5.0.253"
   },
   "scripts": {},
