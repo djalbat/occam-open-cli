@@ -46,7 +46,7 @@ Commands:
 
   publish <package_name>                         Publish a package
 
-  deprecate <package_name>                       Deprecate a package
+  withdraw <package_name>                        Withdraw a package
 
   create-account [<email_address>]               Create an account
    
