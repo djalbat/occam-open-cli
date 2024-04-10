@@ -2,15 +2,13 @@
 
 const { pathUtilities } = require("necessary");
 
-const actions = require("./actions");
-
 const { DOUBLE_DOTS } = require("./constants"),
       { PUBLISH_COMMAND } = require("./commands"),
       { checkConfigurationFileExists, migrateConfigurationFile } = require("./configuration");
 
 const { bottommostNameFromPath } = pathUtilities;
 
-function main(command, argument, options) {
+function configure(command, argument, options, callback) {
   let configurationFileExists = checkConfigurationFileExists();
 
   if (command === PUBLISH_COMMAND) {  ///
@@ -35,7 +33,7 @@ function main(command, argument, options) {
     migrateConfigurationFile();
   }
 
-  actions(command, argument, options);
+  callback(command, argument, options);
 }
 
-module.exports = main;
+module.exports = configure;
