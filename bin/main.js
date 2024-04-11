@@ -29,7 +29,7 @@ const { DEFAULT_NO, DEFAULT_YES, DEFAULT_HELP, DEFAULT_TAIL, DEFAULT_FOLLOW, DEF
         RESET_PASSWORD_COMMAND,
         SET_SHELL_COMMANDS_COMMAND } = require("./commands");
 
-function actions(command, argument, options) {
+function main(command, argument, options) {
   const commandMissing = (command === null),
         { no = DEFAULT_NO,
           yes = DEFAULT_YES,
@@ -73,4 +73,4 @@ function actions(command, argument, options) {
   }
 }
 
-module.exports = actions;
+module.exports = main;
