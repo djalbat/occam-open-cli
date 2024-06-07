@@ -28,7 +28,7 @@ If you would like to contribute or would simply like to have a look at the code,
 These are the commands and options:
 
 ```
-  open [<command>] [<argument>]
+  open [<options>] [<command>] [<argument>]
 
 Commands:
 
