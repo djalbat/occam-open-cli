@@ -14,7 +14,8 @@ const helpAction = require("./action/help"),
       resetPasswordAction = require("./action/resetPassword"),
       setShellCommandsAction = require("./action/setShellCommands");
 
-const { DEFAULT_NO, DEFAULT_YES, DEFAULT_HELP, DEFAULT_TAIL, DEFAULT_FOLLOW, DEFAULT_DRY_RUN, DEFAULT_VERSION, DEFAULT_QUIETLY, DEFAULT_LOG_LEVEL } = require("./defaults"),
+const { NO_COMMAND_GIVEN_MESSAGE } = require("./messages"),
+      { DEFAULT_NO, DEFAULT_YES, DEFAULT_TAIL, DEFAULT_FOLLOW, DEFAULT_DRY_RUN, DEFAULT_QUIETLY, DEFAULT_LOG_LEVEL } = require("./defaults"),
       { HELP_COMMAND,
         OPEN_COMMAND,
         CLONE_COMMAND,
@@ -30,28 +31,23 @@ const { DEFAULT_NO, DEFAULT_YES, DEFAULT_HELP, DEFAULT_TAIL, DEFAULT_FOLLOW, DEF
         SET_SHELL_COMMANDS_COMMAND } = require("./commands");
 
 function main(command, argument, options) {
-  const commandMissing = (command === null),
-        { no = DEFAULT_NO,
+  const { no = DEFAULT_NO,
           yes = DEFAULT_YES,
-          help = DEFAULT_HELP,
           tail = DEFAULT_TAIL,
           follow = DEFAULT_FOLLOW,
           dryRun = DEFAULT_DRY_RUN,
-          version = DEFAULT_VERSION,
           quietly = DEFAULT_QUIETLY,
           logLevel = DEFAULT_LOG_LEVEL } = options;
 
-  if (false) {
-    ///
-  } else if (help) {
-    command = HELP_COMMAND;
-  } else if (version) {
-    command = VERSION_COMMAND;
-  } else if (commandMissing) {
-    command = HELP_COMMAND;
-  }
-
   switch (command) {
+    case null: {
+      console.log(NO_COMMAND_GIVEN_MESSAGE);
+
+      process.exit(1);
+
+      break;
+    }
+
     case HELP_COMMAND: {
       helpAction();
 

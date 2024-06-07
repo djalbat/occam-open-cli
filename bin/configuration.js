@@ -76,6 +76,8 @@ function createConfigurationFile() {
 }
 
 function migrateConfigurationFile() {
+  assertConfigurationFileExists();
+
   let json = readRCFile();
 
   const migrationMap = {
@@ -103,7 +105,7 @@ function assertConfigurationFileExists() {
   if (!configurationFileExists) {
     console.log(CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE);
 
-    process.exit();
+    process.exit(1);
   }
 }
 
