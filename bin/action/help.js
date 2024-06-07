@@ -3,7 +3,7 @@
 function helpAction() {
   console.log(`Usage: 
   
-  open [<command>] [<argument>]
+  open [<options>] [<command>] [<argument>]
 
 Commands:
 

@@ -3,16 +3,27 @@
 const { pathUtilities } = require("necessary");
 
 const { DOUBLE_DOTS } = require("./constants"),
-      { PUBLISH_COMMAND } = require("./commands"),
-      { checkConfigurationFileExists, migrateConfigurationFile } = require("./configuration");
+      { DEFAULT_HELP, DEFAULT_VERSION } = require("./defaults"),
+      { HELP_COMMAND, VERSION_COMMAND, PUBLISH_COMMAND } = require("./commands"),
+      { migrateConfigurationFile, checkConfigurationFileExists, assertConfigurationFileExists } = require("./configuration");
 
 const { bottommostNameFromPath } = pathUtilities;
 
 function configure(command, argument, options, main) {
-  let configurationFileExists = checkConfigurationFileExists();
+  let configurationFileExists;
 
-  if (command === PUBLISH_COMMAND) {  ///
-    if (argument === null) {
+  const { help = DEFAULT_HELP, version = DEFAULT_VERSION } = options;
+
+  if ((help === true) || (version === true) || (command === HELP_COMMAND) || (command === VERSION_COMMAND)) {
+    main(command, argument, options);
+
+    return;
+  }
+
+  configurationFileExists = checkConfigurationFileExists();
+
+  if (command === null) {
+    if (!configurationFileExists) {
       const currentWorkingDirectoryPath = process.cwd(); ///
 
       process.chdir(DOUBLE_DOTS);
@@ -24,14 +35,16 @@ function configure(command, argument, options, main) {
       if (configurationFileExists) {
         const bottommostOldCurrentWorkingDirectoryName = bottommostNameFromPath(oldCurrentWorkingDirectoryPath);
 
+        command = PUBLISH_COMMAND;  ///
+
         argument = bottommostOldCurrentWorkingDirectoryName; ///
       }
     }
   }
 
-  if (configurationFileExists) {
-    migrateConfigurationFile();
-  }
+  assertConfigurationFileExists();
+
+  migrateConfigurationFile();
 
   main(command, argument, options);
 }

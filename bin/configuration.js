@@ -14,7 +14,7 @@ const { rc } = configurationUtilities,
       { migrate } = versionUtilities,
       { setRCBaseExtension, checkRCFileExists, updateRCFile, writeRCFile, readRCFile } = rc;
 
-const rcBaseExtension = OPEN;
+const rcBaseExtension = OPEN; ///
 
 setRCBaseExtension(rcBaseExtension);
 
@@ -97,6 +97,16 @@ function checkConfigurationFileExists() {
   return configurationFileExists;
 }
 
+function assertConfigurationFileExists() {
+  const configurationFileExists = checkConfigurationFileExists();
+
+  if (!configurationFileExists) {
+    console.log(CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE);
+
+    process.exit();
+  }
+}
+
 module.exports = {
   retrieveHost,
   retrieveOptions,
@@ -108,7 +118,8 @@ module.exports = {
   removeIdentityToken,
   createConfigurationFile,
   migrateConfigurationFile,
-  checkConfigurationFileExists
+  checkConfigurationFileExists,
+  assertConfigurationFileExists
 };
 
 function readConfigurationFile() {
@@ -135,14 +146,4 @@ function updateConfigurationFile(addedConfiguration, ...deleteConfigurationNames
         deletedPropertyNames = deleteConfigurationNames;  ///
 
   updateRCFile(addedProperties, ...deletedPropertyNames);
-}
-
-function assertConfigurationFileExists() {
-  const configurationFileExists = checkConfigurationFileExists();
-
-  if (!configurationFileExists) {
-    console.log(CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE);
-
-    process.exit();
-  }
 }
