@@ -9,8 +9,6 @@ function signOutAction() {
   removeIdentityToken();
 
   console.log(message);
-
-  process.exit();
 }
 
 module.exports = signOutAction;

@@ -21,8 +21,6 @@ function initialiseAction() {
                       FAILED_INITIALISE_MESSAGE;
 
   console.log(message);
-
-  process.exit();
 }
 
 module.exports = initialiseAction;

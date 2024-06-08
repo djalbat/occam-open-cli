@@ -22,8 +22,6 @@ function setOptionsAction() {
                         FAILED_SET_OPTIONS_MESSAGE;
 
     console.log(message);
-
-    process.exit();
   }, context);
 }
 

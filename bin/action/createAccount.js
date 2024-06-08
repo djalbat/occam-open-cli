@@ -29,8 +29,6 @@ function createAccountAction(argument) {
     const { message } = context;
 
     console.log(message);
-
-    process.exit();
   }, context);
 }
 

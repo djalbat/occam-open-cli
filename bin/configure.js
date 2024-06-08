@@ -4,8 +4,8 @@ const { pathUtilities } = require("necessary");
 
 const { DOUBLE_DOTS } = require("./constants"),
       { DEFAULT_HELP, DEFAULT_VERSION } = require("./defaults"),
-      { HELP_COMMAND, VERSION_COMMAND, PUBLISH_COMMAND } = require("./commands"),
-      { migrateConfigurationFile, checkConfigurationFileExists } = require("./configuration");
+      { migrateConfigurationFile, checkConfigurationFileExists } = require("./configuration"),
+      { HELP_COMMAND, VERSION_COMMAND, PUBLISH_COMMAND, INITIALISE_COMMAND } = require("./commands");
 
 const { bottommostNameFromPath } = pathUtilities;
 
@@ -48,7 +48,9 @@ function configure(command, argument, options, main) {
     }
   }
 
-  migrateConfigurationFile();
+  if (command !== INITIALISE_COMMAND) {
+    migrateConfigurationFile();
+  }
 
   main(command, argument, options);
 }

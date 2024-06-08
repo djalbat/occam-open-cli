@@ -29,8 +29,6 @@ function withdrawAction(argument) {
                         FAILED_WITHDRAW_MESSAGE;
 
     console.log(message);
-
-    process.exit();
   }, context);
 }
 

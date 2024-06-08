@@ -30,8 +30,6 @@ function cloneAction(argument, quietly, yes, no) {
                         FAILED_CLONE_MESSAGE;
 
     console.log(message);
-
-    process.exit();
   }, context);
 }
 

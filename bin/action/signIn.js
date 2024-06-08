@@ -25,8 +25,6 @@ function signInAction(argument) {
     const { message } = context;
 
     console.log(message);
-
-    process.exit();
   }, context);
 }
 

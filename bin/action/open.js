@@ -28,8 +28,6 @@ function openAction(argument, quietly, yes, no) {
                         FAILED_OPEN_MESSAGE;
 
     console.log(message);
-
-    process.exit();
   }, context);
 }
 

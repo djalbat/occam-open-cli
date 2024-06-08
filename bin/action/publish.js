@@ -65,8 +65,6 @@ function publishAction(argument, tail, follow, dryRun, logLevel) {
     messages.forEach((message) => {
       console.log(message);
     });
-
-    process.exit();
   }, context);
 }
 

@@ -55,8 +55,6 @@ Please see the readme file on GitHub:
 
   https://github.com/djalbat/occam-open-cli
 `);
-
-  process.exit();
 }
 
 module.exports = helpAction;

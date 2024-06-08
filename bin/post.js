@@ -32,7 +32,7 @@ function post(uri, json, callback) {
     if (error) {
       console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
 
-      process.exit();
+      return;
     }
 
     const { statusCode } = response;
@@ -42,11 +42,11 @@ function post(uri, json, callback) {
 
       console.log(`The server responded with '${statusMessage}'.`);
 
-      process.exit();
+      return;
     }
 
     contentFromResponse(response, (content) => {
-      let json;
+      let json = null;
 
       try {
         const jsonString = content; ///
@@ -55,8 +55,6 @@ function post(uri, json, callback) {
       } catch (error) {
         if (error) {
           console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
-
-          process.exit();
         }
       }
 
