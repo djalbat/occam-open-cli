@@ -44,6 +44,8 @@ function configure(command, argument, options, main) {
         const bottommostOldCurrentWorkingDirectoryName = bottommostNameFromPath(oldCurrentWorkingDirectoryPath);
 
         argument = bottommostOldCurrentWorkingDirectoryName; ///
+      } else {
+        process.chdir(oldCurrentWorkingDirectoryPath);
       }
     }
   }
