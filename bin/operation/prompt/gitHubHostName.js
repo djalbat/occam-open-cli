@@ -2,8 +2,8 @@
 
 const { shellUtilities } = require("necessary");
 
-const { validateGitHubHostName } = require("../../utilities/validate"),
-      { EMPTY_STRING } = require("../../constants"),
+const { EMPTY_STRING } = require("../../constants"),
+      { validateGitHubHostName } = require("../../utilities/validate"),
       { DEFAULT_GITHUB_HOST_NAME } = require("../../defaults"),
       { GITHUB_HOST_NAME_DESCRIPTION } = require("../../descriptions"),
       { INVALID_GITHUB_HOST_NAME_MESSAGE } = require("../../messages");

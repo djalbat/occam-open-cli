@@ -11,9 +11,9 @@ const { prompt } = shellUtilities;
 
 function setShellCommandsPromptOperation(proceed, abort, context) {
   const { shellCommands } = context,
+        description = SHELL_COMMANDS_DESCRIPTION,
         initialAnswer = shellCommands, ///
         validationFunction = validateShellCommands,  ///
-        description = SHELL_COMMANDS_DESCRIPTION,
         options = {
           description,
           initialAnswer,
@@ -21,13 +21,25 @@ function setShellCommandsPromptOperation(proceed, abort, context) {
         };
 
   prompt(options, (answer) => {
-    const shellCommands = answer; ///
+    let shellCommands = answer; ///
 
-    Object.assign(context, {
-      shellCommands
-    });
+    const valid = (shellCommands !== null);
 
-    proceed();
+    if (valid) {
+      if (shellCommands === EMPTY_STRING) {
+        shellCommands = DEFAULT_SHELL_COMMANDS;
+      }
+
+      Object.assign(context, {
+        shellCommands
+      });
+
+      proceed();
+
+      return;
+    }
+
+    abort();
   });
 }
 
