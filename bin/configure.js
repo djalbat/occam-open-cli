@@ -5,13 +5,11 @@ const { pathUtilities } = require("necessary");
 const { DOUBLE_DOTS } = require("./constants"),
       { DEFAULT_HELP, DEFAULT_VERSION } = require("./defaults"),
       { migrateConfigurationFile, checkConfigurationFileExists } = require("./configuration"),
-      { HELP_COMMAND, VERSION_COMMAND, PUBLISH_COMMAND, INITIALISE_COMMAND } = require("./commands");
+      { HELP_COMMAND, VERSION_COMMAND, INITIALISE_COMMAND, PUBLISH_COMMAND } = require("./commands");
 
 const { bottommostNameFromPath } = pathUtilities;
 
 function configure(command, argument, options, main) {
-  let configurationFileExists;
-
   const { help = DEFAULT_HELP, version = DEFAULT_VERSION } = options;
 
   if (false) {
@@ -28,25 +26,46 @@ function configure(command, argument, options, main) {
     return;
   }
 
-  configurationFileExists = checkConfigurationFileExists();
+  const directoryName = changeDirectory(command);
 
-  if (command === PUBLISH_COMMAND) {
-    if (!configurationFileExists) {
-      const currentWorkingDirectoryPath = process.cwd(); ///
+  if (directoryName !== null) {
+    if (command !== null) {
+      command = PUBLISH_COMMAND;
+    }
 
-      process.chdir(DOUBLE_DOTS);
+    argument = directoryName; ///
+  }
 
-      const oldCurrentWorkingDirectoryPath = currentWorkingDirectoryPath; ///
+  if (argument === null) {
+    argument = command; ///
 
-      configurationFileExists = checkConfigurationFileExists();
+    command = PUBLISH_COMMAND;
+  }
 
-      if (configurationFileExists) {
-        const bottommostOldCurrentWorkingDirectoryName = bottommostNameFromPath(oldCurrentWorkingDirectoryPath);
+  main(command, argument, options);
+}
 
-        argument = bottommostOldCurrentWorkingDirectoryName; ///
-      } else {
-        process.chdir(oldCurrentWorkingDirectoryPath);
-      }
+module.exports = configure;
+
+function changeDirectory(command) {
+  let directoryName = null,
+    configurationFileExists = checkConfigurationFileExists();
+
+  if (!configurationFileExists) {
+    const currentWorkingDirectoryPath = process.cwd(); ///
+
+    process.chdir(DOUBLE_DOTS);
+
+    const oldCurrentWorkingDirectoryPath = currentWorkingDirectoryPath; ///
+
+    configurationFileExists = checkConfigurationFileExists();
+
+    if (configurationFileExists) {
+      const bottommostOldCurrentWorkingDirectoryName = bottommostNameFromPath(oldCurrentWorkingDirectoryPath);
+
+      directoryName = bottommostOldCurrentWorkingDirectoryName; ///
+    } else {
+      process.chdir(oldCurrentWorkingDirectoryPath);
     }
   }
 
@@ -54,7 +73,5 @@ function configure(command, argument, options, main) {
     migrateConfigurationFile();
   }
 
-  main(command, argument, options);
+  return directoryName;
 }
-
-module.exports = configure;
