@@ -7,9 +7,8 @@ const signInOperation = require("../operation/signIn"),
 
 const { executeOperations } = require("../utilities/operation");
 
-function signInAction(argument) {
-  const emailAddressOrUsername = argument,  ///
-        password = null,
+function signInAction(emailAddressOrUsername) {
+  const password = null,
         operations = [
           emailAddressOrUsernamePromptOperation,
           passwordPromptOperation,

@@ -1,6 +1,7 @@
 "use strict";
 
-const NO_COMMAND_GIVEN_MESSAGE = "No command has been given.",
+const NO_ARGUMENT_GIVEN_MESSAGE = "No argument has been given.",
+      COMMAND_NOT_RECOGNISED_MESSAGE = "The command is not recognised.",
       PASSWORDS_DO_NOT_MATCH_MESSAGE = "The passwords do not match.",
       SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE = "The server did not respond in a timely or intelligible fashion. If this problem persists then please be kind enough to report it.",
       CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE = "The action cannot be performed because the configuration file is missing. Run 'open initialise' to create one.",
@@ -29,7 +30,8 @@ const NO_COMMAND_GIVEN_MESSAGE = "No command has been given.",
       SUCCESSFUL_SET_SHELL_COMMANDS_MESSAGE = "The shell commands have been set successfully.";
 
 module.exports = {
-  NO_COMMAND_GIVEN_MESSAGE,
+  NO_ARGUMENT_GIVEN_MESSAGE,
+  COMMAND_NOT_RECOGNISED_MESSAGE,
   PASSWORDS_DO_NOT_MATCH_MESSAGE,
   SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE,
   CONFIGURATION_FILE_DOES_NOT_EXIST_MESSAGE,

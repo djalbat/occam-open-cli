@@ -4,7 +4,7 @@ const { parseArgv } = require("argumentative"),
       { arrayUtilities } = require("necessary");
 
 const main = require("./bin/main"),
-      configure = require("./bin/configure"),
+      prepare = require("./bin/prepare"),
       abbreviations = require("./bin/abbreviations");
 
 const { argv } = process,
@@ -16,4 +16,4 @@ const { commands, options } = parseArgv(argv, abbreviations),
       command = firstCommand || null, ///
       argument = secondCommand || null; ///
 
-configure(command, argument, options, main);
+prepare(command, argument, options, main);

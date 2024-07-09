@@ -8,9 +8,8 @@ const createAccountOperation = require("../operation/createAccount"),
 
 const { executeOperations } = require("../utilities/operation");
 
-function createAccountAction(argument) {
-  const emailAddress = argument,  ///
-        username = null,
+function createAccountAction(emailAddress) {
+  const username = null,
         password = null,
         operations = [
           emailAddressPromptOperation,

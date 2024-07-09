@@ -5,9 +5,8 @@ const resetPasswordOperation = require("../operation/resetPassword"),
 
 const { executeOperations } = require("../utilities/operation");
 
-function resetPasswordAction(argument) {
-  const emailAddress = argument, ///
-        operations = [
+function resetPasswordAction(emailAddress) {
+  const operations = [
           emailAddressPromptOperation,
           resetPasswordOperation
         ],

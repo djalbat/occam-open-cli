@@ -8,9 +8,8 @@ const withdrawOperation = require("../operation/withdraw"),
 const { executeOperations } = require("../utilities/operation"),
       { FAILED_WITHDRAW_MESSAGE, SUCCESSFUL_WITHDRAW_MESSAGE } = require("../messages");
 
-function withdrawAction(argument) {
-  const releaseName = argument,  ///
-        password = null,
+function withdrawAction(releaseName) {
+  const password = null,
         operations = [
           getIdentityTokenOperation,
           releaseNamePromptOperation,
