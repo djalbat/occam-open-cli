@@ -9,7 +9,7 @@ const { bottommostNameFromPath } = pathUtilities;
 
 function changeDirectory() {
   let directoryName = null,
-    configurationFileExists = checkConfigurationFileExists();
+      configurationFileExists = checkConfigurationFileExists();
 
   if (!configurationFileExists) {
     const currentWorkingDirectoryPath = process.cwd(); ///
@@ -30,6 +30,10 @@ function changeDirectory() {
   }
 
   migrateConfigurationFile();
+
+  if (directoryName !== null) {
+    process.chdir(directoryName);
+  }
 
   return directoryName;
 }
