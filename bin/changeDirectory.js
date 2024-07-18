@@ -31,10 +31,6 @@ function changeDirectory() {
 
   migrateConfigurationFile();
 
-  if (directoryName !== null) {
-    process.chdir(directoryName);
-  }
-
   return directoryName;
 }
 
