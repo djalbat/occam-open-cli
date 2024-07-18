@@ -21,7 +21,17 @@ function openReleasesOperation(proceed, abort, context) {
 
 module.exports = openReleasesOperation;
 
-function openReleasePromptOperation(release, next, done, context) {
+function openReleasePromptOperation(release, next, done, context, index) {
+  const { openDependencies } = context;
+
+  if (!openDependencies) {
+    if (index > 0) {
+      next();
+
+      return;
+    }
+  }
+
   const { name, quietly } = release,
         entryPath = name, ///
         entryExists = checkEntryExists(entryPath);
@@ -46,23 +56,10 @@ function openReleasePromptOperation(release, next, done, context) {
     return;
   }
 
-  let answer = null;
-
-  const { yes, no } = context;
-
-  if (yes) {
-    answer = YES;
-  }
-
-  if (no) {
-    answer = NO;
-  }
-
   const description = `Overwrite the existing '${name}' package? (y)es (n)o: `,
         errorMessage = INVALID_ANSWER_MESSAGE,
         validationFunction = validateAnswer,  ///
         options = {
-        answer,
           description,
           errorMessage,
           validationFunction

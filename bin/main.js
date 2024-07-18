@@ -64,7 +64,7 @@ function main(command, argument, options) {
       } else {
         const releaseName = argument; ///
 
-        openAction(releaseName, quietly, yes, no);
+        openAction(releaseName, quietly, no);
       }
 
       break;

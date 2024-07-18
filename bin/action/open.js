@@ -2,20 +2,21 @@
 
 const openOperation = require("../operation/open"),
       openReleasesOperation = require("../operation/openReleases"),
+      openDependenciesOperation = require("../operation/openDependencies"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName");
 
 const { executeOperations } = require("../utilities/operation"),
       { SUCCESSFUL_OPEN_MESSAGE, FAILED_OPEN_MESSAGE } = require("../messages");
 
-function openAction(releaseName, quietly, yes, no) {
+function openAction(releaseName, quietly, no) {
   const operations = [
           releaseNamePromptOperation,
+          openDependenciesOperation,
           openOperation,
           openReleasesOperation
         ],
         context = {
           no,
-          yes,
           quietly,
           releaseName
         };
