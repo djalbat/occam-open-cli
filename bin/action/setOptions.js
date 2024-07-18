@@ -1,7 +1,7 @@
 "use strict";
 
-const setOptionsOperation = require("../operation/setOptions"),
-      useSSHPromptOperation = require("../operation/prompt/useSSH"),
+const useSSHPromptOperation = require("../operation/prompt/useSSH"),
+      updateOptionsOperation = require("../operation/updateOptions"),
       gitHubHostNamePromptOperation = require("../operation/prompt/gitHubHostName");
 
 const { executeOperations } = require("../utilities/operation"),
@@ -11,7 +11,7 @@ function setOptionsAction() {
   const operations = [
           useSSHPromptOperation,
           gitHubHostNamePromptOperation,
-          setOptionsOperation
+          updateOptionsOperation
         ],
         context = {};
 

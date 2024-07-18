@@ -2,7 +2,7 @@
 
 const { updateOptions } = require("../configuration");
 
-function setOptionsOperation(proceed, abort, context) {
+function updateOptionsOperation(proceed, abort, context) {
   const { useSSH } = context,
         options = {};
 
@@ -22,4 +22,4 @@ function setOptionsOperation(proceed, abort, context) {
   proceed();
 }
 
-module.exports = setOptionsOperation;
+module.exports = updateOptionsOperation;

@@ -2,7 +2,7 @@
 
 const signInOperation = require("../operation/signIn"),
       passwordPromptOperation = require("../operation/prompt/password"),
-      setIdentityTokenOperation = require("../operation/setIdentityToken"),
+      updateIdentityTokenOperation = require("../operation/updateIdentityToken"),
       emailAddressOrUsernamePromptOperation = require("../operation/prompt/emailAddressOrUsername");
 
 const { executeOperations } = require("../utilities/operation");
@@ -13,7 +13,7 @@ function signInAction(emailAddressOrUsername) {
           emailAddressOrUsernamePromptOperation,
           passwordPromptOperation,
           signInOperation,
-          setIdentityTokenOperation
+          updateIdentityTokenOperation
         ],
         context = {
           emailAddressOrUsername,

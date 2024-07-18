@@ -2,7 +2,7 @@
 
 const { updateIdentityToken } = require("../configuration");
 
-function setIdentityTokenOperation(proceed, abort, context) {
+function updateIdentityTokenOperation(proceed, abort, context) {
   const { identityToken } = context;
 
   if (identityToken !== null) {
@@ -12,4 +12,4 @@ function setIdentityTokenOperation(proceed, abort, context) {
   proceed();
 }
 
-module.exports = setIdentityTokenOperation;
+module.exports = updateIdentityTokenOperation;

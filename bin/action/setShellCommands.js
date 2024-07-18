@@ -1,14 +1,16 @@
 "use strict";
 
-const setShellCommandsPromptOperation = require("../operation/prompt/setShellCommands");
+const updateShellCommandsOperation = require("../operation/updateShellCommands"),
+      setShellCommandsPromptOperation = require("../operation/prompt/setShellCommands");
 
 const { executeOperations } = require("../utilities/operation"),
-      { retrieveShellCommands, updateShellCommands } = require("../configuration"),
+      { retrieveShellCommands } = require("../configuration"),
       { FAILED_SET_SHELL_COMMANDS_MESSAGE, SUCCESSFUL_SET_SHELL_COMMANDS_MESSAGE } = require("../messages");
 
 function setShellCommandsAction() {
   const operations = [
-          setShellCommandsPromptOperation
+          setShellCommandsPromptOperation,
+          updateShellCommandsOperation
         ],
         shellCommands = retrieveShellCommands(),
         context = {
@@ -21,10 +23,6 @@ function setShellCommandsAction() {
 
       return;
     }
-
-    const { shellCommands } = context;
-
-    updateShellCommands(shellCommands);
 
     console.log(SUCCESSFUL_SET_SHELL_COMMANDS_MESSAGE);
   }, context);

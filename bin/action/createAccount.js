@@ -3,8 +3,8 @@
 const createAccountOperation = require("../operation/createAccount"),
       passwordPromptOperation = require("../operation/prompt/password"),
       usernamePromptOperation = require("../operation/prompt/username"),
-      setIdentityTokenOperation = require("../operation/setIdentityToken"),
-      emailAddressPromptOperation = require("../operation/prompt/emailAddress");
+      emailAddressPromptOperation = require("../operation/prompt/emailAddress"),
+      updateIdentityTokenOperation = require("../operation/updateIdentityToken");
 
 const { executeOperations } = require("../utilities/operation");
 
@@ -16,7 +16,7 @@ function createAccountAction(emailAddress) {
           usernamePromptOperation,
           passwordPromptOperation,
           createAccountOperation,
-          setIdentityTokenOperation
+          updateIdentityTokenOperation
         ],
         context = {
           emailAddress,
