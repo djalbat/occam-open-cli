@@ -23,7 +23,10 @@ function prepare(command, argument, options, main) {
     command = VERSION_COMMAND;
   }
 
-  if ((command === HELP_COMMAND) || (command === VERSION_COMMAND) || (command === INITIALISE_COMMAND)) {
+  if ((command === HELP_COMMAND) ||
+      (command === VERSION_COMMAND) ||
+      (command === INITIALISE_COMMAND)) {
+
     main(command, argument, options);
 
     return;
@@ -36,7 +39,11 @@ function prepare(command, argument, options, main) {
   }
 
   if (argument === null) {
-    if ((command !== SIGN_IN_COMMAND) && (command !== SIGN_OUT_COMMAND) && (command !== SET_OPTIONS_COMMAND) && (command !== SET_SHELL_COMMANDS_COMMAND)) {
+    if ((command !== SIGN_IN_COMMAND) &&
+        (command !== SIGN_OUT_COMMAND) &&
+        (command !== SET_OPTIONS_COMMAND) &&
+        (command !== SET_SHELL_COMMANDS_COMMAND)) {
+
       argument = command; ///
 
       command = OPEN_COMMAND;
