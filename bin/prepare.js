@@ -3,7 +3,14 @@
 const changeDirectory = require("./changeDirectory");
 
 const { DEFAULT_HELP, DEFAULT_VERSION } = require("./defaults"),
-      { HELP_COMMAND, VERSION_COMMAND, INITIALISE_COMMAND, OPEN_COMMAND } = require("./commands");
+      { HELP_COMMAND,
+        OPEN_COMMAND,
+        VERSION_COMMAND,
+        SIGN_IN_COMMAND,
+        SIGN_OUT_COMMAND,
+        INITIALISE_COMMAND,
+        SET_OPTIONS_COMMAND,
+        SET_SHELL_COMMANDS_COMMAND } = require("./commands");
 
 function prepare(command, argument, options, main) {
   const { help = DEFAULT_HELP, version = DEFAULT_VERSION } = options;
@@ -29,9 +36,11 @@ function prepare(command, argument, options, main) {
   }
 
   if (argument === null) {
-    argument = command; ///
+    if ((command !== SIGN_IN_COMMAND) && (command !== SIGN_OUT_COMMAND) && (command !== SET_OPTIONS_COMMAND) && (command !== SET_SHELL_COMMANDS_COMMAND)) {
+      argument = command; ///
 
-    command = OPEN_COMMAND;
+      command = OPEN_COMMAND;
+    }
   }
 
   if (command === null) {
