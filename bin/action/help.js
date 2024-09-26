@@ -7,47 +7,49 @@ function helpAction() {
 
 Commands:
 
-  help                                           Show this help
+  help                                            Show this help
   
-  version                                        Show the version
+  version                                         Show the version
 
-  [install] <package_name>                       Install a package
+  [install] <package_name>                        Install a package
 
-  initialise                                     Create a configuration file
+  initialise                                      Create a configuration file
 
-  set-options                                    Set options 
+  set-options                                     Set options 
 
-  clone <package_name>                           Clone a package with Git
+  clone <package_name>                            Clone a package with Git
 
-  publish <package_name>                         Publish a package
+  publish <package_name>                          Publish a package
 
-  withdraw <package_name>                        Withdraw a package
+  withdraw <package_name>                         Withdraw a package
 
-  create-account [<email_address>]               Create an account
+  create-account [<email_address>]                Create an account
    
-  sign-in [<email_address_or_username>]          Sign in 
+  sign-in [<email_address_or_username>]           Sign in 
 
-  sign-out                                       Sign out 
+  sign-out                                        Sign out 
 
-  reset-password [<email_address>]               Reset password 
+  reset-password [<email_address>]                Reset password 
 
-  set-shell-commands                             Set shell commands 
+  set-shell-commands                              Set shell commands 
 
 Options:
 
-  --help|-h                                      Show this help
+  --help|-h                                       Show this help
 
-  --version|-v                                   Show the version
+  --version|-v                                    Show the version
 
-  --quietly|-q                                   Run with almost no console logging
+  --quietly|-q                                    Run with almost no console logging
 
-  --log-level|-l                                 Set the log level when publishing
+  --log-level|-l                                  Set the log level when publishing
   
-  --yes|-y                                       Initially answer yes to prompts
+  --yes|-y                                        Initially answer yes to prompts
 
-  --tail|-t                                      Sets the size of the tail of the log messages when publishing. The default is ten. 
+  --tail|-t                                       Sets the size of the tail of the log messages when publishing. The default is ten. 
 
-  --follow|-f                                    Show all of the log messages when publishing. The default is false.
+  --follow|-f                                     Show all of the log messages when publishing. The default is false.
+
+  --verbose|-x                                    Verbose output. This shows the output for the dependency as well as the project verification.
 
 Further information:
 
