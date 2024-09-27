@@ -2,6 +2,8 @@
 
 const { fileSystemUtilities } = require("occam-file-system");
 
+const { FAILED_PROJECT_LOAD_MESSAGE } = require("../messages");
+
 const { loadProject } = fileSystemUtilities;
 
 function loadProjectOperation(proceed, abort, context) {
@@ -10,6 +12,10 @@ function loadProjectOperation(proceed, abort, context) {
         project = loadProject(releaseName ,projectsDirectoryPath);
 
   if (project === null) {
+    const message = FAILED_PROJECT_LOAD_MESSAGE;  ///
+
+    console.log(message);
+
     abort();
 
     return;
