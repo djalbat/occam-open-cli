@@ -2,7 +2,7 @@
 
 const { Release } = require("occam-entities");
 
-function packReleaseOperation(proceed, abort, context) {
+function releaseToJSONOperation(proceed, abort, context) {
   let release;
 
   const { project } = context;
@@ -26,4 +26,4 @@ function packReleaseOperation(proceed, abort, context) {
   proceed();
 }
 
-module.exports = packReleaseOperation;
+module.exports = releaseToJSONOperation;

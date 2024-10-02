@@ -2,7 +2,7 @@
 
 const publishOperation = require("../operation/publish"),
       loadProjectOperation = require("../operation/loadProject"),
-      packReleaseOperation = require("../operation/packRelease"),
+      releaseToJSONOperation = require("../operation/releaseToJSON"),
       getIdentityTokenOperation = require("../operation/getIdentityToken"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName"),
       executeShellCommandsOperation = require("../operation/executeShallCommands"),
@@ -17,7 +17,7 @@ function publishAction(releaseName, tail, follow, verbose, dryRun, logLevel) {
           getIdentityTokenOperation,
           releaseNamePromptOperation,
           loadProjectOperation,
-          packReleaseOperation,
+          releaseToJSONOperation,
           publishOperation,
           updateMetaJSONFileVersionOperation,
           executeShellCommandsOperation
