@@ -49,8 +49,6 @@ Options:
 
   --follow|-f                                     Show all of the log messages when publishing. The default is false.
 
-  --verbose|-x                                    Verbose output. This shows the output for the dependency as well as the project verification.
-
 Further information:
 
 Please see the readme file on GitHub:

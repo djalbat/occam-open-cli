@@ -12,7 +12,7 @@ const { DOUBLE_DASH } = require("../constants"),
       { executeOperations } = require("../utilities/operation"),
       { FAILED_PUBLISH_MESSAGE, SUCCESSFUL_PUBLISH_MESSAGE } = require("../messages");
 
-function publishAction(releaseName, tail, follow, verbose, dryRun, logLevel) {
+function publishAction(releaseName, tail, follow, dryRun, logLevel) {
   const operations = [
           getIdentityTokenOperation,
           releaseNamePromptOperation,
@@ -27,7 +27,6 @@ function publishAction(releaseName, tail, follow, verbose, dryRun, logLevel) {
           tail,
           follow,
           dryRun,
-          verbose,
           success,
           logLevel,
           releaseName

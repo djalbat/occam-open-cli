@@ -73,8 +73,6 @@ Options:
   --tail|-t                                       Sets the size of the tail of the log messages when publishing. The default is ten. 
 
   --follow|-f                                     Show all of the log messages when publishing. The default is false.
-
-  --verbose|-x                                    Verbose output. This shows the output for the dependency as well as the project verification.
 ```
 
 This is slightly different from `npm` in that `open` is usually executed from the parent directory of a project rather than from within the project sub-directory itself.
