@@ -21,7 +21,7 @@ function publishOperation(proceed, abort, context) {
   post(uri, json, (json) => {
     const { success, messages } = json
 
-    let { version } = json;
+    let { version = null } = json;
 
     if (version !== null) {
       const string = version;  ///

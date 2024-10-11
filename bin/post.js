@@ -35,16 +35,6 @@ function post(uri, json, callback) {
       return;
     }
 
-    const { statusCode } = response;
-
-    if (statusCode !== OK_200_STATUS_CODE) {
-      const statusMessage = statusMessageFromStatusCode(statusCode);
-
-      console.log(`The server responded with '${statusMessage}'.`);
-
-      return;
-    }
-
     contentFromResponse(response, (content) => {
       let json = null;
 
@@ -56,6 +46,22 @@ function post(uri, json, callback) {
         if (error) {
           console.log(SERVER_FAILED_TO_RESPOND_ERROR_MESSAGE);
         }
+      }
+
+      const { statusCode } = response;
+
+      if (statusCode !== OK_200_STATUS_CODE) {
+        const statusMessage = statusMessageFromStatusCode(statusCode);
+
+        console.log(`The server responded with '${statusMessage}'.`);
+
+        const { messages = [] } = json;
+
+        messages.forEach((message) => {
+          console.log(message);
+        });
+
+        return;
       }
 
       callback(json);
