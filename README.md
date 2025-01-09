@@ -4,7 +4,7 @@
 
 *This readme file is mostly for developers. For instructions tailored to end users, see the following:*
 
-https://openmathematics.org/how-to-contribute
+https://openmathematics.org
 
 ### Contents
 
