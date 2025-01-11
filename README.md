@@ -1,6 +1,6 @@
 # Occam Open-CLI
 
-[Occam](https://github.com/djalbat/occam)'s c**o**mmand line **p**ackag**e** manageme**n**t tool.
+[Occam](https://github.com/djalbat/occam)'s package management tool.
 
 *This readme file is mostly for developers. For instructions tailored to end users, see the following:*
 
