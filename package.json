@@ -1,7 +1,7 @@
 {
   "name": "occam-open-cli",
   "author": "James Smith",
-  "version": "6.0.378",
+  "version": "6.0.379",
   "license": "MIT, Anti-996",
   "homepage": "https://github.com/djalbat/occam-open-cli",
   "description": "Occam's package management tool.",
@@ -12,8 +12,8 @@
   "dependencies": {
     "argumentative": "^2.0.32",
     "necessary": "^14.3.2",
-    "occam-entities": "^1.0.340",
-    "occam-file-system": "^6.0.358"
+    "occam-entities": "^1.0.341",
+    "occam-file-system": "^6.0.359"
   },
   "scripts": {},
   "bin": {
