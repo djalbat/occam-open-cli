@@ -11,19 +11,19 @@ const { checkEntryExists } = fileSystemUtilities;
 
 const { forEach } = asynchronousUtilities;
 
-function cloneReleasesOperation(proceed, abort, context) {
+function cloneDependenciesOperation(proceed, abort, context) {
   const { releases } = context,
         done = proceed; ///
 
-  forEach(releases, cloneReleasePromptOperation, done, context);
+  forEach(releases, cloneDependencyPromptOperation, done, context);
 }
 
-module.exports = cloneReleasesOperation;
+module.exports = cloneDependenciesOperation;
 
-function cloneReleasePromptOperation(release, next, done, context, index) {
-  const { cloneDependencies } = context;
+function cloneDependencyPromptOperation(release, next, done, context, index) {
+  const { dependencies } = context;
 
-  if (!cloneDependencies) {
+  if (!dependencies) {
     if (index > 0) {
       next();
 

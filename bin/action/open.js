@@ -1,25 +1,24 @@
 "use strict";
 
 const openOperation = require("../operation/open"),
-      openReleasesOperation = require("../operation/openReleases"),
       openDependenciesOperation = require("../operation/openDependencies"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName");
 
 const { executeOperations } = require("../utilities/operation"),
       { SUCCESSFUL_OPEN_MESSAGE, FAILED_OPEN_MESSAGE } = require("../messages");
 
-function openAction(releaseName, headless, quietly, no) {
+function openAction(releaseName, dependencies, headless, quietly, yes) {
   const operations = [
           releaseNamePromptOperation,
-          openDependenciesOperation,
           openOperation,
-          openReleasesOperation
+          openDependenciesOperation
         ],
         context = {
-          no,
+          yes,
           quietly,
           headless,
-          releaseName
+          releaseName,
+          dependencies
         };
 
   executeOperations(operations, (completed) => {

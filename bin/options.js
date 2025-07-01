@@ -1,7 +1,6 @@
 "use strict";
 
-const NO_OPTION = "no",
-      YES_OPTION = "yes",
+const YES_OPTION = "yes",
       HELP_OPTION = "help",
       TAIL_OPTION = "tail",
       FOLLOW_OPTION = "follow",
@@ -9,10 +8,10 @@ const NO_OPTION = "no",
       QUIETLY_OPTION = "quietly",
       DRY_RUN_OPTION = "dry-run",
       HEADLESS_OPTION = "headless",
-      LOG_LEVEL_OPTION = "log-level";
+      LOG_LEVEL_OPTION = "log-level",
+      DEPENDENCIES_OPTION = "dependencies";
 
 module.exports = {
-  NO_OPTION,
   YES_OPTION,
   HELP_OPTION,
   TAIL_OPTION,
@@ -21,5 +20,6 @@ module.exports = {
   QUIETLY_OPTION,
   DRY_RUN_OPTION,
   HEADLESS_OPTION,
-  LOG_LEVEL_OPTION
+  LOG_LEVEL_OPTION,
+  DEPENDENCIES_OPTION
 };

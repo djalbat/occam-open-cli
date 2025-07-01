@@ -15,7 +15,7 @@ const helpAction = require("./action/help"),
       setShellCommandsAction = require("./action/setShellCommands");
 
 const { NO_ARGUMENT_GIVEN_MESSAGE, COMMAND_NOT_RECOGNISED_MESSAGE } = require("./messages"),
-      { DEFAULT_NO, DEFAULT_YES, DEFAULT_TAIL, DEFAULT_FOLLOW, DEFAULT_DRY_RUN, DEFAULT_QUIETLY, DEFAULT_HEADLESS, DEFAULT_LOG_LEVEL } = require("./defaults"),
+      { DEFAULT_YES, DEFAULT_TAIL, DEFAULT_FOLLOW, DEFAULT_DRY_RUN, DEFAULT_QUIETLY, DEFAULT_HEADLESS, DEFAULT_LOG_LEVEL, DEFAULT_DEPENDENCIES } = require("./defaults"),
       { HELP_COMMAND,
         OPEN_COMMAND,
         CLONE_COMMAND,
@@ -31,14 +31,14 @@ const { NO_ARGUMENT_GIVEN_MESSAGE, COMMAND_NOT_RECOGNISED_MESSAGE } = require(".
         SET_SHELL_COMMANDS_COMMAND } = require("./commands");
 
 function main(command, argument, options) {
-  const { no = DEFAULT_NO,
-          yes = DEFAULT_YES,
+  const { yes = DEFAULT_YES,
           tail = DEFAULT_TAIL,
           follow = DEFAULT_FOLLOW,
           dryRun = DEFAULT_DRY_RUN,
           quietly = DEFAULT_QUIETLY,
           headless = DEFAULT_HEADLESS,
-          logLevel = DEFAULT_LOG_LEVEL } = options;
+          logLevel = DEFAULT_LOG_LEVEL,
+          dependencies = DEFAULT_DEPENDENCIES } = options;
 
   switch (command) {
     case HELP_COMMAND: {
@@ -65,7 +65,7 @@ function main(command, argument, options) {
       } else {
         const releaseName = argument; ///
 
-        openAction(releaseName, headless, quietly, no);
+        openAction(releaseName, dependencies, headless, quietly, yes);
       }
 
       break;
@@ -77,7 +77,7 @@ function main(command, argument, options) {
       } else {
         const releaseName = argument;  ///
 
-        cloneAction(releaseName, headless, quietly, yes, no);
+        cloneAction(releaseName, dependencies, headless, quietly);
       }
 
       break;

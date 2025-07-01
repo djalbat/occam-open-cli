@@ -1,9 +1,8 @@
 "use strict";
 
-const { NO_OPTION, YES_OPTION, HELP_OPTION, TAIL_OPTION, FOLLOW_OPTION, DRY_RUN_OPTION, VERSION_OPTION, QUIETLY_OPTION, HEADLESS_OPTION, LOG_LEVEL_OPTION } = require("./options");
+const { YES_OPTION, HELP_OPTION, TAIL_OPTION, FOLLOW_OPTION, DRY_RUN_OPTION, VERSION_OPTION, QUIETLY_OPTION, HEADLESS_OPTION, LOG_LEVEL_OPTION, DEPENDENCIES_OPTION } = require("./options");
 
-const n = NO_OPTION,
-      y = YES_OPTION,
+const y = YES_OPTION,
       h = HELP_OPTION,
       t = TAIL_OPTION,
       f = FOLLOW_OPTION,
@@ -11,10 +10,10 @@ const n = NO_OPTION,
       v = VERSION_OPTION,
       q = QUIETLY_OPTION,
       x = HEADLESS_OPTION,
-      l = LOG_LEVEL_OPTION
+      l = LOG_LEVEL_OPTION,
+      a = DEPENDENCIES_OPTION;
 
 module.exports = {
-  n,
   y,
   h,
   t,
@@ -23,5 +22,6 @@ module.exports = {
   v,
   q,
   x,
-  l
+  l,
+  a
 };

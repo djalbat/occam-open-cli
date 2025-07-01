@@ -43,13 +43,15 @@ Options:
 
   --log-level|-l                                  Set the log level when publishing
   
-  --yes|-y                                        Initially answer yes to prompts
+  --yes|-y                                        Automatically answer yes to affiermation prompts
 
-  --tail|-t                                       Sets the size of the tail of the log messages when publishing. The default is ten. 
+  --tail|-t                                       Sets the size of the tail of the log messages when publishing. The default is ten 
 
-  --follow|-f                                     Show all of the log messages when publishing. The default is false.
+  --follow|-f                                     Show all of the log messages when publishing. The default is false
 
-  --headless|-x                                   Headless mode. Clone or open all dependencies but no the project or package itself.
+  --headless|-x                                   Headless mode. Clone or open all dependencies bar no the project or package itself
+  
+  --dependencies|-a                               Include dependencies when cloning projects or opening packages
 
 Further information:
 
