@@ -8,7 +8,7 @@ const openOperation = require("../operation/open"),
 const { executeOperations } = require("../utilities/operation"),
       { SUCCESSFUL_OPEN_MESSAGE, FAILED_OPEN_MESSAGE } = require("../messages");
 
-function openAction(releaseName, quietly, no) {
+function openAction(releaseName, headless, quietly, no) {
   const operations = [
           releaseNamePromptOperation,
           openDependenciesOperation,
@@ -18,6 +18,7 @@ function openAction(releaseName, quietly, no) {
         context = {
           no,
           quietly,
+          headless,
           releaseName
         };
 

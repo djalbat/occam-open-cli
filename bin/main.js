@@ -15,7 +15,7 @@ const helpAction = require("./action/help"),
       setShellCommandsAction = require("./action/setShellCommands");
 
 const { NO_ARGUMENT_GIVEN_MESSAGE, COMMAND_NOT_RECOGNISED_MESSAGE } = require("./messages"),
-      { DEFAULT_NO, DEFAULT_YES, DEFAULT_TAIL, DEFAULT_FOLLOW, DEFAULT_DRY_RUN, DEFAULT_QUIETLY, DEFAULT_LOG_LEVEL } = require("./defaults"),
+      { DEFAULT_NO, DEFAULT_YES, DEFAULT_TAIL, DEFAULT_FOLLOW, DEFAULT_DRY_RUN, DEFAULT_QUIETLY, DEFAULT_HEADLESS, DEFAULT_LOG_LEVEL } = require("./defaults"),
       { HELP_COMMAND,
         OPEN_COMMAND,
         CLONE_COMMAND,
@@ -37,6 +37,7 @@ function main(command, argument, options) {
           follow = DEFAULT_FOLLOW,
           dryRun = DEFAULT_DRY_RUN,
           quietly = DEFAULT_QUIETLY,
+          headless = DEFAULT_HEADLESS,
           logLevel = DEFAULT_LOG_LEVEL } = options;
 
   switch (command) {
@@ -64,7 +65,7 @@ function main(command, argument, options) {
       } else {
         const releaseName = argument; ///
 
-        openAction(releaseName, quietly, no);
+        openAction(releaseName, headless, quietly, no);
       }
 
       break;
@@ -76,7 +77,7 @@ function main(command, argument, options) {
       } else {
         const releaseName = argument;  ///
 
-        cloneAction(releaseName, quietly, yes, no);
+        cloneAction(releaseName, headless, quietly, yes, no);
       }
 
       break;

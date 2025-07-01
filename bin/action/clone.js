@@ -8,7 +8,7 @@ const cloneOperation = require("../operation/clone"),
 const { executeOperations } = require("../utilities/operation"),
       { SUCCESSFUL_CLONE_MESSAGE, FAILED_CLONE_MESSAGE } = require("../messages");
 
-function cloneAction(releaseName, quietly, yes, no) {
+function cloneAction(releaseName, headless, quietly, yes, no) {
   const operations = [
           releaseNamePromptOperation,
           cloneDependenciesPromptOperation,
@@ -19,6 +19,7 @@ function cloneAction(releaseName, quietly, yes, no) {
           no,
           yes,
           quietly,
+          headless,
           releaseName
         };
 

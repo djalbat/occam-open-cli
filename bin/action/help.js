@@ -49,6 +49,8 @@ Options:
 
   --follow|-f                                     Show all of the log messages when publishing. The default is false.
 
+  --headless|-x                                   Headless mode. Clone or open all dependencies but no the project or package itself.
+
 Further information:
 
 Please see the readme file on GitHub:

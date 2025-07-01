@@ -8,6 +8,7 @@ const NO_OPTION = "no",
       VERSION_OPTION = "version",
       QUIETLY_OPTION = "quietly",
       DRY_RUN_OPTION = "dry-run",
+      HEADLESS_OPTION = "headless",
       LOG_LEVEL_OPTION = "log-level";
 
 module.exports = {
@@ -19,5 +20,6 @@ module.exports = {
   VERSION_OPTION,
   QUIETLY_OPTION,
   DRY_RUN_OPTION,
+  HEADLESS_OPTION,
   LOG_LEVEL_OPTION
 };
