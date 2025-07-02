@@ -14,6 +14,8 @@ function validateEmailAddress(emailAddress) { return /^[a-z0-9._%+-]+@[a-z0-9.-]
 
 function validateShellCommands(shellCommands) { return  /^.*$/.test(shellCommands); }
 
+function validateRepositoryName(repositoryName) { return /^[a-z0-9]{2,16}(?:-[a-z0-9]{2,16}){0,4}$/.test(repositoryName); }
+
 function validateGitHubHostName(gitHubHostName) { return /^[a-zA-Z0-9.\-]*$/.test(gitHubHostName); }
 
 function validateEmailAddressOrUsername(emailAddressOrUsername) {
@@ -42,6 +44,7 @@ module.exports = {
   validateReleaseName,
   validateEmailAddress,
   validateShellCommands,
+  validateRepositoryName,
   validateGitHubHostName,
   validateEmailAddressOrUsername
 };

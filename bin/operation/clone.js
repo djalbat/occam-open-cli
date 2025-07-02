@@ -5,7 +5,8 @@ const post = require("../post");
 const { CLONE_API_URI } = require("../uris");
 
 function cloneOperation(proceed, abort, context) {
-  const { releaseName } = context,
+  const { repositoryName } = context,
+        releaseName = repositoryName, ///
         uri = `${CLONE_API_URI}/${releaseName}`,
         json = {};
 

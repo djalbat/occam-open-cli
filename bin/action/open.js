@@ -1,7 +1,7 @@
 "use strict";
 
 const openOperation = require("../operation/open"),
-      openDependenciesOperation = require("../operation/openDependencies"),
+      openReleasesOperation = require("../operation/openReleasees"),
       releaseNamePromptOperation = require("../operation/prompt/releaseName");
 
 const { executeOperations } = require("../utilities/operation"),
@@ -11,7 +11,7 @@ function openAction(releaseName, dependencies, headless, quietly, yes) {
   const operations = [
           releaseNamePromptOperation,
           openOperation,
-          openDependenciesOperation
+          openReleasesOperation
         ],
         context = {
           yes,

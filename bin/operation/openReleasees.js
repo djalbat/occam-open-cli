@@ -7,41 +7,75 @@ const { isFileRelease } = require("../utilities/release"),
       { isAnswerAffirmative } = require("../utilities/prompt"),
       { INVALID_ANSWER_MESSAGE } = require("../messages");
 
-const { writeFile, removeEntry, checkEntryExists, isEntryDirectory } = fileSystemUtilities;
-
 const { first } = arrayUtilities,
       { prompt } = shellUtilities,
-      { forEach } = asynchronousUtilities;
+      { forEach } = asynchronousUtilities,
+      { writeFile, removeEntry, checkEntryExists, isEntryDirectory } = fileSystemUtilities;
 
-function openDependenciesOperation(proceed, abort, context) {
+function openReleasesOperation(proceed, abort, context) {
   const { releases, dependencies } = context;
 
   if (dependencies) {
-    const done = proceed; ///
+    const success = true;
 
-    forEach(releases, openDependencyPromptOperation, done, context);
+    Object.assign(context, {
+      success
+    });
+
+    forEach(releases, openReleasePromptOperation, () => {
+      const { success } = context;
+
+      delete context.success;
+
+      success ?
+        proceed() :
+          abort();
+    }, context);
 
     return;
   }
 
+  const success = true;
+
+  Object.assign(context, {
+    success
+  });
+
   const firstRelease = first(releases),
         release = firstRelease, ///
-        index = 0,
-        next = proceed, ///
-        done = null;  ///
+        index = Infinity,
+        done = null;
 
-  openDependencyPromptOperation(release, next, done, context, index);
+  openReleasePromptOperation(release, () => {
+    const { success } = context;
+
+    delete context.success;
+
+    success ?
+      proceed() :
+        abort();
+  }, done, context, index);
 }
 
-module.exports = openDependenciesOperation;
+module.exports = openReleasesOperation;
 
-function openDependencyPromptOperation(release, next, done, context, index) {
+function openReleasePromptOperation(release, next, done, context, index) {
+  if (index === 0) {
+    const { headless } = context;
+
+    if (headless) {
+      next();
+
+      return;
+    }
+  }
+
   const { name, quietly } = release,
         entryPath = name, ///
         entryExists = checkEntryExists(entryPath);
 
   if (!entryExists) {
-    openDependency(release, quietly);
+    openRelease(release, quietly);
 
     next();
 
@@ -52,8 +86,14 @@ function openDependencyPromptOperation(release, next, done, context, index) {
 
   if (entryDirectory) {
     if (!quietly) {
-      console.log(`Cannot open the '${name}' package because a directory of that name already exists.`);
+      console.log(`Cannot open the '${name}' package because a directory with that name already exists.`);
     }
+
+    const success = false;
+
+    Object.assign(context, {
+      success
+    });
 
     next();
 
@@ -65,8 +105,14 @@ function openDependencyPromptOperation(release, next, done, context, index) {
 
   if (!fileRelease) {
     if (!quietly) {
-      console.log(`The '${name}' file is not a package and cannot be overwritten.`);
+      console.log(`The '${name}' file is not a package and therefore cannot be overwritten.`);
     }
+
+    const success = false;
+
+    Object.assign(context, {
+      success
+    });
 
     next();
 
@@ -82,7 +128,7 @@ function openDependencyPromptOperation(release, next, done, context, index) {
 
     removeEntry(entryPath);
 
-    openDependency(release, quietly);
+    openRelease(release, quietly);
 
     return;
   }
@@ -105,15 +151,25 @@ function openDependencyPromptOperation(release, next, done, context, index) {
       if (affirmative) {
         removeEntry(entryPath);
 
-        openDependency(release, quietly);
+        openRelease(release, quietly);
       }
 
       next();
+
+      return;
     }
+
+    const success = false;
+
+    Object.assign(context, {
+      success
+    });
+
+    next();
   });
 }
 
-function openDependency(release, quietly) {
+function openRelease(release, quietly) {
   const { name } = release,
         filePath = name,  ///
         releaseJSON = release,  ///

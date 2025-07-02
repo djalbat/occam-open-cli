@@ -75,9 +75,9 @@ function main(command, argument, options) {
       if (argument === null) {
         console.log(NO_ARGUMENT_GIVEN_MESSAGE);
       } else {
-        const releaseName = argument;  ///
+        const repositoryName = argument;  ///
 
-        cloneAction(releaseName, dependencies, headless, quietly);
+        cloneAction(repositoryName, dependencies, headless, quietly);
       }
 
       break;

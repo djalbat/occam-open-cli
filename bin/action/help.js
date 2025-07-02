@@ -17,7 +17,7 @@ Commands:
 
   set-options                                     Set options 
 
-  clone <package_name>                            Clone a package with Git
+  clone <repository_name>                         Clone a repository with Git
 
   publish <package_name>                          Publish a package
 
@@ -49,9 +49,9 @@ Options:
 
   --follow|-f                                     Show all of the log messages when publishing. The default is false
 
-  --headless|-x                                   Headless mode. Clone or open all dependencies bar no the project or package itself
+  --headless|-x                                   Headless mode. Clone or open all dependencies bar the repository or package itself
   
-  --dependencies|-a                               Include dependencies when cloning projects or opening packages
+  --dependencies|-a                               Include dependencies when cloning repositories or opening packages
 
 Further information:
 
