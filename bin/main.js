@@ -88,7 +88,7 @@ function main(command, argument, options) {
       if (argument === null) {
         console.log(NO_ARGUMENT_GIVEN_MESSAGE);
       } else {
-        const releaseName = argument.replace(/\/$/, EMPTY_STRING);
+        const releaseName = stripTrailingSlash(argument);
 
         publishAction(releaseName, tail, follow, dryRun, logLevel);
       }
@@ -155,3 +155,9 @@ function main(command, argument, options) {
 }
 
 module.exports = main;
+
+function stripTrailingSlash(string) {
+  string = string.replace(/\/$/, EMPTY_STRING);
+
+  return string;
+}
