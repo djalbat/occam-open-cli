@@ -14,7 +14,8 @@ const helpAction = require("./action/help"),
       resetPasswordAction = require("./action/resetPassword"),
       setShellCommandsAction = require("./action/setShellCommands");
 
-const { NO_ARGUMENT_GIVEN_MESSAGE, COMMAND_NOT_RECOGNISED_MESSAGE } = require("./messages"),
+const { EMPTY_STRING } = require("./constants"),
+      { NO_ARGUMENT_GIVEN_MESSAGE, COMMAND_NOT_RECOGNISED_MESSAGE } = require("./messages"),
       { DEFAULT_YES, DEFAULT_TAIL, DEFAULT_FOLLOW, DEFAULT_DRY_RUN, DEFAULT_QUIETLY, DEFAULT_HEADLESS, DEFAULT_LOG_LEVEL, DEFAULT_DEPENDENCIES } = require("./defaults"),
       { HELP_COMMAND,
         OPEN_COMMAND,
@@ -87,7 +88,7 @@ function main(command, argument, options) {
       if (argument === null) {
         console.log(NO_ARGUMENT_GIVEN_MESSAGE);
       } else {
-        const releaseName = argument;  ///
+        const releaseName = argument.replace(/\/$/, EMPTY_STRING);
 
         publishAction(releaseName, tail, follow, dryRun, logLevel);
       }
