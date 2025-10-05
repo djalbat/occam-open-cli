@@ -70,7 +70,8 @@ function openReleasePromptOperation(release, next, done, context, index) {
     }
   }
 
-  const { name, quietly } = release,
+  const { name } = release,
+        { quietly } = context,
         entryPath = name, ///
         entryExists = checkEntryExists(entryPath);
 
