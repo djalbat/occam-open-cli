@@ -1,0 +1,161 @@
+"use strict";
+
+import helpAction from "./action/help";
+import openAction from "./action/open";
+import cloneAction from "./action/clone";
+import signInAction from "./action/signIn";
+import signOutAction from "./action/signOut";
+import versionAction from "./action/version";
+import publishAction from "./action/publish";
+import withdrawAction from "./action/withdraw";
+import initialiseAction from "./action/initialise";
+import setOptionsAction from "./action/setOptions";
+import createAccountAction from "./action/createAccount";
+import resetPasswordAction from "./action/resetPassword";
+import setShellCommandsAction from "./action/setShellCommands";
+
+import { EMPTY_STRING } from "./constants";
+import { NO_ARGUMENT_GIVEN_MESSAGE, COMMAND_NOT_RECOGNISED_MESSAGE } from "./messages";
+import { DEFAULT_YES, DEFAULT_TAIL, DEFAULT_FOLLOW, DEFAULT_DRY_RUN, DEFAULT_QUIETLY, DEFAULT_HEADLESS, DEFAULT_LOG_LEVEL, DEFAULT_DEPENDENCIES } from "./defaults";
+import { HELP_COMMAND,
+         OPEN_COMMAND,
+         CLONE_COMMAND,
+         VERSION_COMMAND,
+         PUBLISH_COMMAND,
+         SIGN_IN_COMMAND,
+         SIGN_OUT_COMMAND,
+         WITHDRAW_COMMAND,
+         INITIALISE_COMMAND,
+         SET_OPTIONS_COMMAND,
+         CREATE_ACCOUNT_COMMAND,
+         RESET_PASSWORD_COMMAND,
+         SET_SHELL_COMMANDS_COMMAND } from "./commands";
+
+export default function main(command, argument, options) {
+  const { yes = DEFAULT_YES,
+          tail = DEFAULT_TAIL,
+          follow = DEFAULT_FOLLOW,
+          dryRun = DEFAULT_DRY_RUN,
+          quietly = DEFAULT_QUIETLY,
+          headless = DEFAULT_HEADLESS,
+          logLevel = DEFAULT_LOG_LEVEL,
+          dependencies = DEFAULT_DEPENDENCIES } = options;
+
+  switch (command) {
+    case HELP_COMMAND: {
+      helpAction();
+
+      break;
+    }
+
+    case VERSION_COMMAND: {
+      versionAction();
+
+      break;
+    }
+
+    case INITIALISE_COMMAND: {
+      initialiseAction();
+
+      break;
+    }
+
+    case OPEN_COMMAND: {
+      if (argument === null) {
+        console.log(NO_ARGUMENT_GIVEN_MESSAGE);
+      } else {
+        const releaseName = argument; ///
+
+        openAction(releaseName, dependencies, headless, quietly, yes);
+      }
+
+      break;
+    }
+
+    case CLONE_COMMAND: {
+      if (argument === null) {
+        console.log(NO_ARGUMENT_GIVEN_MESSAGE);
+      } else {
+        const repositoryName = argument;  ///
+
+        cloneAction(repositoryName, dependencies, headless, quietly);
+      }
+
+      break;
+    }
+
+    case PUBLISH_COMMAND: {
+      if (argument === null) {
+        console.log(NO_ARGUMENT_GIVEN_MESSAGE);
+      } else {
+        const releaseName = stripTrailingSlash(argument);
+
+        publishAction(releaseName, tail, follow, dryRun, logLevel);
+      }
+
+      break;
+    }
+
+    case SIGN_IN_COMMAND: {
+      const emailAddressOrUsername = argument;  ///
+
+      signInAction(emailAddressOrUsername);
+
+      break;
+    }
+
+    case SIGN_OUT_COMMAND: {
+      signOutAction();
+
+      break;
+    }
+
+    case WITHDRAW_COMMAND: {
+      const releaseName = argument;  ///
+
+      withdrawAction(releaseName);
+
+      break;
+    }
+
+    case SET_OPTIONS_COMMAND: {
+      setOptionsAction();
+
+      break;
+    }
+
+    case CREATE_ACCOUNT_COMMAND: {
+      const emailAddress = argument;  ///
+
+      createAccountAction(emailAddress);
+
+      break;
+    }
+
+    case RESET_PASSWORD_COMMAND: {
+      const emailAddress = argument; ///
+
+      resetPasswordAction(emailAddress);
+
+      break;
+    }
+
+    case SET_SHELL_COMMANDS_COMMAND: {
+      setShellCommandsAction();
+
+      break;
+    }
+
+    default: {
+      console.log(COMMAND_NOT_RECOGNISED_MESSAGE);
+
+      break;
+    }
+  }
+}
+
+function stripTrailingSlash(string) {
+  string = string.replace(/\/$/, EMPTY_STRING);
+
+  return string;
+}

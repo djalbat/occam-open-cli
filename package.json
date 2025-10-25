@@ -15,7 +15,22 @@
     "occam-entities": "^1.0.424",
     "occam-file-system": "^6.0.439"
   },
-  "scripts": {},
+  "devDependencies": {
+    "@swc/core": "1.13.20",
+    "watchful-cli": "^1.7.56"
+  },
+  "scripts": {
+    "clean": "rm -rf ./lib",
+    "watchful": "watchful -m --transpiler=swc --source-directory=./src --lib-directory=./lib --pause=100",
+    "batch": "npm run watchful batch --",
+    "batch-debug": "npm run watchful batch -- --debug",
+    "incremental": "npm run watchful incremental --",
+    "incremental-debug": "npm run watchful incremental -- --debug",
+    "build": "npm run clean && npm run batch",
+    "build-debug": "npm run clean && npm run batch-debug",
+    "watch": "npm run clean && npm run batch && npm run incremental",
+    "watch-debug": "npm run clean && npm run batch-debug && npm run incremental-debug"
+  },
   "bin": {
     "open": "./open.js"
   }
