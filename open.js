@@ -3,9 +3,9 @@
 const { parseArgv } = require("argumentative"),
       { arrayUtilities } = require("necessary");
 
-const main = require("./lib/main"),
-      prepare = require("./lib/prepare"),
-      abbreviations = require("./lib/abbreviations");
+const { default: main } = require("./lib/main"),
+      { default: prepare } = require("./lib/prepare"),
+      { default: abbreviations } = require("./lib/abbreviations");
 
 const { argv } = process,
       { first, second } = arrayUtilities;
