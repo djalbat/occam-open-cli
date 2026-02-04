@@ -1,6 +1,6 @@
 "use strict";
 
-import { Release } from "occam-entities";
+import { Release } from "occam-model";
 
 export default function releaseToJSONOperation(proceed, abort, context) {
   let release;

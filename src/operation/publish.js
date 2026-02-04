@@ -1,6 +1,6 @@
 "use strict";
 
-import { Version } from "occam-entities";  1
+import { Version } from "occam-model";
 
 import post from "../post";  1
 

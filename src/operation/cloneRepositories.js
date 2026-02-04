@@ -1,7 +1,7 @@
 "use strict";
 
 import { exec } from "child_process";
-import { Entries } from "occam-entities";
+import { Entries } from "occam-model";
 import { arrayUtilities, fileSystemUtilities, asynchronousUtilities } from "necessary";
 
 import { retrieveOptions } from "../configuration";

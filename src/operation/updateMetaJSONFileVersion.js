@@ -1,7 +1,7 @@
 "use strict";
 
 import { fileSystemUtilities } from "occam-file-system";
-import { fileNames, metaJSONUtilities } from "occam-entities";
+import { fileNames, metaJSONUtilities } from "occam-model";
 
 const { loadFile, saveFile } = fileSystemUtilities,
       { META_JSON_FILE_NAME } = fileNames,
