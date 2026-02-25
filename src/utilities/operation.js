@@ -4,7 +4,7 @@ import { asynchronousUtilities } from "necessary";
 
 const { whilst } = asynchronousUtilities;
 
-export default function executeOperations(operations, callback, context) {
+export function executeOperations(operations, callback, context) {
   const completed = true;
 
   Object.assign(context, {
