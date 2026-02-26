@@ -2,7 +2,7 @@
 
 import { Version } from "occam-model";
 
-import post from "../post";  1
+import post from "../post";
 
 import { PUBLISH_API_URI } from "../uris";
 
