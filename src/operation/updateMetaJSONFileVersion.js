@@ -1,6 +1,6 @@
 "use strict";
 
-import { fileSystemUtilities } from "occam-file-system";
+import { fileSystemUtilities } from "occam-server";
 import { fileNames, metaJSONUtilities } from "occam-model";
 
 const { loadFile, saveFile } = fileSystemUtilities,

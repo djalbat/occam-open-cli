@@ -1,6 +1,6 @@
 "use strict";
 
-import { fileSystemUtilities } from "occam-file-system";
+import { fileSystemUtilities } from "occam-server";
 
 import { FAILED_PROJECT_LOAD_MESSAGE } from "../messages";
 

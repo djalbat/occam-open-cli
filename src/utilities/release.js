@@ -1,6 +1,6 @@
 "use strict";
 
-import { fileSystemUtilities } from "occam-file-system";
+import { fileSystemUtilities } from "occam-server";
 
 const { loadRelease } = fileSystemUtilities;
 
