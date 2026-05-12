@@ -171,9 +171,9 @@ function openReleasePromptOperation(release, next, done, context, index) {
 function openRelease(release, quietly) {
   const { name } = release,
         filePath = name,  ///
-        releaseJSON = release,  ///
-        releaseJSONString = JSON.stringify(releaseJSON),
-        content = releaseJSONString; ///
+        json = release,  ///
+        jsonString = JSON.stringify(json),
+        content = jsonString; ///
 
   writeFile(filePath, content);
 

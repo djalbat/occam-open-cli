@@ -18,10 +18,9 @@ export default function post(uri, json, callback) {
   const host = retrieveHost(),
         query = {},
         headers = {
-          [ CONTENT_TYPE_HEADER ]: APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE
+          [CONTENT_TYPE_HEADER]: APPLICATION_JSON_CHARSET_UTF_8_CONTENT_TYPE
         },
         version = getVersion(),
-        content = JSON.stringify(json), ///
         versionString = version;  ///
 
   Object.assign(json, {
@@ -68,7 +67,9 @@ export default function post(uri, json, callback) {
     });
   });
 
-  const readable = Readable.from(content);
+  const jsonString = JSON.stringify(json), ///
+        content = jsonString, //////
+        readable = Readable.from(content);
 
   readable.pipe(postRequest);
 }
