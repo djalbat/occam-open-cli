@@ -67,7 +67,7 @@ export default function post(uri, json, callback) {
     });
   });
 
-  const jsonString = JSON.stringify(json), ///
+  const jsonString = JSON.stringify(json),
         content = jsonString, //////
         readable = Readable.from(content);
 
