@@ -3,6 +3,7 @@
 export const END = "end";
 export const DATA = "data";
 export const OPEN = "open";
+export const UTF8 = "utf8";
 export const HOST_URL = "hostURL";
 export const DOUBLE_DOTS = "..";
 export const DOUBLE_DASH = "--";

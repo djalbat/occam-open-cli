@@ -1,15 +1,19 @@
 "use strict";
 
-import { END, DATA, EMPTY_STRING } from "../constants";
+import { END, DATA, UTF8 } from "../constants";
 
 export function contentFromResponse(response, callback) {
-  let content = EMPTY_STRING;
+  const chunks = [];
 
-  response.on(DATA, (data) => {
-    content += data;
+  response.on(DATA, (chunk) => {
+    chunks.push(chunk);
   });
 
   response.on(END, () => {
+    const content = Buffer
+                      .concat(chunks)
+                      .toString(UTF8);
+
     callback(content);
   });
 }
